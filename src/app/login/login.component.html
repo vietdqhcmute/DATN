@@ -1,24 +1,53 @@
-<div class="login-page" [@routerTransition]>
-  <div class="row justify-content-md-center">
-      <div class="col-md-4">
-          <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-          <h1>Welcome to CV cencei</h1>
-          <form role="form">
-              <div class="form-content">
-                  <div class="form-group">
-                      <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
-                  </div>
+<div id="login-form">
+  <!-- Sign in -->
+  <form (submit)="onSignIn(signInForm)" #signInForm="ngForm">
+    <header>
+      <h3>Login with Account</h3>
+    </header>
+    <a
+      id="btn-login-google"
+      style="width:100%"
+      routerLink="../signup-recruiter"
+      class="btn btn-default"
+      ><span><img src="../../assets/google-icon.png" alt="Google-icon"/></span>
+      Create Employer account</a
+    >
+    <br /><br />
+    <mat-form-field>
+      <input
+        matInput
+        id="email"
+        name="email"
+        required
+        placeholder="Email"
+        [(ngModel)]="loginParams.email"
+      />
+    </mat-form-field>
 
-                  <div class="form-group">
-                      <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
-                  </div>
-              </div>
-              <a class="btn rounded-btn" [routerLink]="['/dashboard']">Login</a>
-              &nbsp;
-              <a class="btn rounded-btn" [routerLink]="['/signup']">Sign up</a>
-              &nbsp;
-              <a class="btn rounded-btn" [routerLink]="['/signup']">Sign up as recruiter</a>
-          </form>
-      </div>
-  </div>
+    <mat-form-field>
+      <input
+        matInput
+        name="password"
+        placeholder="Password"
+        required
+        [type]="hide ? 'password' : 'text'"
+        [(ngModel)]="loginParams.password"
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button
+        *ngIf="!isLoading_logIn"
+        mat-button
+        type="submit"
+        class="mat-raised-button mat-primary"
+        cdkFocusInitial
+      >
+        Login
+      </button>
+    </mat-dialog-actions>
+  </form>
+  <a routerLink="../signup">Create new account</a>
 </div>
