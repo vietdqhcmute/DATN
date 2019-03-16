@@ -1,0 +1,68 @@
+:host {
+  #carouselExampleControls {
+    #carousel-all-job {
+      top:-4px;
+    }
+  }
+  
+  .search-form-all-job {
+    @media screen and (max-width: 600px) {
+      top: 22%;
+    }
+    position: absolute;
+    border-radius: 2px;
+    box-shadow: none;
+    margin-left: -5px;
+    margin-right: -5px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: 3%;
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+    z-index: 2;
+
+    .search-text {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      #search-form {
+        display: flex;
+        margin: 5px 5px 0;
+        .search-icon {
+          margin-right: 20px;
+          i {
+            font-size: 40px;
+          }
+        }
+        .input-text {
+          width: 100%;
+        }
+        #input-job {
+          font-size: 0.8em;
+          height: 100%;
+        }
+        #exampleFormControlSelect1 {
+          font-size: 0.8em;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .check-it-position {
+    @media screen and (max-width: 600px) {
+      flex-wrap: wrap;
+    }
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .companies-alljob{
+    
+  }
+}
