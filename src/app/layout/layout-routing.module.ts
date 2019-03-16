@@ -7,7 +7,10 @@ const routes: Routes = [
   {
     path: "",
     component: LayoutComponent,
-    children: [{ path: "", component: AllJobComponent }]
+    children: [
+      { path: "", redirectTo: "all-job", pathMatch: "full" },
+      { path: "all-job", component: AllJobComponent }
+    ]
   }
 ];
 

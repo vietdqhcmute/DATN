@@ -6,7 +6,7 @@ import { RegisterComponent } from "./components/register.component";
 
 const registerRoutes: Routes = [
   {
-    path: "register",
+    path: "",
     component: RegisterComponent,
     children: [
       { path: "candidate", component: RegisterCandidateComponent },
