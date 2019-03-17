@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  // background-image: url('../../../assets/images/getting-work-done-twago.png');
+  background-image: rgb(95, 90, 90);
+  background-position: left top;
+  background-attachment: fixed;
+  background-size: 150vh;
+  justify-content: flex-end;
+  background-repeat: no-repeat;
+  #signup-form {
+    margin: 0 0;
+    background-color: rgb(255, 255, 255);
+    width: 60vh;
+    padding: 50px 40px;
+
+    mat-form-field {
+      width: 100%;
+
+      input {
+        font-weight: bold;
+      }
+
+      mat-icon {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    button{
+      width: 100%;
+    }
+  }
+}
+

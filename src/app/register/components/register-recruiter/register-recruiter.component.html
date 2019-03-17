@@ -1,3 +1,198 @@
-<p>
-  register-recruiter works!
-</p>
+<div id="signup-form">
+  <form (submit)="onSignUp(signUpForm)" #signUpForm="ngForm">
+    <div class="sign-up mat-experience alternate-theme">
+      <h3 style="margin: 0 auto">Create</h3>
+      <h3 style="margin: 0 auto">Account company</h3>
+      <mat-form-field>
+        <input
+          matInput
+          name="company_name"
+          required
+          placeholder="Company name"
+          [(ngModel)]="recruiterParams.company_name"
+          minlength="4"
+          #company_name="ngModel"
+        />
+        <mat-error
+          *ngIf="
+            company_name.invalid && (company_name.dirty || company_name.touched)
+          "
+        >
+          <div *ngIf="company_name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="company_name.errors.minlength">
+            Name must be at least 4 characters long.
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          id="website"
+          matInput
+          name="website"
+          required
+          placeholder="Website"
+          required
+          [(ngModel)]="recruiterParams.website"
+          #website="ngModel"
+        />
+        <mat-error
+          *ngIf="
+          website.invalid && (website.dirty || website.touched)
+          "
+        >
+          <div *ngIf="website.errors.required">
+            Don't lie to us!
+          </div>
+          <div *ngIf="website.errors.pattern">
+            Invalid
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          id="city"
+          matInput
+          name="city"
+          required
+          placeholder="City"
+          required
+          [(ngModel)]="recruiterParams.city"
+          #city="ngModel"
+        />
+        <mat-error
+          *ngIf="
+          city.invalid && (city.dirty || city.touched)
+          "
+        >
+          <div *ngIf="city.errors.required">
+            Phone is required.
+          </div>
+          <div *ngIf="city.errors.pattern">
+            Invalid
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          id="phone"
+          matInput
+          name="phone"
+          required
+          placeholder="Your phone"
+          required
+          pattern="^[0-9]\d*(\.\d+)?$"
+          [(ngModel)]="recruiterParams.phone"
+          maxlength="11"
+          #phone="ngModel"
+        />
+        <mat-error
+          *ngIf="
+            phone.invalid && (phone.dirty || phone.touched)
+          "
+        >
+          <div *ngIf="phone.errors.required">
+            Phone is required.
+          </div>
+          <div *ngIf="phone.errors.pattern">
+            Invalid
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          id="email"
+          matInput
+          name="email"
+          required
+          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+          placeholder="Your email"
+          [(ngModel)]="recruiterParams.email"
+          #email="ngModel"
+        />
+        <mat-error
+          *ngIf="
+            email.invalid && (email.dirty || email.touched)
+          "
+        >
+          <div *ngIf="email.errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="email.errors.pattern">
+            Invalid! Email: xxx@xxx.xxx
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          id="password"
+          matInput
+          name="password"
+          placeholder="Password"
+          required
+          required
+          [(ngModel)]="recruiterParams.password"
+          [type]="hide ? 'password' : 'text'"
+          #password="ngModel"
+        />
+        <!-- pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,15}$"  minlength="6"-->
+        <mat-icon matSuffix (click)="hide = !hide">{{
+          hide ? "visibility_off" : "visibility"
+        }}</mat-icon>
+
+        <mat-error
+          *ngIf="
+            password.invalid &&
+            (password.dirty || password.touched)
+          "
+        >
+          <div *ngIf="password.errors.required">
+            Password is required.
+          </div>
+          <div *ngIf="password.errors.pattern">
+            Password must be 8-16 characters: Include at least one lowercase
+            letter, one uppercase letter, a number, special characters
+            #$^+=!*()@%&
+          </div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 8 characters long.
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          name="confirm"
+          type="password"
+          required
+          placeholder="Enter your password again"
+          [(ngModel)]="confirm"
+        />
+      </mat-form-field>
+
+      <mat-dialog-actions>
+        <button
+          mat-button
+          *ngIf="!isLoading_signUp"
+          type="submit"
+          class="mat-raised-button mat-primary"
+          cdkFocusInitial
+        >
+          Sign up
+        </button>
+        <mat-spinner
+          mode="indeterminate"
+          [diameter]="30"
+          *ngIf="isLoading_signUp"
+        ></mat-spinner>
+      </mat-dialog-actions>
+    </div>
+  </form>
+</div>
