@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginData } from "../models/LoginData";
 import { NgForm } from "@angular/forms";
-import { AuthService } from '../services/auth.service';
+import { AuthService } from "../services/auth.service";
+import { Title } from "@angular/platform-browser";
 // import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -14,9 +15,11 @@ export class LoginComponent implements OnInit {
   isLoading_logIn = false;
   loginParams = new LoginData();
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private titleService: Title) {}
   // constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleService.setTitle("Login");
+  }
 
   onSignIn(form: NgForm) {
     if (form.invalid) {

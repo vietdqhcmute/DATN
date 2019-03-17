@@ -19,7 +19,7 @@ export class RegisterCandidateComponent implements OnInit {
     if (form.invalid){
       return;
     }
-    // this.authService.createCandidate(this.candidateParams);
+    this.authService.createCandidate(this.candidateParams);
   }
 
 }

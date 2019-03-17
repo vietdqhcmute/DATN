@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: "./recruiter/recruiter.module#RecruiterModule"
   },
   {
+    path: "administrator",
+    loadChildren: "./administrator/administrator.module#AdministratorModule"
+  },
+  {
     path: "not-found",
     loadChildren: "./not-found/not-found.module#NotFoundModule"
   },
