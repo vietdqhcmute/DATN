@@ -1,18 +1,18 @@
 <nav>
   <ul>
     <li>
-      <a id="logo" class="float-left"><strong>CVsensei</strong></a>
+      <a routerLink="/all-job" id="logo" class="float-left"><strong>CVsensei</strong></a>
     </li>
 
-    <li routerLinkActive="active" *ngIf="!userIsAuthenticated">
+    <li routerLinkActive="active" >
       <a routerLink="/login" class="float-right">Sign in</a>
     </li>
-    <li routerLinkActive="active" *ngIf="userIsAuthenticated">
+    <li routerLinkActive="active">
       <a routerLink="/login" class="float-right">Log out</a
       >
     </li>
 
-    <li routerLinkActive="active" *ngIf="userIsAuthenticated">
+    <li routerLinkActive="active">
       <a routerLink="/about" class="float-right">About us</a>
     </li>
 

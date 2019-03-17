@@ -2,19 +2,15 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { Router } from "@angular/router";
-import { environment } from 'src/environments/environment';
-import { AuthenticatModel } from '../models/LoginData';
+import { environment } from "src/environments/environment";
+import { AuthenticatModel } from "../models/LoginData";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
   domainName = environment.APIEndPoint;
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
   //==================================================New code=================================
   createCandidate(candidateParams) {
     this.http.post(this.domainName + "sign-up", candidateParams).subscribe(
@@ -64,7 +60,7 @@ export class AuthService {
         }
       );
   }
-  
+
   private loginAsCandidate(email) {
     this.router.navigate(["profile/", email]);
   }
