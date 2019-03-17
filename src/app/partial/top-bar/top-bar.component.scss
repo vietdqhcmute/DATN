@@ -1,29 +1,32 @@
-nav {
-  background: #263238;
-  width: 100%;
-  height: 60px;
-  margin-bottom: 0;
+:host {
+  nav {
+    background: #212121 ;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 0;
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
-    li {
-      img {
-        max-width: 40px;
-        border-radius: 50%;
+      li {
+        img {
+          max-width: 40px;
+          border-radius: 50%;
+        }
       }
 
-    }
-
-    a {
-      color: #fff;
-      margin: 20px;
-      display: block;
-      text-decoration: none;
+      a {
+        color: rgb(158, 154, 154);
+        margin: 20px;
+        display: block;
+        text-decoration: none;
+        &:hover{
+          color: #fff;
+        }
+      }
 
     }
   }
 }
-
