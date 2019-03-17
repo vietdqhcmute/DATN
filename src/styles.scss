@@ -2,3 +2,33 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//Material theme
+@import '~@angular/material/theming';
+@include mat-core();
+$my-app-primary: mat-palette($mat-light-blue, 500, 900, A100);
+$my-app-accent: mat-palette($mat-pink, 500, 900, A100);
+$my-app-warn: mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-light-blue);
+  $alternate-accent: mat-palette($mat-yellow, 400);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+  @include angular-material-theme($alternate-theme);
+}
+
+.custom-theme{
+  $custom-primary: mat-palette($mat-pink, 500, 900, A100);
+  $custom-accent: mat-palette($mat-yellow, 400);
+  $custom-theme: mat-light-theme($custom-primary, $custom-accent);
+  @include angular-material-theme($custom-theme);
+}
+
+.login-theme{
+  $login-primary: mat-palette($mat-red,50);
+  $login-accent: mat-palette($mat-red,50);
+  $login-theme: mat-light-theme($login-primary, $login-accent);
+  @include angular-material-theme($login-theme);
+}

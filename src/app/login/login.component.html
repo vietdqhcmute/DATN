@@ -1,4 +1,4 @@
-<div id="login-form">
+<div id="login-form" class="login-theme">
   <!-- Sign in -->
   <form (submit)="onSignIn(signInForm)" #signInForm="ngForm">
     <header>
@@ -9,7 +9,9 @@
       style="width:100%"
       routerLink="../register/recruiter"
       class="btn btn-default"
-      ><span><img src="../../assets/images/google-icon.png" alt="Google-icon"/></span>
+      ><span
+        ><img src="../../assets/images/google-icon.png" alt="Google-icon"
+      /></span>
       Create Employer account</a
     >
     <br /><br />
@@ -47,5 +49,7 @@
       </button>
     </mat-dialog-actions>
   </form>
-  <a routerLink="../register/candidate">Create new account</a>
+  <div class="create-account">
+    <a routerLink="../register/candidate">Create new account</a>
+  </div>
 </div>
