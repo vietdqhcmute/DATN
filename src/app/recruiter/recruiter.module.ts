@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RecruiterComponent } from './recruiter.component';
+import { RecruiterRoutingModule } from './recruiter-routing.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [RecruiterComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RecruiterRoutingModule
   ]
 })
 export class RecruiterModule { }
