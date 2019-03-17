@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginData } from "../models/LoginData";
 import { NgForm } from "@angular/forms";
+import { AuthService } from '../services/auth.service';
 // import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -13,14 +14,14 @@ export class LoginComponent implements OnInit {
   isLoading_logIn = false;
   loginParams = new LoginData();
 
-  // constructor(public authService: AuthService) {}
-  constructor() {}
+  constructor(public authService: AuthService) {}
+  // constructor() {}
   ngOnInit() {}
 
   onSignIn(form: NgForm) {
-    // if (form.invalid) {
-    //   return;
-    // }
-    // this.authService.login(this.loginParams);
+    if (form.invalid) {
+      return;
+    }
+    this.authService.login(this.loginParams);
   }
 }
