@@ -1,0 +1,39 @@
+:host() {
+  .top-bar {}
+
+  .container-fluid {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100%;
+    .side-bar {
+      position: absolute;
+      font-size: 22px;
+      font-style: inherit;
+      font-weight: 500;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      float: left;
+      width: 250px;
+      background: #212121;
+
+      ul {
+        list-style: none;
+
+        li {
+          a {
+            color: rgb(167, 164, 164);
+            text-decoration: none;
+
+            &:hover {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

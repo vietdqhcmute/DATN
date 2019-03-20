@@ -8,8 +8,8 @@ const routes: Routes = [
     path: "",
     component: LayoutComponent,
     children: [
-      { path: "", redirectTo: "all-job", pathMatch: "full" },
-      { path: "all-job", component: AllJobComponent }
+      { path: "", redirectTo: "alljob", pathMatch: "full" },
+      { path: "alljob", component: AllJobComponent }
     ]
   }
 ];

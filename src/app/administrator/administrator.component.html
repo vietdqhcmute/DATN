@@ -1,5 +1,35 @@
-<app-header></app-header>
-<app-sidebar></app-sidebar>
-<section>
-  <router-outlet></router-outlet>
-</section>
+<div class="top-bar">
+  <app-top-bar></app-top-bar>
+</div>
+<div class="container-fluid">
+  <div class="side-bar col-md-3">
+    <nav>
+      <div class="image">
+        <img [src]="image_url" alt="" />
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="">Dashboard</a>
+          </li>
+          <li>
+            <a href="">User manager</a>
+          </li>
+          <li>
+            <a href="">Table</a>
+          </li>
+          <li>
+            <a href="">Grid</a>
+          </li>
+          <li>
+            <a href="">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="content">
+    <h1>this is just some content</h1>
+    <!-- <router-outlet></router-outlet> -->
+  </div>
+</div>
