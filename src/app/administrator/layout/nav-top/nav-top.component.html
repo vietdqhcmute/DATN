@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container admin-theme">
+<mat-sidenav-container class="sidenav-container">
   <mat-sidenav
     #drawer
     class="sidenav"
@@ -9,11 +9,11 @@
   >
     <mat-toolbar style="text-align: center">ADMIN</mat-toolbar>
     <mat-nav-list class="list-menu">
-      <a mat-list-item routerLink="dashboard">Dashboard</a>
-      <a mat-list-item routerLink="chart">Chart</a>
-      <a mat-list-item routerLink="user-manager">User Manager</a>
-      <hr />
-      <a mat-list-item routerLink="">Log Out</a>
+      <a mat-list-item href="#">Dashboard</a>
+      <a mat-list-item href="#">Chart</a>
+      <a mat-list-item href="#">User Manager</a>
+      <hr>
+      <a mat-list-item href="#">Log Out</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="background-color: white !important;">
@@ -32,8 +32,8 @@
       <app-header style="flex: 1"></app-header>
     </div>
     <!-- Add Content Here -->
-    <div class="admin-content">
-        <router-outlet></router-outlet>
+  <div class="admin-content">
+      
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

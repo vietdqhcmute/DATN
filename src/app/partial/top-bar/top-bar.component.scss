@@ -1,32 +1,22 @@
 :host {
-  nav {
-    background: #212121 ;
-    width: 100%;
-    height: 60px;
-    margin-bottom: 0;
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        img {
-          max-width: 40px;
-          border-radius: 50%;
-        }
-      }
-
-      a {
-        color: rgb(158, 154, 154);
-        margin: 20px;
-        display: block;
-        text-decoration: none;
-        &:hover{
-          color: #fff;
-        }
-      }
-
-    }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  .spacer{
+      flex: 1 1 auto;
+  }
+  .class1{
+      display: none;    
+  }
+  .docs-angular-logo {
+    height: 26px;
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
   }
 }

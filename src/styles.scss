@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 //Material theme
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @include mat-core();
 $my-app-primary: mat-palette($mat-light-blue, 500, 900, A100);
 $my-app-accent: mat-palette($mat-pink, 500, 900, A100);
@@ -19,16 +25,23 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
   @include angular-material-theme($alternate-theme);
 }
 
-.custom-theme{
+.custom-theme {
   $custom-primary: mat-palette($mat-pink, 400, 600, A100);
   $custom-accent: mat-palette($mat-yellow, 400);
   $custom-theme: mat-light-theme($custom-primary, $custom-accent);
   @include angular-material-theme($custom-theme);
 }
 
-.login-theme{
+.login-theme {
   $login-primary: mat-palette($mat-deep-orange, 500, 900, A100);
-  $login-accent: mat-palette($mat-red,50);
+  $login-accent: mat-palette($mat-red, 50);
   $login-theme: mat-dark-theme($login-primary, $login-accent);
   @include angular-material-theme($login-theme);
+}
+
+.admin-theme {
+  $admin-primary: mat-palette($mat-indigo);
+  $admin-accent: mat-palette($mat-red, 50);
+  $admin-theme: mat-light-theme($admin-primary, $admin-accent);
+  @include angular-material-theme($admin-theme);
 }
