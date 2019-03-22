@@ -1,39 +1,19 @@
-<nav>
+<mat-toolbar color="primary" >
+  <span
+    ><a mat-button="" aria-label="Angular Material" class="docs-button"
+      ><span class="mat-button-wrapper"
+        ><img
+          alt="angular"
+          class="docs-angular-logo"
+          src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg"
+        /><span>Mean Stack</span></span
+      >
+    </a>
+  </span>
+  <span class="spacer"></span>
   <ul>
     <li>
-      <a routerLink="/alljob" id="logo" class="float-left"><strong>CVsensei</strong></a>
-    </li>
-
-    <li routerLinkActive="active" >
-      <a routerLink="/login" class="float-right">Sign in</a>
-    </li>
-    <li routerLinkActive="active">
-      <a routerLink="/login" class="float-right">Log out</a
-      >
-    </li>
-
-    <li routerLinkActive="active">
-      <a routerLink="/about" class="float-right">About us</a>
-    </li>
-
-    <li routerLinkActive="active" *ngIf="userIsAuthenticated">
-      <a
-        style="margin:13.5px 20px 5px 20px "
-        routerLink="/profile"
-        class="float-right"
-        ><img style="margin-right: 5px;" [src]="user$.avatarURL" alt="" />{{
-          user$.fullName
-        }}</a
-      >
-    </li>
-
-    <li routerLinkActive="active">
-      <a routerLink="/alljob" class="float-right">All jobs</a>
-    </li>
-
-    <li routerLinkActive="active">
-      <a routerLink="./create-cv" class="float-right">Create CV</a>
+      <a mat-button routerLink="">Login</a>
     </li>
   </ul>
-</nav>
-
+</mat-toolbar>

@@ -1,3 +1,23 @@
-:host{
-
+:host {
+  .docs-component-viewer-nav-content {
+    margin: 25px;
+    width: 240px;
+    max-height: 75vh;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+  }
+  #docs-component-viewer-nav-content::-webkit-scrollbar {
+    width: 5px;
+    background-color: white;
+  }
+  #docs-component-viewer-nav-content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ccc;
+  }
+  .docs-angular-logo {
+    height: 26px;
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+  }
 }
