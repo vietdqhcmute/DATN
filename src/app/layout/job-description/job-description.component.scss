@@ -1,0 +1,61 @@
+:host {
+  font-family: "Roboto Condensed", sans-serif;
+
+  .side_bar {
+    border: solid 2px #f3f3f3;
+    .employer-info {
+      background-color: #f5f5f5;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      .name {
+        .company-name {
+          font-size: 25px;
+          font-family: "Roboto", sans-serif;
+          margin-bottom: 5px;
+          text-align: center;
+          a {
+            font-family: "Roboto Condensed", sans-serif;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+          }
+        }
+      }
+      .basic-info {
+        color: #58595b;
+        font-size: 13px;
+        line-height: 21px;
+        .short-info {
+          margin: 0 5px;
+          text-align: left;
+        }
+        .short {
+          margin: 0 15px;
+          text-align: left;
+        }
+      }
+    }
+  }
+  .header {
+    overflow: hidden;
+    border-bottom: solid 2px #f3f3f3;
+    .job-info {
+      margin-left: 10px;
+      .job-title {
+        margin-left: 10px;
+        color: #353535;
+        font-size: 31px;
+      }
+      .job-info-detail {
+        margin-left: 10px;
+        color: #353535;
+        font-size: 12px;
+      }
+    }
+  }
+  .job-more-info {
+    border-bottom: solid 2px #f3f3f3;
+    height: 400px;
+  }
+}

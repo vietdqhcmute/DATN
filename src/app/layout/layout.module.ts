@@ -6,13 +6,15 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { PartialModule } from '../partial/partial.module';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CompanyDescriptionComponent } from './company-description/company-description.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
-    PartialModule
+    PartialModule,
+    AngularFontAwesomeModule
   ]
 })
 export class LayoutModule { }
