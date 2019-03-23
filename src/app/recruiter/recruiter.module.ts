@@ -7,15 +7,13 @@ import { RecruiterReviewComponent } from './components/recruiter-review/recruite
 import { RecruiterDashboardComponent } from './components/recruiter-dashboard/recruiter-dashboard.component';
 import { RecruiterSubcriberComponent } from './components/recruiter-subcriber/recruiter-subcriber.component';
 import { PartialModule } from '../partial/partial.module';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [RecruiterComponent, RecruiterCreatePostComponent, RecruiterReviewComponent, RecruiterDashboardComponent, RecruiterSubcriberComponent],
   imports: [
     CommonModule,
     RecruiterRoutingModule,
-    PartialModule,
-    FroalaEditorModule, FroalaViewModule
+    PartialModule
   ]
 })
 export class RecruiterModule { }
