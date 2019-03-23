@@ -8,6 +8,7 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     MaterialModule,
     HttpClientModule,
     RouterModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
