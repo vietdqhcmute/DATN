@@ -26,6 +26,7 @@ export class CandidateProfileComponent implements OnInit {
   ngOnInit() {
     this.loadCandidateData(this.testEmail);
     this.titleService.setTitle("Profile");
+    this.onEditButton();
   }
 
   private onEditButton() {
@@ -33,6 +34,9 @@ export class CandidateProfileComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.width = "110vh";
+    dialogConfig.height = "90vh";
 
     this.dialog.open(EditProfileDialogComponent, dialogConfig);
   }

@@ -10,6 +10,7 @@ import { GetInfoComponent } from './components/create-cv/get-info/get-info.compo
 import { PreviewCvComponent } from './components/create-cv/preview-cv/preview-cv.component';
 import { TemplateSelectionComponent } from './components/create-cv/template-selection/template-selection.component';
 import { ToolBarComponent } from './components/create-cv/tool-bar/tool-bar.component';
+import { EditProfileDialogComponent } from '../partial/material-dialog/edit-profile-dialog/edit-profile-dialog.component';
 
 @NgModule({
   declarations: [CandidateComponent, CandidateProfileComponent,CreateCvComponent, GetInfoComponent, PreviewCvComponent, TemplateSelectionComponent, ToolBarComponent],
@@ -18,6 +19,9 @@ import { ToolBarComponent } from './components/create-cv/tool-bar/tool-bar.compo
     CandidateRoutingModule,
     PartialModule,
     RouterModule
+  ],
+  entryComponents:[
+    EditProfileDialogComponent
   ]
 })
 export class CandidateModule { }

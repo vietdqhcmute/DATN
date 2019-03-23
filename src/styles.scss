@@ -45,3 +45,24 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
   $admin-theme: mat-light-theme($admin-primary, $admin-accent);
   @include angular-material-theme($admin-theme);
 }
+
+//scrollbar customize
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ECEFF1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(48, 54, 56);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #546E7A;
+}

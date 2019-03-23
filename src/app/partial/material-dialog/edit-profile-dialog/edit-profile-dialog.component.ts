@@ -11,5 +11,7 @@ export class EditProfileDialogComponent implements OnInit {
 
   ngOnInit() {
   }
+  onSubmitEditProfileDialog(){
 
+  }
 }

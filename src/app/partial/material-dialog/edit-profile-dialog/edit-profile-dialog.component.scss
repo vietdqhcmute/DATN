@@ -1,0 +1,24 @@
+:host{
+  mat-form-field{
+    width: 97%;
+    margin: 0px 10px;
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .avatar{
+    text-align: center;
+    img{
+      height: 20vh;
+      width: 20vh;
+    }
+  }
+  .half-dialog{
+    justify-content: space-between;
+    mat-form-field{
+      width: 47%;
+      margin: 0px 10px;
+    }
+  }
+}
