@@ -1,0 +1,10 @@
+:host {
+  .post-review {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.178);
+    margin-bottom: 10px;
+
+    .created {
+      font-size: 12px;
+    }
+  }
+}

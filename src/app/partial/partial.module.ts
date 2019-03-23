@@ -6,15 +6,19 @@ import { RouterModule } from "@angular/router";
 import { JobFrameDashboardComponent } from "./job-frame-dashboard/job-frame-dashboard.component";
 import { MaterialModule } from '../material/material.module';
 import { EditProfileDialogComponent } from './material-dialog/edit-profile-dialog/edit-profile-dialog.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RecruiterReviewPostComponent } from './recruiter-review-post/recruiter-review-post.component';
 
 @NgModule({
   declarations: [
     TopBarComponent,
     CompanyFrameComponent,
     JobFrameDashboardComponent,
-    EditProfileDialogComponent
+    EditProfileDialogComponent,
+    RecruiterReviewPostComponent
   ],
-  imports: [CommonModule, RouterModule,MaterialModule],
-  exports: [CompanyFrameComponent, TopBarComponent, JobFrameDashboardComponent]
+  imports: [CommonModule, RouterModule,MaterialModule, FormsModule, ReactiveFormsModule],
+  exports: [CompanyFrameComponent, TopBarComponent, JobFrameDashboardComponent, EditProfileDialogComponent, RecruiterReviewPostComponent
+  ]
 })
 export class PartialModule {}
