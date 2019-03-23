@@ -26,7 +26,6 @@ export class CandidateProfileComponent implements OnInit {
   ngOnInit() {
     this.loadCandidateData(this.testEmail);
     this.titleService.setTitle("Profile");
-    this.onEditButton();
   }
 
   private onEditButton() {
