@@ -6,7 +6,8 @@ let authenticationSchema = new mongoose.Schema({
     unique: true
   },
   password: String,
-  role: Number
+  role: Number,
+  active: Boolean
 });
 
 const Authentication = mongoose.model("Password", authenticationSchema);

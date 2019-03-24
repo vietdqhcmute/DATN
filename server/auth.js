@@ -13,7 +13,8 @@ router.post("/sign-up-admin", (req, res) => {
   let authenticationParams = {
     email: req.body.email,
     password: hash,
-    role: 0
+    role: 0,
+    active: true
   };
   let authentication = new Authentication(authenticationParams);
   authentication.save(function(err) {
@@ -36,7 +37,8 @@ router.post("/sign-up", (req, res) => {
   let authenticationParams = {
     email: req.body.email,
     password: hash,
-    role: 1
+    role: 1,
+    active: true
   };
   let authentication = new Authentication(authenticationParams);
   authentication.save(function(err) {
@@ -75,7 +77,8 @@ router.post("/recruiter/sign-up", (req, res) => {
   let authenticationParams = {
     email: req.body.email,
     password: hash,
-    role: 2
+    role: 2,
+    active: true
   };
   let authentication = new Authentication(authenticationParams);
   authentication.save(function(err) {
@@ -112,7 +115,7 @@ router.post("/recruiter/sign-up", (req, res) => {
   });
 });
 
-//New API login candidate
+//New API login
 router.post("/login", (req, res, next) => {
   let fetchedUser={email:String, role:Number};
   Authentication.findOne({
