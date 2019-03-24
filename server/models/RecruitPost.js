@@ -1,15 +1,11 @@
 const mongoose = require("mongoose");
 
 let recruitPostSchema = new mongoose.Schema({
-  company_name: String,
-  title: String,
-  description: String,
-  Tag: [],
-  salary: String,
-  created: {
-    type: Date,
-    default: Date.now
-  }
+  company_name: {
+    type: String,
+    unique: true
+  },
+  post: []
 });
 
 const RecruitPost = mongoose.model("RecruitPost", recruitPostSchema);
