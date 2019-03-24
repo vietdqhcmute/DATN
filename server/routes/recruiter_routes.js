@@ -78,26 +78,19 @@ router.post("/push/recruit-post", (req, res) => {
 });
 
 //get All post by company_name
-router.post("get/all/recruit-post/:company_name", (req, res) => {
+router.get("/recruit-post/:company_name", (req, res) => {
+  RecruitPost.findOne({
+    company_name: req.params.company_name
+  }, (error, data) => {
+    if (error) {
+      return console.log(error);
+    } else {
+      if (!data) {
+        return res.status(500).json("Can not find anything");
+      }
+      return res.status(200).json(data);
+    }
+  });
+});
 
-});
-//find recruit post by ID
-// router.get("/recruit-post/:id", async (req, res) => {
-//   try {
-//     console.log(req.params.id);
-//     post = RecruitPost.findById(req.params.id);
-//     res.status(200).json(post);
-//   } catch (error) {
-//     return console.log(error);
-//   }
-// });
-//find all recruit post
-router.get("/all/recruit-post", async (req, res) => {
-  try {
-    const recruitPosts = await RecruitPost.find();
-    res.send(recruitPosts);
-  } catch (err) {
-    console.log(err);
-  }
-});
 module.exports = router;
