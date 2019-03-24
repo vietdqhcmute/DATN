@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Recruiter = require("../models/Recruiter");
 const RecruitPost = require("../models/RecruitPost");
-const Post = require("../models/Post");
+const Article = require("../models/Article");
 //Adding
 router.post("/add/recruiter", (req, res) => {
   const recruiter = new Recruiter(req.body);
@@ -44,49 +44,43 @@ router.put("/update/recruiter/:id", async (req, res) => {
 
 //create recruitpost by company_name
 router.post("/add/recruit-post/:company_name", (req, res) => {
-  const recruitpost = new RecruitPost({
+  const recruitPost = new RecruitPost({
     company_name: req.params.company_name
   });
-  recruitpost.save((err, post) => {
+  recruitPost.save((err, data) => {
     if (err) {
       return console.log(err);
     }
-    res.status(200).send(post);
+    res.status(200).send(data);
   });
 });
 //create post in recruit post by company_name
 router.post("/push/recruit-post", (req, res) => {
-  let requestPost = new Post({
-    title: req.body.post.title,
-    description: req.body.post.description,
-    salary: req.body.post.salary,
-    tag: req.body.post.tag,
+  let requestArticles = new Article({
+    title: req.body.article.title,
+    description: req.body.article.description,
+    salary: req.body.article.salary,
+    tag: req.body.article.tag,
     updated_at: Date.now
   });
-  console.log(requestPost);
   RecruitPost.findOneAndUpdate({
     "company_name": req.body.company_name
   }, {
     $push: {
-      post: requestPost
+      articles: requestArticles
     }
-  }, (error, post) => {
-    if (!post) {
+  }, (error, data) => {
+    if (!data) {
       return console.log("It is null!");
     }
-    return res.send(post);
+    return res.send(data);
   })
 });
-// router.post("/add/recruit-post", (req, res) => {
-//   const recruitpost = new RecruitPost(req.body);
-//   recruitpost.save((err, data) => {
-//     if (err) {
-//       return console.log(err);
-//     }
-//     res.status(200).send("Post has created!");
-//   });
-// });
 
+//get All post by company_name
+router.post("get/all/recruit-post/:company_name", (req, res) => {
+
+});
 //find recruit post by ID
 // router.get("/recruit-post/:id", async (req, res) => {
 //   try {

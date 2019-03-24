@@ -5,7 +5,7 @@ let recruitPostSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
-  post: []
+  articles: []
 });
 
 const RecruitPost = mongoose.model("RecruitPost", recruitPostSchema);
