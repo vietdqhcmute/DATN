@@ -108,7 +108,7 @@ router.post("/recruiter/sign-up", (req, res) => {
         });
         return;
       }
-      res.status(201).json({
+      res.status(200).json({
         message: "Recruiter has been created!"
       });
     });

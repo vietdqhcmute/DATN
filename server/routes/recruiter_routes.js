@@ -3,16 +3,6 @@ const router = express.Router();
 const Recruiter = require("../models/Recruiter");
 const RecruitPost = require("../models/RecruitPost");
 const Article = require("../models/Article");
-//Adding
-router.post("/add/recruiter", (req, res) => {
-  const recruiter = new Recruiter(req.body);
-  recruiter.save((err, data) => {
-    if (err) {
-      return console.log(err);
-    }
-    res.status(200).redirect("/recruiter/" + data._id);
-  });
-});
 //Getting by ID
 router.get("/recruiter/:id", async (req, res) => {
   try {
