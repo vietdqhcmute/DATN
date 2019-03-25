@@ -64,33 +64,50 @@ router.post("/push/recruit-post", (req, res) => {
     updated_at: Date.now
   });
   RecruitPost.findOneAndUpdate({
-    "company_name": req.body.company_name
-  }, {
-    $push: {
-      articles: requestArticles
+      company_name: req.body.company_name
+    }, {
+      $push: {
+        articles: requestArticles
+      }
+    },
+    (error, data) => {
+      if (!data) {
+        return console.log("It is null!");
+      }
+      return res.send(data);
     }
-  }, (error, data) => {
-    if (!data) {
-      return console.log("It is null!");
-    }
-    return res.send(data);
-  })
+  );
 });
 
 //get All post by company_name
 router.get("/recruit-post/:company_name", (req, res) => {
   RecruitPost.findOne({
-    company_name: req.params.company_name
-  }, (error, data) => {
-    if (error) {
-      return console.log(error);
-    } else {
-      if (!data) {
-        return res.status(500).json("Can not find anything");
+      company_name: req.params.company_name
+    },
+    (error, data) => {
+      if (error) {
+        return console.log(error);
+      } else {
+        if (!data) {
+          return res.status(500).json("Can not find anything");
+        }
+        return res.status(200).json(data);
       }
-      return res.status(200).json(data);
     }
-  });
+  );
+});
+
+// Get specific post by ID and company_name
+router.get("/recruit-post/:company_name/:id", async (req, res) => {
+  RecruitPost.findOne({
+    company_name: req.params.company_name
+  }, async (error, data) => {
+    let result = data.articles.filter(element => {
+      return element._id.toString() === req.params.id.toString();
+    });
+    res.send(result[0]);
+  })
+
 });
 
 module.exports = router;

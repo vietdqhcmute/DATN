@@ -117,7 +117,7 @@ router.post("/recruiter/sign-up", (req, res) => {
 
 //New API login
 router.post("/login", (req, res, next) => {
-  let fetchedUser={email:String, role:Number};
+  let fetchedUser = { email: String, role: Number };
   Authentication.findOne({
     email: req.body.email
   })
