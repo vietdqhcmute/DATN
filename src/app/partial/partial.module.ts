@@ -8,6 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { EditProfileDialogComponent } from './material-dialog/edit-profile-dialog/edit-profile-dialog.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RecruiterReviewPostComponent } from './recruiter-review-post/recruiter-review-post.component';
+import { RatingStarComponent } from './rating-star/rating-star.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +16,11 @@ import { RecruiterReviewPostComponent } from './recruiter-review-post/recruiter-
     CompanyFrameComponent,
     JobFrameDashboardComponent,
     EditProfileDialogComponent,
-    RecruiterReviewPostComponent
+    RecruiterReviewPostComponent,
+    RatingStarComponent
   ],
   imports: [CommonModule, RouterModule,MaterialModule, FormsModule, ReactiveFormsModule],
-  exports: [CompanyFrameComponent, TopBarComponent, JobFrameDashboardComponent, EditProfileDialogComponent, RecruiterReviewPostComponent
+  exports: [CompanyFrameComponent, TopBarComponent, JobFrameDashboardComponent, EditProfileDialogComponent, RecruiterReviewPostComponent,RatingStarComponent
   ]
 })
 export class PartialModule {}
