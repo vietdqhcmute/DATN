@@ -7,14 +7,16 @@ import { PartialModule } from '../partial/partial.module';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CompanyDescriptionComponent } from './company-description/company-description.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-
+import { CompanyReviewComponent } from './company-review/company-review.component';
+import { MaterialModule } from '../material/material.module';
 @NgModule({
-  declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent],
+  declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent, CompanyReviewComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
     PartialModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MaterialModule
   ]
 })
 export class LayoutModule { }

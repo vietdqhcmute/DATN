@@ -1,0 +1,50 @@
+:host {
+  .panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  }
+  .panel-heading {
+    padding: 10px 15px;
+  }
+  .panel-body {
+    padding: 15px;
+  }
+  .form-input-review {
+    label {
+      font-weight: 500;
+      font-size: 20px;
+    }
+  }
+  .validate {
+    span {
+      display: flex;
+      align-items: center;
+      color: red;
+    }
+  }
+  .recommend-attitude {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    span {
+      display: flex;
+      align-items: center;
+    }
+    textarea {
+      width: 50%;
+    }
+  }
+  .name-item-review {
+    display: flex;
+    span {
+      display: flex;
+      align-items: center;
+    }
+    textarea {
+      width: 50%;
+    }
+  }
+}

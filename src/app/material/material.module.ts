@@ -19,7 +19,8 @@ import {
   MatTabsModule,
   MatProgressSpinnerModule,
   MatToolbarModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatFormFieldModule
 } from "@angular/material";
 @NgModule({
   declarations: [],
@@ -43,7 +44,8 @@ import {
     MatTabsModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule
   ],
   exports: [
     MatSelectModule,
@@ -64,7 +66,8 @@ import {
     MatTabsModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule {}
