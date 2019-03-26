@@ -16,7 +16,7 @@
   <br>
   <div class="form-group">
     <label for="jobDescription">Job description</label>
-    <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+    <ckeditor [(ngModel)]="name" [editor]="Editor"></ckeditor>
   </div>
   <button type="submit" class="btn btn-primary">Create post</button>
 </form>
