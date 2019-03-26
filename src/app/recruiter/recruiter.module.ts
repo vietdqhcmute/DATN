@@ -8,12 +8,15 @@ import { RecruiterDashboardComponent } from './components/recruiter-dashboard/re
 import { RecruiterSubcriberComponent } from './components/recruiter-subcriber/recruiter-subcriber.component';
 import { PartialModule } from '../partial/partial.module';
 
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 @NgModule({
   declarations: [RecruiterComponent, RecruiterCreatePostComponent, RecruiterReviewComponent, RecruiterDashboardComponent, RecruiterSubcriberComponent],
   imports: [
     CommonModule,
     RecruiterRoutingModule,
-    PartialModule
+    PartialModule,
+    CKEditorModule
   ]
 })
 export class RecruiterModule { }

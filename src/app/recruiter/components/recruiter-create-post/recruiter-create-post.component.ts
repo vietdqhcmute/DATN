@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-recruiter-create-post',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recruiter-create-post.component.scss']
 })
 export class RecruiterCreatePostComponent implements OnInit {
+  public Editor = ClassicEditor;
 
   constructor() { }
 
