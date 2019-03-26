@@ -15,7 +15,17 @@ router.get("/recruiter/:id", async (req, res) => {
     res.status(404).send(err);
   }
 });
-
+//Getting recruiter by email
+router.get("/recruiter/email/:email", async (req, res) => {
+  try {
+    const recruiter = await Recruiter.findOne({
+      email: req.params.email
+    });
+    res.status(200).json(recruiter);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+});
 //Updating by ID
 router.put("/update/recruiter/:id", async (req, res) => {
   try {
@@ -123,7 +133,7 @@ router.post("/add/review/:company_name", (req, res) => {
 //Push a review article to company_review
 router.post("/push/review", (req, res) => {
   let requestReviewPost = new ReviewPost({
-    display_name:req.body.review_post.display_name,
+    display_name: req.body.review_post.display_name,
     title: req.body.review_post.title,
     rate: req.body.review_post.rate,
     like: req.body.review_post.like,
