@@ -1,10 +1,11 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { RecruiterComponent } from "./recruiter.component";
-import { RecruiterCreatePostComponent } from './components/recruiter-create-post/recruiter-create-post.component';
-import { RecruiterReviewComponent } from './components/recruiter-review/recruiter-review.component';
-import { RecruiterDashboardComponent } from './components/recruiter-dashboard/recruiter-dashboard.component';
-import { RecruiterSubcriberComponent } from './components/recruiter-subcriber/recruiter-subcriber.component';
+import { RecruiterCreatePostComponent } from "./components/recruiter-create-post/recruiter-create-post.component";
+import { RecruiterReviewComponent } from "./components/recruiter-review/recruiter-review.component";
+import { RecruiterDashboardComponent } from "./components/recruiter-dashboard/recruiter-dashboard.component";
+import { RecruiterSubcriberComponent } from "./components/recruiter-subcriber/recruiter-subcriber.component";
+import { RecruiterProfileComponent } from "./components/recruiter-profile/recruiter-profile.component";
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: "create-post", component: RecruiterCreatePostComponent },
       { path: "review", component: RecruiterReviewComponent },
       { path: "dashboard", component: RecruiterDashboardComponent },
-      { path: "subcriber", component: RecruiterSubcriberComponent }
+      { path: "subcriber", component: RecruiterSubcriberComponent },
+      { path: "profile", component: RecruiterProfileComponent }
     ]
   }
 ];

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Candidate } from "src/app/models/CandidateData";
 import { CandidateService } from "src/app/services/candidate.service";
 import { first } from "rxjs/operators";
@@ -12,20 +13,25 @@ import { EditProfileDialogComponent } from "src/app/partial/material-dialog/edit
 })
 export class CandidateProfileComponent implements OnInit {
   isAuthenticated = false;
+  paramsEmail:String;
   email: string;
   candidate: Candidate = null;
-  testEmail = "vietdqhcmute@gmail.com";
   allowEdit = false;
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
+
   constructor(
     private candidateService: CandidateService,
     private titleService: Title,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.loadCandidateData(this.testEmail);
-    this.titleService.setTitle("Profile");
+    this.route.paramMap.subscribe(params => {
+      this.paramsEmail = params.get("email");
+      this.loadCandidateData(this.paramsEmail);
+      this.titleService.setTitle("Profile of "+ this.paramsEmail);
+    })
   }
 
   private onEditButton() {
@@ -39,21 +45,6 @@ export class CandidateProfileComponent implements OnInit {
 
     this.dialog.open(EditProfileDialogComponent, dialogConfig);
   }
-  // private onEditButton() {
-  //   if (this.allowEdit) {
-  //     this.candidateService
-  //       .updateCandidateByID(this.candidate._id, this.candidate)
-  //       .subscribe(
-  //         response => {
-  //           console.log("Done!");
-  //         },
-  //         error => {
-  //           console.log("Error!");
-  //         }
-  //       );
-  //   }
-  //   this.allowEdit = !this.allowEdit;
-  // }
   private loadCandidateData(email) {
     this.candidateService
       .getCandidateByEmail(email)
