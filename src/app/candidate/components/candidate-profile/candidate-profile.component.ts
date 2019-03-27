@@ -13,7 +13,7 @@ import { EditProfileDialogComponent } from "src/app/partial/material-dialog/edit
 })
 export class CandidateProfileComponent implements OnInit {
   isAuthenticated = false;
-  paramsCompanyEmail:String;
+  paramsEmail:String;
   email: string;
   candidate: Candidate = null;
   allowEdit = false;
@@ -28,9 +28,9 @@ export class CandidateProfileComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.paramsCompanyEmail = params.get("email");
-      this.loadCandidateData(this.paramsCompanyEmail);
-      this.titleService.setTitle("Profile of "+ this.paramsCompanyEmail);
+      this.paramsEmail = params.get("email");
+      this.loadCandidateData(this.paramsEmail);
+      this.titleService.setTitle("Profile of "+ this.paramsEmail);
     })
   }
 
