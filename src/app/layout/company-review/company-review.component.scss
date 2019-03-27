@@ -18,6 +18,12 @@
       font-size: 20px;
     }
   }
+  .form-group {
+    p {
+      display: flex;
+      align-items:flex-end;  
+    }
+  }
   .validate {
     span {
       display: flex;
@@ -27,7 +33,6 @@
   }
   .recommend-attitude {
     display: flex;
-    flex-flow: wrap;
     justify-content: space-between;
     span {
       display: flex;
@@ -39,12 +44,20 @@
   }
   .name-item-review {
     display: flex;
+    flex-flow: wrap;
     span {
+      display: flex;
+      align-items: center;
+    }
+    p {
       display: flex;
       align-items: center;
     }
     textarea {
       width: 50%;
     }
+  }
+  .cursor-hover{
+    cursor: pointer;
   }
 }
