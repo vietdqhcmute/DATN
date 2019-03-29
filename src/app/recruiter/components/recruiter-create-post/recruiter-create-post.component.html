@@ -2,21 +2,21 @@
 <form>
   <div class="form-group">
     <label>Tittle</label>
-    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Tittle" />
+    <input type="email" [(ngModel)]="recruitPostData.title" name="title" class="form-control" aria-describedby="emailHelp" placeholder="Tittle" />
   </div>
   <div>
     <label>Tag</label>
-    <input type="email" class="form-control" placeholder="Tags" />
+    <input type="email" [(ngModel)]="recruitPostData.tag" name="tag" class="form-control" placeholder="Tags" />
   </div>
 
   <div>
     <label for="exampleInputEmail1">Salary</label>
-    <input type="email" class="form-control" placeholder="Salary" />
+    <input type="email" [(ngModel)]="recruitPostData.salary" name="salary" class="form-control" placeholder="Salary" />
   </div>
   <br>
   <div class="form-group">
     <label for="jobDescription">Job description</label>
-    <ckeditor [(ngModel)]="name" [editor]="Editor"></ckeditor>
+    <ckeditor [(ngModel)]="recruitPostData.description" name="description" [editor]="Editor"></ckeditor>
   </div>
   <button type="submit" class="btn btn-primary">Create post</button>
 </form>

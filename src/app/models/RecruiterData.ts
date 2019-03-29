@@ -1,4 +1,4 @@
-export class Recruiter{
+export class Recruiter {
   company_name: string;
   image_url: string;
   email: string;
@@ -7,10 +7,17 @@ export class Recruiter{
   employees: Number;
   website: string;
   overview: string;
-  candidate_followed:Array<any>;
+  candidate_followed: Array<any>;
   city: String;
   created_at: Date;
   updated_at: Date;
 }
 
-
+export class RecruitPost {
+  title: string;
+  tags: [];
+  salary: string;
+  description: string;
+  created_at: Date;
+  updated_at: Date;
+}
