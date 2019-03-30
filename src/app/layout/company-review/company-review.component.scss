@@ -7,7 +7,14 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   }
   .panel-heading {
-    padding: 10px 15px;
+    padding: 10px 10px;
+    h2 {
+      font-size: 30px;
+      font-weight: 500;
+      margin-top: 10px;
+      color: #3d3d3d;
+      font-family: "Roboto Condensed", sans-serif;
+    }
   }
   .panel-body {
     padding: 15px;
@@ -21,7 +28,7 @@
   .form-group {
     p {
       display: flex;
-      align-items:flex-end;  
+      align-items: flex-end;
     }
   }
   .validate {
@@ -57,7 +64,7 @@
       width: 50%;
     }
   }
-  .cursor-hover{
+  .cursor-hover {
     cursor: pointer;
   }
 }

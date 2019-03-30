@@ -4,10 +4,7 @@
       <div class="col-md-8" style=" padding-right: 7.5px;">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h2
-              class="panel-title review-title hidden-xs hidden-sm"
-              style="display: flex;"
-            >
+            <h2 class="panel-title review-title" style="display: flex;">
               <div class="title">
                 <div class="text">Đánh giá</div>
                 <div class="company-name">KIS Việt Nam</div>
@@ -44,7 +41,7 @@
                     [itemId]="item.id"
                     (ratingClick)="ratingComponentClick($event)"
                   ></app-rating-star>
-                  <p *ngIf="item.id === 0">&nbsp;&nbsp;{{item.title}}</p>
+                  <p *ngIf="item.id === 0">&nbsp;&nbsp;{{ item.title }}</p>
                 </div>
                 <div class="validate">
                   <span id="" class="error">
@@ -87,7 +84,9 @@
                       >&nbsp; Hài lòng
                     </span>
                     <textarea
-                      [style.visibility]="isShowCriticism ? 'visible' : 'hidden'"
+                      [style.visibility]="
+                        isShowCriticism ? 'visible' : 'hidden'
+                      "
                       name=""
                       id=""
                       cols="30"
@@ -104,7 +103,9 @@
                       >&nbsp; Không hài lòng</span
                     >
                     <textarea
-                      [style.visibility]="isShowCriticism ? 'hidden' : 'visible'"
+                      [style.visibility]="
+                        isShowCriticism ? 'hidden' : 'visible'
+                      "
                       name=""
                       id=""
                       cols="30"
@@ -193,7 +194,7 @@
                 <div style="display: flex;">
                   <div
                     class="recommend-yes cursor-hover"
-                    (click)="showShareCompany()" 
+                    (click)="showShareCompany()"
                     [style.color]="isShowShareCompany ? 'green' : 'black'"
                   >
                     <i
@@ -225,7 +226,19 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" style="background-color: rgb(209, 209, 212)">B</div>
+      <div class="col-md-4 d-none d-sm-block 	d-lg-none d-xl-block">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Hướng Dẫn &amp; Điều Kiện Về Đánh Giá</h2>
+          </div>
+        </div>
+        <div class="panel-body">
+          <p>
+            Mọi đánh giá phải tuân thủ Hướng Dẫn &amp; Điều Kiện về đánh giá để
+            được hiển thị trên website.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
