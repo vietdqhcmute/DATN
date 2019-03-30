@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 interface ICompany {
   id: number;
-  rating: string;
+  rating: number;
+  title: string;
   evaluation: string;
 }
 @Component({
@@ -16,12 +17,12 @@ export class CompanyReviewComponent implements OnInit {
   ratingClicked: number;
   itemIdRatingClicked: string;
   items: ICompany[] = [
-    { id: 0, rating: '', evaluation: "Đánh giá tổng quát" },
-    { id: 1, rating: '', evaluation: "Lương thưởng và phúc lợi" },
-    { id: 2, rating: '', evaluation: "Đào tạo và học hỏi " },
-    { id: 3, rating: '', evaluation: "Sự quan tâm đến nhân viên" },
-    { id: 4, rating: '', evaluation: "Văn hóa công ty" },
-    { id: 5, rating: '', evaluation: "Văn phòng làm việc" }
+    { id: 0, rating: 0,title:'', evaluation: "Đánh giá tổng quát" },
+    { id: 1, rating: 0,title:'', evaluation: "Lương thưởng và phúc lợi" },
+    { id: 2, rating: 0,title:'', evaluation: "Đào tạo và học hỏi " },
+    { id: 3, rating: 0,title:'', evaluation: "Sự quan tâm đến nhân viên" },
+    { id: 4, rating: 0,title:'', evaluation: "Văn hóa công ty" },
+    { id: 5, rating: 0,title:'', evaluation: "Văn phòng làm việc" }
   ];
   constructor() {}
   showCriticism() {
@@ -35,6 +36,7 @@ export class CompanyReviewComponent implements OnInit {
     const item = this.items.find((i: any) => i.id === clickObj.itemId);
     if (!!item) {
       item.rating = clickObj.rating;
+      item.title = clickObj.title;
       this.ratingClicked = clickObj.rating;
       this.itemIdRatingClicked = item.evaluation;
     }

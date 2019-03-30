@@ -1,7 +1,7 @@
 <div class="rating" style="display: flex;flex-direction:row-reverse;justify-content: flex-end">
-    <input type="radio" [name]="inputName" value="5" [checked]="rating==='Tuyệt vời!'" /><label (click)='onClick("Tuyệt vời!")' title="Tuyệt vời!">Tuyệt vời!</label>
-    <input type="radio" [name]="inputName" value="4" [checked]="rating==='Rất tốt'" /><label (click)='onClick("Rất tốt")' title="Rất tốt">Rất tốt</label>
-    <input type="radio" [name]="inputName" value="3" [checked]="rating==='Tốt'" /><label (click)='onClick("Tốt")' title="Tốt">Tốt</label>
-    <input type="radio" [name]="inputName" value="2" [checked]="rating==='Cần cải thiện'" /><label (click)='onClick("Cần cải thiện")' title="Cần cải thiện nhiều">Cần cải thiện nhiều</label>
-    <input type="radio" [name]="inputName" value="1" [checked]="rating==='Rất tệ'" /><label (click)='onClick("Rất tệ")' title="Rất tệ">Rất tệ</label>
+    <input type="radio" [name]="inputName" value="5" [checked]="rating===5" /><label (click)='onClick(5,"Tuyệt vời!")' title="Tuyệt vời!">Tuyệt vời!</label>
+    <input type="radio" [name]="inputName" value="4" [checked]="rating===4" /><label (click)='onClick(4,"Rất tốt")' title="Rất tốt">Rất tốt</label>
+    <input type="radio" [name]="inputName" value="3" [checked]="rating===3" /><label (click)='onClick(3,"Tốt")' title="Tốt">Tốt</label>
+    <input type="radio" [name]="inputName" value="2" [checked]="rating===2" /><label (click)='onClick(2,"Cần cải thiện")' title="Cần cải thiện nhiều">Cần cải thiện nhiều</label>
+    <input type="radio" [name]="inputName" value="1" [checked]="rating===1" /><label (click)='onClick(1,"Rất tệ")' title="Rất tệ">Rất tệ</label>
 </div>

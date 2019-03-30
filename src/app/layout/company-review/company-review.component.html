@@ -40,10 +40,11 @@
                   <app-rating-star
                     *ngIf="item.id === 0"
                     [rating]="item.rating"
+                    [title]="item.title"
                     [itemId]="item.id"
                     (ratingClick)="ratingComponentClick($event)"
                   ></app-rating-star>
-                  <p *ngIf="item.id === 0">&nbsp;&nbsp;{{item.rating}}</p>
+                  <p *ngIf="item.id === 0">&nbsp;&nbsp;{{item.title}}</p>
                 </div>
                 <div class="validate">
                   <span id="" class="error">
@@ -173,7 +174,7 @@
                       [itemId]="item.id"
                       (ratingClick)="ratingComponentClick($event)"
                     ></app-rating-star>
-                    <span>&nbsp;{{ item.rating }}</span>
+                    <span>&nbsp;{{ item.title }}</span>
                   </div>
                   <div class="validate">
                     <!-- <span id="" class="error">
