@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { Recruiter } from "../models/RecruiterData";
+import { Recruiter, ResponseArticle } from "../models/RecruiterData";
 import { Subject } from "rxjs";
 import { ContentObserver } from "@angular/cdk/observers";
 
@@ -32,5 +32,8 @@ export class RecruiterService {
       .subscribe(response => {
         console.log(response);
       });
+  }
+  getAllRecruiterPost(email) {
+    return this.http.get<ResponseArticle>(this.domainName + "recruit-post/" + email);
   }
 }

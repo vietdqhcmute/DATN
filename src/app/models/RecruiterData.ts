@@ -21,3 +21,9 @@ export class RecruitPost {
   created_at: Date;
   updated_at: Date;
 }
+
+export class ResponseArticle{
+  email: String;
+  articles: [];
+  _id: String;
+}
