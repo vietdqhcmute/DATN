@@ -3,20 +3,24 @@ const router = express.Router();
 const Recruiter = require("../models/Recruiter");
 const RecruitPost = require("../models/RecruitPost");
 const Article = require("../models/Article");
-//Adding
-router.post("/add/recruiter", (req, res) => {
-  const recruiter = new Recruiter(req.body);
-  recruiter.save((err, data) => {
-    if (err) {
-      return console.log(err);
-    }
-    res.status(200).redirect("/recruiter/" + data._id);
-  });
-});
+const Review = require('../models/Review');
+const ReviewPost = require("../models/ReviewPost");
+
 //Getting by ID
 router.get("/recruiter/:id", async (req, res) => {
   try {
     const recruiter = await Recruiter.findById(req.params.id);
+    res.status(200).json(recruiter);
+  } catch (err) {
+    res.status(404).send(err);
+  }
+});
+//Getting recruiter by email
+router.get("/recruiter/email/:email", async (req, res) => {
+  try {
+    const recruiter = await Recruiter.findOne({
+      email: req.params.email
+    });
     res.status(200).json(recruiter);
   } catch (err) {
     res.status(404).send(err);
@@ -41,11 +45,12 @@ router.put("/update/recruiter/:id", async (req, res) => {
     });
   }
 });
-
-//create recruitpost by company_name
-router.post("/add/recruit-post/:company_name", (req, res) => {
+//---------------------------------------------------------------------------------------------
+//RECRUIT POST
+//create recruitpost by email
+router.post("/add/recruit-post/:email", (req, res) => {
   const recruitPost = new RecruitPost({
-    company_name: req.params.company_name
+    email: req.params.email
   });
   recruitPost.save((err, data) => {
     if (err) {
@@ -54,7 +59,8 @@ router.post("/add/recruit-post/:company_name", (req, res) => {
     res.status(200).send(data);
   });
 });
-//create post in recruit post by company_name
+
+//create post in recruit post by email
 router.post("/push/recruit-post", (req, res) => {
   let requestArticles = new Article({
     title: req.body.article.title,
@@ -64,40 +70,123 @@ router.post("/push/recruit-post", (req, res) => {
     updated_at: Date.now
   });
   RecruitPost.findOneAndUpdate({
-    "company_name": req.body.company_name
-  }, {
-    $push: {
-      articles: requestArticles
+      email: req.body.email
+    }, {
+      $push: {
+        articles: requestArticles
+      }
+    },
+    (error, data) => {
+      if (!data) {
+        return console.log("It is null!");
+      }
+      return res.send(data);
     }
-  }, (error, data) => {
-    if (!data) {
-      return console.log("It is null!");
+  );
+});
+
+//get All post by email company
+router.get("/recruit-post/:email", (req, res) => {
+  RecruitPost.findOne({
+      email: req.params.email
+    },
+    (error, data) => {
+      if (error) {
+        return console.log(error);
+      } else {
+        if (!data) {
+          return res.status(500).json("Can not find anything");
+        }
+        return res.status(200).json(data);
+      }
     }
-    return res.send(data);
+  );
+});
+
+// Get specific post by ID and company_name
+// router.get("/recruit-post/:email/:id", async (req, res) => {
+//   RecruitPost.findOne({
+//     email: req.params.email
+//   }, async (error, data) => {
+//     let result = data.articles.filter(element => {
+//       return element._id.toString() === req.params.id.toString();
+//     });
+//     res.send(result[0]);
+//   })
+// });
+router.get("/recruit-post/:email/:id", async (req, res) => {
+  RecruitPost.findOne({
+    email: req.params.email
+  }, async (error, data) => {
+    if (error){
+      return res.status(500).send(error);
+    }
+    if(!data){
+      return res.status(404).send("Can not find data!");
+    }
+    // TODO: fix find is not right!
+    let result = data.articles.find(element=>{
+      return element._id.toString() === req.params.id.toString();
+    });
+    return res.send(result);
   })
 });
-
-//get All post by company_name
-router.post("get/all/recruit-post/:company_name", (req, res) => {
-
+//-------------------------------------------------------------------------------------------------
+//REVIEW
+//Create review by company_name
+router.post("/add/review/:email", (req, res) => {
+  const review = new Review({
+    email: req.params.email
+  });
+  review.save((err, data) => {
+    if (err) {
+      return console.log(err);
+    }
+    res.status(200).send(data);
+  });
 });
-//find recruit post by ID
-// router.get("/recruit-post/:id", async (req, res) => {
-//   try {
-//     console.log(req.params.id);
-//     post = RecruitPost.findById(req.params.id);
-//     res.status(200).json(post);
-//   } catch (error) {
-//     return console.log(error);
-//   }
-// });
-//find all recruit post
-router.get("/all/recruit-post", async (req, res) => {
-  try {
-    const recruitPosts = await RecruitPost.find();
-    res.send(recruitPosts);
-  } catch (err) {
-    console.log(err);
-  }
+//Push a review article to company_review
+router.post("/push/review", (req, res) => {
+  console.log(req.body);
+  let requestReviewPost = new ReviewPost({
+    display_name: req.body.review_post.display_name,
+    title: req.body.review_post.title,
+    rate: req.body.review_post.rate,
+    like: req.body.review_post.like,
+    not_like: req.body.review_post.not_like,
+    created_at: Date.now,
+    updated_at: Date.now
+  });
+  Review.findOneAndUpdate({
+      email: req.body.email
+    }, {
+      $push: {
+        review_posts: requestReviewPost
+      }
+    },
+    (error, data) => {
+      if (!data) {
+        return console.log("It is null!");
+      }
+      return res.send(data);
+    }
+  );
+});
+//Get all review of company email
+router.get("/review/:email", (req, res) => {
+  Review.findOne({
+      email: req.params.email
+    },
+    (error, data) => {
+      if (error) {
+        return console.log(error);
+      } else {
+        if (!data) {
+          return res.status(500).json("Can not find anything");
+        }
+        return res.status(200).json(data);
+      }
+    }
+  );
 });
 module.exports = router;

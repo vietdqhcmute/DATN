@@ -23,8 +23,31 @@ export class AuthService {
     );
   }
   createRecruiter(recruiterParams) {
+    //Add in Recruiter table
     this.http
       .post(this.domainName + "recruiter/sign-up", recruiterParams)
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    //Add in RecruiterPost table
+    this.http
+      .post(this.domainName + "add/recruit-post/" + recruiterParams.email, {})
+      .subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    //Add in RecruiterReview table
+    this.http
+      .post(this.domainName + "add/review/" + recruiterParams.email, {})
       .subscribe(
         response => {
           console.log(response);

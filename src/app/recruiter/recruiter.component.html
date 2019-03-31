@@ -1,32 +1,33 @@
-<div class="recruiter">
-    <div class="container-fluid">
-      <div class="col-md-2">
-        <nav class="side-bar">
-          <div class="image">
-            <img [src]="image_url" alt="" />
-          </div>
-          <div class="name">
-            <a href="">{{ company_name }}</a>
-          </div>
-          <div class="navigation">
-            <ul>
-              <li><a routerLink="./dashboard">Dashboard</a></li>
-              <li><a routerLink="./create-post">Create post</a></li>
-              <li><a routerLink="./review">Review</a></li>
-              <li><a routerLink="./subcriber">Subcribed</a></li>
-              <li><a routerLink=".">Search</a></li>
-              <li><a routerLink="/login" (click)="onLogOut()">Log out</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-      <div class="content col-md-7">
-        <router-outlet></router-outlet>
-      </div>
-      <div class="right-bar col-md-3">
-        <h3>Just an advertise</h3>
-        <h1>Don't care please</h1>
-      </div>
+<div class="recruiter" *ngIf="recruiterData">
+  <div class="container-fluid">
+    <div class="col-md-2">
+      <nav class="side-bar">
+        <div class="image">
+          <img [src]="image_url" alt="" />
+        </div>
+        <div class="name">
+          <a routerLink="./profile">{{ recruiterData.company_name }}</a>
+        </div>
+        <div class="navigation">
+          <ul>
+            <li><a routerLink="./dashboard">Dashboard</a></li>
+            <li><a routerLink="./create-post">Create post</a></li>
+            <li><a routerLink="./review">Review</a></li>
+            <li><a routerLink="./subcriber">Subcribed</a></li>
+            <li><a routerLink=".">Search</a></li>
+            <li><a routerLink="/login" (click)="onLogOut()">Log out</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="content col-md-7">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="right-bar col-md-3">
+      <h3>Infomation:</h3>
+      <p>Email: {{recruiterData.email}}</p>
+      <p>Phone: {{recruiterData.phone[0]}}</p>
+
     </div>
   </div>
-  
+</div>

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 let reviewSchema = new mongoose.Schema({
-  company_name: {
+  email: {
     type: String,
     index: { unique: true }
   },

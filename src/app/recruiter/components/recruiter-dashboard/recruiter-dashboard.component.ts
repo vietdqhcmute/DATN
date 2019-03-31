@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RecruiterComponent } from '../../recruiter.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recruiter-dashboard',
   templateUrl: './recruiter-dashboard.component.html',
   styleUrls: ['./recruiter-dashboard.component.scss']
 })
-export class RecruiterDashboardComponent implements OnInit {
-
-  constructor() { }
-
+export class RecruiterDashboardComponent extends RecruiterComponent
+ implements OnInit, OnDestroy {
+  articles =[];
+  company_email:String;
+  sub: Subscription;
   ngOnInit() {
+    this.sub = this.route.parent.params.subscribe(params=>{
+      this.recruiterService.getAllRecruiterPost(params.email).subscribe(responseArticle=>{
+        this.company_email = responseArticle.email;
+        this.articles=responseArticle.articles;
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }

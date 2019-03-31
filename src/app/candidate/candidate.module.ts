@@ -11,6 +11,8 @@ import { PreviewCvComponent } from './components/create-cv/preview-cv/preview-cv
 import { TemplateSelectionComponent } from './components/create-cv/template-selection/template-selection.component';
 import { ToolBarComponent } from './components/create-cv/tool-bar/tool-bar.component';
 import { EditProfileDialogComponent } from '../partial/material-dialog/edit-profile-dialog/edit-profile-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [CandidateComponent, CandidateProfileComponent,CreateCvComponent, GetInfoComponent, PreviewCvComponent, TemplateSelectionComponent, ToolBarComponent],
@@ -18,7 +20,9 @@ import { EditProfileDialogComponent } from '../partial/material-dialog/edit-prof
     CommonModule,
     CandidateRoutingModule,
     PartialModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    MaterialModule
   ],
   entryComponents:[
     EditProfileDialogComponent
