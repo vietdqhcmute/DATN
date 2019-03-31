@@ -1,26 +1,24 @@
 <div class="logo">
-    <img
-      src="https://cdn.itviec.com/employers/athena-studio/logo/s65/mHk6HuAgK39P7yE9yvtVYkcr/athena-studio-logo.png"
-      alt="image"
-    />
+  <img src="https://cdn.itviec.com/employers/athena-studio/logo/s65/mHk6HuAgK39P7yE9yvtVYkcr/athena-studio-logo.png"
+    alt="image" />
+</div>
+<div class="content">
+  <div class="title">
+    <a [routerLink]="['../../../job-description', email, jobDescription._id]">{{ jobDescription.title }}</a>
   </div>
-  <div class="content">
-    <div class="title">
-      <a href="">{{ title }}</a>
-    </div>
-    <div class="salary">
-      <span>{{salary}}</span>
-    </div>
-    <div class="job-description">
-      <div class="list-hightlight">
+  <div class="salary">
+    <span>{{jobDescription.salary}}</span>
+  </div>
+  <div class="job-description">
+    <div class="list-hightlight">
 
-      </div>
-      <div class="description-hidden">
-        <p>{{description}}</p>
-      </div>
+    </div>
+    <div class="description-hidden">
+      <p>{{jobDescription.description}}</p>
     </div>
   </div>
-  <div class="city-and-info">
-    <div class="city">{{city}}</div>
-    <div class="created">{{created}}</div>
-  </div>
+</div>
+<div class="city-and-info">
+  <div class="city">{{jobDescription.city}}</div>
+  <div class="created">{{jobDescription.created}}</div>
+</div>
