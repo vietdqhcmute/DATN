@@ -40,7 +40,6 @@ export class RecruiterComponent implements OnInit {
       .pipe(first())
       .subscribe(recruiter => {
         this.recruiterData = <Recruiter>recruiter;
-        // console.log(this.recruiterData);
       });
   }
 }

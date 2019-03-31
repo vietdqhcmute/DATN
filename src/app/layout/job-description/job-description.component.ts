@@ -52,7 +52,6 @@ export class JobDescriptionComponent implements OnInit {
   }
   private getCompanyData(email) {
     this.recruiterService.getRecruiterByEmail(email).subscribe(response => {
-      console.log(response);
 
     });
   }
