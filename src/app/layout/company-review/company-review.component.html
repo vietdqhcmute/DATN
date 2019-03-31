@@ -4,10 +4,7 @@
       <div class="col-md-8" style=" padding-right: 7.5px;">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h2
-              class="panel-title review-title hidden-xs hidden-sm"
-              style="display: flex;"
-            >
+            <h2 class="panel-title review-title" style="display: flex;">
               <div class="title">
                 <div class="text">Đánh giá</div>
                 <div class="company-name">KIS Việt Nam</div>
@@ -33,8 +30,18 @@
               <div class="form-group">
                 <label>Đánh giá tổng quát:</label>
 
-                <div style=" justify-content: flex-start">
-                  <app-rating-star></app-rating-star>
+                <div
+                  style="display: flex;justify-content: flex-start"
+                  *ngFor="let item of items"
+                >
+                  <app-rating-star
+                    *ngIf="item.id === 0"
+                    [rating]="item.rating"
+                    [title]="item.title"
+                    [itemId]="item.id"
+                    (ratingClick)="ratingComponentClick($event)"
+                  ></app-rating-star>
+                  <p *ngIf="item.id === 0">&nbsp;&nbsp;{{ item.title }}</p>
                 </div>
                 <div class="validate">
                   <span id="" class="error">
@@ -67,17 +74,19 @@
               <div class="form-group">
                 <label>Bạn cảm thấy thế nào về chế độ OT:</label>
                 <div>
-                  <div class="recommend-attitude">
+                  <div class="recommend-attitude cursor-hover">
                     <span
                       style="min-width: 200px"
-                      (click)="show()"
-                      [style.color]="isDivVisible ? 'green' : 'black'"
+                      (click)="showCriticism()"
+                      [style.color]="isShowCriticism ? 'green' : 'black'"
                     >
                       <i class="far fa-smile" style="font-size: 40px;"></i
                       >&nbsp; Hài lòng
                     </span>
                     <textarea
-                      [style.visibility]="isDivVisible ? 'visible' : 'hidden'"
+                      [style.visibility]="
+                        isShowCriticism ? 'visible' : 'hidden'
+                      "
                       name=""
                       id=""
                       cols="30"
@@ -85,16 +94,18 @@
                       placeholder="Lí do bạn hài lòng với OT"
                     ></textarea>
                   </div>
-                  <div class="recommend-attitude">
+                  <div class="recommend-attitude cursor-hover">
                     <span
                       style="min-width: 200px"
-                      (click)="show()"
-                      [style.color]="isDivVisible ? 'black' : 'red'"
+                      (click)="showCriticism()"
+                      [style.color]="isShowCriticism ? 'black' : 'red'"
                       ><i class="far fa-frown" style="font-size: 40px;"></i
                       >&nbsp; Không hài lòng</span
                     >
                     <textarea
-                      [style.visibility]="isDivVisible ? 'hidden' : 'visible'"
+                      [style.visibility]="
+                        isShowCriticism ? 'hidden' : 'visible'
+                      "
                       name=""
                       id=""
                       cols="30"
@@ -152,73 +163,25 @@
               <div class="form-group">
                 <label>Đánh giá tổng quát:</label>
                 <div class="review-item">
-                  <div class="name-item-review">
+                  <div
+                    class="name-item-review"
+                    *ngFor="let item of (items | slice: 1); let i = index"
+                  >
                     <span style="min-width: 200px">
-                      Lương thưởng và phúc lợi
+                      {{ item.evaluation }}
                     </span>
-                    <app-rating-star></app-rating-star>
+                    <app-rating-star
+                      [rating]="item.rating"
+                      [itemId]="item.id"
+                      (ratingClick)="ratingComponentClick($event)"
+                    ></app-rating-star>
+                    <span>&nbsp;{{ item.title }}</span>
                   </div>
                   <div class="validate">
                     <!-- <span id="" class="error">
                       <i class="material-icons"> error_outline </i>&nbsp;Vui
                       lòng đánh giá</span
                     > -->
-                  </div>
-                </div>
-                <div class="review-item">
-                  <div class="name-item-review">
-                    <span style="min-width: 200px">
-                      Đào tạo và học hỏi
-                    </span>
-                    <app-rating-star></app-rating-star>
-                  </div>
-                  <div class="validate">
-                    <!-- <span id="" class="error">
-                        <i class="material-icons"> error_outline </i>&nbsp;Vui
-                        lòng đánh giá</span
-                      > -->
-                  </div>
-                </div>
-                <div class="review-item">
-                  <div class="name-item-review">
-                    <span style="min-width: 200px">
-                      Sự quan tâm đến nhân viên
-                    </span>
-                    <app-rating-star></app-rating-star>
-                  </div>
-                  <div class="validate">
-                    <!-- <span id="" class="error">
-                          <i class="material-icons"> error_outline </i>&nbsp;Vui
-                          lòng đánh giá</span
-                        > -->
-                  </div>
-                </div>
-                <div class="review-item">
-                  <div class="name-item-review">
-                    <span style="min-width: 200px">
-                      Văn hóa công ty
-                    </span>
-                    <app-rating-star></app-rating-star>
-                  </div>
-                  <div class="validate">
-                    <!-- <span id="" class="error">
-                            <i class="material-icons"> error_outline </i>&nbsp;Vui
-                            lòng đánh giá</span
-                          > -->
-                  </div>
-                </div>
-                <div class="review-item">
-                  <div class="name-item-review">
-                    <span style="min-width: 200px">
-                      Văn phòng làm việc
-                    </span>
-                    <app-rating-star></app-rating-star>
-                  </div>
-                  <div class="validate">
-                    <!-- <span id="" class="error">
-                              <i class="material-icons"> error_outline </i>&nbsp;Vui
-                              lòng đánh giá</span
-                            > -->
                   </div>
                 </div>
               </div>
@@ -229,14 +192,22 @@
                 >
 
                 <div style="display: flex;">
-                  <div class="recommend-yes">
+                  <div
+                    class="recommend-yes cursor-hover"
+                    (click)="showShareCompany()"
+                    [style.color]="isShowShareCompany ? 'green' : 'black'"
+                  >
                     <i
                       class="far fa-thumbs-up"
                       style="font-size: 50px; margin-right: 20px;"
                     ></i>
                     <p>Có</p>
                   </div>
-                  <div class="recommend-no">
+                  <div
+                    class="recommend-no cursor-hover"
+                    (click)="showShareCompany()"
+                    [style.color]="isShowShareCompany ? 'black' : 'green'"
+                  >
                     <i class="far fa-thumbs-down" style="font-size: 50px;"></i>
                     <p>Không</p>
                   </div>
@@ -255,7 +226,19 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" style="background-color: red">B</div>
+      <div class="col-md-4 d-none d-sm-block 	d-lg-none d-xl-block">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">Hướng Dẫn &amp; Điều Kiện Về Đánh Giá</h2>
+          </div>
+        </div>
+        <div class="panel-body">
+          <p>
+            Mọi đánh giá phải tuân thủ Hướng Dẫn &amp; Điều Kiện về đánh giá để
+            được hiển thị trên website.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

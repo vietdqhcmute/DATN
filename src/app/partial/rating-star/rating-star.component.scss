@@ -1,34 +1,40 @@
 :host {
-  .starrating > input {
-    display: none;
-  } /* Remove radio buttons */
-
-  .starrating {
-    label:before {
-      content: "\f005"; /* Star */
-      margin: 2px;
-      font-size: 2em;
-      font-family: FontAwesome;
-      display: inline-block;
-    }
+  .rating:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+    clip: rect(0, 0, 0, 0);
   }
 
-  .starrating {
-    label {
-        margin-top: 5px;
-      color: #222222; /* Start color when not clicked */
-    }
+  .rating:not(:checked) > label {
+    float: right;
+    width: 1em;
+    padding: 0.1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    line-height: 1.2;
+    color: #ddd;
   }
 
-  .starrating {
-    input:checked ~ label {
-      color: #2196f3;
-    } /* Set yellow color when star checked */
+  .rating:not(:checked) > label:before {
+    // content: "★ ";
+    content: "\f005"; /* Star */
+    font-family: FontAwesome;
   }
 
-  .starrating {
-    input:hover ~ label {
-      color: #2196f3;
-    } /* Set yellow color when star hover */
+  .rating > input:checked ~ label {
+    color: #1e88e5;
+  }
+
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+    color: #bbdefb;
+  }
+
+  .rating > input:checked ~ label:hover,
+  .rating > input:checked ~ label:hover ~ label,
+  .rating > label:hover ~ input:checked ~ label {
+    color: #64b5f6;
   }
 }
