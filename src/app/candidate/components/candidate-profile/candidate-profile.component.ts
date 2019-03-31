@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Candidate } from "src/app/models/CandidateData";
 import { CandidateService } from "src/app/services/candidate.service";
@@ -6,19 +6,20 @@ import { first } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { EditProfileDialogComponent } from "src/app/partial/material-dialog/edit-profile-dialog/edit-profile-dialog.component";
+import { Subscription } from 'rxjs';
 @Component({
   selector: "app-candidate-profile",
   templateUrl: "./candidate-profile.component.html",
   styleUrls: ["./candidate-profile.component.scss"]
 })
-export class CandidateProfileComponent implements OnInit {
+export class CandidateProfileComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   paramsEmail:String;
   email: string;
   candidate: Candidate = null;
   allowEdit = false;
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
-
+  sub: Subscription;
   constructor(
     private candidateService: CandidateService,
     private titleService: Title,
@@ -27,11 +28,14 @@ export class CandidateProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.sub = this.route.paramMap.subscribe(params => {
       this.paramsEmail = params.get("email");
       this.loadCandidateData(this.paramsEmail);
       this.titleService.setTitle("Profile of "+ this.paramsEmail);
     })
+  }
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 
   private onEditButton() {
@@ -46,7 +50,7 @@ export class CandidateProfileComponent implements OnInit {
     this.dialog.open(EditProfileDialogComponent, dialogConfig);
   }
   private loadCandidateData(email) {
-    this.candidateService
+    this.sub = this.candidateService
       .getCandidateByEmail(email)
       .pipe(first())
       .subscribe(candidate => {
