@@ -104,18 +104,33 @@ router.get("/recruit-post/:email", (req, res) => {
 });
 
 // Get specific post by ID and company_name
+// router.get("/recruit-post/:email/:id", async (req, res) => {
+//   RecruitPost.findOne({
+//     email: req.params.email
+//   }, async (error, data) => {
+//     let result = data.articles.filter(element => {
+//       return element._id.toString() === req.params.id.toString();
+//     });
+//     res.send(result[0]);
+//   })
+// });
 router.get("/recruit-post/:email/:id", async (req, res) => {
   RecruitPost.findOne({
     email: req.params.email
   }, async (error, data) => {
-    let result = data.articles.filter(element => {
+    if (error){
+      return res.status(500).send(error);
+    }
+    if(!data){
+      return res.status(404).send("Can not find data!");
+    }
+    // TODO: fix find is not right!
+    let result = data.articles.find(element=>{
       return element._id.toString() === req.params.id.toString();
     });
-    res.send(result[0]);
+    return res.send(result);
   })
-
 });
-
 //-------------------------------------------------------------------------------------------------
 //REVIEW
 //Create review by company_name

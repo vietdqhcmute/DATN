@@ -34,6 +34,9 @@ export class RecruiterService {
       });
   }
   getAllRecruiterPost(email) {
-    return this.http.get<ResponseArticle>(this.domainName + "recruit-post/" + email);
+    return this.http.get<any>(this.domainName + "recruit-post/" + email);
+  }
+  getRecruiterPostByEmailAndId(email:String, id: String){
+    return this.http.get<any>(this.domainName+"recruit-post/"+email+"/"+id);
   }
 }
