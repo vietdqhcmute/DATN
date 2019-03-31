@@ -7,14 +7,15 @@ let recruiterSchema = new mongoose.Schema({
   },
   image_url: String,
   email: String,
-  phone: [],
+  phone: String,
   address: String,
   city: String,
   website: String,
   employees: Number,
   overview: String,
-  recruit_news: [],
-  candidates_follow:[]
+  production:String,
+  day_at_work:String,
+
 });
 
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
