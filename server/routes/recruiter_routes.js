@@ -47,10 +47,10 @@ router.put("/update/recruiter/:id", async (req, res) => {
 });
 //---------------------------------------------------------------------------------------------
 //RECRUIT POST
-//create recruitpost by company_name
-router.post("/add/recruit-post/:company_name", (req, res) => {
+//create recruitpost by email
+router.post("/add/recruit-post/:email", (req, res) => {
   const recruitPost = new RecruitPost({
-    company_name: req.params.company_name
+    email: req.params.email
   });
   recruitPost.save((err, data) => {
     if (err) {
@@ -60,7 +60,7 @@ router.post("/add/recruit-post/:company_name", (req, res) => {
   });
 });
 
-//create post in recruit post by company_name
+//create post in recruit post by email
 router.post("/push/recruit-post", (req, res) => {
   let requestArticles = new Article({
     title: req.body.article.title,
@@ -70,7 +70,7 @@ router.post("/push/recruit-post", (req, res) => {
     updated_at: Date.now
   });
   RecruitPost.findOneAndUpdate({
-      company_name: req.body.company_name
+      email: req.body.email
     }, {
       $push: {
         articles: requestArticles
@@ -85,10 +85,10 @@ router.post("/push/recruit-post", (req, res) => {
   );
 });
 
-//get All post by company_name
-router.get("/recruit-post/:company_name", (req, res) => {
+//get All post by email company
+router.get("/recruit-post/:email", (req, res) => {
   RecruitPost.findOne({
-      company_name: req.params.company_name
+      email: req.params.email
     },
     (error, data) => {
       if (error) {
@@ -104,9 +104,9 @@ router.get("/recruit-post/:company_name", (req, res) => {
 });
 
 // Get specific post by ID and company_name
-router.get("/recruit-post/:company_name/:id", async (req, res) => {
+router.get("/recruit-post/:email/:id", async (req, res) => {
   RecruitPost.findOne({
-    company_name: req.params.company_name
+    email: req.params.email
   }, async (error, data) => {
     let result = data.articles.filter(element => {
       return element._id.toString() === req.params.id.toString();
@@ -119,9 +119,9 @@ router.get("/recruit-post/:company_name/:id", async (req, res) => {
 //-------------------------------------------------------------------------------------------------
 //REVIEW
 //Create review by company_name
-router.post("/add/review/:company_name", (req, res) => {
+router.post("/add/review/:email", (req, res) => {
   const review = new Review({
-    company_name: req.params.company_name
+    email: req.params.email
   });
   review.save((err, data) => {
     if (err) {
@@ -132,6 +132,7 @@ router.post("/add/review/:company_name", (req, res) => {
 });
 //Push a review article to company_review
 router.post("/push/review", (req, res) => {
+  console.log(req.body);
   let requestReviewPost = new ReviewPost({
     display_name: req.body.review_post.display_name,
     title: req.body.review_post.title,
@@ -142,7 +143,7 @@ router.post("/push/review", (req, res) => {
     updated_at: Date.now
   });
   Review.findOneAndUpdate({
-      company_name: req.body.company_name
+      email: req.body.email
     }, {
       $push: {
         review_posts: requestReviewPost
@@ -156,10 +157,10 @@ router.post("/push/review", (req, res) => {
     }
   );
 });
-//Get all review of company
-router.get("/review/:company_name", (req, res) => {
+//Get all review of company email
+router.get("/review/:email", (req, res) => {
   Review.findOne({
-      company_name: req.params.company_name
+      email: req.params.email
     },
     (error, data) => {
       if (error) {

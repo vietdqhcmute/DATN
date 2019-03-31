@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 let recruitPostSchema = new mongoose.Schema({
-  company_name: {
+  email: {
     type: String,
     unique: true
   },

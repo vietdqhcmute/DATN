@@ -1,16 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from 'src/environments/environment';
-import { Recruiter } from '../models/RecruiterData';
+import { environment } from "src/environments/environment";
+import { Recruiter, ResponseArticle } from "../models/RecruiterData";
+import { Subject } from "rxjs";
+import { ContentObserver } from "@angular/cdk/observers";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class RecruiterService {
   domainName = environment.APIEndPoint;
 
-  constructor(private http: HttpClient) { }
-  getRecruiterByEmail(email){
+  constructor(private http: HttpClient) {}
+
+  getRecruiterByEmail(email) {
     return this.http.get(this.domainName + "recruiter/email/" + email);
   }
 
@@ -21,5 +24,16 @@ export class RecruiterService {
       recruiter,
       { headers: headers }
     );
+  }
+
+  saveRecruitPost(requestBody: Object) {
+    this.http
+      .post(this.domainName + "push/recruit-post/", requestBody)
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
+  getAllRecruiterPost(email) {
+    return this.http.get<ResponseArticle>(this.domainName + "recruit-post/" + email);
   }
 }
