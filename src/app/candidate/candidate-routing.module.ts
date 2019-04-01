@@ -7,7 +7,7 @@ import { CreateCvComponent } from './components/create-cv/create-cv.component';
 const routes: Routes = [
   {path:"", component: CandidateComponent, children:[
     {path: ":email", component: CandidateProfileComponent},
-    {path: ":email/create-cv", component: CreateCvComponent},
+    {path: ":email/create-cv", loadChildren:"../create-cv/create-cv.module#CreateCvModule"},
   ]}
 ];
 
