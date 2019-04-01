@@ -11,7 +11,7 @@ import { Title } from "@angular/platform-browser";
 })
 export class RegisterCandidateComponent implements OnInit {
   candidateParams = new CandidateParams();
-
+  hide = true;
   constructor(public authService: AuthService, private titleService: Title) {}
 
   ngOnInit() {
