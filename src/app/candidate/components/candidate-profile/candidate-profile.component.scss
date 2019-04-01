@@ -34,7 +34,7 @@
         padding-bottom: 30px;
         background-color: #fff;
 
-        button {
+        .edit-button {
           width: max-content;
           margin-left: 50px;
         }
@@ -48,7 +48,7 @@
           flex-flow: row;
           input{
             width: 75%;
-            margin-bottom: 5px; 
+            margin-bottom: 5px;
           }
           .avatar {
             flex: 5;
