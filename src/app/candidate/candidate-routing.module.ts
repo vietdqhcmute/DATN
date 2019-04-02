@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
 import { CandidateComponent } from './candidate.component';
-import { CreateCvComponent } from './components/create-cv/create-cv.component';
 
 const routes: Routes = [
   {path:"", component: CandidateComponent, children:[
