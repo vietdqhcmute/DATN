@@ -103,34 +103,43 @@ router.get("/recruit-post/:email", (req, res) => {
   );
 });
 
-// Get specific post by ID and company_name
-// router.get("/recruit-post/:email/:id", async (req, res) => {
-//   RecruitPost.findOne({
-//     email: req.params.email
-//   }, async (error, data) => {
-//     let result = data.articles.filter(element => {
-//       return element._id.toString() === req.params.id.toString();
-//     });
-//     res.send(result[0]);
-//   })
-// });
 router.get("/recruit-post/:email/:id", async (req, res) => {
   RecruitPost.findOne({
     email: req.params.email
   }, async (error, data) => {
-    if (error){
+    if (error) {
       return res.status(500).send(error);
     }
-    if(!data){
+    if (!data) {
       return res.status(404).send("Can not find data!");
     }
     // TODO: fix find is not right!
-    let result = data.articles.find(element=>{
+    let result = data.articles.find(element => {
       return element._id.toString() === req.params.id.toString();
     });
     return res.send(result);
   })
 });
+
+//delete post by ID
+router.delete("/recruit-post/:email/:id", async (req, res) => {
+  try {
+    let recruitPost = await RecruitPost.findOne({
+      email: req.params.email
+    });
+    recruitPost.articles.splice(recruitPost.articles.indexOf(req.params.id), 1);
+    RecruitPost.findOneAndUpdate({
+      email: req.params.email
+    }, recruitPost, (err) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.status(200).send("Delete success");
+    });
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+})
 //-------------------------------------------------------------------------------------------------
 //REVIEW
 //Create review by company_name
