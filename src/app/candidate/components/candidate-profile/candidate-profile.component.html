@@ -77,14 +77,9 @@
             </div>
           </div>
         </div>
-
-        <button
-          id="btn-update-info"
-          class="btn btn-info"
-          (click)="onEditButton()"
-        >
-          Edit profile
-        </button>
+        <div class="edit-button">
+          <app-modal-edit-profile></app-modal-edit-profile>
+        </div>
         <button
           *ngIf="true == false"
           id="btn-update-info"
