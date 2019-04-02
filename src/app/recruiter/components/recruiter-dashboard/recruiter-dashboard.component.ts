@@ -11,7 +11,6 @@ export class RecruiterDashboardComponent extends RecruiterComponent
  implements OnInit, OnDestroy {
   articles =[];
   company_email:String;
-  sub: Subscription;
   ngOnInit() {
     this.sub = this.route.parent.params.subscribe(params=>{
       this.recruiterService.getAllRecruiterPost(params.email).subscribe(responseArticle=>{
@@ -20,9 +19,4 @@ export class RecruiterDashboardComponent extends RecruiterComponent
       });
     });
   }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
-
 }

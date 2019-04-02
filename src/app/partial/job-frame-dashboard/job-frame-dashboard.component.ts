@@ -12,4 +12,10 @@ export class JobFrameDashboardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+  onUpdate(){
+    console.log(this.jobDescription._id);
+  }
+  onDelete(){
+    console.log(this.jobDescription._id);
+  }
 }
