@@ -54,7 +54,7 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #ECEFF1;
+  background: #eceff1;
 }
 
 /* Handle */
@@ -64,5 +64,14 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #546E7A;
+  background: #546e7a;
+}
+// .modal-backdrop {
+// position: unset !important;
+// }
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-backdrop {
+  display: none;
 }
