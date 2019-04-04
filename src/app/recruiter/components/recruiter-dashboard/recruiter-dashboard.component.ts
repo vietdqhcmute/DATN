@@ -14,7 +14,7 @@ export class RecruiterDashboardComponent extends RecruiterComponent
   ngOnInit() {
     this.sub = this.route.parent.params.subscribe(params => {
       this.articleService
-        .getAllRecruiterPost(params.email)
+        .getAllArticles(params.email)
         .subscribe(responseArticle => {
           this.company_email = params.email;
           this.articles = responseArticle;

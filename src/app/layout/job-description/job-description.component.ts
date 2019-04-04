@@ -48,7 +48,7 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
 
   private getPost(id: String) {
     this.sub = this.articleService
-      .getRecruiterPostById(id)
+      .getArticleById(id)
       .subscribe(jobData => {
         this.jobInfo._id = jobData._id;
         this.jobInfo.title = jobData.title;

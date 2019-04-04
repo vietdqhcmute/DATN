@@ -5,7 +5,15 @@ import { RecruiterService } from "./recruiter.service";
   providedIn: "root"
 })
 export class ArticleService extends RecruiterService {
-  saveRecruitPost(requestBody: any) {
+  getAllArticles(email) {
+    return this.http.get<any>(this.domainName + "articles/" + email);
+  }
+
+  getArticleById(id: String) {
+    return this.http.get<any>(this.domainName + "article/" + id);
+  }
+
+  saveArticle(requestBody: any) {
     this.http
       .post(this.domainName + "article/", requestBody)
       .subscribe(response => {
@@ -13,11 +21,5 @@ export class ArticleService extends RecruiterService {
       });
   }
 
-  getAllRecruiterPost(email) {
-    return this.http.get<any>(this.domainName + "articles/" + email);
-  }
 
-  getRecruiterPostById(id: String) {
-    return this.http.get<any>(this.domainName + "article/" + id);
-  }
 }
