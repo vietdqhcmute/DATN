@@ -1,11 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { RecruitPost } from "src/app/models/RecruiterData";
-import { ActivatedRoute } from "@angular/router";
 import { RecruiterComponent } from "../../recruiter.component";
-import { AuthService } from "src/app/services/auth.service";
-import { RecruiterService } from "src/app/services/recruiter.service";
-import { Title } from "@angular/platform-browser";
+
 
 @Component({
   selector: "app-recruiter-create-post",
@@ -25,10 +21,10 @@ export class RecruiterCreatePostComponent extends RecruiterComponent {
   onCreatePost() {
     this.route.parent.params.subscribe(params => {
       let requestBody = {
-        email: params.email,
+        email_company: params.email,
         article: this.recruitPostData
       };
-      this.recruiterService.saveRecruitPost(requestBody);
+      this.articleService.saveRecruitPost(requestBody);
     });
   }
 }

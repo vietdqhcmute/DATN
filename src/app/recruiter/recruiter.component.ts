@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { first } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
 import { Subscription } from "rxjs";
+import { ArticleService } from '../services/article.service';
 
 @Component({
   selector: "app-recruiter",
@@ -18,6 +19,7 @@ export class RecruiterComponent implements OnInit, OnDestroy {
   sub: Subscription;
   constructor(
     protected recruiterService: RecruiterService,
+    protected articleService: ArticleService,
     protected route: ActivatedRoute,
     private titleService: Title
   ) {}

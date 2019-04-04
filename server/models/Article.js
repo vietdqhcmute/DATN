@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 let articleSchema = new mongoose.Schema({
+  email_company: String,
+  avatar_url: String,
   title: String,
   description: String,
   salary: String,
@@ -9,7 +11,10 @@ let articleSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  updated_at: Date
+  updated_at: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Article = mongoose.model("Article", articleSchema);

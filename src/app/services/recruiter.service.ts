@@ -11,7 +11,7 @@ import { ContentObserver } from "@angular/cdk/observers";
 export class RecruiterService {
   domainName = environment.APIEndPoint;
 
-  constructor(private http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
   getRecruiterByEmail(email) {
     return this.http.get(this.domainName + "recruiter/email/" + email);
@@ -24,19 +24,5 @@ export class RecruiterService {
       recruiter,
       { headers: headers }
     );
-  }
-
-  saveRecruitPost(requestBody: Object) {
-    this.http
-      .post(this.domainName + "push/recruit-post/", requestBody)
-      .subscribe(response => {
-        console.log(response);
-      });
-  }
-  getAllRecruiterPost(email) {
-    return this.http.get<any>(this.domainName + "recruit-post/" + email);
-  }
-  getRecruiterPostByEmailAndId(email:String, id: String){
-    return this.http.get<any>(this.domainName+"recruit-post/"+email+"/"+id);
   }
 }

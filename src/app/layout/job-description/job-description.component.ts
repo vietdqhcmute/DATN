@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RecruiterService } from "src/app/services/recruiter.service";
 import { Subscription } from "rxjs";
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: "app-job-description",
@@ -31,12 +32,13 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   sub: Subscription;
   constructor(
     private route: ActivatedRoute,
-    private recruiterService: RecruiterService
+    private recruiterService: RecruiterService,
+    private articleService: ArticleService
   ) {}
 
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
-      this.getPost(params.get("company_email"), params.get("id"));
+      this.getPost(params.get("id"));
       this.getCompanyData(params.get("company_email"));
     });
   }
@@ -44,9 +46,9 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  private getPost(email: String, id: String) {
-    this.sub = this.recruiterService
-      .getRecruiterPostByEmailAndId(email, id)
+  private getPost(id: String) {
+    this.sub = this.articleService
+      .getRecruiterPostById(id)
       .subscribe(jobData => {
         this.jobInfo._id = jobData._id;
         this.jobInfo.title = jobData.title;

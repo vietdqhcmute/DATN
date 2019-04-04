@@ -1,0 +1,23 @@
+import { Injectable } from "@angular/core";
+import { RecruiterService } from "./recruiter.service";
+
+@Injectable({
+  providedIn: "root"
+})
+export class ArticleService extends RecruiterService {
+  saveRecruitPost(requestBody: any) {
+    this.http
+      .post(this.domainName + "article/", requestBody)
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
+
+  getAllRecruiterPost(email) {
+    return this.http.get<any>(this.domainName + "articles/" + email);
+  }
+
+  getRecruiterPostById(id: String) {
+    return this.http.get<any>(this.domainName + "article/" + id);
+  }
+}

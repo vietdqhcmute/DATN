@@ -34,17 +34,6 @@ export class AuthService {
           console.log(error);
         }
       );
-    //Add in RecruiterPost table
-    this.http
-      .post(this.domainName + "add/recruit-post/" + recruiterParams.email, {})
-      .subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
     //Add in RecruiterReview table
     this.http
       .post(this.domainName + "add/review/" + recruiterParams.email, {})
