@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
+import { ArticleService } from "src/app/services/article.service";
+import { ContentObserver } from "@angular/cdk/observers";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-job-frame-dashboard",
@@ -7,15 +10,21 @@ import { Title } from "@angular/platform-browser";
   styleUrls: ["./job-frame-dashboard.component.scss"]
 })
 export class JobFrameDashboardComponent implements OnInit {
-  @Input() jobDescription:any;
-  @Input() email:String;
-  constructor() {}
+  @Input() jobDescription: any;
+  @Input() email: String;
+  constructor(private articleService: ArticleService, private router: Router) {}
 
-  ngOnInit() {}
-  onUpdate(){
-    console.log(this.jobDescription._id);
+  ngOnInit() {
   }
-  onDelete(){
-    console.log(this.jobDescription._id);
+  onUpdate() {
+    this.router.navigate(
+      ["recruiter", this.email, "create-post", this.jobDescription._id],
+      { queryParams: { edit: true } }
+    );
+  }
+  onDelete() {
+    this.articleService
+      .deleteArticle(this.jobDescription._id)
+      .subscribe(response => {});
   }
 }

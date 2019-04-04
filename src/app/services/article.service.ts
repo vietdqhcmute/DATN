@@ -21,5 +21,9 @@ export class ArticleService extends RecruiterService {
       });
   }
 
+  updateArticle(requestBody: any) {}
 
+  deleteArticle(id: String) {
+    return this.http.delete(this.domainName + "article/" + id);
+  }
 }
