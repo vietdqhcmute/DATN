@@ -1,4 +1,4 @@
-<div class="job-description" style=" background: #e9e9e9;">
+<div class="job-description" *ngIf="recruiterData" style=" background: #e9e9e9;">
   <div class="container">
     <div class="row job-des-header" style="border: 1px solid #d8d8d8;background-color: #fff ">
       <div class="cover-images-desktop">
@@ -16,18 +16,18 @@
         </div>
         <div class="employer-info">
           <div style="float: right;padding: 50px 50px;">
-            <button type="button" class="btn-format btn btn-danger ">
+            <button type="button" class="btn-format btn btn-danger" (click)="onReview()">
               Add a review
             </button>
             <button type="button" class="btn-format btn btn-outline-secondary ">
               Follow
             </button>
           </div>
-          <div class="name"> 
+          <div class="name">
             <div class="company-name">
-              <a href="">
-                <p>{{ company_name }}</p>
-              </a>
+              <h3>
+                <p>{{ recruiterData.company_name }}</p>
+              </h3>
             </div>
           </div>
           <div class="basic-info">
@@ -55,6 +55,6 @@
       <div class="col-md-8" style="background-color: red">Tabs................</div>
       <div class="col-md-4" style="background-color: blue">XYZ</div>
     </div>
-    
+
   </div>
 </div>

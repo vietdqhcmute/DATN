@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Recruiter } from 'src/app/models/RecruiterData';
 
 interface ICompany {
   id: number;
@@ -11,7 +12,7 @@ interface ICompany {
   templateUrl: "./company-review.component.html",
   styleUrls: ["./company-review.component.scss"]
 })
-export class CompanyReviewComponent implements OnInit {
+export class CompanyReviewComponent extends Recruiter implements OnInit {
   isShowCriticism = true;
   isShowShareCompany = true;
   ratingClicked: number;
@@ -24,7 +25,6 @@ export class CompanyReviewComponent implements OnInit {
     { id: 4, rating: 0,title:'', evaluation: "Văn hóa công ty" },
     { id: 5, rating: 0,title:'', evaluation: "Văn phòng làm việc" }
   ];
-  constructor() {}
   showCriticism() {
     this.isShowCriticism = this.isShowCriticism ? false : true;
   }

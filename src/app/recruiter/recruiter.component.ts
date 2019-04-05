@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RecruiterService } from "../services/recruiter.service";
 import { Recruiter } from "../models/RecruiterData";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
 import { Subscription } from "rxjs";
@@ -17,11 +17,13 @@ export class RecruiterComponent implements OnInit, OnDestroy {
     "https://cdn.itviec.com/employers/amanotes/logo/w170/8dM6PZybgr1ahE2Fr2pac4bm/amanotes-logo.png";
   recruiterData: Recruiter;
   sub: Subscription;
+  companyName: String;
   constructor(
     protected recruiterService: RecruiterService,
     protected articleService: ArticleService,
     protected route: ActivatedRoute,
-    private titleService: Title
+    protected router: Router,
+    protected titleService: Title
   ) {}
 
   ngOnInit() {
@@ -39,12 +41,14 @@ export class RecruiterComponent implements OnInit, OnDestroy {
     // this.authService.logOut();
   }
 
-  private loadRecruiterData(email) {
+  protected loadRecruiterData(email) {
     this.sub = this.recruiterService
       .getRecruiterByEmail(email)
       .pipe(first())
       .subscribe(recruiter => {
         this.recruiterData = <Recruiter>recruiter;
       });
+  }
+  protected getCompanyNameByEmail(email){
   }
 }

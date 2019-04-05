@@ -16,11 +16,11 @@ const routes: Routes = [
       { path: "alljob", component: AllJobComponent },
       { path: "job-description/:company_email/:id", component: JobDescriptionComponent },
       {
-        path: "company-description/:company_email",
+        path: "company/:company_email",
         component: CompanyDescriptionComponent
       },
       {
-        path: "company-review/:company_name",
+        path: "review/:company_name",
         component: CompanyReviewComponent
       },
       { path: "search-company", component: SearchCompanyComponent }
