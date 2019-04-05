@@ -6,6 +6,7 @@ import { RecruiterReviewComponent } from "./components/recruiter-review/recruite
 import { RecruiterDashboardComponent } from "./components/recruiter-dashboard/recruiter-dashboard.component";
 import { RecruiterSubcriberComponent } from "./components/recruiter-subcriber/recruiter-subcriber.component";
 import { RecruiterProfileComponent } from "./components/recruiter-profile/recruiter-profile.component";
+import { RecruiterOverviewComponent } from './components/recruiter-overview/recruiter-overview.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: "review", component: RecruiterReviewComponent },
       { path: "dashboard", component: RecruiterDashboardComponent },
       { path: "subcriber", component: RecruiterSubcriberComponent },
-      { path: "profile", component: RecruiterProfileComponent }
+      { path: "profile", component: RecruiterProfileComponent },
+      { path: "overview", component: RecruiterOverviewComponent }
     ]
   }
 ];
