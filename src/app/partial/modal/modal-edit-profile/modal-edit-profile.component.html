@@ -16,27 +16,27 @@
       <div class="modal-body">
         <div >
           <div class="img-round">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-              alt="Photo of a Shiba Inu" />
+            <img mat-card-image src="../../../../assets/images/tho-bay-mau-28.png"
+              alt="Photo of mine" />
           </div>
         </div>
         <div class="example-container">
           <div class="name half-dialog">
             <mat-form-field>
-              <input matInput placeholder="Full name">
+              <input matInput placeholder="Full name" [(ngModel)]="candidate.full_name">
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Display name">
+              <input matInput placeholder="Display name" [(ngModel)]="candidate.display_name">
             </mat-form-field>
           </div>
 
           <div class="contact half-dialog">
             <mat-form-field>
-              <input matInput placeholder="Phone">
+              <input matInput placeholder="Phone" [(ngModel)]="candidate.phone">
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput placeholder="Email">
+              <input matInput placeholder="Email" [(ngModel)]="candidate.email">
             </mat-form-field>
           </div>
 

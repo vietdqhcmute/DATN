@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Candidate } from 'src/app/models/CandidateData';
+import { ContentObserver } from '@angular/cdk/observers';
 
 @Component({
   selector: 'app-modal-edit-profile',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-edit-profile.component.scss']
 })
 export class ModalEditProfileComponent implements OnInit {
-
+  @Input() candidate: Candidate;
   constructor() { }
 
   ngOnInit() {
