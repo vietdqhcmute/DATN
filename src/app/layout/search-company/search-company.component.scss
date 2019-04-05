@@ -1,0 +1,49 @@
+:host {
+  .slogan {
+    font-size: 34px;
+    max-width: 1024px;
+    margin-top: 30px;
+    font-family: "Roboto Condensed", sans-serif;
+    .in-title {
+      line-height: 45px;
+      font-size: 19px;
+      color: #58595b;
+      display: block;
+      font-family: "Roboto", sans-serif;
+    }
+  }
+  .search-form-all-company {
+    position: absolute;
+    border-radius: 2px;
+    box-shadow: none;
+    margin-left: -5px;
+    margin-right: -5px;
+    padding: 20px;
+    position: relative;
+    .search-text {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 60px;
+      font-size: 18px;
+      #search-form {
+        display: flex;
+        margin: 5px 5px 0;
+        .search-icon {
+          margin: 10px;
+          i {
+              color: #8B8B8B;
+            font-size: 40px;
+          }
+        }
+        .input-text {
+          width: 100%;
+        }
+        #input-job {
+          font-size: 1em;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
