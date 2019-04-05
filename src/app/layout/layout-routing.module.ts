@@ -5,6 +5,7 @@ import { LayoutComponent } from "./layout.component";
 import { JobDescriptionComponent } from "./job-description/job-description.component";
 import { CompanyDescriptionComponent } from "./company-description/company-description.component";
 import { CompanyReviewComponent } from "./company-review/company-review.component";
+import { SearchCompanyComponent } from './search-company/search-company.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
       {
         path: "company-review/:company_name",
         component: CompanyReviewComponent
-      }
+      },
+      { path: "search-company", component: SearchCompanyComponent }
     ]
   }
 ];

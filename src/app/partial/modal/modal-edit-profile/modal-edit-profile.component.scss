@@ -20,7 +20,8 @@
 
   .modal-body {
     height: 71vh;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .example-container {
