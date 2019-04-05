@@ -1,0 +1,22 @@
+<h3>Create new post</h3>
+<form>
+  <div class="form-group">
+    <label>Tittle</label>
+    <input type="email" [(ngModel)]="recruitPostData.title" name="title" class="form-control" aria-describedby="emailHelp" placeholder="Tittle" />
+  </div>
+  <div>
+    <label>Tag</label>
+    <input type="email" [(ngModel)]="recruitPostData.tag" name="tag" class="form-control" placeholder="Tags" />
+  </div>
+
+  <div>
+    <label for="exampleInputEmail1">Salary</label>
+    <input type="email" [(ngModel)]="recruitPostData.salary" name="salary" class="form-control" placeholder="Salary" />
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="jobDescription">Job description</label>
+    <ckeditor [(ngModel)]="recruitPostData.description" name="description" [editor]="Editor"></ckeditor>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="onCreatePost()">Create post</button>
+</form>

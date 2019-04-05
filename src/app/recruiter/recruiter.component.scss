@@ -1,0 +1,47 @@
+:host() {
+  padding:10px;
+  .container-fluid{
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  .side-bar{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    float: left;
+    font-size: 22px;
+    font-style: inherit;
+    font-weight: 500;
+    .image {
+      text-align: center;
+
+      img {
+        width: 15vh;
+        height: 15vh;
+      }
+    }
+    .name{
+      font-weight: bolder;
+      text-align: center;
+    }
+    .navigation {
+      ul {
+        list-style: none;
+        li{
+          a{
+            color: rgb(36, 36, 36);
+            text-decoration: none;
+            &:hover{
+              color: rgb(99, 95, 95);
+            }
+          }
+        }
+      }
+    }
+  }
+  .content{
+    float: left;
+  }
+}

@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <mat-toolbar style="text-align: center">ADMIN</mat-toolbar>
+    <mat-nav-list class="list-menu">
+      <a mat-list-item href="#">Dashboard</a>
+      <a mat-list-item href="#">Chart</a>
+      <a mat-list-item href="#">User Manager</a>
+      <hr />
+      <a mat-list-item href="#">Log Out</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="background-color: white !important;">
+    <div style="display: flex">
+      <button
+        color="primary"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="(isHandset$ | async)"
+        style="align-self: center;"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <app-header style="flex: 1"></app-header>
+    </div>
+    <!-- Add Content Here -->
+    <div class="admin-content"></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

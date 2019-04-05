@@ -1,0 +1,25 @@
+:host {
+  mat-toolbar {
+    height: 44px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .class1 {
+    display: none;
+  }
+  .docs-angular-logo {
+    height: 26px;
+    margin: 0 4px 3px 0;
+    vertical-align: middle;
+  }
+}

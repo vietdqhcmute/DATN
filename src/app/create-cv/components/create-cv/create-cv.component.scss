@@ -1,0 +1,59 @@
+:host {
+  .cv {
+    width: 100%;
+    height: 100vh;
+
+    .space {
+      height: 50px;
+    }
+
+    .tool-bar {
+      display: grid;
+      grid-template-columns: 100% 60px;
+      width: 100%;
+      height: 55px;
+    }
+
+    .content {
+      display: flex;
+      width: 100%;
+      height: 84vh;
+
+      .app-get-info {
+        width: 100%;
+        height: 100%;
+        flex: 2.5;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+
+      .content-cv {
+        flex: 7;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        .header-preview {
+          width: 100%;
+          height: 30px;
+        }
+        .preview-cv{
+          padding: 60px 70px;
+          background: #5d7480;
+          .cv{
+            height: 297mm;
+            width: 210mm;
+            background: #ffffff;
+            box-shadow: 30px 30px #494747;
+          }
+        }
+      }
+
+
+      .template-selecttion {
+        padding: 5px;
+        flex: 0.5;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+    }
+  }
+}

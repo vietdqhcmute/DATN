@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../../assets/images/poly-texture.png');
+  background-position: right top;
+  background-attachment: fixed;
+  background-size: 150vh;
+
+  #signup-form {
+    margin: 0 0;
+    background-color: rgba(255, 255, 255, 0.835);
+    width: 60vh;
+    padding: 80px 50px;
+
+    mat-form-field {
+      width: 100%;
+
+      input {
+        font-weight: bold;
+      }
+
+      mat-icon {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    button{
+      width: 100%;
+    }
+  }
+}

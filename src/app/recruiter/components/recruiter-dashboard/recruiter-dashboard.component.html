@@ -1,0 +1,6 @@
+<div class="list-job-frame" *ngIf="articles && company_email">
+  <h3>List of posts</h3>
+  <div class="list-article" *ngFor="let item of articles">
+    <app-job-frame-dashboard [jobDescription]="item" [email]="company_email"></app-job-frame-dashboard>
+  </div>
+</div>
