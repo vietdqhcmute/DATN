@@ -9,8 +9,9 @@ import { CompanyDescriptionComponent } from './company-description/company-descr
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CompanyReviewComponent } from './company-review/company-review.component';
 import { MaterialModule } from '../material/material.module';
+import { SearchCompanyComponent } from './search-company/search-company.component';
 @NgModule({
-  declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent, CompanyReviewComponent],
+  declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent, CompanyReviewComponent, SearchCompanyComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
