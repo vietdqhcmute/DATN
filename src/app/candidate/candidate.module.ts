@@ -5,20 +5,19 @@ import { CandidateProfileComponent } from './components/candidate-profile/candid
 import { CandidateRoutingModule } from './candidate-routing.module';
 import { PartialModule } from '../partial/partial.module';
 import { RouterModule } from '@angular/router';
-import { CreateCvComponent } from './components/create-cv/create-cv.component';
-import { GetInfoComponent } from './components/create-cv/get-info/get-info.component';
-import { PreviewCvComponent } from './components/create-cv/preview-cv/preview-cv.component';
-import { TemplateSelectionComponent } from './components/create-cv/template-selection/template-selection.component';
-import { ToolBarComponent } from './components/create-cv/tool-bar/tool-bar.component';
 import { EditProfileDialogComponent } from '../partial/material-dialog/edit-profile-dialog/edit-profile-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
-  declarations: [CandidateComponent, CandidateProfileComponent,CreateCvComponent, GetInfoComponent, PreviewCvComponent, TemplateSelectionComponent, ToolBarComponent],
+  declarations: [CandidateComponent, CandidateProfileComponent],
   imports: [
     CommonModule,
     CandidateRoutingModule,
     PartialModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    MaterialModule
   ],
   entryComponents:[
     EditProfileDialogComponent

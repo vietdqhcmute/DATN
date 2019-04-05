@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Recruiter = require("../models/Recruiter");
-const RecruitPost = require("../models/RecruitPost");
 const Article = require("../models/Article");
 const Review = require('../models/Review');
 const ReviewPost = require("../models/ReviewPost");
+
+const today = new Date;
 
 //Getting by ID
 router.get("/recruiter/:id", async (req, res) => {
@@ -26,7 +27,7 @@ router.get("/recruiter/email/:email", async (req, res) => {
     res.status(404).send(err);
   }
 });
-//Updating by ID
+//Update recruiter by ID
 router.put("/update/recruiter/:id", async (req, res) => {
   try {
     await Recruiter.findByIdAndUpdate({
@@ -47,12 +48,19 @@ router.put("/update/recruiter/:id", async (req, res) => {
 });
 //---------------------------------------------------------------------------------------------
 //RECRUIT POST
-//create recruitpost by company_name
-router.post("/add/recruit-post/:company_name", (req, res) => {
-  const recruitPost = new RecruitPost({
-    company_name: req.params.company_name
+//create post in recruit post by email
+router.post("/article/", (req, res) => {
+  let requestArticle = new Article({
+    email_company: req.body.email_company,
+    avatar_url: req.body.article.avatar_url,
+    title: req.body.article.title,
+    description: req.body.article.description,
+    salary: req.body.article.salary,
+    tag: req.body.article.tag,
+    created_at: today,
+    updated_at: today
   });
-  recruitPost.save((err, data) => {
+  requestArticle.save((err, data) => {
     if (err) {
       return console.log(err);
     }
@@ -60,35 +68,10 @@ router.post("/add/recruit-post/:company_name", (req, res) => {
   });
 });
 
-//create post in recruit post by company_name
-router.post("/push/recruit-post", (req, res) => {
-  let requestArticles = new Article({
-    title: req.body.article.title,
-    description: req.body.article.description,
-    salary: req.body.article.salary,
-    tag: req.body.article.tag,
-    updated_at: Date.now
-  });
-  RecruitPost.findOneAndUpdate({
-      company_name: req.body.company_name
-    }, {
-      $push: {
-        articles: requestArticles
-      }
-    },
-    (error, data) => {
-      if (!data) {
-        return console.log("It is null!");
-      }
-      return res.send(data);
-    }
-  );
-});
-
-//get All post by company_name
-router.get("/recruit-post/:company_name", (req, res) => {
-  RecruitPost.findOne({
-      company_name: req.params.company_name
+//get All post by email company
+router.get("/articles/:email_company", (req, res) => {
+  Article.find({
+      email_company: req.params.email_company
     },
     (error, data) => {
       if (error) {
@@ -102,26 +85,51 @@ router.get("/recruit-post/:company_name", (req, res) => {
     }
   );
 });
-
-// Get specific post by ID and company_name
-router.get("/recruit-post/:company_name/:id", async (req, res) => {
-  RecruitPost.findOne({
-    company_name: req.params.company_name
-  }, async (error, data) => {
-    let result = data.articles.filter(element => {
-      return element._id.toString() === req.params.id.toString();
-    });
-    res.send(result[0]);
-  })
-
+//get specific article by id
+router.get("/article/:id", async (req, res) => {
+  Article.findById(req.params.id, (err, data) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      if (!data) {
+        return res.status(500).json("Can not find anything");
+      }
+      return res.status(200).json(data);
+    }
+  });
 });
 
+//update post by email company and post id
+router.put("/article/:id", (req, res) => {
+  Article.findByIdAndUpdate(req.params.id, {
+    title: req.body.article.title,
+    description: req.body.article.description,
+    tag: req.body.article.tag,
+    salary: req.body.article.salary,
+    updated_at: today
+  }, (err, data) => {
+    if (err) {
+      return res.status(500).send(err);
+    } else {
+      return res.status(200).json(data);
+    }
+  });
+});
+//delete post by email company and post id
+router.delete("/article/:id", async (req, res) => {
+  Article.findByIdAndDelete(req.params.id, (err)=>{
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.status(200).send("Delete sucessfully!");
+  });
+});
 //-------------------------------------------------------------------------------------------------
 //REVIEW
 //Create review by company_name
-router.post("/add/review/:company_name", (req, res) => {
+router.post("/add/review/:email", (req, res) => {
   const review = new Review({
-    company_name: req.params.company_name
+    email: req.params.email
   });
   review.save((err, data) => {
     if (err) {
@@ -138,11 +146,11 @@ router.post("/push/review", (req, res) => {
     rate: req.body.review_post.rate,
     like: req.body.review_post.like,
     not_like: req.body.review_post.not_like,
-    created_at: Date.now,
-    updated_at: Date.now
+    created_at: today,
+    updated_at: today
   });
   Review.findOneAndUpdate({
-      company_name: req.body.company_name
+      email: req.body.email
     }, {
       $push: {
         review_posts: requestReviewPost
@@ -156,10 +164,10 @@ router.post("/push/review", (req, res) => {
     }
   );
 });
-//Get all review of company
-router.get("/review/:company_name", (req, res) => {
+//Get all review of company email
+router.get("/review/:email", (req, res) => {
   Review.findOne({
-      company_name: req.params.company_name
+      email: req.params.email
     },
     (error, data) => {
       if (error) {

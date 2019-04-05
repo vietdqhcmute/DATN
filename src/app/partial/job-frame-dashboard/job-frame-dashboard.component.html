@@ -1,32 +1,28 @@
 <div class="logo">
-    <img
-      src="https://cdn.itviec.com/employers/athena-studio/logo/s65/mHk6HuAgK39P7yE9yvtVYkcr/athena-studio-logo.png"
-      alt="image"
-    />
+  <img src="https://cdn.itviec.com/employers/athena-studio/logo/s65/mHk6HuAgK39P7yE9yvtVYkcr/athena-studio-logo.png"
+    alt="image" />
+</div>
+<div class="content">
+  <div class="title">
+    <a [routerLink]="['../../../job-description', email, jobDescription._id]">{{ jobDescription.title }}</a>
   </div>
-  <div class="content">
-    <div class="title">
-      <a href="">{{ title }}</a>
+  <div class="salary">
+    <span>{{jobDescription.salary}}</span>
+  </div>
+  <div class="job-description">
+    <div class="list-hightlight">
+
     </div>
-    <div class="salary">
-      <span>2000 USD</span>
-    </div>
-    <div class="job-description">
-      <div class="list-hightlight">
-        <li>Small "Hands On" Team</li>
-        <li>Leading Edge Technology</li>
-        <li>Sign-on and Profit Share Bonus</li>
-      </div>
-      <div class="description-hidden">
-        <p>
-          Participate in the development of exciting new server and client
-          applications for sports team management that already have millions of users in the USA,...
-        </p>
-      </div>
+    <div class="description-hidden">
+      <p>{{jobDescription.description}}</p>
     </div>
   </div>
-  <div class="city-and-info">
-    <div class="city">{{city}}</div>
-    <div class="created">{{created}}</div>
+</div>
+<div class="city-and-info">
+  <div class="city">{{jobDescription.city}}</div>
+  <div class="created">{{jobDescription.created}}</div>
+  <div class="delete-update">
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    <button class="btn btn-info" (click)="onUpdate()">Update</button>
   </div>
-  
+</div>

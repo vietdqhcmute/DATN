@@ -23,7 +23,6 @@ export class AuthService {
     );
   }
   createRecruiter(recruiterParams) {
-    let convertedName = this.convertCompanyName(recruiterParams.company_name);
     //Add in Recruiter table
     this.http
       .post(this.domainName + "recruiter/sign-up", recruiterParams)
@@ -35,20 +34,9 @@ export class AuthService {
           console.log(error);
         }
       );
-    //Add in RecruiterPost table
-    this.http
-      .post(this.domainName + "add/recruit-post/" + convertedName, {})
-      .subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
     //Add in RecruiterReview table
     this.http
-      .post(this.domainName + "add/review/" + convertedName, {})
+      .post(this.domainName + "add/review/" + recruiterParams.email, {})
       .subscribe(
         response => {
           console.log(response);
@@ -93,11 +81,5 @@ export class AuthService {
   }
   private loginAsAdministrator(email) {
     this.router.navigate(["admin"]);
-  }
-  private convertCompanyName(name) {
-    let convertedName = name.trim();
-    convertedName = convertedName.toLowerCase();
-    convertedName = convertedName.split(" ").join("-");
-    return convertedName;
   }
 }

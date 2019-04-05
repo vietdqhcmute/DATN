@@ -43,24 +43,22 @@
         <div class="header">
           <div class="job-info">
             <h1 class="job-title">
-              Software QA Engineer (Manual)
+              {{jobInfo.title}}
             </h1>
             <div style="float: right;margin-right: 20px">
               <button type="button" class="btn btn-danger font-weight-bold">
                 Apply Now
               </button>
             </div>
-            <div class="job-info-detail">Salary:&nbsp;<span>5000$</span></div>
+            <div class="job-info-detail">Salary:&nbsp;<span>{{jobInfo.salary}}</span></div>
             <div class="job-info-detail">
               Address:&nbsp;<span>So 1 Vo Van Ngan</span>
             </div>
-            <div class="job-info-detail">Date:&nbsp;<span>3/3/2019</span></div>
+            <div class="job-info-detail">Date:&nbsp;<span>{{jobInfo.created_at}}</span></div>
           </div>
         </div>
         <div class="job-more-info">
-          This area is a job description <br />
-          Create it well<br />
-          Have fun while doing! <br />
+          {{jobInfo.description}}
         </div>
       </div>
     </div>
