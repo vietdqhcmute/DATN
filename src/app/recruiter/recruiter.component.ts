@@ -4,7 +4,7 @@ import { Recruiter } from "../models/RecruiterData";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
-import { Subscription } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 import { ArticleService } from '../services/article.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class RecruiterComponent implements OnInit, OnDestroy {
     "https://cdn.itviec.com/employers/amanotes/logo/w170/8dM6PZybgr1ahE2Fr2pac4bm/amanotes-logo.png";
   recruiterData: Recruiter;
   sub: Subscription;
-  companyName: String;
+  private companyName = new Subject<String>();
   constructor(
     protected recruiterService: RecruiterService,
     protected articleService: ArticleService,
@@ -47,8 +47,11 @@ export class RecruiterComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(recruiter => {
         this.recruiterData = <Recruiter>recruiter;
+        this.companyName.next(recruiter.company_email);
+        console.log(this.recruiterData);
       });
   }
-  protected getCompanyNameByEmail(email){
+  protected getCompanyNameByEmail(){
+    return this.companyName;
   }
 }
