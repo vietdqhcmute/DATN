@@ -168,21 +168,4 @@ router.put("/push/review/:email", (req, res) => {
     }
   );
 });
-//Get all review of company email
-router.get("/review/:email", (req, res) => {
-  Review.findOne({
-      email: req.params.email
-    },
-    (error, data) => {
-      if (error) {
-        return console.log(error);
-      } else {
-        if (!data) {
-          return res.status(500).json("Can not find anything");
-        }
-        return res.status(200).json(data);
-      }
-    }
-  );
-});
 module.exports = router;

@@ -13,4 +13,6 @@ export class ReviewService {
   createReviewPost(email: String, reviewPost: any) {
     return this.http.put<any>(this.domainName + "push/review/" + email, reviewPost);
   }
+
+  // getAllReview()
 }

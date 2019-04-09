@@ -48,6 +48,7 @@ const awsRoutes = require('./routes/aws-routes');
 const candidate_routes = require('./routes/candidate_routes');
 const recruiter_routes = require('./routes/recruiter_routes');
 const tag_routes = require('./routes/tag_routes');
+const review_routes = require('./routes/review_routes');
 // routes
 app.use('/', indexRoutes);
 app.use('/',authRoutes);
@@ -57,7 +58,7 @@ app.use('/',awsRoutes);
 app.use('/',candidate_routes);
 app.use('/',recruiter_routes);
 app.use('/',tag_routes);
-
+app.use('/',review_routes);
 app.listen(app.get('port'), () => {
   console.log(`server on port ${app.get('port')}`);
 });
