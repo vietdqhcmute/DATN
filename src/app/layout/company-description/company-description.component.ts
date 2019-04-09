@@ -17,8 +17,8 @@ export class CompanyDescriptionComponent extends RecruiterComponent implements O
   company_email:String;
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
-      this.loadRecruiterData(params.get("company_email"));
-      this.company_email = params.get("company_email");
+      this.loadRecruiterData(params.get("email"));
+      this.company_email = params.get("email");
     });
   }
   onReview(){
