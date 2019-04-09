@@ -1,7 +1,5 @@
-<div class="review-post">
-  <app-recruiter-review-post></app-recruiter-review-post>
-  <app-recruiter-review-post></app-recruiter-review-post>
-  <app-recruiter-review-post></app-recruiter-review-post>
-  <app-recruiter-review-post></app-recruiter-review-post>
-
+<div class="review-post" *ngIf="reviews">
+  <div *ngFor="let item of reviews">
+    <app-recruiter-review-post [review]=item></app-recruiter-review-post>
+  </div>
 </div>

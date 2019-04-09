@@ -49,7 +49,7 @@ export class RecruiterComponent implements OnInit, OnDestroy {
       .subscribe(recruiter => {
         this.recruiterData = <Recruiter>recruiter;
         this.companyEmail = recruiter.email;
-        this.companyName.next(recruiter.company_email);
+        // this.companyName.next(recruiter.company_email);
       });
   }
   protected getCompanyNameByEmail(){
