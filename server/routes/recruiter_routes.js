@@ -117,7 +117,7 @@ router.put("/article/:id", (req, res) => {
 });
 //delete post by email company and post id
 router.delete("/article/:id", async (req, res) => {
-  Article.findByIdAndDelete(req.params.id, (err)=>{
+  Article.findByIdAndDelete(req.params.id, (err) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -139,18 +139,22 @@ router.post("/add/review/:email", (req, res) => {
   });
 });
 //Push a review article to company_review
-router.post("/push/review", (req, res) => {
+router.put("/push/review/:email", (req, res) => {
   let requestReviewPost = new ReviewPost({
-    display_name: req.body.review_post.display_name,
-    title: req.body.review_post.title,
-    rate: req.body.review_post.rate,
-    like: req.body.review_post.like,
-    not_like: req.body.review_post.not_like,
-    created_at: today,
-    updated_at: today
+    title: req.body.title,
+    rate_general: req.body.rate_general,
+    rate_training: req.body.rate_training,
+    rate_care: req.body.rate_care,
+    rate_culture: req.body.rate_culture,
+    rate_infrastructure: req.body.rate_infrastructure,
+    ot_like: req.body.ot_like,
+    ot_hate: req.body.ot_hate,
+    like: req.body.like,
+    hate: req.body.hate,
+    isIntroduce: req.body.isIntroduce,
   });
   Review.findOneAndUpdate({
-      email: req.body.email
+      email: req.params.email
     }, {
       $push: {
         review_posts: requestReviewPost

@@ -19,7 +19,6 @@ export class RatingStarComponent implements OnInit {
   onClick(rating: number, title: string): void {
     this.rating = rating;
     this.title = title;
-    console.log(this.rating);
     this.ratingClick.emit({
       itemId: this.itemId,
       rating: rating,
