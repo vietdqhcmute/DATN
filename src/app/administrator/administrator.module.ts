@@ -18,6 +18,8 @@ import {
 import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dashboard.component";
 import { AdminChartComponent } from "./components/admin-chart/admin-chart.component";
 import { AdminUserManagerComponent } from "./components/admin-user-manager/admin-user-manager.component";
+import { FormsModule } from '@angular/forms';
+import { AdminRecruiterManagerComponent } from './components/admin-recruiter-manager/admin-recruiter-manager.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { AdminUserManagerComponent } from "./components/admin-user-manager/admin
     AdminDashboardComponent,
     AdminChartComponent,
     AdminUserManagerComponent,
-    
+    AdminRecruiterManagerComponent,
+
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { AdminUserManagerComponent } from "./components/admin-user-manager/admin
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule
   ]
 })
 export class AdministratorModule {}
