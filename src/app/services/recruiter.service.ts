@@ -9,7 +9,7 @@ import { Subject } from "rxjs";
 })
 export class RecruiterService {
   domainName = environment.APIEndPoint;
-
+  recruiter = new Subject<Recruiter>();
   constructor(protected http: HttpClient) {}
 
   getRecruiterByEmail(email) {
@@ -23,5 +23,9 @@ export class RecruiterService {
       recruiter,
       { headers: headers }
     );
+  }
+
+  getRecruiter(){
+    return this.recruiter.asObservable();
   }
 }

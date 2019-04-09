@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
 import { Subscription } from "rxjs";
 
@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
   styleUrls: ["./recruiter-dashboard.component.scss"]
 })
 export class RecruiterDashboardComponent extends RecruiterComponent
-  implements OnInit, OnDestroy {
+  implements OnInit {
   articles = [];
   company_email: String;
   ngOnInit() {

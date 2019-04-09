@@ -28,6 +28,9 @@ export class RecruiterReviewComponent extends RecruiterComponent
     this.route.parent.params.subscribe(params => {
       this.reviewService.getAllReviewByEmail(params.email).subscribe(data => {
         this.reviews = data.review_posts;
+        this.getCompanyNameByEmail().subscribe(res => {
+          console.log(res);
+        });
       });
     });
   }
