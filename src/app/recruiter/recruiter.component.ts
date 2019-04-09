@@ -18,6 +18,7 @@ export class RecruiterComponent implements OnInit, OnDestroy {
   recruiterData: Recruiter;
   sub: Subscription;
   private companyName = new Subject<String>();
+  protected companyEmail: String;
   constructor(
     protected recruiterService: RecruiterService,
     protected articleService: ArticleService,
@@ -47,8 +48,8 @@ export class RecruiterComponent implements OnInit, OnDestroy {
       .pipe(first())
       .subscribe(recruiter => {
         this.recruiterData = <Recruiter>recruiter;
+        this.companyEmail = recruiter.email;
         this.companyName.next(recruiter.company_email);
-        console.log(this.recruiterData);
       });
   }
   protected getCompanyNameByEmail(){

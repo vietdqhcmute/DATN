@@ -2,6 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
 import { Review } from "src/app/models/ReviewData";
 import { ContentObserver } from "@angular/cdk/observers";
+import { Title } from "@angular/platform-browser";
+import { ReviewService } from "src/app/services/review.service";
+import { RecruiterService } from "src/app/services/recruiter.service";
+import { ArticleService } from "src/app/services/article.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 // interface ICompany {
 //   id: number;
@@ -16,7 +21,18 @@ import { ContentObserver } from "@angular/cdk/observers";
 })
 export class CompanyReviewComponent extends RecruiterComponent
   implements OnInit {
+  constructor(
+    protected recruiterService: RecruiterService,
+    protected articleService: ArticleService,
+    protected route: ActivatedRoute,
+    protected router: Router,
+    protected titleService: Title,
+    private reviewService: ReviewService
+  ) {
+    super(recruiterService, articleService, route, router, titleService);
+  }
   reviewData: Review = new Review();
+  title: String;
   isShowCriticism = true;
   isShowShareCompany = true;
   ratingClicked: number;
@@ -34,6 +50,7 @@ export class CompanyReviewComponent extends RecruiterComponent
   }
   showShareCompany() {
     this.isShowShareCompany = this.isShowShareCompany ? false : true;
+    this.reviewData.isIntroduce = this.isShowShareCompany;
   }
   ratingComponentClick(clickObj: any): void {
     // console.log(clickObj);
@@ -48,6 +65,9 @@ export class CompanyReviewComponent extends RecruiterComponent
 
   onSubmit(): void {
     this.getRating();
+    this.reviewService
+      .createReviewPost(this.companyEmail, this.reviewData)
+      .subscribe(reponse => {});
     console.log(this.reviewData);
   }
   private getRating(): void {

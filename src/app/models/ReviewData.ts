@@ -11,8 +11,8 @@ export class Review {
   ot_hate: String;
   like: String;
   hate: String;
-  introduce: Boolean;
-
+  isIntroduce: Boolean;
+  created_at: Date;
   constructor() {
     this.company_email = "";
     this.rate_general = 0;
@@ -26,6 +26,6 @@ export class Review {
     this.ot_hate = "";
     this.like = "";
     this.hate = "";
-    this.introduce = false;
+    this.isIntroduce = false;
   }
 }

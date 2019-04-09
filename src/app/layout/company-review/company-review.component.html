@@ -43,7 +43,7 @@
                   <input class="string required"
                     placeholder='Tiêu đề: Tóm tắt đánh giá của bạn. Ví dụ: "Sếp tốt" hoặc "Nhân viên mới đều được cấp Macbook"'
                     type="text" value="" name="review[title]" id="review_title" aria-required="true"
-                    style="width: 100%" />
+                    [(ngModel)]="reviewData.title" style="width: 100%" />
                 </div>
                 <div class="validate">
                   <span id="" class="error">
@@ -61,7 +61,7 @@
                     </span>
                     <textarea [style.visibility]="
                         isShowCriticism ? 'visible' : 'hidden'
-                      " name="" id="" cols="30" rows="2" placeholder="Lí do bạn hài lòng với OT"></textarea>
+                      " name="ot_like" [(ngModel)]="reviewData.ot_like" id="" cols="30" rows="2" placeholder="Lí do bạn hài lòng với OT"></textarea>
                   </div>
                   <div class="recommend-attitude cursor-hover">
                     <span style="min-width: 200px" (click)="showCriticism()"
@@ -69,7 +69,7 @@
                         style="font-size: 40px;"></i>&nbsp; Không hài lòng</span>
                     <textarea [style.visibility]="
                         isShowCriticism ? 'hidden' : 'visible'
-                      " name="" id="" cols="30" rows="2" placeholder="Lí do bạn không hài lòng với OT"></textarea>
+                      " name="ot_hate"[(ngModel)]="reviewData.ot_hate" id="" cols="30" rows="2" placeholder="Lí do bạn không hài lòng với OT"></textarea>
                   </div>
                 </div>
                 <div class="validate">
@@ -81,7 +81,7 @@
               <div class="form-group">
                 <label>Điều bạn thích:</label>
                 <div>
-                  <textarea name="" id="" cols="30" rows="4" style="width: 100%"
+                  <textarea name="like" id="" cols="30" rows="4" style="width: 100%" [(ngModel)]="reviewData.like"
                     placeholder='Điều gì làm công ty này nổi bật? Ví dụ: "Bãi đậu xe rộng rãi. Văn phòng đẹp tất cả đều được trang bị hàng "Apple" (Macbook, iMac)"'></textarea>
                 </div>
                 <div class="validate">
@@ -93,7 +93,7 @@
               <div class="form-group">
                 <label>Điều bạn không thích:</label>
                 <div>
-                  <textarea name="" id="" cols="30" rows="4" style="width: 100%"
+                  <textarea name="hate" id="" cols="30" rows="4" style="width: 100%" [(ngModel)]="reviewData.hate"
                     placeholder='Bạn nghĩ công ty cần cải thiện điều gì? Ví dụ: "Khi có dự án thì OT hơi nhiều, áp lực, nên cần cải thiện khâu estimation. Họp và báo cáo nhiều gây mất thời gian, nên giảm các việc này."'></textarea>
                 </div>
                 <div class="validate">
