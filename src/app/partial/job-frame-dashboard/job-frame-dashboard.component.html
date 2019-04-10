@@ -13,8 +13,10 @@
     <div class="list-hightlight">
 
     </div>
+
     <div class="description-hidden">
-      <p>{{jobDescription.description}}</p>
+      <div [innerHTML]="jobDescription.description">
+      </div>
     </div>
   </div>
 </div>
