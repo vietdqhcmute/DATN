@@ -10,6 +10,9 @@ import { AuthenticatModel } from "../models/LoginData";
 })
 export class AuthService {
   domainName = environment.APIEndPoint;
+  private authStatusListener = new Subject<boolean>();
+
+
   constructor(private http: HttpClient, private router: Router) {}
   //==================================================New code=================================
   createCandidate(candidateParams) {
@@ -58,6 +61,7 @@ export class AuthService {
           const role = response.fetcheddata.role;
           const email = response.fetcheddata.email;
           if (token) {
+            this.authStatusListener.next(true);
             if (role === 1) {
               this.loginAsCandidate(email);
             } else if (role === 2) {
@@ -71,6 +75,10 @@ export class AuthService {
           console.log(error);
         }
       );
+  }
+
+  getAuthStatusListener(){
+    return this.authStatusListener.asObservable();
   }
 
   private loginAsCandidate(email) {

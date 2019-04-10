@@ -11,13 +11,17 @@
   </div>
   <div class="content">
     <ul>
-      <li>
+      <li class="authenticated" *ngIf="userIsAuthenticated">
         <a mat-button routerLink="/profile">My profile</a>
         <a mat-button routerLink="/alljob">All Jobs</a>
         <a mat-button routerLink="">Create CV</a>
         <a mat-button routerLink="">About us</a>
-        <a mat-button routerLink="/login">Login</a>
         <a mat-button routerLink="/login">Log out</a>
+      </li>
+      <li class="not-authenticated" *ngIf="!userIsAuthenticated">
+        <a mat-button routerLink="/alljob">All Jobs</a>
+        <a mat-button routerLink="">About us</a>
+        <a mat-button routerLink="/login">Login</a>
       </li>
     </ul>
   </div>
