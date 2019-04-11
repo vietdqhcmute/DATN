@@ -57,6 +57,7 @@ export class AuthService {
       )
       .subscribe(
         userResponse => {
+          console.log(userResponse);
           const token = userResponse.token;
           const role = userResponse.fetcheddata.role;
           const email = userResponse.fetcheddata.email;
@@ -79,7 +80,9 @@ export class AuthService {
   }
 
   logout(){
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
   }
 
   getAuthStatusListener(){
