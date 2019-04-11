@@ -12,7 +12,6 @@ export class AuthService {
   domainName = environment.APIEndPoint;
   private authStatusListener = new Subject<boolean>();
 
-
   constructor(private http: HttpClient, private router: Router) {}
   //==================================================New code=================================
   createCandidate(candidateParams) {
@@ -57,7 +56,6 @@ export class AuthService {
       )
       .subscribe(
         userResponse => {
-          console.log(userResponse);
           const token = userResponse.token;
           const role = userResponse.fetcheddata.role;
           const email = userResponse.fetcheddata.email;
@@ -79,13 +77,13 @@ export class AuthService {
       );
   }
 
-  logout(){
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("email");
+  logout() {
+    localStorage.removeItem("currentUser");
   }
 
-  getAuthStatusListener(){
+  autoLogin() {}
+
+  getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
@@ -98,9 +96,12 @@ export class AuthService {
   private loginAsAdministrator() {
     this.router.navigate(["admin"]);
   }
-  private saveTokenToBrowser(user){
-    localStorage.setItem("token",user.token);
-    localStorage.setItem("role",user.fetcheddata.role);
-    localStorage.setItem("email",user.fetcheddata.email);
+  private saveTokenToBrowser(user) {
+    let currentUser = {
+      token: user.token,
+      role: user.fetcheddata.role,
+      email: user.fetcheddata.email
+    };
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
   }
 }

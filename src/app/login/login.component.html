@@ -1,6 +1,6 @@
 <div id="login-form" class="login-theme">
   <!-- Sign in -->
-  <form (submit)="onSignIn(signInForm)" #signInForm="ngForm">
+  <form (ngSubmit)="onSignIn(signInForm)" #signInForm="ngForm">
     <header>
       <h1>Login with Account</h1>
     </header>
@@ -20,6 +20,7 @@
         matInput
         id="email"
         name="email"
+        required
         placeholder="Email"
         [(ngModel)]="loginParams.email"
       />
@@ -29,6 +30,7 @@
       <input
         matInput
         name="password"
+        required
         placeholder="Password"
         [type]="hide ? 'password' : 'text'"
         [(ngModel)]="loginParams.password"
@@ -39,7 +41,6 @@
     </mat-form-field>
     <mat-dialog-actions>
       <button
-        *ngIf="!isLoading_logIn"
         mat-button
         type="submit"
         class="mat-raised-button mat-primary"

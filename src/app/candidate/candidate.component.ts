@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../services/auth.service";
 
 @Component({
-  selector: 'app-candidate',
-  templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.scss']
+  selector: "app-candidate",
+  templateUrl: "./candidate.component.html",
+  styleUrls: ["./candidate.component.scss"]
 })
 export class CandidateComponent implements OnInit {
-
-  constructor() { }
+  userAuthenticated: boolean;
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      this.userAuthenticated = isAuthenticated;
+    });
   }
-
 }
