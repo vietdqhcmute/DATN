@@ -20,16 +20,16 @@
       [innerHTML]="jobDescription.description"
     ></div>
   </div>
-  <div class="city-and-info">
-    <div class="city">{{ jobDescription.city }}</div>
-    <div class="created">{{ jobDescription.created }}</div>
-    <div class="delete-update">
-      <button class="btn btn-danger" (click)="onDelete()">
-        <i class="material-icons">delete</i>
-      </button>
-      <button class="btn btn-info" (click)="onUpdate()">
-        <i class="material-icons">edit</i>
-      </button>
-    </div>
+</div>
+<div class="city-and-info">
+  <div class="city">{{ jobDescription.city }}</div>
+  <div class="created">{{ jobDescription.created }}</div>
+  <div class="button">
+    <button class="btn btn-danger" (click)="onDelete()">
+      <i class="material-icons">delete</i>
+    </button>
+    <button class="btn btn-info" (click)="onUpdate()">
+      <i class="material-icons">edit</i>
+    </button>
   </div>
 </div>
