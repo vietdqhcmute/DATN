@@ -56,18 +56,19 @@ export class AuthService {
         loginParams
       )
       .subscribe(
-        response => {
-          const token = response.token;
-          const role = response.fetcheddata.role;
-          const email = response.fetcheddata.email;
+        userResponse => {
+          const token = userResponse.token;
+          const role = userResponse.fetcheddata.role;
+          const email = userResponse.fetcheddata.email;
           if (token) {
+            this.saveTokenToBrowser(userResponse);
             this.authStatusListener.next(true);
             if (role === 1) {
               this.loginAsCandidate(email);
             } else if (role === 2) {
               this.loginAsRecruiter(email);
             } else {
-              this.loginAsAdministrator(email);
+              this.loginAsAdministrator();
             }
           }
         },
@@ -75,6 +76,10 @@ export class AuthService {
           console.log(error);
         }
       );
+  }
+
+  logout(){
+    localStorage.removeItem("currentUser");
   }
 
   getAuthStatusListener(){
@@ -87,7 +92,12 @@ export class AuthService {
   private loginAsRecruiter(email) {
     this.router.navigate(["recruiter/", email]);
   }
-  private loginAsAdministrator(email) {
+  private loginAsAdministrator() {
     this.router.navigate(["admin"]);
+  }
+  private saveTokenToBrowser(user){
+    localStorage.setItem("token",user.token);
+    localStorage.setItem("role",user.fetcheddata.role);
+    localStorage.setItem("email",user.fetcheddata.email);
   }
 }
