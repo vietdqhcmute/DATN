@@ -10,6 +10,7 @@ export class RecruiterReviewPostComponent implements OnInit {
   created = "March 3 2019";
   like = "Working environment is very friendly";
   not_like = "I was looked down on when I was here!";
+  rating = 3.5;
   constructor() {}
 
   ngOnInit() {

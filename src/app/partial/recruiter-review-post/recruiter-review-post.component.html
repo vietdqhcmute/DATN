@@ -1,6 +1,15 @@
 <div class="post-review">
   <h3>{{ review.title }}</h3>
   <div>Rate: {{review.rate_general}}</div>
+  <div>Rate: {{rating}}</div>
+  
+<div class="rating" style="display: flex;flex-direction:row-reverse;justify-content: flex-end">
+    <input type="radio" value="5" [checked]="rating===5" /><label  title="Tuyệt vời!">Tuyệt vời!</label>
+    <input type="radio" value="4" [checked]="rating===4" /><label  title="Rất tốt">Rất tốt</label>
+    <input type="radio" value="3" [checked]="rating===3" /><label  title="Tốt">Tốt</label>
+    <input type="radio" value="2" [checked]="rating===2" /><label  title="Cần cải thiện nhiều">Cần cải thiện nhiều</label>
+    <input type="radio" value="1" [checked]="rating===1" /><label  title="Rất tệ">Rất tệ</label>
+</div>
   <div class="created">Created at {{ review.created_at }}</div>
   <div class="like">
     <label for=""><strong>What I liked</strong></label>
