@@ -7,25 +7,19 @@ import { Title } from "@angular/platform-browser";
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { EditProfileDialogComponent } from "src/app/partial/material-dialog/edit-profile-dialog/edit-profile-dialog.component";
 import { Subscription } from 'rxjs';
+import { CandidateComponent } from '../../candidate.component';
 @Component({
   selector: "app-candidate-profile",
   templateUrl: "./candidate-profile.component.html",
   styleUrls: ["./candidate-profile.component.scss"]
 })
-export class CandidateProfileComponent implements OnInit, OnDestroy {
+export class CandidateProfileComponent extends CandidateComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   paramsEmail:String;
   email: string;
-  candidate: Candidate = null;
   allowEdit = false;
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
   sub: Subscription;
-  constructor(
-    private candidateService: CandidateService,
-    private titleService: Title,
-    private dialog: MatDialog,
-    private route: ActivatedRoute
-  ) {}
 
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
@@ -38,17 +32,6 @@ export class CandidateProfileComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  private onEditButton() {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.hasBackdrop = true;
-    dialogConfig.width = "110vh";
-    dialogConfig.height = "90vh";
-
-    this.dialog.open(EditProfileDialogComponent, dialogConfig);
-  }
   private loadCandidateData(email) {
     this.sub = this.candidateService
       .getCandidateByEmail(email)

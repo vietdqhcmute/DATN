@@ -60,7 +60,7 @@ export class AuthService {
           const role = userResponse.fetcheddata.role;
           const email = userResponse.fetcheddata.email;
           if (token) {
-            this.saveTokenToBrowser(userResponse);
+            this.saveAuthDataToBrowser(userResponse);
             this.authStatusListener.next(true);
             if (role === 1) {
               this.loginAsCandidate(email);
@@ -78,15 +78,37 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("currentUser");
+    this.clearAuthData();
   }
-
-  autoLogin() {}
-
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
+  autoLogin() {
+    const authData = this.getAuthData();
+    if (!authData){
+      return;
+    }
+
+  }
+
+  private getAuthData() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const token = currentUser.token;
+    const role = currentUser.fetcheddata.role;
+    const email = currentUser.fetcheddata.email;
+    if (!token || !role || !email) {
+      return;
+    }
+    return {
+      token: token,
+      role: role,
+      email: email
+    };
+  }
+  private clearAuthData() {
+    localStorage.removeItem("currentUser");
+  }
   private loginAsCandidate(email) {
     this.router.navigate(["profile/", email]);
   }
@@ -96,7 +118,7 @@ export class AuthService {
   private loginAsAdministrator() {
     this.router.navigate(["admin"]);
   }
-  private saveTokenToBrowser(user) {
+  private saveAuthDataToBrowser(user) {
     let currentUser = {
       token: user.token,
       role: user.fetcheddata.role,
