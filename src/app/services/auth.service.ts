@@ -89,14 +89,23 @@ export class AuthService {
     if (!authData){
       return;
     }
-
+    if (authData.role === 1) {
+      this.loginAsCandidate(authData.email);
+    } else if (authData.role === 2) {
+      this.loginAsRecruiter(authData.email);
+    } else {
+      this.loginAsAdministrator();
+    }
   }
 
   private getAuthData() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) {
+      return;
+    }
     const token = currentUser.token;
-    const role = currentUser.fetcheddata.role;
-    const email = currentUser.fetcheddata.email;
+    const role = currentUser.role;
+    const email = currentUser.email;
     if (!token || !role || !email) {
       return;
     }

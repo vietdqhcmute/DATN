@@ -1,11 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 import { Candidate } from "src/app/models/CandidateData";
-import { CandidateService } from "src/app/services/candidate.service";
 import { first } from "rxjs/operators";
-import { Title } from "@angular/platform-browser";
-import { MatDialog, MatDialogConfig } from "@angular/material";
-import { EditProfileDialogComponent } from "src/app/partial/material-dialog/edit-profile-dialog/edit-profile-dialog.component";
 import { Subscription } from 'rxjs';
 import { CandidateComponent } from '../../candidate.component';
 @Component({
