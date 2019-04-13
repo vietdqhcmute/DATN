@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { AuthenticatModel } from "../models/LoginData";
+import { AlertService } from "./alert.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,15 +13,21 @@ export class AuthService {
   domainName = environment.APIEndPoint;
   private authStatusListener = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private alertService: AlertService
+  ) {}
   //==================================================New code=================================
   createCandidate(candidateParams) {
     this.http.post(this.domainName + "sign-up", candidateParams).subscribe(
       response => {
         console.log(response);
+        this.alertService.success("Create successfully!", true);
       },
       error => {
         console.log(error);
+        this.alertService.error(error, false)
       }
     );
   }
@@ -31,9 +38,11 @@ export class AuthService {
       .subscribe(
         response => {
           console.log(response);
+          this.alertService.success("Create successfully!", true);
         },
         error => {
           console.log(error);
+          this.alertService.error(error, false)
         }
       );
     //Add in RecruiterReview table
@@ -73,6 +82,7 @@ export class AuthService {
         },
         error => {
           console.log(error);
+          this.alertService.error(error, false)
         }
       );
   }
@@ -86,7 +96,7 @@ export class AuthService {
 
   autoLogin() {
     const authData = this.getAuthData();
-    if (!authData){
+    if (!authData) {
       return;
     }
     if (authData.role === 1) {
