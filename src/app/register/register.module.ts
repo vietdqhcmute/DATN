@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RegisterRoutingModule } from './register-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
 import { RegisterCandidateComponent } from './components/register-candidate/register-candidate.component';
 import { RegisterRecruiterComponent } from './components/register-recruiter/register-recruiter.component';
 import { RegisterComponent } from './components/register.component';
+import { PartialModule } from '../partial/partial.module';
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import { RegisterComponent } from './components/register.component';
     RegisterRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PartialModule
   ]
 })
 export class RegisterModule { }
