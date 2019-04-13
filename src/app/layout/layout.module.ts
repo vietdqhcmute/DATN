@@ -10,6 +10,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CompanyReviewComponent } from './company-review/company-review.component';
 import { MaterialModule } from '../material/material.module';
 import { SearchCompanyComponent } from './search-company/search-company.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent, CompanyReviewComponent, SearchCompanyComponent],
   imports: [
@@ -17,7 +18,8 @@ import { SearchCompanyComponent } from './search-company/search-company.componen
     LayoutRoutingModule,
     PartialModule,
     AngularFontAwesomeModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class LayoutModule { }

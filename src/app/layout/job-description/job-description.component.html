@@ -3,18 +3,13 @@
     <div class="row">
       <div class="side_bar col-md-3" style="text-align: center;height: 500px;">
         <div class="logo">
-          <a routerLink=""
-            ><img
-              alt="Logo"
-              [src]="imageURL"
-            />
-          </a>
+          <a routerLink=""><img alt="Logo" [src]="imageURL" /> </a>
         </div>
         <div class="employer-info">
           <div class="name">
             <div class="company-name">
               <a href="">
-                <p>{{company_name}}</p>
+                <p>{{ company_name }}</p>
               </a>
             </div>
           </div>
@@ -43,23 +38,25 @@
         <div class="header">
           <div class="job-info">
             <h1 class="job-title">
-              {{jobInfo.title}}
+              {{ jobInfo.title }}
             </h1>
             <div style="float: right;margin-right: 20px">
               <button type="button" class="btn btn-danger font-weight-bold">
                 Apply Now
               </button>
             </div>
-            <div class="job-info-detail">Salary:&nbsp;<span>{{jobInfo.salary}}</span></div>
+            <div class="job-info-detail">
+              Salary:&nbsp;<span>{{ jobInfo.salary }}</span>
+            </div>
             <div class="job-info-detail">
               Address:&nbsp;<span>So 1 Vo Van Ngan</span>
             </div>
-            <div class="job-info-detail">Date:&nbsp;<span>{{jobInfo.created_at}}</span></div>
+            <div class="job-info-detail">
+              Date:&nbsp;<span>{{ jobInfo.created_at | date: 'dd/MM/yyyy' }}</span>
+            </div>
           </div>
         </div>
-        <div class="job-more-info">
-          {{jobInfo.description}}
-        </div>
+        <div class="job-more-info" [innerHTML]="jobInfo.description"></div>
       </div>
     </div>
   </div>

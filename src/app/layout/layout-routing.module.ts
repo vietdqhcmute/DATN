@@ -14,13 +14,13 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "alljob", pathMatch: "full" },
       { path: "alljob", component: AllJobComponent },
-      { path: "job-description/:company_email/:id", component: JobDescriptionComponent },
+      { path: "job-description/:email/:id", component: JobDescriptionComponent },
       {
-        path: "company-description/:company_email",
+        path: "company/:email",
         component: CompanyDescriptionComponent
       },
       {
-        path: "company-review/:company_name",
+        path: "review/:email",
         component: CompanyReviewComponent
       },
       { path: "search-company", component: SearchCompanyComponent }

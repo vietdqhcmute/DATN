@@ -1,13 +1,19 @@
 <div class="post-review">
-  <h3>{{ title }}</h3>
-  <div>starts</div>
-  <div class="created">{{ created }}</div>
+  <h3>{{ review.title }}</h3>
+  <div>Rate: {{review.rate_general}}</div>
+  <div>Rate: {{rating}}</div>
+  <div>
+    <span class="stars">
+      <span style.width="{{size}}"></span>
+    </span>
+  </div>
+  <div class="created">Created at {{ review.created_at }}</div>
   <div class="like">
     <label for=""><strong>What I liked</strong></label>
-    <p>{{ like }}</p>
+    <p>{{ review.like }}</p>
   </div>
   <div class="not_like">
     <label for=""><strong>Suggestion for Improve</strong></label>
-    <p>{{ not_like }}</p>
+    <p>{{ review.hate }}</p>
   </div>
 </div>

@@ -1,20 +1,19 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
-import { Recruiter, ResponseArticle } from "../models/RecruiterData";
+import { Recruiter } from "../models/RecruiterData";
 import { Subject } from "rxjs";
-import { ContentObserver } from "@angular/cdk/observers";
 
 @Injectable({
   providedIn: "root"
 })
 export class RecruiterService {
   domainName = environment.APIEndPoint;
-
+  recruiter = new Subject<Recruiter>();
   constructor(protected http: HttpClient) {}
 
   getRecruiterByEmail(email) {
-    return this.http.get(this.domainName + "recruiter/email/" + email);
+    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
   }
 
   updateRecruiterByID(recruiterID, recruiter: Recruiter) {
@@ -24,5 +23,9 @@ export class RecruiterService {
       recruiter,
       { headers: headers }
     );
+  }
+
+  getRecruiter(){
+    return this.recruiter.asObservable();
   }
 }

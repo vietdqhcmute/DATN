@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RecruiterReviewPostComponent } from "./recruiter-review-post/recruiter-review-post.component";
 import { RatingStarComponent } from "./rating-star/rating-star.component";
 import { ModalEditProfileComponent } from "./modal/modal-edit-profile/modal-edit-profile.component";
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ModalEditProfileComponent } from "./modal/modal-edit-profile/modal-edit
     EditProfileDialogComponent,
     RecruiterReviewPostComponent,
     RatingStarComponent,
-    ModalEditProfileComponent
+    ModalEditProfileComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { ModalEditProfileComponent } from "./modal/modal-edit-profile/modal-edit
     EditProfileDialogComponent,
     RecruiterReviewPostComponent,
     RatingStarComponent,
-    ModalEditProfileComponent
+    ModalEditProfileComponent,
+    AlertComponent
   ]
 })
 export class PartialModule {}

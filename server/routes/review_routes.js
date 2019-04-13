@@ -13,14 +13,21 @@ router.post("/add/review", (req, res) => {
   });
 });
 
-//Get review by company_name
-router.get("/review/:company_name", async (req, res) => {
-  try {
-    const review = await Review.findOne({company_name:req.params.company_name});
-    res.status(200).json(review);
-  } catch (err) {
-    res.status(404).send(err);
-  }
+//Get all review of company email
+router.get("/reviews/:email", (req, res) => {
+  Review.findOne({
+      email: req.params.email
+    },
+    (error, data) => {
+      if (error) {
+        return console.log(error);
+      } else {
+        if (!data) {
+          return res.status(500).json("Can not find anything");
+        }
+        return res.status(200).json(data);
+      }
+    }
+  );
 });
-
 module.exports = router;

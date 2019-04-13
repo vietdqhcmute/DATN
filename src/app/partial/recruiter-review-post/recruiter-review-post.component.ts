@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
   selector: "app-recruiter-review-post",
@@ -6,11 +6,25 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./recruiter-review-post.component.scss"]
 })
 export class RecruiterReviewPostComponent implements OnInit {
-  title = "I like it!";
+  @Input() review: any;
   created = "March 3 2019";
   like = "Working environment is very friendly";
   not_like = "I was looked down on when I was here!";
-  constructor() {}
+  rating = 4.5;
+  size : string;
+  getStars(rating) {
+    // Get the value
+    var val = parseFloat(rating);
+    // Turn value into number/100
+    var size = val/5*100;
+    console.log(size);
+    return size + '%';
+  }
+  constructor() {
+    this.size = this.getStars(this.rating);
+    console.log(this.size);
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }
