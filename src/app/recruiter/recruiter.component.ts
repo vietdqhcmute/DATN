@@ -6,6 +6,7 @@ import { first } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
 import { Subscription, Subject } from "rxjs";
 import { ArticleService } from '../services/article.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: "app-recruiter",
@@ -24,7 +25,8 @@ export class RecruiterComponent implements OnInit {
     protected articleService: ArticleService,
     protected route: ActivatedRoute,
     protected router: Router,
-    protected titleService: Title
+    protected titleService: Title,
+    protected authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -39,7 +41,7 @@ export class RecruiterComponent implements OnInit {
   // }
 
   private onLogOut() {
-    // this.authService.logOut();
+    this.authService.logout();
   }
 
   protected loadRecruiterData(email) {

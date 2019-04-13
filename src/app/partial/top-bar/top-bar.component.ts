@@ -16,4 +16,8 @@ export class TopBarComponent implements OnInit {
       this.userIsAuthenticated = isAuthenticated;
     });
   }
+
+  onLogOut(){
+    this.authService.logout();
+  }
 }

@@ -37,7 +37,8 @@ import { AlertComponent } from './alert/alert.component';
     EditProfileDialogComponent,
     RecruiterReviewPostComponent,
     RatingStarComponent,
-    ModalEditProfileComponent
+    ModalEditProfileComponent,
+    AlertComponent
   ]
 })
 export class PartialModule {}
