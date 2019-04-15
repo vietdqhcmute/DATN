@@ -7,6 +7,7 @@ import { ReviewService } from "src/app/services/review.service";
 import { RecruiterService } from "src/app/services/recruiter.service";
 import { ArticleService } from "src/app/services/article.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "src/app/services/auth.service";
 
 // interface ICompany {
 //   id: number;
@@ -27,9 +28,17 @@ export class CompanyReviewComponent extends RecruiterComponent
     protected route: ActivatedRoute,
     protected router: Router,
     protected titleService: Title,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    protected authService: AuthService
   ) {
-    super(recruiterService, articleService, route, router, titleService);
+    super(
+      recruiterService,
+      articleService,
+      route,
+      router,
+      titleService,
+      authService
+    );
   }
   reviewData: Review = new Review();
   title: String;

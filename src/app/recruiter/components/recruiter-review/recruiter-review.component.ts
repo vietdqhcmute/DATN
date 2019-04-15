@@ -5,6 +5,7 @@ import { ArticleService } from "src/app/services/article.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 import { ReviewService } from "src/app/services/review.service";
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: "app-recruiter-review",
@@ -20,9 +21,10 @@ export class RecruiterReviewComponent extends RecruiterComponent
     protected route: ActivatedRoute,
     protected router: Router,
     protected titleService: Title,
+    protected authService: AuthService,
     private reviewService: ReviewService
   ) {
-    super(recruiterService, articleService, route, router, titleService);
+    super(recruiterService, articleService, route, router, titleService, authService);
   }
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
