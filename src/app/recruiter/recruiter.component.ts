@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RecruiterService } from "../services/recruiter.service";
 import { Recruiter } from "../models/RecruiterData";
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 import { Title } from "@angular/platform-browser";
 import { Subscription, Subject } from "rxjs";
-import { ArticleService } from '../services/article.service';
-import { AuthService } from '../services/auth.service';
+import { ArticleService } from "../services/article.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-recruiter",
@@ -36,16 +36,8 @@ export class RecruiterComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy() {
-  //   this.sub.unsubscribe();
-  // }
-
-  private onLogOut() {
-    this.authService.logout();
-  }
-
   protected loadRecruiterData(email) {
-    this.sub = this.recruiterService
+    this.recruiterService
       .getRecruiterByEmail(email)
       .pipe(first())
       .subscribe(recruiter => {
@@ -55,7 +47,11 @@ export class RecruiterComponent implements OnInit {
         // this.companyName.next(recruiter.company_email);
       });
   }
-  protected getCompanyNameByEmail(){
+  protected getCompanyNameByEmail() {
     return this.companyName;
+  }
+
+  private onLogOut() {
+    this.authService.logout();
   }
 }

@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
       { path: "create-post", component: RecruiterCreatePostComponent },
-      { path: "create-post/:id", component: RecruiterCreatePostComponent },
+      // { path: "create-post/:id", component: RecruiterCreatePostComponent },
       { path: "review", component: RecruiterReviewComponent },
       { path: "dashboard", component: RecruiterDashboardComponent },
       { path: "subcriber", component: RecruiterSubcriberComponent },

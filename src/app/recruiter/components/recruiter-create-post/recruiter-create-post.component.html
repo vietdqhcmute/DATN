@@ -18,5 +18,7 @@
     <label for="jobDescription">Job description</label>
     <ckeditor [(ngModel)]="recruitPostData.description" name="description" [editor]="Editor"></ckeditor>
   </div>
-  <button type="submit" class="btn btn-primary" (click)="onCreatePost()">Create post</button>
+  <button *ngIf="!queryParams.edit" type="submit" class="btn btn-primary" (click)="onCreatePost()">Create post</button>
+  <button *ngIf="queryParams.edit" type="submit" class="btn btn-info" (click)="onUpdatePost()">Update post</button>
+
 </form>

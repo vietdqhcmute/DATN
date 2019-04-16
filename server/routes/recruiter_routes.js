@@ -117,11 +117,11 @@ router.put("/article/:id", (req, res) => {
 });
 //delete post by email company and post id
 router.delete("/article/:id", async (req, res) => {
-  Article.findByIdAndDelete(req.params.id, (err) => {
+  Article.findByIdAndDelete(req.params.id, (err,data) => {
     if (err) {
       return res.status(500).send(err);
     }
-    res.status(200).send("Delete sucessfully!");
+    res.status(200).send(data);
   });
 });
 //-------------------------------------------------------------------------------------------------

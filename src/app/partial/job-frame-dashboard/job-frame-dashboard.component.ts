@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ArticleService } from "src/app/services/article.service";
-import { ContentObserver } from "@angular/cdk/observers";
 import { Router } from "@angular/router";
 
 @Component({
@@ -18,13 +17,17 @@ export class JobFrameDashboardComponent implements OnInit {
   }
   onUpdate() {
     this.router.navigate(
-      ["recruiter", this.email, "create-post", this.jobDescription._id],
-      { queryParams: { edit: true } }
+      ["recruiter", this.email, "create-post"],
+      { queryParams: { edit: true , id: this.jobDescription._id} }
     );
   }
   onDelete() {
     this.articleService
       .deleteArticle(this.jobDescription._id)
-      .subscribe(response => {});
+      .subscribe(response => {
+        console.log("Delete success!");
+      }, error=>{
+        // console.log(error);
+      });
   }
 }
