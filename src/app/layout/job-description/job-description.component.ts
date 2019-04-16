@@ -39,7 +39,7 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
       this.getPost(params.get("id"));
-      this.getCompanyData(params.get("company_email"));
+      this.getCompanyData(params.get("email"));
     });
   }
   ngOnDestroy(): void {
@@ -60,6 +60,14 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   private getCompanyData(email) {
     this.sub = this.recruiterService
       .getRecruiterByEmail(email)
-      .subscribe(response => {});
+      .subscribe(response => {
+        this.companyInfo._id = response._id;
+        this.companyInfo.image_url = response.image_url;
+        this.companyInfo.company_name = response.company_name;
+        this.companyInfo.addr = response.addr;
+        this.companyInfo.employees = response.employees;
+        this.companyInfo.date_at_work = response.date_at_work;
+        console.log(response);
+      });
   }
 }
