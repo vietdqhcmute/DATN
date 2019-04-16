@@ -24,7 +24,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent {
         email_company: params.email,
         article: this.recruitPostData
       };
-      this.articleService.saveArticle(requestBody);
+      this.articleService.saveArticle(requestBody, params.email);
     });
   }
 }

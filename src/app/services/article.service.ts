@@ -13,11 +13,13 @@ export class ArticleService extends RecruiterService {
     return this.http.get<any>(this.domainName + "article/" + id);
   }
 
-  saveArticle(requestBody: any) {
+  saveArticle(requestBody: any, email: string) {
     this.http
       .post(this.domainName + "article/", requestBody)
       .subscribe(response => {
-        console.log(response);
+        this.router.navigate(["recruiter", email, "dashboard"])
+      }, error=>{
+        this.alertService.error(error);
       });
   }
 
