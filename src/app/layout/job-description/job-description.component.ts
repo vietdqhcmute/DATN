@@ -20,7 +20,8 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
     addr: "",
     type: "",
     employees: "",
-    date_at_work: ""
+    date_at_work: "",
+    email:""
   };
   jobInfo = {
     _id: "",
@@ -67,6 +68,7 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
         this.companyInfo.addr = response.addr;
         this.companyInfo.employees = response.employees;
         this.companyInfo.date_at_work = response.date_at_work;
+        this.companyInfo.email = response.email;
         console.log(response);
       });
   }
