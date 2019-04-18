@@ -34,25 +34,23 @@ router.get("/candidate/email/:email", async (req, res) => {
 });
 
 //API update user by ID
-router.put("/update/candidate/:id", async (req, res) => {
-  try {
-    await Candidate.findByIdAndUpdate(
-      {
-        _id: req.params.id
-      },
-      req.body,
-      {
-        upsert: true,
-        new: true,
-        setDefaultsOnInsert: true
+router.put("/update/candidate/:id", (req, res) => {
+  Candidate.findByIdAndUpdate(
+    {
+      _id: req.params.id
+    },
+    req.body,
+    {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true
+    }, (err,data)=>{
+      if (err){
+        return res.status(500).send(err);
       }
-    );
-    res.status(200).redirect("/candidate/" + req.params.id);
-  } catch (err) {
-    res.status(500).json({
-      message: "Update failed!"
-    });
-  }
+      return res.status(200).send("Update profile success!");
+    }
+  );
 });
 
 module.exports = router;
