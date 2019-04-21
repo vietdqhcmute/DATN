@@ -26,6 +26,13 @@ export class JobFrameDashboardComponent implements OnInit {
       .deleteArticle(this.jobDescription._id)
       .subscribe(response => {
         console.log("Delete success!");
+        //After delete on database, delete on array (using Array.splice to splice by ID)
+        // Topbar do not get authData
+        // Auth.guard to protect route which need to login
+        // Modal yes no
+        // Edit infomation of recruiter
+        // remake starts
+        //Show all articles by time in all-job
       }, error=>{
         // console.log(error);
       });

@@ -12,8 +12,8 @@ const routes: Routes = [
     path: "",
     component: LayoutComponent,
     children: [
-      { path: "", redirectTo: "alljob", pathMatch: "full" },
-      { path: "alljob", component: AllJobComponent },
+      { path: "", redirectTo: "all-job", pathMatch: "full" },
+      { path: "all-job", component: AllJobComponent },
       { path: "job-description/:email/:id", component: JobDescriptionComponent },
       {
         path: "company/:email",
