@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require('../aws-config');
+const upload = require('./aws-config');
 
 const singleUpload = upload.single('image')
 
