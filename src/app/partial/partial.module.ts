@@ -11,6 +11,7 @@ import { RecruiterReviewPostComponent } from "./recruiter-review-post/recruiter-
 import { RatingStarComponent } from "./rating-star/rating-star.component";
 import { ModalEditProfileComponent } from "./modal/modal-edit-profile/modal-edit-profile.component";
 import { AlertComponent } from './alert/alert.component';
+import { ModalYesNoComponent } from './modal/modal-yes-no/modal-yes-no.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AlertComponent } from './alert/alert.component';
     RecruiterReviewPostComponent,
     RatingStarComponent,
     ModalEditProfileComponent,
-    AlertComponent
+    AlertComponent,
+    ModalYesNoComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { AlertComponent } from './alert/alert.component';
     RecruiterReviewPostComponent,
     RatingStarComponent,
     ModalEditProfileComponent,
-    AlertComponent
+    AlertComponent,
+    ModalYesNoComponent
   ]
 })
 export class PartialModule {}
