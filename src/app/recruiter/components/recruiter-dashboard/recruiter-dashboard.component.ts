@@ -22,6 +22,9 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     });
   }
   deleteComponentClick(clickObj: any): void {
-    this.articles.splice(clickObj.itemId,1);
+    const index = this.articles.findIndex(index=> index._id ===clickObj.itemId);
+    console.log(clickObj.itemId);
+    this.articles.splice(index, 1);
+    console.log(this.articles);
   }
 }
