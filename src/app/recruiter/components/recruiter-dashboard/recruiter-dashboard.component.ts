@@ -21,4 +21,7 @@ export class RecruiterDashboardComponent extends RecruiterComponent
         });
     });
   }
+  deleteComponentClick(clickObj: any): void {
+    this.articles.splice(clickObj.itemId,1);
+  }
 }

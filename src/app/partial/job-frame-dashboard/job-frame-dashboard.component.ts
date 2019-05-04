@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ArticleService } from "src/app/services/article.service";
 import { Router } from "@angular/router";
@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class JobFrameDashboardComponent implements OnInit {
   @Input() jobDescription: any;
   @Input() email: String;
+  @Output() deleteClick: EventEmitter<any> = new EventEmitter<any>();
   constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit() {
@@ -26,6 +27,10 @@ export class JobFrameDashboardComponent implements OnInit {
       .deleteArticle(this.jobDescription._id)
       .subscribe(response => {
         console.log("Delete success!");
+        this.deleteClick.emit({
+          itemId: this.jobDescription._id,
+          email: this.email
+        });
         //After delete on database, delete on array (using Array.splice to splice by ID)
         // Topbar do not get authData
         // Auth.guard to protect route which need to login
