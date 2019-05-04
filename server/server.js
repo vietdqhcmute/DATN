@@ -52,20 +52,20 @@ const authRoutes = require("./auth");
 const adminRoutes = require("./routes/admin-routes");
 const statisticRoutes = require("./routes/statistic-routes");
 const awsRoutes = require("./aws/aws-routes");
-const candidate_routes = require("./routes/candidate_routes");
-const recruiter_routes = require("./routes/recruiter_routes");
-const tag_routes = require("./routes/tag_routes");
-const review_routes = require("./routes/review_routes");
+const candidateRoutes = require("./routes/candidate_routes");
+const recruiterRoutes = require("./routes/recruiter_routes");
+const tagRoutes = require("./routes/tag_routes");
+const reviewRoutes = require("./routes/review_routes");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
 app.use("/", adminRoutes);
 app.use("/", statisticRoutes);
 app.use("/", awsRoutes);
-app.use("/", candidate_routes);
-app.use("/", recruiter_routes);
-app.use("/", tag_routes);
-app.use("/", review_routes);
+app.use("/", candidateRoutes);
+app.use("/", recruiterRoutes);
+app.use("/", tagRoutes);
+app.use("/", reviewRoutes);
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
 });
