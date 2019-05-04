@@ -35,9 +35,11 @@
           <div class="img-round">
             <img
               mat-card-image
-              src="../../../../assets/images/tho-bay-mau-28.png"
-              alt="Photo of mine"
+              [src]="candidate.image_url"
+              alt="avatar"
+              (click)="filePicker.click()"
             />
+            <input type="file" #filePicker (change)="onImagePicked($event)" />
           </div>
         </div>
         <div class="example-container">

@@ -19,15 +19,7 @@
               <img
                   [src]="candidate.image_url"
                   alt="avatar"
-                  (click)="filePicker.click()"
                 />
-              <!-- <img
-                [src]="defaultImageURL"
-                *ngIf="defaultImageURL !== '' && defaultImageURL"
-                alt="avatar"
-                (click)="filePicker.click()"
-              /> -->
-              <input type="file" #filePicker (change)="onImagePicked($event)" />
             </div>
             <!-- Diplay_name -->
             <div class="display-name">
