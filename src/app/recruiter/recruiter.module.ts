@@ -13,7 +13,15 @@ import { RecruiterProfileComponent } from './components/recruiter-profile/recrui
 import { RecruiterOverviewComponent } from './components/recruiter-overview/recruiter-overview.component';
 import { MaterialModule } from '../material/material.module';
 @NgModule({
-  declarations: [RecruiterComponent, RecruiterCreatePostComponent, RecruiterReviewComponent, RecruiterDashboardComponent, RecruiterSubcriberComponent, RecruiterProfileComponent, RecruiterOverviewComponent],
+  declarations: [
+    RecruiterComponent,
+    RecruiterCreatePostComponent,
+    RecruiterReviewComponent,
+    RecruiterDashboardComponent,
+    RecruiterSubcriberComponent,
+    RecruiterProfileComponent,
+    RecruiterOverviewComponent
+  ],
   imports: [
     CommonModule,
     RecruiterRoutingModule,
@@ -23,4 +31,4 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule
   ]
 })
-export class RecruiterModule { }
+export class RecruiterModule {}
