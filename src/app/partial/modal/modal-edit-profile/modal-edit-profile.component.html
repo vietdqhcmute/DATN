@@ -34,12 +34,12 @@
         <div>
           <div class="img-round">
             <img
-              mat-card-image
+              mat-card-image 
               [src]="candidate.image_url"
               alt="avatar"
               (click)="filePicker.click()"
             />
-            <input type="file" #filePicker (change)="onImagePicked($event)" />
+            <input style="display: none;" type="file" #filePicker (change)="onImagePicked($event)" />
           </div>
         </div>
         <div class="example-container">
