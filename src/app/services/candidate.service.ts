@@ -2,14 +2,14 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { Candidate } from "../models/CandidateData";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class CandidateService {
   domainName = environment.APIEndPoint;
-  private avatarURL= new Subject<string>();
+  private avatarURL = new Subject<string>();
 
   constructor(private http: HttpClient) {}
   getCandidateByEmail(email) {
@@ -23,14 +23,16 @@ export class CandidateService {
       { headers: headers }
     );
   }
-  getAvatarUrl(){
+  getAvatarUrl() {
     return this.avatarURL.asObservable();
   }
-  updateAvatar(image: File){
+  updateAvatar(image: File) {
     const postImage = new FormData();
     postImage.append("image", image);
-    return this.http.post<{imageUrl: string}>(this.domainName +'image_upload', postImage).subscribe(response=>{
-      this.avatarURL.next(response.imageUrl);
-    });
+    return this.http
+      .post<{ imageUrl: string }>(this.domainName + "image_s3", postImage)
+      .subscribe(response => {
+        this.avatarURL.next(response.imageUrl);
+      });
   }
 }
