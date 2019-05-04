@@ -11,7 +11,7 @@ import { PartialModule } from '../partial/partial.module';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { RecruiterProfileComponent } from './components/recruiter-profile/recruiter-profile.component';
 import { RecruiterOverviewComponent } from './components/recruiter-overview/recruiter-overview.component';
-
+import { MaterialModule } from '../material/material.module';
 @NgModule({
   declarations: [RecruiterComponent, RecruiterCreatePostComponent, RecruiterReviewComponent, RecruiterDashboardComponent, RecruiterSubcriberComponent, RecruiterProfileComponent, RecruiterOverviewComponent],
   imports: [
@@ -19,7 +19,8 @@ import { RecruiterOverviewComponent } from './components/recruiter-overview/recr
     RecruiterRoutingModule,
     PartialModule,
     CKEditorModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ]
 })
 export class RecruiterModule { }
