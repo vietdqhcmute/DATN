@@ -44,3 +44,4 @@ testem.log
 Thumbs.db
 /node_modules/*
 /server/node_modules
+/server/aws/key.js
