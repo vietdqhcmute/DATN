@@ -1,6 +1,12 @@
 <div class="post-review">
   <h3>{{ review.title }}</h3>
   <div>Rate: {{review.rate_general}}</div>
+  <div>Rate: {{rating}}</div>
+  <div>
+    <span class="stars">
+      <span style.width="{{size}}"></span>
+    </span>
+  </div>
   <div class="created">Created at {{ review.created_at }}</div>
   <div class="like">
     <label for=""><strong>What I liked</strong></label>
