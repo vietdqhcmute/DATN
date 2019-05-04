@@ -20,7 +20,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit profile recruiter</h5>
         <button
           type="button"
           class="close"
@@ -34,12 +34,10 @@
         <div>
           <div class="img-round">
             <img
-              mat-card-image 
-              [src]="candidate.image_url"
-              alt="avatar"
-              (click)="filePicker.click()"
+              mat-card-image
+              src="../../../../assets/images/tho-bay-mau-28.png"
+              alt="Photo of mine"
             />
-            <input style="display: none;" type="file" #filePicker (change)="onImagePicked($event)" />
           </div>
         </div>
         <div class="example-container">
@@ -47,15 +45,13 @@
             <mat-form-field>
               <input
                 matInput
-                placeholder="Full name"
-                [(ngModel)]="candidate.full_name"
+                placeholder="Email"
               />
             </mat-form-field>
             <mat-form-field>
               <input
                 matInput
-                placeholder="Display name"
-                [(ngModel)]="candidate.display_name"
+                placeholder="Address"
               />
             </mat-form-field>
           </div>
@@ -65,23 +61,20 @@
               <input
                 matInput
                 placeholder="Phone"
-                [(ngModel)]="candidate.phone"
               />
             </mat-form-field>
 
             <mat-form-field>
               <input
                 matInput
-                placeholder="Email"
-                [disabled]="true"
-                [(ngModel)]="candidate.email"
+                placeholder="City"
               />
             </mat-form-field>
           </div>
 
           <div class="title">
             <mat-form-field>
-              <input matInput placeholder="Job titile" />
+              <input matInput placeholder="Website" />
             </mat-form-field>
           </div>
 
@@ -115,7 +108,6 @@
           type="button"
           class="btn btn-primary"
           data-dismiss="modal"
-          (click)="onSave()"
         >
           Save changes
         </button>

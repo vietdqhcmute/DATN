@@ -1,3 +1,52 @@
-<p>
-  recruiter-profile works!
-</p>
+<div>
+  <app-modal-edit-profile-reruiter></app-modal-edit-profile-reruiter>
+
+</div>
+<div>
+  <div>
+    <div class="img-round">
+      <img mat-card-image src="../../../../assets/images/tho-bay-mau-28.png" alt="Photo of mine" />
+    </div>
+  </div>
+  <div class="example-container">
+    <div class="name half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Email" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Address" />
+      </mat-form-field>
+    </div>
+
+    <div class="contact half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Phone" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="City" />
+      </mat-form-field>
+    </div>
+    <div class="contact half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Website" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Employees" />
+      </mat-form-field>
+    </div>
+    <div class="contact half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Production" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Date at work" />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="overview">Overview</label>
+      <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> 
+  </div>
+</div>

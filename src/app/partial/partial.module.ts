@@ -12,6 +12,7 @@ import { RatingStarComponent } from "./rating-star/rating-star.component";
 import { ModalEditProfileComponent } from "./modal/modal-edit-profile/modal-edit-profile.component";
 import { AlertComponent } from './alert/alert.component';
 import { ModalYesNoComponent } from './modal/modal-yes-no/modal-yes-no.component';
+import { ModalEditProfileReruiterComponent } from './modal/modal-edit-profile-reruiter/modal-edit-profile-reruiter.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ModalYesNoComponent } from './modal/modal-yes-no/modal-yes-no.component
     RatingStarComponent,
     ModalEditProfileComponent,
     AlertComponent,
-    ModalYesNoComponent
+    ModalYesNoComponent,
+    ModalEditProfileReruiterComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { ModalYesNoComponent } from './modal/modal-yes-no/modal-yes-no.component
     RatingStarComponent,
     ModalEditProfileComponent,
     AlertComponent,
-    ModalYesNoComponent
+    ModalYesNoComponent,
+    ModalEditProfileReruiterComponent
   ]
 })
 export class PartialModule {}
