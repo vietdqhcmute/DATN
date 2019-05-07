@@ -1,11 +1,11 @@
 <div class="cv">
   <div class="space"></div>
   <div class="tool-bar">
-    <app-tool-bar></app-tool-bar>
+    <app-tool-bar [resume]="resume"></app-tool-bar>
   </div>
   <div class="content">
     <div class="app-get-info">
-      <app-get-info></app-get-info>
+      <app-get-info [resume]="resume"></app-get-info>
     </div>
     <div class="content-cv">
       <div class="header-preview">
@@ -13,7 +13,7 @@
       </div>
       <div class="preview-cv">
         <div class="cv">
-          <app-preview-cv></app-preview-cv>
+          <app-preview-cv [resume]="resume"></app-preview-cv>
         </div>
       </div>
     </div>

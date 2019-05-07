@@ -3,7 +3,7 @@ import { CandidateService } from "src/app/services/candidate.service";
 import { AuthService } from 'src/app/services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Candidate } from 'src/app/models/CandidateData';
+import { Candidate, Resume } from 'src/app/models/CandidateData';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -16,6 +16,7 @@ export class CreateCvComponent implements OnInit {
   protected candidate: Candidate = null;
   protected paramsEmail: String;
   private sub: Subscription;
+  resume: Resume;
 
   constructor(
     protected candidateService: CandidateService,
@@ -26,7 +27,6 @@ export class CreateCvComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
-      console.log(params);
       this.paramsEmail = params.get("email");
       this.loadCandidateData(this.paramsEmail);
       this.titleService.setTitle("Profile of " + this.paramsEmail);
