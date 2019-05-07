@@ -2,49 +2,49 @@
   <h3>Contact Infomation</h3>
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Your name">
+      <input matInput placeholder="Your name" [value]="getInfoCandidate.full_name">
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Title">
+      <input matInput placeholder="Title" [(ngModel)]="getInfoResume.title">
     </mat-form-field>
   </div>
 
   <div class="item" id="Summary">
     <mat-form-field>
-      <textarea matInput placeholder="Summary"></textarea>
+      <textarea matInput placeholder="Summary" [(ngModel)]="getInfoResume.summary"></textarea>
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Phone number">
+      <input matInput placeholder="Phone number" [value]="getInfoCandidate.phone">
     </mat-form-field>
   </div>
 
-  <!-- <div class="item">
+  <div class="item">
       <mat-form-field>
-        <input disabled matInput placeholder="Email" value="{{user$.email}}" [(ngModel)]="user$.email">
+        <input matInput placeholder="Email" [value]="getInfoCandidate.email">
       </mat-form-field>
-    </div> -->
+    </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Github URL">
+      <input matInput placeholder="Github URL" [(ngModel)]="getInfoResume.github">
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="LinkedIn URL">
+      <input matInput placeholder="LinkedIn URL" [(ngModel)]="getInfoResume.linkedin">
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Personal Webpage">
+      <input matInput placeholder="Personal Webpage" [(ngModel)]="getInfoResume.website">
     </mat-form-field>
   </div>
 </section>

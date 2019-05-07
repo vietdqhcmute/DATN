@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { CandidateService } from "src/app/services/candidate.service";
-import { AuthService } from 'src/app/services/auth.service';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { Candidate, Resume } from 'src/app/models/CandidateData';
-import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { AuthService } from "src/app/services/auth.service";
+import { Title } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
+import { Candidate, Resume } from "src/app/models/CandidateData";
+import { Subscription } from "rxjs";
+import { first } from "rxjs/operators";
+import { ResumeService } from "src/app/services/resume.service";
 
 @Component({
   selector: "app-create-cv",
@@ -13,16 +14,17 @@ import { first } from 'rxjs/operators';
   styleUrls: ["./create-cv.component.scss"]
 })
 export class CreateCvComponent implements OnInit {
-  protected candidate: Candidate = null;
+  protected candidate: Candidate = new Candidate();
   protected paramsEmail: String;
   private sub: Subscription;
-  resume: Resume;
+  resume: Resume = new Resume();
 
   constructor(
     protected candidateService: CandidateService,
     protected authService: AuthService,
     protected titleService: Title,
-    protected route: ActivatedRoute
+    protected route: ActivatedRoute,
+    protected resumeService: ResumeService
   ) {}
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class CreateCvComponent implements OnInit {
       .pipe(first())
       .subscribe(candidate => {
         this.candidate = <Candidate>candidate;
+        this.resume = this.candidate.resume;
       });
   }
 }
