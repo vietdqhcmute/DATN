@@ -2,7 +2,7 @@
   <h3>Contact Infomation</h3>
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Your name" [value]="getInfoCandidate.full_name">
+      <input matInput placeholder="Your name" [disabled]="true" [value]="getInfoCandidate.full_name">
     </mat-form-field>
   </div>
 
@@ -20,13 +20,13 @@
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Phone number" [value]="getInfoCandidate.phone">
+      <input matInput placeholder="Phone number" [disabled]="true" [value]="getInfoCandidate.phone">
     </mat-form-field>
   </div>
 
   <div class="item">
       <mat-form-field>
-        <input matInput placeholder="Email" [value]="getInfoCandidate.email">
+        <input matInput placeholder="Email" [disabled]="true" [value]="getInfoCandidate.email">
       </mat-form-field>
     </div>
 

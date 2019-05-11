@@ -1,5 +1,5 @@
 :host {
-  .cv {
+  .layout {
     width: 100%;
     height: 100vh;
 
@@ -39,6 +39,7 @@
           padding: 60px 70px;
           background: #5d7480;
           .cv{
+            padding: 0cm 1cm;
             height: 297mm;
             width: 210mm;
             background: #ffffff;
