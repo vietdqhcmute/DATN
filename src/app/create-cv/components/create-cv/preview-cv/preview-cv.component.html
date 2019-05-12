@@ -11,10 +11,54 @@
 <!-- summary -->
 <div
   id="summary-area"
-  *ngIf="previewResume.summary && previewResume.summary.length"
+  *ngIf="testingResume.summary && testingResume.summary.length"
+  class="section"
 >
   <h5><strong>Summary</strong></h5>
   <div class="summary-item">
-    <p>{{ previewResume.summary }}</p>
+    <p>{{ testingResume.summary }}</p>
+  </div>
+</div>
+
+<!-- experience -->
+<div
+  id="experience-area"
+  class="section"
+  *ngIf="experience && experience.length"
+>
+  <h5><strong>Experience</strong></h5>
+  <div *ngFor="let item of experience" class="experience-item">
+    <div id="experience-company-location">
+      <p id="companyName">
+        <strong>{{ item.company_name | uppercase }}</strong>
+      </p>
+      <p id="location">
+        <strong>{{ item.location }}</strong>
+      </p>
+    </div>
+
+    <div id="experience-title-time">
+      <p>
+        <strong>{{ item.title }}</strong>
+      </p>
+      <p *ngIf="item.current === false">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          {{ item.end_month | convertToMonth }}-{{ item.end_year }}</strong
+        >
+      </p>
+      <p *ngIf="item.current === true">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          Current</strong
+        >
+      </p>
+    </div>
+
+    <div id="experience-description">
+      <div class="line-breaker">
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
   </div>
 </div>
