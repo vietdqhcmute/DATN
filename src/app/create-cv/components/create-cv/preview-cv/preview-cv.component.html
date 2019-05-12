@@ -84,3 +84,43 @@
     </div>
   </div>
 </div>
+
+<!-- education -->
+<div id="education-area" class="section" *ngIf="education && education.length">
+  <h5><strong>Education</strong></h5>
+  <div *ngFor="let item of education" class="education-item">
+    <div id="education-date">
+      <p>
+        <strong>{{ item.school_name }}</strong>
+      </p>
+      <p *ngIf="item.current === false">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          {{ item.end_month | convertToMonth }}-{{ item.end_year }}</strong
+        >
+      </p>
+      <p *ngIf="item.current === true">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          Current</strong
+        >
+      </p>
+    </div>
+    <div id="major">
+      <p>{{ item.major }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- skill -->
+<div
+  id="skill-area"
+  class="section"
+  *ngIf="testingResume.skill && testingResume.skill.length"
+>
+  <h5><strong>Skill</strong></h5>
+
+  <div *ngFor="let item of testingResume.skill" class="skill-item">
+    <p>{{ item }}</p>
+  </div>
+</div>

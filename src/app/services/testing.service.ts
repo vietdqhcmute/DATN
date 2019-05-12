@@ -76,15 +76,16 @@ export class TestingService {
       current: true
     }
   ];
+  public skill: String[] = ["Photoshop", "MongoDB", "AWS Lambda"];
   public resume: Resume = {
-    title:"Ruby Developer",
-    summary:"Just a small pieces of shit try to survive in this life",
-    github:"https://github.com/vietdqhcmute",
-    linkedin:"https://www.linkedin.com/in/viet-do-quoc-206460161/",
-    website:"",
+    title: "Ruby Developer",
+    summary: "Just a small pieces of shit try to survive in this life",
+    github: "https://github.com/vietdqhcmute",
+    linkedin: "https://www.linkedin.com/in/viet-do-quoc-206460161/",
+    website: "",
     experience: this.experience,
     education: this.education,
     project: this.project,
-    skill:[]
+    skill: this.skill
   };
 }
