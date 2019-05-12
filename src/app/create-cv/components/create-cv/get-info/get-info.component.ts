@@ -10,7 +10,6 @@ import { Resume, Candidate, Experience } from "src/app/models/CandidateData";
 export class GetInfoComponent extends CreateCvComponent implements OnInit {
   @Input() getInfoResume: Resume;
   @Input() getInfoCandidate: Candidate;
-  experience = this.testingService.experience;
-  project = this.testingService.project;
+
   ngOnInit() {}
 }

@@ -20,6 +20,10 @@ export class CreateCvComponent implements OnInit {
   protected paramsEmail: String;
   private sub: Subscription;
 
+  protected experience = this.testingService.experience;
+  protected project = this.testingService.project;
+  protected education = this.testingService.education;
+
   constructor(
     protected candidateService: CandidateService,
     protected authService: AuthService,
