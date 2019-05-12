@@ -62,3 +62,25 @@
     </div>
   </div>
 </div>
+
+<!-- project -->
+<div id="project-area" class="section" *ngIf="project && project.length">
+  <h5><strong>Project</strong></h5>
+  <div *ngFor="let item of project" class="project-item">
+    <div id="projectName-date">
+      <p>
+        <strong>{{ item.project_name }}</strong>
+      </p>
+      <p>
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          {{ item.end_month | convertToMonth }}-{{ item.end_year }}</strong
+        >
+      </p>
+    </div>
+
+    <div id="description">
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
+</div>

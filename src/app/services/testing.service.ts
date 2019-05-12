@@ -39,7 +39,7 @@ export class TestingService {
   public project: Project[] = [
     {
       project_name: "Saleshood",
-      description: "",
+      description: "Just do something stupid",
       start_month: 7,
       end_month: 9,
       start_year: 2018,
@@ -48,7 +48,7 @@ export class TestingService {
     },
     {
       project_name: "Amanotes",
-      description: "",
+      description: "Just do something stupid",
       start_month: 7,
       end_month: 9,
       start_year: 2018,
