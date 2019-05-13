@@ -14,6 +14,8 @@ import { AlertComponent } from "./alert/alert.component";
 import { ModalYesNoComponent } from "./modal/modal-yes-no/modal-yes-no.component";
 import { ModalEditProfileReruiterComponent } from "./modal/modal-edit-profile-reruiter/modal-edit-profile-reruiter.component";
 import { ModalResumeExperienceComponent } from "./modal/modal-resume-experience.component/modal-resume-experience.component";
+import { ModalResumeProjectComponent } from "./modal/modal-resume-project/modal-resume-project.component";
+import { ModalResumeEducationComponent } from "./modal/modal-resume-education/modal-resume-education.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ModalResumeExperienceComponent } from "./modal/modal-resume-experience.
     AlertComponent,
     ModalYesNoComponent,
     ModalEditProfileReruiterComponent,
-    ModalResumeExperienceComponent
+    ModalResumeExperienceComponent,
+    ModalResumeProjectComponent,
+    ModalResumeEducationComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +51,9 @@ import { ModalResumeExperienceComponent } from "./modal/modal-resume-experience.
     AlertComponent,
     ModalYesNoComponent,
     ModalEditProfileReruiterComponent,
-    ModalResumeExperienceComponent
+    ModalResumeExperienceComponent,
+    ModalResumeProjectComponent,
+    ModalResumeEducationComponent
   ]
 })
 export class PartialModule {}
