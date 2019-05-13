@@ -1,3 +1,126 @@
-<p>
-  preview-cv works!
-</p>
+<!-- contact -->
+<div id="contact-area" class="text-center section">
+  <h2>
+    <strong>{{ previewCandidate.full_name }}</strong>
+  </h2>
+  <h5 class="resume-title">{{ previewResume.title }}</h5>
+  <p>{{ previewCandidate.phone }}</p>
+  <p>{{ previewCandidate.email }}</p>
+</div>
+
+<!-- summary -->
+<div
+  id="summary-area"
+  *ngIf="testingResume.summary && testingResume.summary.length"
+  class="section"
+>
+  <h5><strong>Summary</strong></h5>
+  <div class="summary-item">
+    <p>{{ testingResume.summary }}</p>
+  </div>
+</div>
+
+<!-- experience -->
+<div
+  id="experience-area"
+  class="section"
+  *ngIf="experience && experience.length"
+>
+  <h5><strong>Experience</strong></h5>
+  <div *ngFor="let item of experience" class="experience-item">
+    <div id="experience-company-location">
+      <p id="companyName">
+        <strong>{{ item.company_name | uppercase }}</strong>
+      </p>
+      <p id="location">
+        <strong>{{ item.location }}</strong>
+      </p>
+    </div>
+
+    <div id="experience-title-time">
+      <p>
+        <strong>{{ item.title }}</strong>
+      </p>
+      <p *ngIf="item.current === false">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          {{ item.end_month | convertToMonth }}-{{ item.end_year }}</strong
+        >
+      </p>
+      <p *ngIf="item.current === true">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          Current</strong
+        >
+      </p>
+    </div>
+
+    <div id="experience-description">
+      <div class="line-breaker">
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- project -->
+<div id="project-area" class="section" *ngIf="project && project.length">
+  <h5><strong>Project</strong></h5>
+  <div *ngFor="let item of project" class="project-item">
+    <div id="projectName-date">
+      <p>
+        <strong>{{ item.project_name }}</strong>
+      </p>
+      <p>
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          {{ item.end_month | convertToMonth }}-{{ item.end_year }}</strong
+        >
+      </p>
+    </div>
+
+    <div id="description">
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- education -->
+<div id="education-area" class="section" *ngIf="education && education.length">
+  <h5><strong>Education</strong></h5>
+  <div *ngFor="let item of education" class="education-item">
+    <div id="education-date">
+      <p>
+        <strong>{{ item.school_name }}</strong>
+      </p>
+      <p *ngIf="item.current === false">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          {{ item.end_month | convertToMonth }}-{{ item.end_year }}</strong
+        >
+      </p>
+      <p *ngIf="item.current === true">
+        <strong
+          >{{ item.start_month | convertToMonth }}-{{ item.start_year }} -
+          Current</strong
+        >
+      </p>
+    </div>
+    <div id="major">
+      <p>{{ item.major }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- skill -->
+<div
+  id="skill-area"
+  class="section"
+  *ngIf="testingResume.skill && testingResume.skill.length"
+>
+  <h5><strong>Skill</strong></h5>
+
+  <div *ngFor="let item of testingResume.skill" class="skill-item">
+    <p>{{ item }}</p>
+  </div>
+</div>
