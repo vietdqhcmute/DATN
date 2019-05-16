@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RecruiterService } from "src/app/services/recruiter.service";
 import { Subscription } from "rxjs";
@@ -9,7 +9,7 @@ import { ArticleService } from 'src/app/services/article.service';
   templateUrl: "./job-description.component.html",
   styleUrls: ["./job-description.component.scss"]
 })
-export class JobDescriptionComponent implements OnInit, OnDestroy {
+export class JobDescriptionComponent implements OnInit {
   imageURL =
     "https://cdn.itviec.com/employers/codebox-solutions/logo/w170/iyjuPfdRuWT3EQFTo6PCkKms/codebox-solutions-logo.png";
   company_name = "Codebox Solution Ltd";
@@ -38,13 +38,10 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe(params => {
       this.getPost(params.get("id"));
       this.getCompanyData(params.get("email"));
     });
-  }
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 
   private getPost(id: String) {
@@ -69,7 +66,6 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
         this.companyInfo.employees = response.employees;
         this.companyInfo.date_at_work = response.date_at_work;
         this.companyInfo.email = response.email;
-        console.log(response);
       });
   }
 }

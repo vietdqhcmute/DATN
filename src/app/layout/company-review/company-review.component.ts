@@ -77,7 +77,6 @@ export class CompanyReviewComponent extends RecruiterComponent
     this.reviewService
       .createReviewPost(this.companyEmail, this.reviewData)
       .subscribe(reponse => {});
-    console.log(this.reviewData);
   }
   private getRating(): void {
     this.reviewData.rate_general = this.items[0].rating;

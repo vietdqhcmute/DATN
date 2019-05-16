@@ -11,7 +11,8 @@ import { AlertService } from "./alert.service";
 })
 export class AuthService {
   domainName = environment.APIEndPoint;
-  private authStatusListener = new Subject<boolean>();
+  isAuthenticated: boolean = false;
+  token: string;
 
   constructor(
     private http: HttpClient,
@@ -19,6 +20,7 @@ export class AuthService {
     private alertService: AlertService
   ) {}
   //==================================================New code=================================
+
   createCandidate(candidateParams) {
     this.http.post(this.domainName + "sign-up", candidateParams).subscribe(
       response => {
@@ -27,10 +29,11 @@ export class AuthService {
       },
       error => {
         console.log(error);
-        this.alertService.error(error, false)
+        this.alertService.error(error, false);
       }
     );
   }
+
   createRecruiter(recruiterParams) {
     //Add in Recruiter table
     this.http
@@ -42,7 +45,7 @@ export class AuthService {
         },
         error => {
           console.log(error);
-          this.alertService.error(error, false)
+          this.alertService.error(error, false);
         }
       );
     //Add in RecruiterReview table
@@ -57,6 +60,7 @@ export class AuthService {
         }
       );
   }
+
   login(loginParams) {
     this.http
       .post<{ token: string; fetcheddata: AuthenticatModel }>(
@@ -69,8 +73,9 @@ export class AuthService {
           const role = userResponse.fetcheddata.role;
           const email = userResponse.fetcheddata.email;
           if (token) {
+            this.token = token;
+            this.isAuthenticated = true;
             this.saveAuthDataToBrowser(userResponse);
-            this.authStatusListener.next(true);
             if (role === 1) {
               this.loginAsCandidate(email);
             } else if (role === 2) {
@@ -82,16 +87,15 @@ export class AuthService {
         },
         error => {
           console.log(error);
-          this.alertService.error(error, false)
+          this.alertService.error(error, false);
         }
       );
   }
 
   logout() {
+    this.token = null;
     this.clearAuthData();
-  }
-  getAuthStatusListener() {
-    return this.authStatusListener.asObservable();
+    this.isAuthenticated = false;
   }
 
   autoLogin() {
@@ -99,6 +103,7 @@ export class AuthService {
     if (!authData) {
       return;
     }
+    this.isAuthenticated = true;
     if (authData.role === 1) {
       this.loginAsCandidate(authData.email);
     } else if (authData.role === 2) {
@@ -108,7 +113,7 @@ export class AuthService {
     }
   }
 
-  private getAuthData() {
+  getAuthData() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (!currentUser) {
       return;
@@ -125,19 +130,20 @@ export class AuthService {
       email: email
     };
   }
-  private clearAuthData() {
+  clearAuthData() {
+    this.isAuthenticated = false;
     localStorage.removeItem("currentUser");
   }
-  private loginAsCandidate(email) {
-    this.router.navigate(["profile/", email]);
+  loginAsCandidate(email) {
+    this.router.navigate(["profile", email]);
   }
-  private loginAsRecruiter(email) {
-    this.router.navigate(["recruiter/", email]);
+  loginAsRecruiter(email) {
+    this.router.navigate(["recruiter", email]);
   }
-  private loginAsAdministrator() {
+  loginAsAdministrator() {
     this.router.navigate(["admin"]);
   }
-  private saveAuthDataToBrowser(user) {
+  saveAuthDataToBrowser(user) {
     let currentUser = {
       token: user.token,
       role: user.fetcheddata.role,

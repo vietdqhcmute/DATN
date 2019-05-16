@@ -7,7 +7,7 @@ import { Candidate, Resume } from "src/app/models/CandidateData";
 import { Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 import { ResumeService } from "src/app/services/resume.service";
-import { TestingService } from 'src/app/services/testing.service';
+import { TestingService } from "src/app/services/testing.service";
 
 @Component({
   selector: "app-create-cv",
@@ -42,12 +42,8 @@ export class CreateCvComponent implements OnInit {
     });
   }
   private loadCandidateData(email) {
-    this.sub = this.candidateService
-      .getCandidateByEmail(email)
-      .pipe(first())
-      .subscribe(candidate => {
-        this.candidate = <Candidate>candidate;
-        this.resume = this.candidate.resume;
-      });
+    this.candidateService.getCandidateByEmail(email);
+    this.candidate = this.candidateService.candidate;
+    this.resume = this.candidate.resume;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
 import { Subscription } from "rxjs";
 
@@ -7,20 +7,11 @@ import { Subscription } from "rxjs";
   templateUrl: "./top-bar.component.html",
   styleUrls: ["./top-bar.component.scss"]
 })
-export class TopBarComponent implements OnInit, OnDestroy {
+export class TopBarComponent implements OnInit {
+  @Input() isAuthenticated: boolean;
   sub: Subscription;
   constructor(private authService: AuthService) {}
-  userIsAuthenticated: Boolean;
-  ngOnInit() {
-    this.sub = this.authService
-      .getAuthStatusListener()
-      .subscribe(isAuthenticated => {
-        this.userIsAuthenticated = isAuthenticated;
-        console.log(this.userIsAuthenticated);
-      });
-  }
-  ngOnDestroy(){
-    this.sub.unsubscribe();
+  ngOnInit(){
   }
   onLogOut() {
     this.authService.logout();
