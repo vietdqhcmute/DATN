@@ -20,6 +20,41 @@ export class AuthService {
     private alertService: AlertService
   ) {}
   //==================================================New code=================================
+  login(loginParams) {
+    this.http
+      .post<{ token: string; fetcheddata: AuthenticatModel }>(
+        this.domainName + "login",
+        loginParams
+      )
+      .subscribe(
+        userResponse => {
+          const token = userResponse.token;
+          const role = userResponse.fetcheddata.role;
+          const email = userResponse.fetcheddata.email;
+          if (token) {
+            this.token = token;
+            this.isAuthenticated = true;
+            this.saveAuthDataToBrowser(userResponse);
+            if (role === 1) {
+              this.loginAsCandidate(email);
+            } else if (role === 2) {
+              this.loginAsRecruiter(email);
+            } else {
+              this.loginAsAdministrator();
+            }
+          }
+        },
+        error => {
+          console.log(error);
+          this.alertService.error(error, false);
+        }
+      );
+  }
+
+  logout() {
+    this.token = null;
+    this.clearAuthData();
+  }
 
   createCandidate(candidateParams) {
     this.http.post(this.domainName + "sign-up", candidateParams).subscribe(
@@ -61,43 +96,6 @@ export class AuthService {
       );
   }
 
-  login(loginParams) {
-    this.http
-      .post<{ token: string; fetcheddata: AuthenticatModel }>(
-        this.domainName + "login",
-        loginParams
-      )
-      .subscribe(
-        userResponse => {
-          const token = userResponse.token;
-          const role = userResponse.fetcheddata.role;
-          const email = userResponse.fetcheddata.email;
-          if (token) {
-            this.token = token;
-            this.isAuthenticated = true;
-            this.saveAuthDataToBrowser(userResponse);
-            if (role === 1) {
-              this.loginAsCandidate(email);
-            } else if (role === 2) {
-              this.loginAsRecruiter(email);
-            } else {
-              this.loginAsAdministrator();
-            }
-          }
-        },
-        error => {
-          console.log(error);
-          this.alertService.error(error, false);
-        }
-      );
-  }
-
-  logout() {
-    this.token = null;
-    this.clearAuthData();
-    this.isAuthenticated = false;
-  }
-
   autoLogin() {
     const authData = this.getAuthData();
     if (!authData) {
@@ -130,20 +128,20 @@ export class AuthService {
       email: email
     };
   }
-  clearAuthData() {
+  private clearAuthData() {
     this.isAuthenticated = false;
     localStorage.removeItem("currentUser");
   }
-  loginAsCandidate(email) {
+  private loginAsCandidate(email) {
     this.router.navigate(["profile", email]);
   }
-  loginAsRecruiter(email) {
+  private loginAsRecruiter(email) {
     this.router.navigate(["recruiter", email]);
   }
-  loginAsAdministrator() {
+  private loginAsAdministrator() {
     this.router.navigate(["admin"]);
   }
-  saveAuthDataToBrowser(user) {
+  private saveAuthDataToBrowser(user) {
     let currentUser = {
       token: user.token,
       role: user.fetcheddata.role,

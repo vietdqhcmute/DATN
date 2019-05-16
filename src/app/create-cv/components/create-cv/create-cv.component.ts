@@ -42,8 +42,9 @@ export class CreateCvComponent implements OnInit {
     });
   }
   private loadCandidateData(email) {
-    this.candidateService.getCandidateByEmail(email);
-    this.candidate = this.candidateService.candidate;
-    this.resume = this.candidate.resume;
+    this.candidateService.getCandidateByEmail(email).subscribe(candidate=>{
+      this.candidate = <Candidate>candidate;
+      this.resume = this.candidate.resume;
+    });
   }
 }
