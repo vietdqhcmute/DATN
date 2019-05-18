@@ -101,7 +101,6 @@ export class AuthService {
     if (!authData) {
       return;
     }
-    this.isAuthenticated.next(true);
     if (authData.role === 1) {
       this.loginAsCandidate(authData.email);
     } else if (authData.role === 2) {
@@ -112,25 +111,32 @@ export class AuthService {
   }
 
   getAuthData() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (!currentUser) {
-      return;
+    if (this.isSavedAuthData()) {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const token = currentUser.token;
+      const role = currentUser.role;
+      const email = currentUser.email;
+      if (!token || !role || !email) {
+        return;
+      }
+      return {
+        token: token,
+        role: role,
+        email: email
+      };
     }
-    this.isAuthenticated.next(true);
-    const token = currentUser.token;
-    const role = currentUser.role;
-    const email = currentUser.email;
-    if (!token || !role || !email) {
-      return;
-    }
-    return {
-      token: token,
-      role: role,
-      email: email
-    };
+    return;
   }
 
-  getUserAuthenticated(){
+  isSavedAuthData(): boolean {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+      return true;
+    }
+    return false;
+  }
+
+  getUserAuthenticated() {
     return this.isAuthenticated.asObservable();
   }
 
@@ -148,7 +154,7 @@ export class AuthService {
     this.router.navigate(["admin"]);
   }
   private saveAuthDataToBrowser(user) {
-    let currentUser = {
+    const currentUser = {
       token: user.token,
       role: user.fetcheddata.role,
       email: user.fetcheddata.email

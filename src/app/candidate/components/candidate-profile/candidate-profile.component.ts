@@ -19,6 +19,9 @@ export class CandidateProfileComponent extends CandidateComponent
   imagePreview: string;
 
   ngOnInit() {
+    if(this.authService.isSavedAuthData()){
+      this.authService.isAuthenticated.next(true);
+    }
     this.sub = this.route.paramMap.subscribe(params => {
       this.paramsEmail = params.get("email");
       this.loadCandidateData(this.paramsEmail);
@@ -36,6 +39,7 @@ export class CandidateProfileComponent extends CandidateComponent
       .subscribe(candidate => {
         this.candidate = <Candidate>candidate;
       });
+    this.candidateService.getCandidateData(email);
   }
 
   onImagePicked(event: Event) {
