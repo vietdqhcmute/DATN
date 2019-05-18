@@ -8,6 +8,7 @@ import { Observable, Subject } from "rxjs";
 export class AlertService {
   private subject = new Subject<any>();
   private keepAfterNavigationChange = false;
+  private hideTopBar = new Subject<boolean>();
 
   constructor(private router: Router) {
     // clear alert message on route change
@@ -22,6 +23,14 @@ export class AlertService {
         }
       }
     });
+  }
+
+  getHideTopBar(){
+    return this.hideTopBar.asObservable();
+  }
+
+  setHideTopBar(hide: boolean){
+    this.hideTopBar.next(hide);
   }
 
   success(message: string, keepAfterNavigationChange = false) {
