@@ -151,7 +151,7 @@ export class AuthService {
     this.router.navigate(["recruiter", email]);
   }
   private loginAsAdministrator() {
-    this.router.navigate(["admin"]);
+    this.router.navigate(["administrator"]);
   }
   private saveAuthDataToBrowser(user) {
     const currentUser = {
