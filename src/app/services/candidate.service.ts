@@ -8,13 +8,21 @@ import { Subject } from "rxjs";
   providedIn: "root"
 })
 export class CandidateService {
-  domainName = environment.APIEndPoint;
   private avatarURL = new Subject<string>();
-
+  domainName = environment.APIEndPoint;
+  public candidate = new Subject<Candidate>();
   constructor(private http: HttpClient) {}
+
+  getCandidateData(email) {
+    this.getCandidateByEmail(email).subscribe(candidate => {
+      this.candidate.next(<Candidate>candidate);
+    });
+  }
+
   getCandidateByEmail(email) {
     return this.http.get(this.domainName + "candidate/email/" + email);
   }
+
   updateCandidateByID(userID, candidate: Candidate) {
     const headers = new HttpHeaders({ "Content-type": "application/json" });
     return this.http.put(

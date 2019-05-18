@@ -3,7 +3,6 @@ import { LoginData } from "../models/LoginData";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
 import { Title } from "@angular/platform-browser";
-// import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: "app-login",
@@ -16,7 +15,6 @@ export class LoginComponent implements OnInit {
   loginParams = new LoginData();
 
   constructor(public authService: AuthService, private titleService: Title) {}
-  // constructor() {}
   ngOnInit() {
     this.titleService.setTitle("Login");
   }
