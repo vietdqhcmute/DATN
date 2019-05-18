@@ -7,6 +7,7 @@ import { Title } from "@angular/platform-browser";
 import { Subscription, Subject } from "rxjs";
 import { ArticleService } from "../services/article.service";
 import { AuthService } from "../services/auth.service";
+import { AlertService } from "../services/alert.service";
 
 @Component({
   selector: "app-recruiter",
@@ -26,7 +27,8 @@ export class RecruiterComponent implements OnInit {
     protected route: ActivatedRoute,
     protected router: Router,
     protected titleService: Title,
-    protected authService: AuthService
+    protected authService: AuthService,
+    protected alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class RecruiterComponent implements OnInit {
       this.loadRecruiterData(params.get("email"));
       this.titleService.setTitle("Profile of " + params.get("email"));
     });
+    this.alertService.setHideTopBar(true);
   }
 
   protected loadRecruiterData(email) {

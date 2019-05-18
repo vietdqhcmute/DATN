@@ -4,6 +4,7 @@ import { CandidateService } from "../services/candidate.service";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { Candidate } from "../models/CandidateData";
+import { AlertService } from "../services/alert.service";
 
 @Component({
   selector: "app-candidate",
@@ -17,12 +18,14 @@ export class CandidateComponent implements OnInit {
     protected authService: AuthService,
     protected candidateService: CandidateService,
     protected titleService: Title,
-    protected route: ActivatedRoute
+    protected route: ActivatedRoute,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
-    this.authService.getUserAuthenticated().subscribe(isAuthenticated=>{
+    this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
-    })
+    });
+    this.alertService.setHideTopBar(false);
   }
 }
