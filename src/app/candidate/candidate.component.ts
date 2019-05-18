@@ -21,6 +21,8 @@ export class CandidateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.isAuthenticated = this.authService.isAuthenticated;
+    this.authService.getUserAuthenticated().subscribe(isAuthenticated=>{
+      this.isAuthenticated = isAuthenticated;
+    })
   }
 }

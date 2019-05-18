@@ -11,7 +11,7 @@ import { AlertService } from "./alert.service";
 })
 export class AuthService {
   domainName = environment.APIEndPoint;
-  isAuthenticated: boolean = false;
+  isAuthenticated = new Subject<boolean>();
   token: string;
 
   constructor(
@@ -33,7 +33,7 @@ export class AuthService {
           const email = userResponse.fetcheddata.email;
           if (token) {
             this.token = token;
-            this.isAuthenticated = true;
+            this.isAuthenticated.next(true);
             this.saveAuthDataToBrowser(userResponse);
             if (role === 1) {
               this.loginAsCandidate(email);
@@ -101,7 +101,7 @@ export class AuthService {
     if (!authData) {
       return;
     }
-    this.isAuthenticated = true;
+    this.isAuthenticated.next(true);
     if (authData.role === 1) {
       this.loginAsCandidate(authData.email);
     } else if (authData.role === 2) {
@@ -116,6 +116,7 @@ export class AuthService {
     if (!currentUser) {
       return;
     }
+    this.isAuthenticated.next(true);
     const token = currentUser.token;
     const role = currentUser.role;
     const email = currentUser.email;
@@ -128,8 +129,13 @@ export class AuthService {
       email: email
     };
   }
+
+  getUserAuthenticated(){
+    return this.isAuthenticated.asObservable();
+  }
+
   private clearAuthData() {
-    this.isAuthenticated = false;
+    this.isAuthenticated.next(false);
     localStorage.removeItem("currentUser");
   }
   private loginAsCandidate(email) {

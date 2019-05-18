@@ -8,10 +8,13 @@ import { Subscription } from "rxjs";
   styleUrls: ["./top-bar.component.scss"]
 })
 export class TopBarComponent implements OnInit {
-  @Input() isAuthenticated: boolean;
+  private isAuthenticated: boolean = false;
   sub: Subscription;
   constructor(private authService: AuthService) {}
-  ngOnInit(){
+  ngOnInit() {
+    this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
   }
   onLogOut() {
     this.authService.logout();

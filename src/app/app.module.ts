@@ -10,6 +10,7 @@ import { RouterModule } from "@angular/router";
 import { AngularFontAwesomeModule } from "angular-font-awesome";
 import { JwtInterceptor } from "./helpers/jwt.interceptor";
 import { ErrorInterceptor } from "./helpers/error.interceptor";
+import { PartialModule } from './partial/partial.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { ErrorInterceptor } from "./helpers/error.interceptor";
     MaterialModule,
     HttpClientModule,
     RouterModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    PartialModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
