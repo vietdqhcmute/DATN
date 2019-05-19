@@ -16,6 +16,6 @@ let articleSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-
+articleSchema.index({name: 'text', 'email_company': 'text'});
 const Article = mongoose.model("Article", articleSchema);
 module.exports = Article;
