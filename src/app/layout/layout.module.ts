@@ -11,8 +11,9 @@ import { CompanyReviewComponent } from './company-review/company-review.componen
 import { MaterialModule } from '../material/material.module';
 import { SearchCompanyComponent } from './search-company/search-company.component';
 import { FormsModule } from '@angular/forms';
+import { SearchArticleComponent } from './search-article/search-article.component';
 @NgModule({
-  declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent, CompanyReviewComponent, SearchCompanyComponent],
+  declarations: [LayoutComponent, AllJobComponent, JobDescriptionComponent, CompanyDescriptionComponent, CompanyReviewComponent, SearchCompanyComponent, SearchArticleComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
