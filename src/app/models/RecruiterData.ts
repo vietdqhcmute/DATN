@@ -13,7 +13,7 @@ export class Recruiter {
   updated_at: Date;
 }
 
-export class RecruitPost {
+export class Articles {
   title: string;
   tags: [];
   salary: string;

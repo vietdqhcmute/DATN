@@ -3,7 +3,6 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
 const app = express();
 
 // var connectionString = 'mongodb://lytutronga6:lytutronga6@tlcn-1-shard-00-00-looeq.mongodb.net:27017,tlcn-1-shard-00-01-looeq.mongodb.net:27017,tlcn-1-shard-00-02-looeq.mongodb.net:27017/test?ssl=true&replicaSet=TLCN-1-shard-0&authSource=admin&retryWrites=true';
@@ -14,7 +13,9 @@ mongoose
   .connect(connectionString, {
     dbName: "CV-db"
   })
-  .then(db => console.log("db connected"))
+  .then(db => {
+    console.log("db connected")
+  })
   .catch(err => console.log(err));
 
 // settings
@@ -56,6 +57,7 @@ const candidateRoutes = require("./routes/candidate_routes");
 const recruiterRoutes = require("./routes/recruiter_routes");
 const tagRoutes = require("./routes/tag_routes");
 const reviewRoutes = require("./routes/review_routes");
+const searchingRoutes = require("./routes/searching-routes");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
@@ -66,6 +68,7 @@ app.use("/", candidateRoutes);
 app.use("/", recruiterRoutes);
 app.use("/", tagRoutes);
 app.use("/", reviewRoutes);
+app.use("/search", searchingRoutes);
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
 });

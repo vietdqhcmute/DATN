@@ -18,7 +18,7 @@
         <a mat-button [routerLink]="['/profile', candidate.email]">My profile</a>
       </li>
       <li><a mat-button [routerLink]="['all-job']">All Jobs</a></li>
-      <li><a mat-button [routerLink]="['search-company']">Companies</a></li>
+      <li><a mat-button [routerLink]="['companies']">Companies</a></li>
       <li *ngIf="isAuthenticated">
         <a mat-button [routerLink]="['/profile',candidate.email,'create-cv']">Create CV</a>
       </li>

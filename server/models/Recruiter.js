@@ -17,6 +17,6 @@ let recruiterSchema = new mongoose.Schema({
   day_at_work:String,
 
 });
-
+recruiterSchema.index({name: 'text', 'company_name': 'text'});
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
 module.exports = Recruiter;

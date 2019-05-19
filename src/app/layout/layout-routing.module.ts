@@ -6,6 +6,7 @@ import { JobDescriptionComponent } from "./job-description/job-description.compo
 import { CompanyDescriptionComponent } from "./company-description/company-description.component";
 import { CompanyReviewComponent } from "./company-review/company-review.component";
 import { SearchCompanyComponent } from './search-company/search-company.component';
+import { SearchArticleComponent } from './search-article/search-article.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
         path: "review/:email",
         component: CompanyReviewComponent
       },
-      { path: "search-company", component: SearchCompanyComponent }
+      { path: "companies", component: SearchCompanyComponent },
+      { path: "search",component: SearchArticleComponent}
     ]
   }
 ];

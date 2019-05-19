@@ -8,10 +8,9 @@ const jwt = require("jsonwebtoken");
 
 //API sign up for administrator
 router.post("/sign-up-admin", (req, res) => {
-  hash = bcrypt.hashSync(req.body.password, 10);
-  req.body.password = hash;
+  hash = bcrypt.hashSync("admin", 10);
   let authenticationParams = {
-    email: req.body.email,
+    email: "admin@admin.com",
     password: hash,
     role: 0,
     active: true
