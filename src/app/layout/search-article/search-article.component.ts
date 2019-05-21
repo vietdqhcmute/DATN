@@ -38,8 +38,7 @@ export class SearchArticleComponent implements OnInit {
   }
 
   onSearch() {
-    this.router.navigate(["search"], { queryParams: { key: this.searchText } });
-    this.getQueryParams();
     this.searchArticles(this.searchText);
+    this.router.navigate(["search"], { queryParams: { key: this.searchText } });
   }
 }

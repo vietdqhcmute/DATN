@@ -2,7 +2,7 @@
   <div class="container">
     <div class="search-form-all-company form-row" id="">
       <h1 class="slogan">
-        {{articles.length}} posts for You
+        {{ articles.length }} posts for You
         <span class="in-title">
           What are people saying about your company? Find out now!
         </span>
@@ -49,9 +49,15 @@
   </div>
 
   <div class="companies-alljob container" style="margin-top: 10px">
-    <h1 style="text-align: center;font-size: 21px;text-transform: uppercase">
-      SOME POSTS MAY FIT YOU
-    </h1>
+    <div *ngIf="articles.length > 0">
+      <h1 style="text-align: center;font-size: 21px;text-transform: uppercase">
+        SOME POSTS MAY FIT YOU
+      </h1>
+    </div>
+
+    <div *ngIf="articles.length === 0" style="text-align:center">
+      <h2>Nothing match, just try again!</h2>
+    </div>
     <div *ngFor="let item of articles">
       <app-job-frame-dashboard
         [jobDescription]="item"
