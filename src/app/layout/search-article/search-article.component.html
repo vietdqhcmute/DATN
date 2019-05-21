@@ -2,7 +2,7 @@
   <div class="container">
     <div class="search-form-all-company form-row" id="">
       <h1 class="slogan">
-        8,657 Company Reviews for You
+        {{articles.length}} posts for You
         <span class="in-title">
           What are people saying about your company? Find out now!
         </span>
@@ -22,7 +22,9 @@
               type="email"
               class="form-control"
               id="input-job"
-              placeholder="Enter Company Name"
+              placeholder="Let's find your job"
+              [(ngModel)]="searchText"
+              name="searchText"
             />
           </div>
         </form>
@@ -37,6 +39,7 @@
             type="button"
             class="btn text-light"
             style="font-size: 1em; width: 100%; background-color: #3f51b5;"
+            (click)="onSearch()"
           >
             SEARCH
           </button>
@@ -47,15 +50,13 @@
 
   <div class="companies-alljob container" style="margin-top: 10px">
     <h1 style="text-align: center;font-size: 21px;text-transform: uppercase">
-      Companies Hiring Now
+      SOME POSTS MAY FIT YOU
     </h1>
-    <div
-      style="display: flex; flex-direction: row; justify-content: space-around;flex-wrap: wrap"
-    >
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
+    <div *ngFor="let item of articles">
+      <app-job-frame-dashboard
+        [jobDescription]="item"
+        [email]="item.email_company"
+      ></app-job-frame-dashboard>
     </div>
   </div>
 </div>
