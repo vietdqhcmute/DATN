@@ -15,12 +15,8 @@ import { AlertService } from "../services/alert.service";
   styleUrls: ["./recruiter.component.scss"]
 })
 export class RecruiterComponent implements OnInit {
-  image_url =
-    "https://cdn.itviec.com/employers/amanotes/logo/w170/8dM6PZybgr1ahE2Fr2pac4bm/amanotes-logo.png";
-  recruiterData: Recruiter;
+  protected recruiter: Recruiter;
   sub: Subscription;
-  private companyName = new Subject<String>();
-  protected companyEmail: String;
   constructor(
     protected recruiterService: RecruiterService,
     protected articleService: ArticleService,
@@ -34,24 +30,20 @@ export class RecruiterComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
       this.loadRecruiterData(params.get("email"));
-      this.titleService.setTitle("Profile of " + params.get("email"));
+      this.titleService.setTitle("Profile of");
     });
     this.alertService.setHideTopBar(true);
   }
 
-  protected loadRecruiterData(email) {
+  loadRecruiterData(email) {
+    this.recruiterService.recruiter_email = email;
     this.recruiterService
-      .getRecruiterByEmail(email)
+      .getRecruiter(email)
       .pipe(first())
       .subscribe(recruiter => {
-        this.recruiterData = <Recruiter>recruiter;
-        this.recruiterService.recruiter.next(<Recruiter>recruiter);
-        this.companyEmail = this.recruiterData.email;
-        // this.companyName.next(recruiter.company_email);
+        this.recruiter = <Recruiter>recruiter;
+        console.log(recruiter);
       });
-  }
-  protected getCompanyNameByEmail() {
-    return this.companyName;
   }
 
   private onLogOut() {

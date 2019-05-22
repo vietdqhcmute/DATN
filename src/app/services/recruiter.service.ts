@@ -4,22 +4,31 @@ import { environment } from "src/environments/environment";
 import { Recruiter } from "../models/RecruiterData";
 import { Subject } from "rxjs";
 import { AlertService } from "./alert.service";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
 })
 export class RecruiterService {
+  private avatarURL = new Subject<string>();
   domainName = environment.APIEndPoint;
-  recruiter = new Subject<Recruiter>();
+  private recruiter = new Subject<Recruiter>();
+  recruiter_email: string;
   constructor(
     protected http: HttpClient,
     protected alertService: AlertService,
     protected router: Router
   ) {}
 
-  getRecruiterByEmail(email) {
-    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
+  getRecruiterObservable(){
+    return this.recruiter.asObservable();
+  }
+
+  getRecruiter(email) {
+    this.getRecruiterByAPI(email).subscribe(recruiter => {
+      this.recruiter.next(recruiter);
+    });
+    return this.recruiter.asObservable();
   }
 
   updateRecruiterByID(recruiterID, recruiter: Recruiter) {
@@ -31,7 +40,20 @@ export class RecruiterService {
     );
   }
 
-  getRecruiter() {
-    return this.recruiter.asObservable();
+  getAvatarUrl() {
+    return this.avatarURL.asObservable();
+  }
+  updateAvatar(image: File) {
+    const postImage = new FormData();
+    postImage.append("image", image);
+    return this.http
+      .post<{ imageUrl: string }>(this.domainName + "image_s3", postImage)
+      .subscribe(response => {
+        this.avatarURL.next(response.imageUrl);
+      });
+  }
+
+  getRecruiterByAPI(email) {
+    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
   }
 }

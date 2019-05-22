@@ -1,13 +1,13 @@
 <app-alert></app-alert>
-<div class="recruiter" *ngIf="recruiterData">
+<div class="recruiter" *ngIf="recruiter">
   <div class="container-fluid">
     <div class="col-md-2">
       <nav class="side-bar">
         <div class="image">
-          <img [src]="image_url" alt="" />
+          <img [src]="recruiter.image_url" alt="" />
         </div>
         <div class="name">
-          <a routerLink="./profile">{{ recruiterData.company_name }}</a>
+          <a routerLink="./profile">{{ recruiter.company_name }}</a>
         </div>
         <div class="navigation">
           <ul>
@@ -27,8 +27,9 @@
     </div>
     <div class="right-bar col-md-3">
       <h3>Infomation:</h3>
-      <p>Email: {{recruiterData.email}}</p>
-      <p>Phone: {{recruiterData.phone[0]}}</p>
+      <p>Email: {{ recruiter.email }}</p>
+      <p>Website: {{ recruiter.website }}</p>
+      <p>Phone: {{ recruiter.phone }}</p>
     </div>
   </div>
 </div>

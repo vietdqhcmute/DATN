@@ -1,4 +1,5 @@
 export class Recruiter {
+  _id: string;
   company_name: string;
   image_url: string;
   email: string;
@@ -22,7 +23,7 @@ export class Articles {
   updated_at: Date;
 }
 
-export class ResponseArticle{
+export class ResponseArticle {
   email: String;
   articles: [];
   _id: String;

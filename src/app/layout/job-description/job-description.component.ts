@@ -57,7 +57,7 @@ export class JobDescriptionComponent implements OnInit {
   }
   private getCompanyData(email) {
     this.sub = this.recruiterService
-      .getRecruiterByEmail(email)
+      .getRecruiterByAPI(email)
       .subscribe(response => {
         this.companyInfo._id = response._id;
         this.companyInfo.image_url = response.image_url;

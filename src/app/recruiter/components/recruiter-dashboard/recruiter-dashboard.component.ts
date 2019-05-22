@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
 import { Subscription } from "rxjs";
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: "app-recruiter-dashboard",
@@ -11,6 +12,16 @@ export class RecruiterDashboardComponent extends RecruiterComponent
   implements OnInit {
   articles = [];
   company_email: String;
+  displayedColumns: string[] = [
+    "position",
+    "title",
+    "date",
+    "preview",
+    "update",
+    "delete"
+  ];
+  dataSource;
+
   ngOnInit() {
     this.sub = this.route.parent.params.subscribe(params => {
       this.articleService
@@ -18,13 +29,20 @@ export class RecruiterDashboardComponent extends RecruiterComponent
         .subscribe(responseArticle => {
           this.company_email = params.email;
           this.articles = responseArticle;
+          this.dataSource = new MatTableDataSource(this.articles)
+          console.log(this.articles);
         });
     });
   }
   deleteComponentClick(clickObj: any): void {
-    const index = this.articles.findIndex(index=> index._id ===clickObj.itemId);
+    const index = this.articles.findIndex(
+      index => index._id === clickObj.itemId
+    );
     console.log(clickObj.itemId);
     this.articles.splice(index, 1);
     console.log(this.articles);
+  }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
