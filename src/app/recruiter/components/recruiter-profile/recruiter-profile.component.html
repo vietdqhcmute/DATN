@@ -1,11 +1,11 @@
 <div>
-  <app-modal-edit-profile-reruiter></app-modal-edit-profile-reruiter>
-
-</div>
-<div>
   <div>
     <div class="img-round">
-      <img mat-card-image src="../../../../assets/images/tho-bay-mau-28.png" alt="Photo of mine" />
+      <img
+        mat-card-image
+        src="../../../../assets/images/tho-bay-mau-28.png"
+        alt="Photo of mine"
+      />
     </div>
   </div>
   <div class="example-container">
@@ -47,6 +47,15 @@
     </div>
     <div class="form-group">
       <label for="overview">Overview</label>
-      <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> 
+      <ckeditor [editor]="Editor"></ckeditor>
+    </div>
   </div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-dismiss="modal"
+    (click)="onSave()"
+  >
+    Save changes
+  </button>
 </div>

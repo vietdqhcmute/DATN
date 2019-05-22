@@ -10,12 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { AlertService } from "src/app/services/alert.service";
 
-// interface ICompany {
-//   id: number;
-//   rating: number;
-//   title: string;
-//   evaluation: string;
-// }
 @Component({
   selector: "app-company-review",
   templateUrl: "./company-review.component.html",
@@ -78,7 +72,7 @@ export class CompanyReviewComponent extends RecruiterComponent
   onSubmit(): void {
     this.getRating();
     this.reviewService
-      .createReviewPost(this.companyEmail, this.reviewData)
+      .createReviewPost(this.recruiter.email, this.reviewData)
       .subscribe(reponse => {});
   }
   private getRating(): void {
