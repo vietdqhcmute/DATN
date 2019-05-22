@@ -42,6 +42,7 @@ export class RecruiterComponent implements OnInit {
       .pipe(first())
       .subscribe(recruiter => {
         this.recruiter = <Recruiter>recruiter;
+        console.log(recruiter);
       });
   }
 
