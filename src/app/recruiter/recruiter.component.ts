@@ -15,8 +15,6 @@ import { AlertService } from "../services/alert.service";
   styleUrls: ["./recruiter.component.scss"]
 })
 export class RecruiterComponent implements OnInit {
-  image_url =
-    "https://cdn.itviec.com/employers/amanotes/logo/w170/8dM6PZybgr1ahE2Fr2pac4bm/amanotes-logo.png";
   protected recruiter: Recruiter;
   sub: Subscription;
   constructor(
