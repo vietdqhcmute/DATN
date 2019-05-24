@@ -10,30 +10,36 @@ import { Subject } from "rxjs";
 export class CandidateService {
   private avatarURL = new Subject<string>();
   domainName = environment.APIEndPoint;
-  public candidate = new Subject<Candidate>();
+  private candidate = new Subject<Candidate>();
   constructor(private http: HttpClient) {}
 
-  getCandidateData(email) {
-    this.getCandidateByEmail(email).subscribe(candidate => {
-      this.candidate.next(<Candidate>candidate);
+  getCandidateObservable(){
+    return this.candidate.asObservable();
+  }
+  getCandidate(email) {
+    this.getCandidateAPI(email).subscribe(candidate => {
+      this.candidate.next(candidate as Candidate);
     });
+    return this.candidate.asObservable();
   }
 
-  getCandidateByEmail(email) {
-    return this.http.get(this.domainName + "candidate/email/" + email);
+  getCandidateAPI(email) {
+    return this.http.get(this.domainName + 'candidate/email/' + email);
+  }
+
+  getAvatarUrl() {
+    return this.avatarURL.asObservable();
   }
 
   updateCandidateByID(userID, candidate: Candidate) {
     const headers = new HttpHeaders({ "Content-type": "application/json" });
     return this.http.put(
-      this.domainName + "update/candidate/" + userID,
+      this.domainName + 'update/candidate/' + userID,
       candidate,
       { headers: headers }
     );
   }
-  getAvatarUrl() {
-    return this.avatarURL.asObservable();
-  }
+
   updateAvatar(image: File) {
     const postImage = new FormData();
     postImage.append("image", image);

@@ -31,6 +31,14 @@ export class RecruiterService {
     return this.recruiter.asObservable();
   }
 
+  getRecruiterByAPI(email) {
+    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
+  }
+
+  getAvatarUrl() {
+    return this.avatarURL.asObservable();
+  }
+
   updateRecruiterByID(recruiterID, recruiter: Recruiter) {
     const headers = new HttpHeaders({ "Content-type": "application/json" });
     return this.http.put(
@@ -40,9 +48,6 @@ export class RecruiterService {
     );
   }
 
-  getAvatarUrl() {
-    return this.avatarURL.asObservable();
-  }
   updateAvatar(image: File) {
     const postImage = new FormData();
     postImage.append("image", image);
@@ -51,9 +56,5 @@ export class RecruiterService {
       .subscribe(response => {
         this.avatarURL.next(response.imageUrl);
       });
-  }
-
-  getRecruiterByAPI(email) {
-    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
   }
 }

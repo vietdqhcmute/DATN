@@ -8,10 +8,16 @@ import { AdministratorComponent } from '../../administrator.component';
 })
 export class AdminUserManagerComponent extends AdministratorComponent implements OnInit {
   searchText:String;
-  users=[
-    {userName:"Viet Do",email:"vietdqhcmute@gmail.com", created_at:"today"},
-    {userName:"Amanotes",email:"amanotes@gmail.com", created_at:"today"}
+  displayedColumns: string[] = [
+    "position",
+    "User name",
+    "Email",
+    "Phone",
+    "Join date",
+    "Deactivate"
   ];
+  dataSource;
+
   ngOnInit() {
   }
 
