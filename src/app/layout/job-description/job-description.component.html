@@ -8,8 +8,8 @@
         <div class="employer-info">
           <div class="name">
             <div class="company-name">
-              <a href="">
-                <p>{{ company_name }}</p>
+              <a [routerLink]="['../../../', 'company', companyInfo.email]">
+                <p>{{ companyInfo.company_name }}</p>
               </a>
             </div>
           </div>
@@ -52,7 +52,9 @@
               Address:&nbsp;<span>So 1 Vo Van Ngan</span>
             </div>
             <div class="job-info-detail">
-              Date:&nbsp;<span>{{ jobInfo.created_at | date: 'dd/MM/yyyy' }}</span>
+              Date:&nbsp;<span>{{
+                jobInfo.created_at | date: "dd/MM/yyyy"
+              }}</span>
             </div>
           </div>
         </div>

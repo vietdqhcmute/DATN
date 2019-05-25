@@ -1,0 +1,68 @@
+<div class="search-company" style="background: #e9e9e9;">
+  <div class="container">
+    <div class="search-form-all-company form-row" id="">
+      <h1 class="slogan">
+        {{ articles.length }} posts for You
+        <span class="in-title">
+          What are people saying about your company? Find out now!
+        </span>
+      </h1>
+      <div class="search-text form-row">
+        <div
+          class="form-group"
+          action=""
+          id="search-form"
+          style="flex-grow: 7"
+        >
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="input-text">
+            <input
+              type="email"
+              class="form-control"
+              id="input-job"
+              placeholder="Let's find your job"
+              [(ngModel)]="searchText"
+              name="searchText"
+            />
+          </div>
+        </div>
+
+        <div
+          class="form-group"
+          action=""
+          id="search-form"
+          style="flex-grow: 1"
+        >
+          <button
+            type="button"
+            class="btn text-light"
+            style="font-size: 1em; width: 100%; background-color: #3f51b5;"
+            (click)="onSearch()"
+          >
+            SEARCH
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="companies-alljob container" style="margin-top: 10px">
+    <div *ngIf="articles.length > 0">
+      <h1 style="text-align: center;font-size: 21px;text-transform: uppercase">
+        SOME POSTS MAY FIT YOU
+      </h1>
+    </div>
+
+    <div *ngIf="articles.length === 0" style="text-align:center">
+      <h2>Nothing match, just try again!</h2>
+    </div>
+    <div *ngFor="let item of articles">
+      <app-job-frame-dashboard
+        [jobDescription]="item"
+        [email]="item.email_company"
+      ></app-job-frame-dashboard>
+    </div>
+  </div>
+</div>

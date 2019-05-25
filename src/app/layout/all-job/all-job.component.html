@@ -2,7 +2,7 @@
   <div>
     <div class="search-form-all-job form-row container" id="">
       <div class="search-text form-row">
-        <form
+        <div
           class="form-group"
           action=""
           id="search-form"
@@ -17,10 +17,11 @@
               class="form-control"
               id="input-job"
               placeholder="Keyword skill (Java, iOS...), Job Title, Company..."
+              [(ngModel)]="searchText"
             />
           </div>
-        </form>
-        <form
+        </div>
+        <div
           class="form-group"
           action=""
           id="search-form"
@@ -31,8 +32,8 @@
             <option>Đà Nẵng</option>
             <option>Hà Nội</option>
           </select>
-        </form>
-        <form
+        </div>
+        <div
           class="form-group"
           action=""
           id="search-form"
@@ -42,10 +43,11 @@
             type="button"
             class="btn text-light"
             style="font-size: 0.8em; width: 100%; background-color: #f7941d;"
+            (click)="onSearch()"
           >
             Tìm kiếm
           </button>
-        </form>
+        </div>
       </div>
       <div class="check-it-position">
         <div class="form-check form-check-inline">
@@ -172,10 +174,10 @@
     <div
       style="display: flex; flex-direction: row; justify-content: space-around;flex-wrap: wrap"
     >
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
-    </div>
+    <app-company-frame></app-company-frame>
+    <app-company-frame></app-company-frame>
+    <app-company-frame></app-company-frame>
+    <app-company-frame></app-company-frame>
+  </div>
   </div>
 </div>

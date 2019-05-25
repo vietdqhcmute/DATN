@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 import { ReviewService } from "src/app/services/review.service";
 import { AuthService } from 'src/app/services/auth.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: "app-recruiter-review",
@@ -22,17 +23,15 @@ export class RecruiterReviewComponent extends RecruiterComponent
     protected router: Router,
     protected titleService: Title,
     protected authService: AuthService,
-    private reviewService: ReviewService
+    protected alertService: AlertService,
+    private reviewService: ReviewService,
   ) {
-    super(recruiterService, articleService, route, router, titleService, authService);
+    super(recruiterService, articleService, route, router, titleService, authService, alertService);
   }
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
       this.reviewService.getAllReviewByEmail(params.email).subscribe(data => {
         this.reviews = data.review_posts;
-        this.getCompanyNameByEmail().subscribe(res => {
-          console.log(res);
-        });
       });
     });
   }

@@ -3,17 +3,50 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Recruiter } from "../models/RecruiterData";
 import { Subject } from "rxjs";
+import { AlertService } from "./alert.service";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
 })
 export class RecruiterService {
   domainName = environment.APIEndPoint;
-  recruiter = new Subject<Recruiter>();
-  constructor(protected http: HttpClient) {}
+  private avatarURL = new Subject<string>();
+  private recruiter = new Subject<Recruiter>();
+  private recruiterEmail = new Subject<string>();
 
-  getRecruiterByEmail(email) {
+  constructor(
+    protected http: HttpClient,
+    protected alertService: AlertService,
+    protected router: Router
+  ) {}
+
+  getRecruiterObservable(){
+    return this.recruiter.asObservable();
+  }
+
+  getRecruiterEmailObservable(){
+    return this.recruiterEmail.asObservable();
+  }
+
+  getAllRecruites(){
+    return this.http.get<Recruiter[]>(this.domainName + "recruiters");
+  }
+
+  getRecruiter(email) {
+    this.getRecruiterAPI(email).subscribe(recruiter => {
+      this.recruiter.next(recruiter);
+      this.recruiterEmail.next(recruiter.email);
+    });
+    return this.recruiter.asObservable();
+  }
+
+  getRecruiterAPI(email) {
     return this.http.get<any>(this.domainName + "recruiter/email/" + email);
+  }
+
+  getAvatarUrl() {
+    return this.avatarURL.asObservable();
   }
 
   updateRecruiterByID(recruiterID, recruiter: Recruiter) {
@@ -25,7 +58,13 @@ export class RecruiterService {
     );
   }
 
-  getRecruiter(){
-    return this.recruiter.asObservable();
+  updateAvatar(image: File) {
+    const postImage = new FormData();
+    postImage.append("image", image);
+    return this.http
+      .post<{ imageUrl: string }>(this.domainName + "image_s3", postImage)
+      .subscribe(response => {
+        this.avatarURL.next(response.imageUrl);
+      });
   }
 }

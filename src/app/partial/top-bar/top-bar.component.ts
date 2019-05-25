@@ -1,5 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
+import { Subscription } from "rxjs";
+import { Candidate } from "src/app/models/CandidateData";
+import { CandidateService } from "src/app/services/candidate.service";
 
 @Component({
   selector: "app-top-bar",
@@ -7,17 +10,22 @@ import { AuthService } from "src/app/services/auth.service";
   styleUrls: ["./top-bar.component.scss"]
 })
 export class TopBarComponent implements OnInit {
-  userIsAuthenticated = false;
-
-  constructor(private authService: AuthService) {}
-
+  private isAuthenticated: boolean = false;
+  sub: Subscription;
+  candidate: Candidate;
+  constructor(
+    private authService: AuthService,
+    private candidateService: CandidateService
+  ) {}
   ngOnInit() {
-    this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
-      this.userIsAuthenticated = isAuthenticated;
+    this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
+    this.candidateService.getCandidateObservable().subscribe(candidate => {
+      this.candidate = candidate;
     });
   }
-
-  onLogOut(){
+  onLogOut() {
     this.authService.logout();
   }
 }

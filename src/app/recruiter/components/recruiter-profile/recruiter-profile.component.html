@@ -1,3 +1,63 @@
-<p>
-  recruiter-profile works!
-</p>
+<div>
+  <div>
+    <div class="img-round">
+      <img
+              mat-card-image
+              [src]="recruiter.image_url"
+              alt="avatar"
+              (click)="filePicker.click()"
+            />
+            <input style="display: none;" type="file" #filePicker (change)="onImagePicked($event)" />
+    </div>
+  </div>
+  <div class="example-container">
+    <div class="name half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="recruiter.email" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Address"/>
+      </mat-form-field>
+    </div>
+
+    <div class="contact half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Phone" [(ngModel)]="recruiter.phone"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="City" />
+      </mat-form-field>
+    </div>
+    <div class="contact half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Website" [(ngModel)]="recruiter.website"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Employees" [(ngModel)]="recruiter.employees"/>
+      </mat-form-field>
+    </div>
+    <div class="contact half-dialog">
+      <mat-form-field>
+        <input matInput placeholder="Production" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Date at work" />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="overview">Overview</label>
+      <ckeditor [editor]="Editor" [(ngModel)]="recruiter.overview"></ckeditor>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-dismiss="modal"
+    (click)="onSave()"
+  >
+    Save changes
+  </button>
+</div>

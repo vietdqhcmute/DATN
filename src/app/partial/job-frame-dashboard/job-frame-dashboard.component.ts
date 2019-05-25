@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ArticleService } from "src/app/services/article.service";
-import { ContentObserver } from "@angular/cdk/observers";
 import { Router } from "@angular/router";
 
 @Component({
@@ -12,19 +11,35 @@ import { Router } from "@angular/router";
 export class JobFrameDashboardComponent implements OnInit {
   @Input() jobDescription: any;
   @Input() email: String;
+  @Output() deleteClick: EventEmitter<any> = new EventEmitter<any>();
   constructor(private articleService: ArticleService, private router: Router) {}
 
   ngOnInit() {
   }
   onUpdate() {
     this.router.navigate(
-      ["recruiter", this.email, "create-post", this.jobDescription._id],
-      { queryParams: { edit: true } }
+      ["recruiter", this.email, "create-post"],
+      { queryParams: { edit: true , id: this.jobDescription._id} }
     );
   }
   onDelete() {
     this.articleService
       .deleteArticle(this.jobDescription._id)
-      .subscribe(response => {});
+      .subscribe(response => {
+        console.log("Delete success!");
+        this.deleteClick.emit({
+          itemId: this.jobDescription._id,
+          email: this.email
+        });
+        //After delete on database, delete on array (using Array.splice to splice by ID)
+        // Topbar do not get authData
+        // Auth.guard to protect route which need to login
+        // Modal yes no
+        // Edit infomation of recruiter
+        // remake starts
+        //Show all articles by time in all-job
+      }, error=>{
+        // console.log(error);
+      });
   }
 }

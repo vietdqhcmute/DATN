@@ -1,0 +1,117 @@
+<button
+  type="button"
+  class="btn btn-primary"
+  data-backdrop="true"
+  data-toggle="modal"
+  data-target="#exampleModal"
+>
+  Edit profile
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-3"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit profile recruiter</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="img-round">
+            <img
+              mat-card-image
+              src="../../../../assets/images/tho-bay-mau-28.png"
+              alt="Photo of mine"
+            />
+          </div>
+        </div>
+        <div class="example-container">
+          <div class="name half-dialog">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Email"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Address"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="contact half-dialog">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Phone"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="City"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="title">
+            <mat-form-field>
+              <input matInput placeholder="Website" />
+            </mat-form-field>
+          </div>
+
+          <div class="summary">
+            <mat-form-field>
+              <textarea
+                matInput
+                placeholder="Summary about your self"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="education">
+            <mat-form-field>
+              <input matInput placeholder="Education" />
+            </mat-form-field>
+          </div>
+
+          <div class="online-contact">
+            <mat-form-field>
+              <input matInput placeholder="Own website" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-dismiss="modal"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

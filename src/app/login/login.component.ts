@@ -3,7 +3,7 @@ import { LoginData } from "../models/LoginData";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
 import { Title } from "@angular/platform-browser";
-// import { AuthService } from '../services/auth.service';
+import { AlertService } from "../services/alert.service";
 
 @Component({
   selector: "app-login",
@@ -15,10 +15,14 @@ export class LoginComponent implements OnInit {
   isLoading_logIn = false;
   loginParams = new LoginData();
 
-  constructor(public authService: AuthService, private titleService: Title) {}
-  // constructor() {}
+  constructor(
+    public authService: AuthService,
+    private titleService: Title,
+    private alertService: AlertService
+  ) {}
   ngOnInit() {
     this.titleService.setTitle("Login");
+    this.alertService.setHideTopBar(true);
   }
 
   onSignIn(form: NgForm) {

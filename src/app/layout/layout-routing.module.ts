@@ -6,14 +6,15 @@ import { JobDescriptionComponent } from "./job-description/job-description.compo
 import { CompanyDescriptionComponent } from "./company-description/company-description.component";
 import { CompanyReviewComponent } from "./company-review/company-review.component";
 import { SearchCompanyComponent } from './search-company/search-company.component';
+import { SearchArticleComponent } from './search-article/search-article.component';
 
 const routes: Routes = [
   {
     path: "",
     component: LayoutComponent,
     children: [
-      { path: "", redirectTo: "alljob", pathMatch: "full" },
-      { path: "alljob", component: AllJobComponent },
+      { path: "", redirectTo: "all-job", pathMatch: "full" },
+      { path: "all-job", component: AllJobComponent },
       { path: "job-description/:email/:id", component: JobDescriptionComponent },
       {
         path: "company/:email",
@@ -23,7 +24,8 @@ const routes: Routes = [
         path: "review/:email",
         component: CompanyReviewComponent
       },
-      { path: "search-company", component: SearchCompanyComponent }
+      { path: "companies", component: SearchCompanyComponent },
+      { path: "search",component: SearchArticleComponent}
     ]
   }
 ];

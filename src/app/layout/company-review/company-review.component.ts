@@ -8,13 +8,8 @@ import { RecruiterService } from "src/app/services/recruiter.service";
 import { ArticleService } from "src/app/services/article.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
+import { AlertService } from "src/app/services/alert.service";
 
-// interface ICompany {
-//   id: number;
-//   rating: number;
-//   title: string;
-//   evaluation: string;
-// }
 @Component({
   selector: "app-company-review",
   templateUrl: "./company-review.component.html",
@@ -29,7 +24,8 @@ export class CompanyReviewComponent extends RecruiterComponent
     protected router: Router,
     protected titleService: Title,
     private reviewService: ReviewService,
-    protected authService: AuthService
+    protected authService: AuthService,
+    protected alertService: AlertService
   ) {
     super(
       recruiterService,
@@ -37,7 +33,8 @@ export class CompanyReviewComponent extends RecruiterComponent
       route,
       router,
       titleService,
-      authService
+      authService,
+      alertService
     );
   }
   reviewData: Review = new Review();
@@ -75,9 +72,8 @@ export class CompanyReviewComponent extends RecruiterComponent
   onSubmit(): void {
     this.getRating();
     this.reviewService
-      .createReviewPost(this.companyEmail, this.reviewData)
+      .createReviewPost(this.recruiter.email, this.reviewData)
       .subscribe(reponse => {});
-    console.log(this.reviewData);
   }
   private getRating(): void {
     this.reviewData.rate_general = this.items[0].rating;

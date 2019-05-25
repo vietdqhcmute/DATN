@@ -1,0 +1,116 @@
+:host() {
+  font-family: Roboto, Helvetica, sans-serif;
+  overflow: hidden;
+  padding: 1cm;
+
+  h2,
+  h5 {
+    margin: 0px;
+  }
+
+  p {
+    margin: 0px;
+    // height: 18px;
+  }
+
+  .section {
+    margin-bottom: 10px;
+    &:hover {
+      outline: 3px solid #37474f;
+      outline-width: 100%;
+    }
+  }
+
+  #contact-area {
+    .resume-title {
+      font-size: 22;
+      font-weight: bold;
+    }
+  }
+
+  #summary-area {
+    margin-bottom: 20px;
+
+    .summary-item {
+      text-align: justify;
+    }
+  }
+
+  #experience-area {
+    margin-bottom: 20px;
+
+    .experience-item {
+      margin-bottom: 5px;
+      margin-top: 5px;
+      #experience-description {
+        text-align: justify;
+      }
+    }
+
+    #experience-company-location {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    #experience-title-time {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    #experience-description {
+      text-align: justify;
+      display: block;
+
+      .line-breaker {
+        p {
+          white-space: pre-line;
+        }
+      }
+    }
+  }
+
+  #project-area {
+    margin-bottom: 20px;
+
+    .project-item {
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+
+    #projectName-date {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    #description {
+      text-align: justify;
+    }
+  }
+
+  #education-area {
+    margin-bottom: 20px;
+
+    .education-item {
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+
+    #education-date {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  #skill-area {
+    margin-bottom: 20px;
+
+    .skill-item {
+      margin-top: 5px;
+      text-align: justify;
+    }
+  }
+}

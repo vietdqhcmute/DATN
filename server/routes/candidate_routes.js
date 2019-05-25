@@ -26,33 +26,41 @@ router.get("/candidate/:id", async (req, res) => {
 //Get candidate by email
 router.get("/candidate/email/:email", async (req, res) => {
   try {
-    const candidate = await Candidate.findOne({ email: req.params.email });
+    const candidate = await Candidate.findOne({
+      email: req.params.email
+    });
     res.status(200).json(candidate);
   } catch (err) {
     res.status(404).send(err);
   }
 });
 
-//API update user by ID
-router.put("/update/candidate/:id", async (req, res) => {
-  try {
-    await Candidate.findByIdAndUpdate(
-      {
-        _id: req.params.id
-      },
-      req.body,
-      {
-        upsert: true,
-        new: true,
-        setDefaultsOnInsert: true
-      }
-    );
-    res.status(200).redirect("/candidate/" + req.params.id);
-  } catch (err) {
-    res.status(500).json({
-      message: "Update failed!"
-    });
+// Get all candidate
+router.get("/candidates", async(req, res) => {
+  try{
+    const candidates = await Candidate.find();
+    res.send(candidates);
+  }catch(err){
+    console.log(err);
   }
+});
+
+//API update user by ID
+router.put("/update/candidate/:id", (req, res) => {
+  Candidate.findByIdAndUpdate({
+      _id: req.params.id
+    },
+    req.body, {
+      upsert: true,
+      new: true,
+      setDefaultsOnInsert: true
+    }, (err, data) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.status(200).send("Update profile success!");
+    }
+  );
 });
 
 module.exports = router;

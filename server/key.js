@@ -1,4 +1,4 @@
 exports.module={
-  SECRET_KEY : "",
-  ACCESS_KEY : ""
+  SECRET_KEY : "/SWVMPEeweFp/3I8gj74QVnlo66gJTWqGCkdKtJ0",
+  ACCESS_KEY : "AKIAYFVVE7W22TQHIBFF"
 }

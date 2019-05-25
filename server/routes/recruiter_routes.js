@@ -16,6 +16,15 @@ router.get("/recruiter/:id", async (req, res) => {
     res.status(404).send(err);
   }
 });
+// Get all recruiter
+router.get("/recruiters", async(req, res) => {
+  try{
+    const recruiters = await Recruiter.find();
+    res.send(recruiters);
+  }catch(err){
+    console.log(err);
+  }
+});
 //Getting recruiter by email
 router.get("/recruiter/email/:email", async (req, res) => {
   try {
@@ -117,11 +126,11 @@ router.put("/article/:id", (req, res) => {
 });
 //delete post by email company and post id
 router.delete("/article/:id", async (req, res) => {
-  Article.findByIdAndDelete(req.params.id, (err) => {
+  Article.findByIdAndDelete(req.params.id, (err,data) => {
     if (err) {
       return res.status(500).send(err);
     }
-    res.status(200).send("Delete sucessfully!");
+    res.status(200).send(data);
   });
 });
 //-------------------------------------------------------------------------------------------------

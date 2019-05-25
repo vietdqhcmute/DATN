@@ -2,126 +2,175 @@
   <h3>Contact Infomation</h3>
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Your name">
+      <input
+        matInput
+        placeholder="Your name"
+        [disabled]="true"
+        [value]="getInfoCandidate.full_name"
+      />
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Title">
+      <input matInput placeholder="Title" [(ngModel)]="getInfoResume.title" />
     </mat-form-field>
   </div>
 
   <div class="item" id="Summary">
     <mat-form-field>
-      <textarea matInput placeholder="Summary"></textarea>
+      <textarea
+        matInput
+        placeholder="Summary"
+        [(ngModel)]="getInfoResume.summary"
+      ></textarea>
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Phone number">
-    </mat-form-field>
-  </div>
-
-  <!-- <div class="item">
-      <mat-form-field>
-        <input disabled matInput placeholder="Email" value="{{user$.email}}" [(ngModel)]="user$.email">
-      </mat-form-field>
-    </div> -->
-
-  <div class="item">
-    <mat-form-field>
-      <input matInput placeholder="Github URL">
+      <input
+        matInput
+        placeholder="Phone number"
+        [disabled]="true"
+        [value]="getInfoCandidate.phone"
+      />
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="LinkedIn URL">
+      <input
+        matInput
+        placeholder="Email"
+        [disabled]="true"
+        [value]="getInfoCandidate.email"
+      />
     </mat-form-field>
   </div>
 
   <div class="item">
     <mat-form-field>
-      <input matInput placeholder="Personal Webpage">
+      <input
+        matInput
+        placeholder="Github URL"
+        [(ngModel)]="getInfoResume.github"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="item">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="LinkedIn URL"
+        [(ngModel)]="getInfoResume.linkedin"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="item">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Personal Webpage"
+        [(ngModel)]="getInfoResume.website"
+      />
     </mat-form-field>
   </div>
 </section>
-<br>
+<br />
 
 <section id="Experience">
   <h3>Experience</h3>
   <div class="item-ul-li">
     <ul>
-      <li>
+      <li *ngFor="let item of experience">
         <div>
-          <a [routerLink]="xxx"></a>
-          <p></p>
+          <a [routerLink]="xxx">{{ item.company_name }}</a>
+          <p>{{ item.title }}</p>
         </div>
-        <button class="btn btn-danger float-right"><i class="fa fa-trash"></i></button>
+        <button class="btn btn-danger float-right">
+          <i class="fa fa-trash"></i>
+        </button>
       </li>
     </ul>
   </div>
   <div class="item">
-    <input type="button" class="btn btn-primary preview" value="Add Another Experience">
+    <app-modal-resume-expeience></app-modal-resume-expeience>
+    <!-- <input
+      type="button"
+      class="btn btn-primary preview"
+      value="Add Another Experience"
+    /> -->
   </div>
 </section>
-<br>
-<br>
-<br>
-
+<br />
+<br />
+<br />
 
 <section id="Project">
   <h3>Project</h3>
   <div class="item-ul-li">
-    <ul>
+    <ul *ngFor="let item of project">
       <li>
-        <a [routerLink]="xxx"></a>
-        <button class="btn btn-danger float-right"><i class="fa fa-trash"></i></button>
+        <a [routerLink]="xxx">{{ item.project_name }}</a>
+        <button class="btn btn-danger float-right">
+          <i class="fa fa-trash"></i>
+        </button>
       </li>
     </ul>
   </div>
   <div class="item">
-    <input type="button" class="btn btn-primary preview" value="Add Another Project">
+    <app-modal-resume-project></app-modal-resume-project>
+    <!-- <input
+      type="button"
+      class="btn btn-primary preview"
+      value="Add Another Project"
+    /> -->
   </div>
 </section>
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />
 
 <section id="Education">
   <h3>Education</h3>
   <div class="item-ul-li">
-    <ul>
+    <ul *ngFor="let item of education">
       <li>
-
         <div class="school-date">
-          <a [routerLink]="xxx"></a>
-          <p></p>
+          <a [routerLink]="xxx">{{ item.school_name }}</a>
+          <p>{{ item.major }}</p>
         </div>
 
-        <button class="btn btn-danger float-right"><i class="fa fa-trash"></i></button>
+        <button class="btn btn-danger float-right">
+          <i class="fa fa-trash"></i>
+        </button>
       </li>
     </ul>
   </div>
 
   <div class="item">
-    <input type="button" class="btn btn-primary preview" value="Add Another Educational">
+    <app-modal-resume-education></app-modal-resume-education>
+    <!-- <input
+      type="button"
+      class="btn btn-primary preview"
+      value="Add Another Educational"
+    /> -->
   </div>
 </section>
-<br>
-<br>
-<br>
-
+<br />
+<br />
+<br />
 
 <section id="Skill">
   <h3>Skill</h3>
   <div class="item-ul-li">
-    <ul>
+    <ul *ngFor="let item of getInfoResume.skil">
       <li class="list-item">
         <mat-form-field>
-          <input matInput>
+          <input matInput />
         </mat-form-field>
         <div class="list-item-button">
           <button class="btn btn-primary"><i class="fa fa-check"></i></button>
@@ -131,9 +180,14 @@
     </ul>
   </div>
   <div class="item">
-    <input type="button" class="btn btn-primary preview" value="Add Another Skill">
+    <button class="btn btn-primary preview" style="display:flex">
+      <i class="material-icons">
+        add
+      </i>
+      Skill
+    </button>
   </div>
 </section>
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />

@@ -10,7 +10,7 @@ import { GetInfoComponent } from './components/create-cv/get-info/get-info.compo
 import { PreviewCvComponent } from './components/create-cv/preview-cv/preview-cv.component';
 import { TemplateSelectionComponent } from './components/create-cv/template-selection/template-selection.component';
 import { ToolBarComponent } from './components/create-cv/tool-bar/tool-bar.component';
-
+import { ConvertToMonthPipe } from '../shared/convert-to-month.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { ToolBarComponent } from './components/create-cv/tool-bar/tool-bar.compo
     GetInfoComponent,
     PreviewCvComponent,
     TemplateSelectionComponent,
-    ToolBarComponent
+    ToolBarComponent,
+    ConvertToMonthPipe
   ],
   imports: [
     CommonModule,

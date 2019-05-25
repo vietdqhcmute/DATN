@@ -10,7 +10,12 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RecruiterReviewPostComponent } from "./recruiter-review-post/recruiter-review-post.component";
 import { RatingStarComponent } from "./rating-star/rating-star.component";
 import { ModalEditProfileComponent } from "./modal/modal-edit-profile/modal-edit-profile.component";
-import { AlertComponent } from './alert/alert.component';
+import { AlertComponent } from "./alert/alert.component";
+import { ModalYesNoComponent } from "./modal/modal-yes-no/modal-yes-no.component";
+import { ModalEditProfileReruiterComponent } from "./modal/modal-edit-profile-reruiter/modal-edit-profile-reruiter.component";
+import { ModalResumeExperienceComponent } from "./modal/modal-resume-experience.component/modal-resume-experience.component";
+import { ModalResumeProjectComponent } from "./modal/modal-resume-project/modal-resume-project.component";
+import { ModalResumeEducationComponent } from "./modal/modal-resume-education/modal-resume-education.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { AlertComponent } from './alert/alert.component';
     RecruiterReviewPostComponent,
     RatingStarComponent,
     ModalEditProfileComponent,
-    AlertComponent
+    AlertComponent,
+    ModalYesNoComponent,
+    ModalEditProfileReruiterComponent,
+    ModalResumeExperienceComponent,
+    ModalResumeProjectComponent,
+    ModalResumeEducationComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +48,12 @@ import { AlertComponent } from './alert/alert.component';
     RecruiterReviewPostComponent,
     RatingStarComponent,
     ModalEditProfileComponent,
-    AlertComponent
+    AlertComponent,
+    ModalYesNoComponent,
+    ModalEditProfileReruiterComponent,
+    ModalResumeExperienceComponent,
+    ModalResumeProjectComponent,
+    ModalResumeEducationComponent
   ]
 })
 export class PartialModule {}

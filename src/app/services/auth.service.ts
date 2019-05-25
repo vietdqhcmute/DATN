@@ -11,7 +11,8 @@ import { AlertService } from "./alert.service";
 })
 export class AuthService {
   domainName = environment.APIEndPoint;
-  private authStatusListener = new Subject<boolean>();
+  isAuthenticated = new Subject<boolean>();
+  token: string;
 
   constructor(
     private http: HttpClient,
@@ -19,6 +20,42 @@ export class AuthService {
     private alertService: AlertService
   ) {}
   //==================================================New code=================================
+  login(loginParams) {
+    this.http
+      .post<{ token: string; fetcheddata: AuthenticatModel }>(
+        this.domainName + "login",
+        loginParams
+      )
+      .subscribe(
+        userResponse => {
+          const token = userResponse.token;
+          const role = userResponse.fetcheddata.role;
+          const email = userResponse.fetcheddata.email;
+          if (token) {
+            this.token = token;
+            this.isAuthenticated.next(true);
+            this.saveAuthDataToBrowser(userResponse);
+            if (role === 1) {
+              this.loginAsCandidate(email);
+            } else if (role === 2) {
+              this.loginAsRecruiter(email);
+            } else {
+              this.loginAsAdministrator();
+            }
+          }
+        },
+        error => {
+          console.log(error);
+          this.alertService.error(error, false);
+        }
+      );
+  }
+
+  logout() {
+    this.token = null;
+    this.clearAuthData();
+  }
+
   createCandidate(candidateParams) {
     this.http.post(this.domainName + "sign-up", candidateParams).subscribe(
       response => {
@@ -27,10 +64,11 @@ export class AuthService {
       },
       error => {
         console.log(error);
-        this.alertService.error(error, false)
+        this.alertService.error(error, false);
       }
     );
   }
+
   createRecruiter(recruiterParams) {
     //Add in Recruiter table
     this.http
@@ -42,7 +80,7 @@ export class AuthService {
         },
         error => {
           console.log(error);
-          this.alertService.error(error, false)
+          this.alertService.error(error, false);
         }
       );
     //Add in RecruiterReview table
@@ -56,42 +94,6 @@ export class AuthService {
           console.log(error);
         }
       );
-  }
-  login(loginParams) {
-    this.http
-      .post<{ token: string; fetcheddata: AuthenticatModel }>(
-        this.domainName + "login",
-        loginParams
-      )
-      .subscribe(
-        userResponse => {
-          const token = userResponse.token;
-          const role = userResponse.fetcheddata.role;
-          const email = userResponse.fetcheddata.email;
-          if (token) {
-            this.saveAuthDataToBrowser(userResponse);
-            this.authStatusListener.next(true);
-            if (role === 1) {
-              this.loginAsCandidate(email);
-            } else if (role === 2) {
-              this.loginAsRecruiter(email);
-            } else {
-              this.loginAsAdministrator();
-            }
-          }
-        },
-        error => {
-          console.log(error);
-          this.alertService.error(error, false)
-        }
-      );
-  }
-
-  logout() {
-    this.clearAuthData();
-  }
-  getAuthStatusListener() {
-    return this.authStatusListener.asObservable();
   }
 
   autoLogin() {
@@ -108,37 +110,51 @@ export class AuthService {
     }
   }
 
-  private getAuthData() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (!currentUser) {
-      return;
+  getAuthData() {
+    if (this.isSavedAuthData()) {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      const token = currentUser.token;
+      const role = currentUser.role;
+      const email = currentUser.email;
+      if (!token || !role || !email) {
+        return;
+      }
+      return {
+        token: token,
+        role: role,
+        email: email
+      };
     }
-    const token = currentUser.token;
-    const role = currentUser.role;
-    const email = currentUser.email;
-    if (!token || !role || !email) {
-      return;
-    }
-    return {
-      token: token,
-      role: role,
-      email: email
-    };
+    return;
   }
+
+  isSavedAuthData(): boolean {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+      return true;
+    }
+    return false;
+  }
+
+  getUserAuthenticated() {
+    return this.isAuthenticated.asObservable();
+  }
+
   private clearAuthData() {
+    this.isAuthenticated.next(false);
     localStorage.removeItem("currentUser");
   }
   private loginAsCandidate(email) {
-    this.router.navigate(["profile/", email]);
+    this.router.navigate(["profile", email]);
   }
   private loginAsRecruiter(email) {
-    this.router.navigate(["recruiter/", email]);
+    this.router.navigate(["recruiter", email]);
   }
   private loginAsAdministrator() {
-    this.router.navigate(["admin"]);
+    this.router.navigate(["administrator"]);
   }
   private saveAuthDataToBrowser(user) {
-    let currentUser = {
+    const currentUser = {
       token: user.token,
       role: user.fetcheddata.role,
       email: user.fetcheddata.email
