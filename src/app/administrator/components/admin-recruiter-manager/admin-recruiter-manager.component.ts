@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdministratorComponent } from '../../administrator.component';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-admin-recruiter-manager',
@@ -8,12 +9,22 @@ import { AdministratorComponent } from '../../administrator.component';
 })
 export class AdminRecruiterManagerComponent extends AdministratorComponent implements OnInit {
   searchText:String;
-  users=[
-    {userName:"Viet Do",email:"vietdqhcmute@gmail.com", created_at:"today"},
-    {userName:"Amanotes",email:"amanotes@gmail.com", created_at:"today"}
+  displayedColumns: string[] = [
+    "position",
+    "company",
+    "email",
+    "website",
+    "join",
+    "deactivate"
   ];
-
+  private recruiterTableSource;
   ngOnInit() {
+    this.recruiterService.getAllRecruites().subscribe(recruiters=>{
+      console.log(recruiters);
+       this.recruiterTableSource = new MatTableDataSource(recruiters)
+    })
   }
-
+  applyFilter(filterValue: string) {
+    this.recruiterTableSource.filter = filterValue.trim().toLowerCase();
+  }
 }

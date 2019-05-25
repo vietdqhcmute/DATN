@@ -20,7 +20,7 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     "update",
     "delete"
   ];
-  dataSource;
+  private dataSource;
 
   ngOnInit() {
     this.sub = this.route.parent.params.subscribe(params => {

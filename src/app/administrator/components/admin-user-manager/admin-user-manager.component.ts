@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdministratorComponent } from '../../administrator.component';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-admin-user-manager',
@@ -10,15 +11,20 @@ export class AdminUserManagerComponent extends AdministratorComponent implements
   searchText:String;
   displayedColumns: string[] = [
     "position",
-    "User name",
-    "Email",
-    "Phone",
-    "Join date",
-    "Deactivate"
+    "username",
+    "email",
+    "phone",
+    "join",
+    "deactivate"
   ];
-  dataSource;
+  private candidateTableSource;
 
   ngOnInit() {
+    this.candidateService.getAllCandidates().subscribe(candidates=>{
+      this.candidateTableSource = new MatTableDataSource(candidates)
+    })
   }
-
+  applyFilter(filterValue: string) {
+    this.candidateTableSource.filter = filterValue.trim().toLowerCase();
+  }
 }

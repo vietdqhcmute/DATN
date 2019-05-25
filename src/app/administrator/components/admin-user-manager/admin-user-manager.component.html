@@ -1,20 +1,50 @@
 <h2>All of member</h2>
-<label for="basic-url">Searching Email of: </label>
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">Email:</span>
-  </div>
-  <input [(ngModel)]="searchText" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-<!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-form-field>
+  <input style="width:100%" matInput (keyup)="applyFilter($event.target.value)" placeholder="Searching Email of:" />
+</mat-form-field>
+<table mat-table [dataSource]="candidateTableSource" class="mat-elevation-z8">
   Number of column
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef>No.</th>
     <td mat-cell *matCellDef="let element; let i = index">{{ i }}</td>
   </ng-container>
 
-</table> -->
-<table class="table table-striped table-hover">
+  <!-- Username column -->
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef>User name</th>
+    <td mat-cell *matCellDef="let element">{{ element.display_name }}</td>
+  </ng-container>
+
+  <!-- Email column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+  </ng-container>
+
+  <!-- Email column -->
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+  </ng-container>
+
+  <!-- Join column -->
+  <ng-container matColumnDef="join">
+    <th mat-header-cell *matHeaderCellDef>Joined</th>
+    <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
+  </ng-container>
+
+  <!-- Deactivate column -->
+  <ng-container matColumnDef="deactivate">
+    <th mat-header-cell *matHeaderCellDef>Deactivate</th>
+    <td mat-cell *matCellDef="let element">
+      <button class="btn btn-danger btn-sm">Deactivate</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<!-- <table class="table table-striped table-hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">No</th>
@@ -36,4 +66,4 @@
           class="fa fa-trash"></i></button>
     </tr>
   </tbody>
-</table>
+</table> -->
