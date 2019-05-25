@@ -10,5 +10,5 @@ let authenticationSchema = new mongoose.Schema({
   active: Boolean
 });
 
-const Authentication = mongoose.model("Password", authenticationSchema);
+const Authentication = mongoose.model("Authentication", authenticationSchema);
 module.exports = Authentication;

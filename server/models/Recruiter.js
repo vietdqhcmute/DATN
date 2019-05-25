@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 let recruiterSchema = new mongoose.Schema({
   company_name: {
     type: String,
-    index: { unique: true }
+    index: {
+      unique: true
+    }
   },
   image_url: String,
   email: String,
@@ -13,10 +15,13 @@ let recruiterSchema = new mongoose.Schema({
   website: String,
   employees: Number,
   overview: String,
-  production:String,
-  day_at_work:String,
+  production: String,
+  day_at_work: String,
 
 });
-recruiterSchema.index({name: 'text', 'company_name': 'text'});
+recruiterSchema.index({
+  name: 'text',
+  'company_name': 'text'
+});
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
 module.exports = Recruiter;

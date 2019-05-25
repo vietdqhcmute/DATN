@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { RecruiterService } from "src/app/services/recruiter.service";
+import { Recruiter } from "src/app/models/RecruiterData";
 
 @Component({
-  selector: 'app-search-company',
-  templateUrl: './search-company.component.html',
-  styleUrls: ['./search-company.component.scss']
+  selector: "app-search-company",
+  templateUrl: "./search-company.component.html",
+  styleUrls: ["./search-company.component.scss"]
 })
 export class SearchCompanyComponent implements OnInit {
+  private searchText: string;
+  private recruiters: Recruiter[] = [];
+  constructor(private recruiterService: RecruiterService) {}
+  ngOnInit() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  onSearch() {
+    this.searchCompany(this.searchText);
   }
 
+  searchCompany(searchText: string) {
+    this.recruiterService.searchCompany(searchText).subscribe(companies => {
+      this.recruiters = companies;
+    });
+  }
 }
