@@ -21,7 +21,7 @@ export class TopBarComponent implements OnInit {
     this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
     });
-    this.candidateService.candidate.subscribe(candidate => {
+    this.candidateService.getCandidateObservable().subscribe(candidate => {
       this.candidate = candidate;
     });
   }

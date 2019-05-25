@@ -10,10 +10,11 @@ import { Router } from "@angular/router";
   providedIn: "root"
 })
 export class RecruiterService {
-  private avatarURL = new Subject<string>();
   domainName = environment.APIEndPoint;
+  private avatarURL = new Subject<string>();
   private recruiter = new Subject<Recruiter>();
-  recruiter_email: string;
+  private recruiterEmail = new Subject<string>();
+
   constructor(
     protected http: HttpClient,
     protected alertService: AlertService,
@@ -24,11 +25,28 @@ export class RecruiterService {
     return this.recruiter.asObservable();
   }
 
+  getRecruiterEmailObservable(){
+    return this.recruiterEmail.asObservable();
+  }
+
+  getAllRecruites(){
+    return this.http.get<Recruiter[]>(this.domainName + "recruiters");
+  }
+
   getRecruiter(email) {
-    this.getRecruiterByAPI(email).subscribe(recruiter => {
+    this.getRecruiterAPI(email).subscribe(recruiter => {
       this.recruiter.next(recruiter);
+      this.recruiterEmail.next(recruiter.email);
     });
     return this.recruiter.asObservable();
+  }
+
+  getRecruiterAPI(email) {
+    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
+  }
+
+  getAvatarUrl() {
+    return this.avatarURL.asObservable();
   }
 
   updateRecruiterByID(recruiterID, recruiter: Recruiter) {
@@ -40,9 +58,6 @@ export class RecruiterService {
     );
   }
 
-  getAvatarUrl() {
-    return this.avatarURL.asObservable();
-  }
   updateAvatar(image: File) {
     const postImage = new FormData();
     postImage.append("image", image);
@@ -51,9 +66,5 @@ export class RecruiterService {
       .subscribe(response => {
         this.avatarURL.next(response.imageUrl);
       });
-  }
-
-  getRecruiterByAPI(email) {
-    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
   }
 }

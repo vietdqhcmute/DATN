@@ -16,6 +16,15 @@ router.get("/recruiter/:id", async (req, res) => {
     res.status(404).send(err);
   }
 });
+// Get all recruiter
+router.get("/recruiters", async(req, res) => {
+  try{
+    const recruiters = await Recruiter.find();
+    res.send(recruiters);
+  }catch(err){
+    console.log(err);
+  }
+});
 //Getting recruiter by email
 router.get("/recruiter/email/:email", async (req, res) => {
   try {

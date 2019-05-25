@@ -34,12 +34,12 @@ export class CandidateProfileComponent extends CandidateComponent
 
   private loadCandidateData(email) {
     this.sub = this.candidateService
-      .getCandidateByEmail(email)
+      .getCandidate(email)
       .pipe(first())
       .subscribe(candidate => {
         this.candidate = <Candidate>candidate;
       });
-    this.candidateService.getCandidateData(email);
+    this.candidateService.getCandidate(email);
   }
 
   onImagePicked(event: Event) {

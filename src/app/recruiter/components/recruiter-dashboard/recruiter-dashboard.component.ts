@@ -20,7 +20,7 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     "update",
     "delete"
   ];
-  dataSource;
+  private dataSource;
 
   ngOnInit() {
     this.sub = this.route.parent.params.subscribe(params => {
@@ -30,7 +30,6 @@ export class RecruiterDashboardComponent extends RecruiterComponent
           this.company_email = params.email;
           this.articles = responseArticle;
           this.dataSource = new MatTableDataSource(this.articles)
-          console.log(this.articles);
         });
     });
   }
