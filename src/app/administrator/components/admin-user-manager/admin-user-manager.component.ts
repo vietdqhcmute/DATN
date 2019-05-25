@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { AdministratorComponent } from '../../administrator.component';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit } from "@angular/core";
+import { AdministratorComponent } from "../../administrator.component";
+import { MatTableDataSource } from "@angular/material";
 
 @Component({
-  selector: 'app-admin-user-manager',
-  templateUrl: './admin-user-manager.component.html',
-  styleUrls: ['./admin-user-manager.component.scss']
+  selector: "app-admin-user-manager",
+  templateUrl: "./admin-user-manager.component.html",
+  styleUrls: ["./admin-user-manager.component.scss"]
 })
-export class AdminUserManagerComponent extends AdministratorComponent implements OnInit {
-  searchText:String;
+export class AdminUserManagerComponent extends AdministratorComponent
+  implements OnInit {
+  searchText: String;
   displayedColumns: string[] = [
     "position",
     "username",
@@ -18,11 +19,10 @@ export class AdminUserManagerComponent extends AdministratorComponent implements
     "deactivate"
   ];
   private candidateTableSource;
-
   ngOnInit() {
-    this.candidateService.getAllCandidates().subscribe(candidates=>{
-      this.candidateTableSource = new MatTableDataSource(candidates)
-    })
+    this.candidateService.getAllCandidates().subscribe(candidates => {
+      this.candidateTableSource = new MatTableDataSource(candidates);
+    });
   }
   applyFilter(filterValue: string) {
     this.candidateTableSource.filter = filterValue.trim().toLowerCase();

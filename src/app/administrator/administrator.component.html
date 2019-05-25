@@ -15,7 +15,7 @@
           record_voice_over
         </i>&nbsp;Recruiter Manager</a>
       <hr />
-      <a mat-list-item routerLink=""><i class="material-icons">
+      <a mat-list-item [routerLink]="['/login']" (click)="onLogOut()"><i class="material-icons">
           exit_to_app
         </i>&nbsp;Log Out</a>
     </mat-nav-list>
