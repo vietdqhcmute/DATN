@@ -13,7 +13,6 @@ export class RecruiterService {
   private avatarURL = new Subject<string>();
   domainName = environment.APIEndPoint;
   private recruiter = new Subject<Recruiter>();
-  recruiter_email: string;
   constructor(
     protected http: HttpClient,
     protected alertService: AlertService,
@@ -24,14 +23,18 @@ export class RecruiterService {
     return this.recruiter.asObservable();
   }
 
+  getAllRecruites(){
+    return this.http.get<Recruiter[]>(this.domainName + "recruiters");
+  }
+
   getRecruiter(email) {
-    this.getRecruiterByAPI(email).subscribe(recruiter => {
+    this.getRecruiterAPI(email).subscribe(recruiter => {
       this.recruiter.next(recruiter);
     });
     return this.recruiter.asObservable();
   }
 
-  getRecruiterByAPI(email) {
+  getRecruiterAPI(email) {
     return this.http.get<any>(this.domainName + "recruiter/email/" + email);
   }
 

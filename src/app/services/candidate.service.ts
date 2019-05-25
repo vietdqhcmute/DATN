@@ -8,14 +8,19 @@ import { Subject } from "rxjs";
   providedIn: "root"
 })
 export class CandidateService {
-  private avatarURL = new Subject<string>();
   domainName = environment.APIEndPoint;
+  private avatarURL = new Subject<string>();
   private candidate = new Subject<Candidate>();
   constructor(private http: HttpClient) {}
 
   getCandidateObservable(){
     return this.candidate.asObservable();
   }
+
+  getAllCandidates(){
+    return this.http.get<Candidate[]>(this.domainName + "candidates");
+  }
+
   getCandidate(email) {
     this.getCandidateAPI(email).subscribe(candidate => {
       this.candidate.next(candidate as Candidate);
