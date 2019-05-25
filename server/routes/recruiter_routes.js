@@ -133,48 +133,4 @@ router.delete("/article/:id", async (req, res) => {
     res.status(200).send(data);
   });
 });
-//-------------------------------------------------------------------------------------------------
-//REVIEW
-//Create review by company_name
-router.post("/add/review/:email", (req, res) => {
-  const review = new Review({
-    email: req.params.email
-  });
-  review.save((err, data) => {
-    if (err) {
-      return console.log(err);
-    }
-    res.status(200).send(data);
-  });
-});
-//Push a review article to company_review
-router.put("/push/review/:email", (req, res) => {
-  let requestReviewPost = new ReviewPost({
-    title: req.body.title,
-    rate_general: req.body.rate_general,
-    rate_training: req.body.rate_training,
-    rate_care: req.body.rate_care,
-    rate_culture: req.body.rate_culture,
-    rate_infrastructure: req.body.rate_infrastructure,
-    ot_like: req.body.ot_like,
-    ot_hate: req.body.ot_hate,
-    like: req.body.like,
-    hate: req.body.hate,
-    isIntroduce: req.body.isIntroduce,
-  });
-  Review.findOneAndUpdate({
-      email: req.params.email
-    }, {
-      $push: {
-        review_posts: requestReviewPost
-      }
-    },
-    (error, data) => {
-      if (!data) {
-        return console.log("It is null!");
-      }
-      return res.send(data);
-    }
-  );
-});
 module.exports = router;
