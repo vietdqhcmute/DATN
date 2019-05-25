@@ -26,4 +26,7 @@ export class AdminRecruiterManagerComponent extends AdministratorComponent imple
   applyFilter(filterValue: string) {
     this.recruiterTableSource.filter = filterValue.trim().toLowerCase();
   }
+  onDeactivate(id: string){
+    console.log(id);
+  }
 }
