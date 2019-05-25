@@ -10,8 +10,8 @@ import { Router } from "@angular/router";
   providedIn: "root"
 })
 export class RecruiterService {
-  private avatarURL = new Subject<string>();
   domainName = environment.APIEndPoint;
+  private avatarURL = new Subject<string>();
   private recruiter = new Subject<Recruiter>();
   constructor(
     protected http: HttpClient,
