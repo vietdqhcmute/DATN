@@ -14,18 +14,18 @@
   <div></div>
   <div class="content">
     <ul>
-      <li *ngIf="isAuthenticated">
+      <li *ngIf="isAuthenticated && candidate">
         <a mat-button [routerLink]="['/profile', candidate.email]">My profile</a>
       </li>
       <li><a mat-button [routerLink]="['all-job']">All Jobs</a></li>
       <li><a mat-button [routerLink]="['companies']">Companies</a></li>
-      <li *ngIf="isAuthenticated">
+      <li *ngIf="isAuthenticated && candidate">
         <a mat-button [routerLink]="['/profile',candidate.email,'create-cv']">Create CV</a>
       </li>
       <li *ngIf="!isAuthenticated">
         <a mat-button [routerLink]="['/login']">Login</a>
       </li>
-      <li *ngIf="isAuthenticated">
+      <li *ngIf="isAuthenticated && candidate">
         <a mat-button [routerLink]="['/login']" (click)="onLogOut()">Log out</a>
       </li>
     </ul>

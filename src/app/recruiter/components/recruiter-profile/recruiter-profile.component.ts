@@ -13,8 +13,7 @@ export class RecruiterProfileComponent extends RecruiterComponent
   imagePreview: string;
 
   ngOnInit() {
-    const recruiter_email = this.recruiterService.recruiter_email;
-    this.recruiterService.getRecruiter(recruiter_email).subscribe(recruiter => {
+    this.recruiterService.getRecruiter(this.recruiterEmail).subscribe(recruiter => {
       this.recruiter = recruiter;
     });
   }

@@ -30,7 +30,6 @@ export class RecruiterDashboardComponent extends RecruiterComponent
           this.company_email = params.email;
           this.articles = responseArticle;
           this.dataSource = new MatTableDataSource(this.articles)
-          console.log(this.articles);
         });
     });
   }

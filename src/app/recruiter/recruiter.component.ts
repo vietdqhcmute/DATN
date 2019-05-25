@@ -16,6 +16,7 @@ import { AlertService } from "../services/alert.service";
 })
 export class RecruiterComponent implements OnInit {
   protected recruiter: Recruiter;
+  protected recruiterEmail: string;
   sub: Subscription;
   constructor(
     protected recruiterService: RecruiterService,
@@ -36,13 +37,18 @@ export class RecruiterComponent implements OnInit {
   }
 
   loadRecruiterData(email) {
-    this.recruiterService.recruiter_email = email;
     this.recruiterService
       .getRecruiter(email)
       .pipe(first())
       .subscribe(recruiter => {
         this.recruiter = <Recruiter>recruiter;
       });
+  }
+
+  getRecruiterEmail() {
+    this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
+      this.recruiterEmail = email;
+    });
   }
 
   private onLogOut() {
