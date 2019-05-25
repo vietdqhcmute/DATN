@@ -21,15 +21,15 @@ export class RecruiterService {
     protected router: Router
   ) {}
 
-  getRecruiterObservable(){
+  getRecruiterObservable() {
     return this.recruiter.asObservable();
   }
 
-  getRecruiterEmailObservable(){
+  getRecruiterEmailObservable() {
     return this.recruiterEmail.asObservable();
   }
 
-  getAllRecruites(){
+  getAllRecruites() {
     return this.http.get<Recruiter[]>(this.domainName + "recruiters");
   }
 
@@ -66,5 +66,12 @@ export class RecruiterService {
       .subscribe(response => {
         this.avatarURL.next(response.imageUrl);
       });
+  }
+
+  searchCompany(searchText: string) {
+    return this.http.post<Recruiter[]>(
+      this.domainName + "search/companies?" + "key=" + searchText,
+      {}
+    );
   }
 }
