@@ -13,8 +13,9 @@ export class RecruiterProfileComponent extends RecruiterComponent
   imagePreview: string;
 
   ngOnInit() {
-    this.recruiterService.getRecruiter(this.recruiterEmail).subscribe(recruiter => {
-      this.recruiter = recruiter;
+    this.sub = this.route.parent.paramMap.subscribe(params => {
+      this.loadRecruiterData(params.get("email"));
+      this.getRecruiterEmail();
     });
   }
 
