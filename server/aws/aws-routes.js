@@ -13,7 +13,7 @@ router.post("/image_s3", function(req, res) {
           errors: [{ title: "Image Upload Error", detail: err.message }]
         });
     }
-
+    console.log(req.file.location);
     return res.json({ imageUrl: req.file.location });
   });
 });

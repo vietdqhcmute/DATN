@@ -6,6 +6,8 @@ const Recruiter = require("./models/Recruiter");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const RECRUITER_AVA_URL ="https://nodejs-server-image.s3.amazonaws.com/1558956195517";
+const CANDIDATE_AVA_URL = "https://nodejs-server-image.s3.amazonaws.com/1558956291712";
 //API sign up for administrator
 router.post("/sign-up-admin", (req, res) => {
   hash = bcrypt.hashSync("admin", 10);
@@ -52,7 +54,7 @@ router.post("/sign-up", (req, res) => {
       display_name: req.body.name,
       phone: req.body.phone,
       email: req.body.email,
-      image_url: ""
+      image_url: CANDIDATE_AVA_URL
     };
     candidate = new Candidate(candidateParams);
     candidate.save(function (error) {
@@ -89,7 +91,7 @@ router.post("/recruiter/sign-up", (req, res) => {
     }
     let recruiterParams = {
       company_name: req.body.company_name,
-      image_url: "",
+      image_url: RECRUITER_AVA_URL,
       email: req.body.email,
       phone: req.body.phone,
       address: req.body.address,
