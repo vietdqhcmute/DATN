@@ -13,7 +13,8 @@ const routes: Routes = [
     path: ":email",
     component: RecruiterComponent,
     children: [
-      { path: "", redirectTo: "dashboard", pathMatch: "full" },
+      // { path: "", redirectTo: "dashboard", pathMatch: "full" },
+      { path: "", redirectTo: "create-post", pathMatch: "full" },
       { path: "create-post", component: RecruiterCreatePostComponent },
       // { path: "create-post/:id", component: RecruiterCreatePostComponent },
       { path: "review", component: RecruiterReviewComponent },

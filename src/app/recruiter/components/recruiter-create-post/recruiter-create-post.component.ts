@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { RecruiterComponent } from "../../recruiter.component";
+import { Tag } from "src/app/models/Tag";
 
 @Component({
   selector: "app-recruiter-create-post",
@@ -10,11 +11,13 @@ import { RecruiterComponent } from "../../recruiter.component";
 export class RecruiterCreatePostComponent extends RecruiterComponent
   implements OnInit {
   public Editor = ClassicEditor;
+  private tagContent: string = "";
   private routeParams;
   private queryParams;
-  recruitPostData = {
+  private tags: Tag[] = [];
+  private articleParams = {
     title: "",
-    tag: [],
+    tags: [],
     salary: "",
     description: "",
     created_at: new Date(),
@@ -28,20 +31,24 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     }
   }
   onCreatePost() {
-      let requestBody = {
-        email_company: this.routeParams.email,
-        article: this.recruitPostData
-      };
-      this.articleService.saveArticle(requestBody, this.routeParams.email);
+    let requestBody = {
+      email_company: this.routeParams.email,
+      article: this.articleParams
+    };
+    this.articleService.saveArticle(requestBody, this.routeParams.email);
   }
-  onUpdatePost(){
+  onAddTag() {
+    this.articleParams.tags.push(this.tagContent.trim());
+    console.log(this.articleParams.tags);
+    this.tagContent = "";
+  }
+  onUpdatePost() {}
 
-  }
   private loadRecruitPostData(id) {
-    this.articleService.getArticleById(id).subscribe(data=>{
-      this.recruitPostData.title = data.title;
-      this.recruitPostData.salary = data.salary;
-      this.recruitPostData.description = data.description;
+    this.articleService.getArticleById(id).subscribe(data => {
+      this.articleParams.title = data.title;
+      this.articleParams.salary = data.salary;
+      this.articleParams.description = data.description;
     });
   }
   private getRouteParams() {

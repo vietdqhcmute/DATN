@@ -1,21 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
+import { HttpClient } from "@angular/common/http";
+import { Tag } from "../models/Tag";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class TagService {
+  tags: Tag[] = [];
+  domainName = environment.APIEndPoint;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  createTag(){
-
+  getAllTagsAPI() {
+    this.http.get<Tag[]>(this.domainName + "tags").subscribe(tags => {
+      this.tags = tags;
+    });
+  }
+  createTag(content: string) {
   }
 
-  addTag(){
+  addTag() {}
 
-  }
-
-  deleteTag(){
-
-  }
+  deleteTag() {}
 }
