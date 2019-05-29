@@ -35,7 +35,6 @@ export class RecruiterComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
       this.loadRecruiterData(params.get("email"));
-      this.titleService.setTitle(this.recruiter.company_name);
     });
     this.getRecruiterEmail();
     this.alertService.setHideTopBar(true);

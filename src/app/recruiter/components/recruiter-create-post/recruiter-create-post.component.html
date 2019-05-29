@@ -13,12 +13,12 @@
   <div>
     <label>Tag</label>
     <div class="add-tag" style="display: flex">
-      <form class="auto-filter">
+      <form class="auto-filter" (ngSubmit)="onAddTag()">
         <mat-form-field>
           <input
             type="text"
             matInput
-            [formControl]="myControl"
+            [formControl]="tagContent"
             [matAutocomplete]="auto"
             placeholder="Tag (ex: AngularJS)"
           />
@@ -28,9 +28,17 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <button class="btn btn-primary" (submit)="onAddTag()">Add Tag</button>
+        <mat-dialog-actions>
+          <button
+            mat-button
+            type="submit"
+            class="mat-raised-button mat-primary"
+            cdkFocusInitial
+          >
+            Add Tag
+          </button>
+        </mat-dialog-actions>
       </form>
-
     </div>
   </div>
   <div class="tag-area">

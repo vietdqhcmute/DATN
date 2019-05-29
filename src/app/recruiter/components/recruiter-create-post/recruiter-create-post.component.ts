@@ -14,12 +14,11 @@ import { startWith, map } from "rxjs/operators";
 export class RecruiterCreatePostComponent extends RecruiterComponent
   implements OnInit {
   public Editor = ClassicEditor;
-  private tagContent: string = "";
   private routeParams;
   private queryParams;
   private tags: Tag[] = [];
   private tagsString: string[] = [];
-  private myControl = new FormControl();
+  private tagContent = new FormControl();
   private filteredOptions: Observable<string[]>;
   private articleParams = {
     title: "",
@@ -33,13 +32,22 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.getRouteParams();
     this.getQueryParams();
     this.getAllTags();
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    // this.filteredOptions = this.tagContent.valueChanges.subscribe(value=>this._filter(value));
+    this.filteredOptions = this.tagContent.valueChanges.pipe(
       startWith(""),
       map(value => this._filter(value))
     );
     if (this.queryParams.edit) {
       this.loadRecruitPostData(this.queryParams.id);
     }
+  }
+
+  _filter(value: string): string[] {
+    console.log(value);
+    const filterValue = value.toLowerCase();
+    return this.tagsString.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 
   onCreatePost() {
@@ -50,8 +58,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.articleService.saveArticle(requestBody, this.routeParams.email);
   }
   onAddTag() {
-    this.articleParams.tags.push(this.tagContent.trim());
-    this.tagContent = "";
+    console.log(this.tagContent.value);
+    this.articleParams.tags.push(this.tagContent.value);
+    this.tagContent.reset();
   }
   onUpdatePost() {}
 
@@ -75,19 +84,10 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       this.queryParams = queryParams;
     });
   }
-
   getAllTags() {
     this.tagService.getAllTagsAPI().subscribe(tags => {
       this.tags = tags;
       tags.forEach(element => this.tagsString.push(element.content));
     });
-  }
-
-  _filter(value: string): string[] {
-    console.log(value);
-    const filterValue = value.toLowerCase();
-    return this.tagsString.filter(option =>
-      option.toLowerCase().includes(filterValue)
-    );
   }
 }
