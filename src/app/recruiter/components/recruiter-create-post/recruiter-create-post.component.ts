@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { RecruiterComponent } from "../../recruiter.component";
 import { Tag } from "src/app/models/Tag";
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { startWith, map } from "rxjs/operators";
 
 @Component({
   selector: "app-recruiter-create-post",
@@ -15,6 +18,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   private routeParams;
   private queryParams;
   private tags: Tag[] = [];
+  private tagsString: string[] = [];
+  private myControl = new FormControl();
+  private filteredOptions: Observable<string[]>;
   private articleParams = {
     title: "",
     tags: [],
@@ -26,10 +32,16 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   ngOnInit() {
     this.getRouteParams();
     this.getQueryParams();
+    this.getAllTags();
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
+    );
     if (this.queryParams.edit) {
       this.loadRecruitPostData(this.queryParams.id);
     }
   }
+
   onCreatePost() {
     let requestBody = {
       email_company: this.routeParams.email,
@@ -39,29 +51,43 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   }
   onAddTag() {
     this.articleParams.tags.push(this.tagContent.trim());
-    console.log(this.articleParams.tags);
     this.tagContent = "";
   }
   onUpdatePost() {}
 
-  private loadRecruitPostData(id) {
+  loadRecruitPostData(id) {
     this.articleService.getArticleById(id).subscribe(data => {
       this.articleParams.title = data.title;
       this.articleParams.salary = data.salary;
       this.articleParams.description = data.description;
     });
   }
-  private getRouteParams() {
+  getRouteParams() {
     this.route.parent.params.subscribe(params => {
       this.routeParams = params;
     });
   }
-  private getQueryParams() {
+  getQueryParams() {
     this.route.parent.queryParams.subscribe(queryParams => {
       if (!queryParams) {
         return;
       }
       this.queryParams = queryParams;
     });
+  }
+
+  getAllTags() {
+    this.tagService.getAllTagsAPI().subscribe(tags => {
+      this.tags = tags;
+      tags.forEach(element => this.tagsString.push(element.content));
+    });
+  }
+
+  _filter(value: string): string[] {
+    console.log(value);
+    const filterValue = value.toLowerCase();
+    return this.tagsString.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 }

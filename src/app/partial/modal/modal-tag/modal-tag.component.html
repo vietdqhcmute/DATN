@@ -31,22 +31,31 @@
       </div>
       <div class="modal-body">
         <div class="search-tag">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Tag (ex: AngularJS)"
-              [(ngModel)]="searchTagText"
-            />
-          </mat-form-field>
+          <form class="auto-filter">
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto"
+                placeholder="Tag (ex: AngularJS)"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                  <span> {{ option }} </span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
         </div>
 
-        <div class="chose-tag">
+        <!-- <div class="chose-tag">
           <p>You 've chose those tags</p>
         </div>
 
         <div class="suggest-tag">
           <p>Suggested skills based off your profile:</p>
-        </div>
+        </div> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">

@@ -1,5 +1,5 @@
 <h3>Create new post</h3>
-<form>
+<div>
   <div class="form-group">
     <label>Tittle</label>
     <input
@@ -13,15 +13,24 @@
   <div>
     <label>Tag</label>
     <div class="add-tag" style="display: flex">
-      <input
-        type="text"
-        [(ngModel)]="tagContent"
-        name="tag"
-        class="form-control"
-        placeholder="Tags"
-      />
-      <!-- <button class="btn btn-info" (click)="onAddTag()">Add</button> -->
-      <app-modal-tag></app-modal-tag>
+      <form class="auto-filter">
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+            placeholder="Tag (ex: AngularJS)"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of tagsString" [value]="option">
+              <span> {{ option }} </span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <button class="btn btn-primary" (submit)="onAddTag()">Add Tag</button>
+      </form>
+
     </div>
   </div>
   <div class="tag-area">
@@ -64,4 +73,4 @@
   >
     Update post
   </button>
-</form>
+</div>

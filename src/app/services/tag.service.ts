@@ -7,15 +7,12 @@ import { Tag } from "../models/Tag";
   providedIn: "root"
 })
 export class TagService {
-  tags: Tag[] = [];
   domainName = environment.APIEndPoint;
 
   constructor(private http: HttpClient) {}
 
   getAllTagsAPI() {
-    this.http.get<Tag[]>(this.domainName + "tags").subscribe(tags => {
-      this.tags = tags;
-    });
+    return this.http.get<Tag[]>(this.domainName + "tags");
   }
   createTag(content: string) {
   }
