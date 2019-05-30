@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { RecruiterComponent } from "../../recruiter.component";
 import { Tag } from "src/app/models/Tag";
-import { FormControl } from "@angular/forms";
+import { FormControl, NgForm } from "@angular/forms";
 import { Observable } from "rxjs";
 import { startWith, map } from "rxjs/operators";
 
@@ -57,9 +57,11 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     };
     this.articleService.saveArticle(requestBody, this.routeParams.email);
   }
-  onAddTag() {
-    console.log(this.tagContent.value);
-    this.articleParams.tags.push(this.tagContent.value);
+  onAddTag(form: NgForm) {
+    if (this.tagContent.value === null) {
+      return;
+    }
+    this.articleParams.tags.push(this.tagContent.value.trim());
     this.tagContent.reset();
   }
   onUpdatePost() {}

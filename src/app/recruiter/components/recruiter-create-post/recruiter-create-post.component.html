@@ -13,7 +13,7 @@
   <div>
     <label>Tag</label>
     <div class="add-tag" style="display: flex">
-      <form class="auto-filter" (ngSubmit)="onAddTag()">
+      <form class="auto-filter" (ngSubmit)="onAddTag(searchTagForm)" #searchTagForm="ngForm">
         <mat-form-field>
           <input
             type="text"
