@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ArticleService } from "src/app/services/article.service";
 import { Router } from "@angular/router";
+import { RecruiterService } from "src/app/services/recruiter.service";
 
 @Component({
   selector: "app-job-frame-dashboard",
@@ -10,22 +11,33 @@ import { Router } from "@angular/router";
 })
 export class JobFrameDashboardComponent implements OnInit {
   @Input() jobDescription: any;
-  @Input() email: String;
+  @Input() email: string;
   @Output() deleteClick: EventEmitter<any> = new EventEmitter<any>();
-  constructor(private articleService: ArticleService, private router: Router) {}
+  articleImageURL: string;
+  constructor(
+    private articleService: ArticleService,
+    private router: Router,
+    private recruiterService: RecruiterService
+  ) {}
 
   ngOnInit() {
+    this.getArticleImageURL();
+  }
+
+  getArticleImageURL() {
+    this.recruiterService.getRecruiterAPI(this.email).subscribe(recruiter => {
+      this.articleImageURL = recruiter.image_url;
+      console.log(recruiter.image_url);
+    });
   }
   onUpdate() {
-    this.router.navigate(
-      ["recruiter", this.email, "create-post"],
-      { queryParams: { edit: true , id: this.jobDescription._id} }
-    );
+    this.router.navigate(["recruiter", this.email, "create-post"], {
+      queryParams: { edit: true, id: this.jobDescription._id }
+    });
   }
   onDelete() {
-    this.articleService
-      .deleteArticle(this.jobDescription._id)
-      .subscribe(response => {
+    this.articleService.deleteArticle(this.jobDescription._id).subscribe(
+      response => {
         console.log("Delete success!");
         this.deleteClick.emit({
           itemId: this.jobDescription._id,
@@ -38,8 +50,10 @@ export class JobFrameDashboardComponent implements OnInit {
         // Edit infomation of recruiter
         // remake starts
         //Show all articles by time in all-job
-      }, error=>{
+      },
+      error => {
         // console.log(error);
-      });
+      }
+    );
   }
 }
