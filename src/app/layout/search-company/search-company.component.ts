@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterService } from "src/app/services/recruiter.service";
 import { Recruiter } from "src/app/models/RecruiterData";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: "app-search-company",
@@ -13,7 +14,7 @@ export class SearchCompanyComponent implements OnInit {
   constructor(private recruiterService: RecruiterService) {}
   ngOnInit() {}
 
-  onSearch() {
+  onSearch(form: NgForm) {
     this.searchCompany(this.searchText);
   }
 

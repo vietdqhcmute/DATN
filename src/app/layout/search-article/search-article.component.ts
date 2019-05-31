@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleService } from "src/app/services/article.service";
 import { Articles } from "src/app/models/RecruiterData";
 import { Subscription } from "rxjs";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: "app-search-article",
@@ -37,7 +38,7 @@ export class SearchArticleComponent implements OnInit {
     });
   }
 
-  onSearch() {
+  onSearch(form: NgForm) {
     this.searchArticles(this.searchText);
     this.router.navigate(["search"], { queryParams: { key: this.searchText } });
   }

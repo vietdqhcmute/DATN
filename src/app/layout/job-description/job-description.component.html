@@ -3,12 +3,14 @@
     <div class="row">
       <div class="side_bar col-md-3" style="text-align: center;height: 500px;">
         <div class="logo">
-          <a routerLink=""><img alt="Logo" [src]="imageURL" /> </a>
+          <a [routerLink]="['/company', companyInfo.email]"
+            ><img alt="Logo" [src]="companyInfo.image_url" />
+          </a>
         </div>
         <div class="employer-info">
           <div class="name">
             <div class="company-name">
-              <a [routerLink]="['../../../', 'company', companyInfo.email]">
+              <a [routerLink]="['/company', companyInfo.email]">
                 <p>{{ companyInfo.company_name }}</p>
               </a>
             </div>
