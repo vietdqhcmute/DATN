@@ -6,7 +6,7 @@ let articleSchema = new mongoose.Schema({
   title: String,
   description: String,
   salary: String,
-  tags: [],
+  tags: [String],
   created_at: {
     type: Date,
     default: Date.now
@@ -16,6 +16,6 @@ let articleSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-articleSchema.index({name: 'text', 'email_company': 'text'});
+articleSchema.index({ name: 'text', tags: 'text', email_company: 'text' }, { unique: true });
 const Article = mongoose.model("Article", articleSchema);
 module.exports = Article;

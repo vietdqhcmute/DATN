@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
 import { RecruiterService } from "./recruiter.service";
-import { Articles } from '../models/RecruiterData';
+import { Articles } from "../models/RecruiterData";
 
 @Injectable({
   providedIn: "root"
 })
 export class ArticleService extends RecruiterService {
   searchArticle(searchText: string) {
-    return this.http.post<Articles[]>(
-      this.domainName + "search/articles?" + "key=" + searchText,
-      {}
+    return this.http.get<Articles[]>(
+      this.domainName + "search/articles?" + "key=" + searchText
     );
   }
   getAllArticles(email) {

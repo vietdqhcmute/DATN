@@ -69,9 +69,8 @@ export class RecruiterService {
   }
 
   searchCompany(searchText: string) {
-    return this.http.post<Recruiter[]>(
-      this.domainName + "search/companies?" + "key=" + searchText,
-      {}
+    return this.http.get<Recruiter[]>(
+      this.domainName + "search/companies?" + "key=" + searchText
     );
   }
 }
