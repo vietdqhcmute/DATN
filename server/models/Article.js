@@ -7,15 +7,13 @@ let articleSchema = new mongoose.Schema({
   description: String,
   salary: String,
   tags: [String],
-  created_at: {
-    type: Date,
-    default: Date.now
-  },
-  updated_at: {
-    type: Date,
-    default: Date.now
-  }
+  active: Boolean,
+  created_at: Date,
+  updated_at: Date
 });
-articleSchema.index({ name: 'text', tags: 'text', email_company: 'text' }, { unique: true });
+articleSchema.index(
+  { name: "text", tags: "text", email_company: "text" },
+  { unique: true }
+);
 const Article = mongoose.model("Article", articleSchema);
 module.exports = Article;

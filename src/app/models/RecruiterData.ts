@@ -5,11 +5,13 @@ export class Recruiter {
   email: string;
   phone: string;
   address: string;
-  employees: Number;
+  employees: string;
   website: string;
   overview: string;
-  candidate_followed: Array<any>;
-  city: String;
+  city: string;
+  production: string;
+  day_at_work: string;
+  slogan: string;
   created_at: Date;
   updated_at: Date;
 }
@@ -24,7 +26,7 @@ export class Articles {
 }
 
 export class ResponseArticle {
-  email: String;
+  email: string;
   articles: [];
-  _id: String;
+  _id: string;
 }

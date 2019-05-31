@@ -13,10 +13,10 @@
   <div class="example-container">
     <div class="name half-dialog">
       <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="recruiter.email" />
+        <input matInput [disabled]=true placeholder="Email" [(ngModel)]="recruiter.email" />
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Address"/>
+        <input matInput placeholder="Address" [(ngModel)]="recruiter.address"/>
       </mat-form-field>
     </div>
 
@@ -26,7 +26,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="City" />
+        <input matInput placeholder="City" [(ngModel)]="recruiter.city" />
       </mat-form-field>
     </div>
     <div class="contact half-dialog">
@@ -40,11 +40,11 @@
     </div>
     <div class="contact half-dialog">
       <mat-form-field>
-        <input matInput placeholder="Production" />
+        <input matInput placeholder="Production" [(ngModel)]="recruiter.production"/>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Date at work" />
+        <input matInput placeholder="Date at work"[(ngModel)]="recruiter.day_at_work" />
       </mat-form-field>
     </div>
     <div class="form-group">

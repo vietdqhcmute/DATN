@@ -45,6 +45,7 @@ export class RecruiterComponent implements OnInit {
       .getRecruiter(email)
       .pipe(first())
       .subscribe(recruiter => {
+        console.log(recruiter);
         this.recruiter = <Recruiter>recruiter;
       });
     this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
