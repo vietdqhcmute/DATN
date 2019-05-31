@@ -10,10 +10,7 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ["./job-description.component.scss"]
 })
 export class JobDescriptionComponent implements OnInit {
-  imageURL =
-    "https://cdn.itviec.com/employers/codebox-solutions/logo/w170/iyjuPfdRuWT3EQFTo6PCkKms/codebox-solutions-logo.png";
-  company_name = "Codebox Solution Ltd";
-  companyInfo = {
+  private companyInfo = {
     _id: "",
     image_url: "",
     company_name: "",
@@ -23,7 +20,7 @@ export class JobDescriptionComponent implements OnInit {
     date_at_work: "",
     email:""
   };
-  jobInfo = {
+  private jobInfo = {
     _id: "",
     title: "",
     salary: "",
