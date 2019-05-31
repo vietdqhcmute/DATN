@@ -17,26 +17,6 @@ import { AlertService } from "src/app/services/alert.service";
 })
 export class CompanyReviewComponent extends RecruiterComponent
   implements OnInit {
-  constructor(
-    protected recruiterService: RecruiterService,
-    protected articleService: ArticleService,
-    protected route: ActivatedRoute,
-    protected router: Router,
-    protected titleService: Title,
-    private reviewService: ReviewService,
-    protected authService: AuthService,
-    protected alertService: AlertService
-  ) {
-    super(
-      recruiterService,
-      articleService,
-      route,
-      router,
-      titleService,
-      authService,
-      alertService
-    );
-  }
   reviewData: Review = new Review();
   title: String;
   isShowCriticism = true;

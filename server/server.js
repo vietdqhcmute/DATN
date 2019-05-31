@@ -53,10 +53,10 @@ const authRoutes = require("./auth");
 const adminRoutes = require("./routes/admin-routes");
 const statisticRoutes = require("./routes/statistic-routes");
 const awsRoutes = require("./aws/aws-routes");
-const candidateRoutes = require("./routes/candidate_routes");
-const recruiterRoutes = require("./routes/recruiter_routes");
-const tagRoutes = require("./routes/tag_routes");
-const reviewRoutes = require("./routes/review_routes");
+const candidateRoutes = require("./routes/candidate-routes");
+const recruiterRoutes = require("./routes/recruiter-routes");
+const tagRoutes = require("./routes/tag-routes");
+const reviewRoutes = require("./routes/review-routes");
 const searchingRoutes = require("./routes/searching-routes");
 // routes
 app.use("/", indexRoutes);

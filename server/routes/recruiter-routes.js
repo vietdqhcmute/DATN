@@ -65,10 +65,11 @@ router.post("/article/", (req, res) => {
     title: req.body.article.title,
     description: req.body.article.description,
     salary: req.body.article.salary,
-    tag: req.body.article.tag,
+    tags: req.body.article.tags,
     created_at: today,
     updated_at: today
   });
+  console.log(req.body);
   requestArticle.save((err, data) => {
     if (err) {
       return console.log(err);

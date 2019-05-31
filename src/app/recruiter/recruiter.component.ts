@@ -8,6 +8,8 @@ import { Subscription, Subject } from "rxjs";
 import { ArticleService } from "../services/article.service";
 import { AuthService } from "../services/auth.service";
 import { AlertService } from "../services/alert.service";
+import { TagService } from '../services/tag.service';
+import { ReviewService } from '../services/review.service';
 
 @Component({
   selector: "app-recruiter",
@@ -25,13 +27,14 @@ export class RecruiterComponent implements OnInit {
     protected router: Router,
     protected titleService: Title,
     protected authService: AuthService,
-    protected alertService: AlertService
+    protected alertService: AlertService,
+    protected tagService: TagService,
+    protected reviewService: ReviewService,
   ) {}
 
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
       this.loadRecruiterData(params.get("email"));
-      this.titleService.setTitle(this.recruiter.company_name);
     });
     this.getRecruiterEmail();
     this.alertService.setHideTopBar(true);

@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 let tagSchema = new mongoose.Schema({
-  tag_name:{
-    type: String,
-    unique: true
-  }
+  content: String
 });
 
 const Tag = mongoose.model("Tag", tagSchema);

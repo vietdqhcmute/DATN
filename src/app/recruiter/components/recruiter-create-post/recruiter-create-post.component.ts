@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { RecruiterComponent } from "../../recruiter.component";
+import { Tag } from "src/app/models/Tag";
+import { FormControl, NgForm } from "@angular/forms";
+import { Observable } from "rxjs";
+import { startWith, map } from "rxjs/operators";
 
 @Component({
   selector: "app-recruiter-create-post",
@@ -12,9 +16,13 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   public Editor = ClassicEditor;
   private routeParams;
   private queryParams;
-  recruitPostData = {
+  private tags: Tag[] = [];
+  private tagsString: string[] = [];
+  private tagContent = new FormControl();
+  private filteredOptions: Observable<string[]>;
+  private articleParams = {
     title: "",
-    tag: [],
+    tags: [],
     salary: "",
     description: "",
     created_at: new Date(),
@@ -23,38 +31,65 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   ngOnInit() {
     this.getRouteParams();
     this.getQueryParams();
+    this.getAllTags();
+    // this.filteredOptions = this.tagContent.valueChanges.subscribe(value=>this._filter(value));
+    this.filteredOptions = this.tagContent.valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
+    );
     if (this.queryParams.edit) {
       this.loadRecruitPostData(this.queryParams.id);
     }
   }
-  onCreatePost() {
-      let requestBody = {
-        email_company: this.routeParams.email,
-        article: this.recruitPostData
-      };
-      this.articleService.saveArticle(requestBody, this.routeParams.email);
-  }
-  onUpdatePost(){
 
+  _filter(value: string): string[] {
+    console.log(value);
+    const filterValue = value.toLowerCase();
+    return this.tagsString.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
-  private loadRecruitPostData(id) {
-    this.articleService.getArticleById(id).subscribe(data=>{
-      this.recruitPostData.title = data.title;
-      this.recruitPostData.salary = data.salary;
-      this.recruitPostData.description = data.description;
+
+  onCreatePost() {
+    let requestBody = {
+      email_company: this.routeParams.email,
+      article: this.articleParams
+    };
+    this.articleService.saveArticle(requestBody, this.routeParams.email);
+  }
+  onAddTag(form: NgForm) {
+    if (this.tagContent.value === null) {
+      return;
+    }
+    this.articleParams.tags.push(this.tagContent.value.trim());
+    this.tagContent.reset();
+  }
+  onUpdatePost() {}
+
+  loadRecruitPostData(id) {
+    this.articleService.getArticleById(id).subscribe(data => {
+      this.articleParams.title = data.title;
+      this.articleParams.salary = data.salary;
+      this.articleParams.description = data.description;
     });
   }
-  private getRouteParams() {
+  getRouteParams() {
     this.route.parent.params.subscribe(params => {
       this.routeParams = params;
     });
   }
-  private getQueryParams() {
+  getQueryParams() {
     this.route.parent.queryParams.subscribe(queryParams => {
       if (!queryParams) {
         return;
       }
       this.queryParams = queryParams;
+    });
+  }
+  getAllTags() {
+    this.tagService.getAllTagsAPI().subscribe(tags => {
+      this.tags = tags;
+      tags.forEach(element => this.tagsString.push(element.content));
     });
   }
 }
