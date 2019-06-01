@@ -3,21 +3,21 @@
     <div class="row">
       <div class="side_bar col-md-3" style="text-align: center;height: 500px;">
         <div class="logo">
-          <a [routerLink]="['/company', companyInfo.email]"
-            ><img alt="Logo" [src]="companyInfo.image_url" />
+          <a [routerLink]="['/company', recruiterInfo.email]"
+            ><img alt="Logo" [src]="recruiterInfo.image_url" />
           </a>
         </div>
         <div class="employer-info">
           <div class="name">
             <div class="company-name">
-              <a [routerLink]="['/company', companyInfo.email]">
-                <p>{{ companyInfo.company_name }}</p>
+              <a [routerLink]="['/company', recruiterInfo.email]">
+                <p>{{ recruiterInfo.company_name }}</p>
               </a>
             </div>
           </div>
           <div class="basic-info">
             <div class="short-info">
-              Work on cutting edge technologies and rocket your career!
+              {{ recruiterInfo.slogan }}
             </div>
             <p class="gear-icon short">
               <i class="fas fa-cogs"></i>&nbsp;&nbsp;Outsourcing
@@ -40,7 +40,7 @@
         <div class="header">
           <div class="job-info">
             <h1 class="job-title">
-              {{ jobInfo.title }}
+              {{ articleInfo.title }}
             </h1>
             <div style="float: right;margin-right: 20px">
               <button type="button" class="btn btn-danger font-weight-bold">
@@ -48,19 +48,19 @@
               </button>
             </div>
             <div class="job-info-detail">
-              Salary:&nbsp;<span>{{ jobInfo.salary }}</span>
+              Salary:&nbsp;<span>{{ articleInfo.salary }}</span>
             </div>
             <div class="job-info-detail">
               Address:&nbsp;<span>So 1 Vo Van Ngan</span>
             </div>
             <div class="job-info-detail">
               Date:&nbsp;<span>{{
-                jobInfo.created_at | date: "dd/MM/yyyy"
+                articleInfo.created_at | date: "dd/MM/yyyy"
               }}</span>
             </div>
           </div>
         </div>
-        <div class="job-more-info" [innerHTML]="jobInfo.description"></div>
+        <div class="job-more-info" [innerHTML]="articleInfo.description"></div>
       </div>
     </div>
   </div>
