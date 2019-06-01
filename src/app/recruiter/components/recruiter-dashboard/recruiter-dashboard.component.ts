@@ -38,6 +38,11 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     this.deleteArticleBackEnd(_id);
     this.deleteArticleFrontEnd(_id);
   }
+  onUpdate(_id: string){
+    this.router.navigate(["recruiter", this.company_email, "create-post"], {
+      queryParams: { edit: true, id: _id }
+    });
+  }
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {
       console.log("Delete success!");
