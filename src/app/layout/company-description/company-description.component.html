@@ -12,7 +12,7 @@
       </div>
       <div class="company-info">
         <div class="logo">
-          <a routerLink=""><img alt="Logo" [src]="imageURL" /> </a>
+          <a routerLink=""><img alt="Logo" [src]="recruiter.image_url" /> </a>
         </div>
         <div class="employer-info">
           <div style="float: right;padding: 50px 50px;">
@@ -32,27 +32,26 @@
           </div>
           <div class="basic-info">
             <div class="city-icon short">
-              <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Ho Chi Minh, Da
-              Nang, Ha Noi
+              <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{{recruiter.city}}
             </div>
             <div class="country-icon short">
               <i class="far fa-flag"></i>&nbsp;&nbsp;Viet Nam
             </div>
             <p class="gear-icon short">
-              <i class="fas fa-cogs"></i>&nbsp;&nbsp;Outsourcing
+              <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{recruiter.production}}
             </p>
             <p class="group-icon short">
-              <i class="fas fa-users"></i>&nbsp;&nbsp;51-150
+              <i class="fas fa-users"></i>&nbsp;&nbsp;{{recruiter.employees}}
             </p>
             <div class="working-date short">
-              <i class="fa fa-calendar"></i>&nbsp;&nbsp;Monday - Friday
+              <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{recruiter.day_at_work}}
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row company-container">
-      <div class="col-md-8" style="background-color: red">Tabs................</div>
+      <div class="col-md-8" [innerHTML]="recruiter.overview"></div>
       <div class="col-md-4" style="background-color: blue">XYZ</div>
     </div>
 
