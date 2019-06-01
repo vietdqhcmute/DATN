@@ -43,6 +43,9 @@ export class RecruiterDashboardComponent extends RecruiterComponent
       queryParams: { edit: true, id: _id }
     });
   }
+  onPreview(_id: string){
+
+  }
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {
       console.log("Delete success!");
