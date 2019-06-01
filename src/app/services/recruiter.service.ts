@@ -13,7 +13,7 @@ export class RecruiterService {
   domainName = environment.APIEndPoint;
   private avatarURL = new Subject<string>();
   private recruiter = new Subject<Recruiter>();
-  private recruiterEmail = new Subject<string>();
+  public recruiterEmail = new Subject<string>();
 
   constructor(
     protected http: HttpClient,
@@ -36,7 +36,6 @@ export class RecruiterService {
   getRecruiter(email) {
     this.getRecruiterAPI(email).subscribe(recruiter => {
       this.recruiter.next(recruiter);
-      this.recruiterEmail.next(recruiter.email);
     });
     return this.recruiter.asObservable();
   }
@@ -69,9 +68,8 @@ export class RecruiterService {
   }
 
   searchCompany(searchText: string) {
-    return this.http.post<Recruiter[]>(
-      this.domainName + "search/companies?" + "key=" + searchText,
-      {}
+    return this.http.get<Recruiter[]>(
+      this.domainName + "search/companies?" + "key=" + searchText
     );
   }
 }

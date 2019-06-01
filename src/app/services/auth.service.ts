@@ -75,11 +75,10 @@ export class AuthService {
       .post(this.domainName + "recruiter/sign-up", recruiterParams)
       .subscribe(
         response => {
-          console.log(response);
           this.alertService.success("Create successfully!", true);
         },
         error => {
-          console.log(error);
+          console.error(error);
           this.alertService.error(error, false);
         }
       );

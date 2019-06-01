@@ -13,15 +13,18 @@ let recruiterSchema = new mongoose.Schema({
   address: String,
   city: String,
   website: String,
-  employees: Number,
+  employees: String,
   overview: String,
+  city: String,
   production: String,
   day_at_work: String,
-
+  slogan: String,
+  created_at: Date,
+  updated_at: Date
 });
 recruiterSchema.index({
   name: 'text',
-  'company_name': 'text'
+  company_name: 'text'
 });
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
 module.exports = Recruiter;
