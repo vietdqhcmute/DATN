@@ -18,6 +18,7 @@ let recruiterSchema = new mongoose.Schema({
   city: String,
   production: String,
   day_at_work: String,
+  slogan: String,
   created_at: Date,
   updated_at: Date
 });

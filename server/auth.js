@@ -103,6 +103,7 @@ router.post("/recruiter/sign-up", (req, res) => {
       city: req.body.city,
       production: "",
       day_at_work: "",
+      slogan:"Add your new slogan!",
       created_at: today,
       updated_at: today
     };

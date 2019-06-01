@@ -8,8 +8,8 @@ import { Subscription, Subject } from "rxjs";
 import { ArticleService } from "../services/article.service";
 import { AuthService } from "../services/auth.service";
 import { AlertService } from "../services/alert.service";
-import { TagService } from '../services/tag.service';
-import { ReviewService } from '../services/review.service';
+import { TagService } from "../services/tag.service";
+import { ReviewService } from "../services/review.service";
 
 @Component({
   selector: "app-recruiter",
@@ -29,7 +29,7 @@ export class RecruiterComponent implements OnInit {
     protected authService: AuthService,
     protected alertService: AlertService,
     protected tagService: TagService,
-    protected reviewService: ReviewService,
+    protected reviewService: ReviewService
   ) {}
 
   ngOnInit() {
@@ -41,6 +41,7 @@ export class RecruiterComponent implements OnInit {
   }
 
   loadRecruiterData(email) {
+    this.recruiterService.recruiterEmail.next(email);
     this.recruiterService
       .getRecruiter(email)
       .pipe(first())
@@ -48,13 +49,11 @@ export class RecruiterComponent implements OnInit {
         console.log(recruiter);
         this.recruiter = <Recruiter>recruiter;
       });
-    this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
-      this.recruiterEmail = email;
-    });
   }
 
   getRecruiterEmail() {
     this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
+      console.log(email);
       this.recruiterEmail = email;
     });
   }
