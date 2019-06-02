@@ -11,9 +11,12 @@ export class RecruiterReviewComponent extends RecruiterComponent
   reviews = [];
   ngOnInit() {
     this.route.parent.params.subscribe(params => {
-      this.reviewService.getAllReviewByEmail(params.email).subscribe(data => {
-        this.reviews = data.review_posts;
-      });
+      this.reviewService
+        .getAllReviewByEmail(params.email)
+        .subscribe(reviews => {
+          console.log(reviews);
+          this.reviews = reviews;
+        });
     });
   }
 }

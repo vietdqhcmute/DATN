@@ -82,17 +82,6 @@ export class AuthService {
           this.alertService.error(error, false);
         }
       );
-    //Add in RecruiterReview table
-    this.http
-      .post(this.domainName + "add/review/" + recruiterParams.email, {})
-      .subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
   }
 
   autoLogin() {
