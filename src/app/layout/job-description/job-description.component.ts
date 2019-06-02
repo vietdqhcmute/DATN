@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RecruiterService } from "src/app/services/recruiter.service";
 import { Subscription } from "rxjs";
-import { ArticleService } from 'src/app/services/article.service';
+import { ArticleService } from "src/app/services/article.service";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-job-description",
@@ -10,6 +11,9 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ["./job-description.component.scss"]
 })
 export class JobDescriptionComponent implements OnInit {
+  private articleId: string;
+  private candidateEmai: string;
+  private recruiterEmail: string;
   private recruiterInfo = {
     _id: "",
     image_url: "",
@@ -18,8 +22,8 @@ export class JobDescriptionComponent implements OnInit {
     type: "",
     employees: "",
     date_at_work: "",
-    email:"",
-    slogan:""
+    email: "",
+    slogan: ""
   };
   private articleInfo = {
     _id: "",
@@ -32,26 +36,27 @@ export class JobDescriptionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private recruiterService: RecruiterService,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.getBrowserAuthData();
     this.route.paramMap.subscribe(params => {
+      this.articleId = params.get("id");
       this.getPost(params.get("id"));
       this.getCompanyData(params.get("email"));
     });
   }
 
   private getPost(id: String) {
-    this.sub = this.articleService
-      .getArticleById(id)
-      .subscribe(jobData => {
-        this.articleInfo._id = jobData._id;
-        this.articleInfo.title = jobData.title;
-        this.articleInfo.salary = jobData.salary;
-        this.articleInfo.created_at = jobData.created_at;
-        this.articleInfo.description = jobData.description;
-      });
+    this.sub = this.articleService.getArticleById(id).subscribe(jobData => {
+      this.articleInfo._id = jobData._id;
+      this.articleInfo.title = jobData.title;
+      this.articleInfo.salary = jobData.salary;
+      this.articleInfo.created_at = jobData.created_at;
+      this.articleInfo.description = jobData.description;
+    });
   }
   private getCompanyData(email) {
     this.sub = this.recruiterService
@@ -66,5 +71,32 @@ export class JobDescriptionComponent implements OnInit {
         this.recruiterInfo.email = response.email;
         this.recruiterInfo.slogan = response.slogan;
       });
+  }
+  onApply() {
+    const applyParams = {
+      email: this.candidateEmai
+    };
+    this.articleService.applyArticle(applyParams, this.articleId).subscribe(
+      success => {
+        console.log(success);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  private getBrowserAuthData() {
+    const authData = this.authService.getAuthData();
+    if (!authData) {
+      return;
+    }
+    if (authData.role === 1) {
+      this.candidateEmai = authData.email;
+    } else if (authData.role === 2) {
+      this.recruiterEmail = authData.email;
+    } else {
+      // this.loginAsAdministrator();
+    }
   }
 }
