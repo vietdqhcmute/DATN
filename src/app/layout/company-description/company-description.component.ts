@@ -16,15 +16,16 @@ export class CompanyDescriptionComponent extends RecruiterComponent
   reviews = [];
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
+      this.company_email = params.get("email");
       this.loadRecruiterData(params.get("email"));
       this.getReviews(params.get("email"));
-      this.company_email = params.get("email");
     });
   }
 
   getReviews(email){
     this.reviewService.getAllReviewByEmail(email).subscribe(data => {
-      this.reviews = data.review_posts;
+      this.reviews = data;
+      console.log(this.reviews);
     });
   }
   onReview() {
