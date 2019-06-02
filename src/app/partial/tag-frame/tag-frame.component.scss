@@ -1,23 +1,32 @@
-:host{
-  .tag{
+:host {
+  .tag {
     color: rgb(44, 44, 44);
     border-radius: 12px;
     width: fit-content;
     padding: 10px;
     margin: 0 7px 7px 0;
     background-color: rgb(218, 216, 216);
+    position: relative;
   }
-  .delete-button{
+  .delete-button {
     float: right;
+    -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
   }
-  .delete{
-    left: 11px;
-    top: -13px;
+  .delete {
+    right: -5px;
+    top: -5px;
+    position: absolute;
   }
-  i{
+  i {
+    font-size: 15px;
     border: 1px solid;
     border-radius: 50%;
-    color: white;
-    background: black;
+    color: #cacaca;
+    background-color: #131313;
   }
 }

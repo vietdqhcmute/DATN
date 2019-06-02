@@ -3,11 +3,7 @@
     <div class="row job-des-header" style="border: 1px solid #d8d8d8;background-color: #fff ">
       <div class="cover-images-desktop">
         <div class="logo">
-          <img
-            width="100%"
-            alt="FPT Software Headline Photo"
-            [src]="imageURL_company"
-          />
+          <img width="100%" alt="FPT Software Headline Photo" [src]="imageURL_company" />
         </div>
       </div>
       <div class="company-info">
@@ -52,7 +48,27 @@
     </div>
     <div class="row company-container">
       <div class="col-md-8" [innerHTML]="recruiter.overview"></div>
-      <div class="col-md-4" style="background-color: blue">XYZ</div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="panel panel-default company-right company-ratings"
+            style="border: 1px solid #d8d8d8;background-color: #fff;width: 100%">
+            <div class="panel-heading">
+              <h4 class="panel-title">Ratings</h4>
+            </div>
+            <div class="panel-body">
+              <app-recruiter-review-post></app-recruiter-review-post>
+            </div>
+          </div>
+          <div class="panel panel-default company-right feature-reviews"
+            style="border: 1px solid #d8d8d8;background-color: #fff;width: 100%">
+            <div class="panel-heading">
+              <h4 class="panel-title">Feature Reviews</h4>
+            </div>
+            <div class="panel-body">Panel Content</div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </div>
