@@ -19,6 +19,7 @@ import { ModalResumeEducationComponent } from "./modal/modal-resume-education/mo
 import { TagFrameComponent } from './tag-frame/tag-frame.component';
 import { ModalTagComponent } from './modal/modal-tag/modal-tag.component';
 import { ModalPreviewArticleComponent } from './modal/modal-preview-article/modal-preview-article.component';
+import { RecruiterReviewRatingComponent } from './recruiter-review-rating/recruiter-review-rating.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ModalPreviewArticleComponent } from './modal/modal-preview-article/moda
     ModalResumeEducationComponent,
     TagFrameComponent,
     ModalTagComponent,
-    ModalPreviewArticleComponent
+    ModalPreviewArticleComponent,
+    RecruiterReviewRatingComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { ModalPreviewArticleComponent } from './modal/modal-preview-article/moda
     ModalResumeEducationComponent,
     TagFrameComponent,
     ModalTagComponent,
-    ModalPreviewArticleComponent
+    ModalPreviewArticleComponent,
+    RecruiterReviewRatingComponent
   ]
 })
 export class PartialModule {}
