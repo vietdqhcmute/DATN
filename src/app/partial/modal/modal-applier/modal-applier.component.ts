@@ -14,12 +14,6 @@ export class ModalApplierComponent implements OnInit {
   @Input() _id: string;
 
   private candidates: Candidate[] = [];
-  displayedColumns: string[] = [
-    "position",
-    "image",
-    "name",
-    "email"
-  ];
   constructor(
     private articleService: ArticleService,
     private candidateService: CandidateService
