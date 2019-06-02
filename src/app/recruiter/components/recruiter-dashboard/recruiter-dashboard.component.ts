@@ -67,10 +67,4 @@ export class RecruiterDashboardComponent extends RecruiterComponent
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  onApplyList(_id: string) {
-    this.articleService
-      .getAllAppliersByArticleId(_id)
-      .subscribe(appliers => {});
-  }
 }
