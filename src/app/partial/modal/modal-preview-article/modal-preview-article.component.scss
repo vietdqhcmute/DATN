@@ -1,0 +1,36 @@
+:host {
+  mat-form-field {
+    width: 100%;
+    margin: 0px 10px;
+  }
+
+
+  .modal-body {
+    height: 70vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .tags{
+    display: flex;
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+
+    >* {
+      width: 100%;
+    }
+
+    .half-dialog {
+      justify-content: space-between;
+
+      mat-form-field {
+        width: 47%;
+        margin: 0px 10px;
+      }
+    }
+  }
+
+
+}

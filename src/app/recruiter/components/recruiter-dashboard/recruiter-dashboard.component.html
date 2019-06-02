@@ -1,13 +1,13 @@
 <div class="list-job-frame" *ngIf="articles && company_email">
   <h3>List of posts</h3>
   <mat-form-field>
-      <input
-        style="width:100%"
-        matInput
-        (keyup)="applyFilter($event.target.value)"
-        placeholder="Find"
-      />
-    </mat-form-field>
+    <input
+      style="width:100%"
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Find"
+    />
+  </mat-form-field>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Number of column -->
     <ng-container matColumnDef="position">
@@ -30,11 +30,7 @@
     <ng-container matColumnDef="preview">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <button class="btn btn-default" (click)="onPreview(element._id)">
-          <i class="material-icons">
-            remove_red_eye
-          </i>
-        </button>
+        <app-modal-preview-article [article]="element"></app-modal-preview-article>
       </td>
     </ng-container>
     <!-- Update column -->
