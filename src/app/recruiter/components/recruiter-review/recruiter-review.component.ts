@@ -14,7 +14,6 @@ export class RecruiterReviewComponent extends RecruiterComponent
       this.reviewService
         .getAllReviewByEmail(params.email)
         .subscribe(reviews => {
-          console.log(reviews);
           this.reviews = reviews;
         });
     });
