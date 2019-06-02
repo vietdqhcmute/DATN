@@ -58,6 +58,7 @@ const recruiterRoutes = require("./routes/recruiter-routes");
 const tagRoutes = require("./routes/tag-routes");
 const reviewRoutes = require("./routes/review-routes");
 const searchingRoutes = require("./routes/searching-routes");
+const articleRoutes = require("./routes/article-routes");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
@@ -68,6 +69,7 @@ app.use("/", candidateRoutes);
 app.use("/", recruiterRoutes);
 app.use("/", tagRoutes);
 app.use("/", reviewRoutes);
+app.use("/", articleRoutes);
 app.use("/search", searchingRoutes);
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
