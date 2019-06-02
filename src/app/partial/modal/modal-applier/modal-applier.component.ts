@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ArticleService } from "src/app/services/article.service";
+import { Candidate } from "src/app/models/CandidateData";
+import { CandidateService } from "src/app/services/candidate.service";
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: "app-modal-applier",
@@ -8,15 +11,33 @@ import { ArticleService } from "src/app/services/article.service";
 })
 export class ModalApplierComponent implements OnInit {
   @Input() appliers: [string];
-  constructor(private articleService: ArticleService) {}
+  @Input() _id: string;
+
+  private candidates: Candidate[] = [];
+  displayedColumns: string[] = [
+    "position",
+    "image",
+    "name",
+    "email"
+  ];
+  constructor(
+    private articleService: ArticleService,
+    private candidateService: CandidateService
+  ) {}
 
   ngOnInit() {
-    console.log(this.appliers);
+    this.onApplyList();
   }
 
-  onApplyList(_id: string) {
+  onApplyList() {
     this.articleService
-      .getAllAppliersByArticleId(_id)
-      .subscribe(appliers => {});
+      .getAllAppliersByArticleId(this._id)
+      .subscribe(appliers => {
+        appliers.forEach(email => {
+          this.candidateService.getCandidateAPI(email).subscribe(candidate => {
+            this.candidates.push(<Candidate>candidate);
+          });
+        });
+      });
   }
 }
