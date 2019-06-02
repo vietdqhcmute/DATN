@@ -34,14 +34,15 @@ export class RecruiterComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe(params => {
+      this.recruiterEmail = params.get("email");
+      // this.getRecruiterEmail();
       this.loadRecruiterData(params.get("email"));
+      // this.setRecruiterEmail(params.get("email"))
     });
-    this.getRecruiterEmail();
     this.alertService.setHideTopBar(true);
   }
 
   loadRecruiterData(email) {
-    this.recruiterService.recruiterEmail.next(email);
     this.recruiterService
       .getRecruiter(email)
       .pipe(first())
@@ -53,11 +54,18 @@ export class RecruiterComponent implements OnInit {
 
   getRecruiterEmail() {
     this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
-      console.log(email);
       this.recruiterEmail = email;
     });
   }
 
+  setRecruiterEmail(email){
+    this.recruiterService.setRecruiterEmailObservable(email);
+  }
+  onTestEmail(){
+    this.recruiterService.getRecruiterEmailObservable().subscribe(email=>{
+      console.log(email);
+    })
+  }
   private onLogOut() {
     this.sub.unsubscribe();
     this.authService.logout();

@@ -49,11 +49,16 @@ export class CompanyReviewComponent extends RecruiterComponent
     }
   }
 
+  onGetEmail() {
+    this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
+      console.log(email);
+    });
+  }
+
   onSubmit(): void {
     this.getRating();
-    this.reviewService
-      .createReviewPost(this.recruiter.email, this.reviewData)
-      .subscribe(reponse => {});
+    this.reviewData.email = this.recruiterEmail;
+    this.reviewService.createReview(this.reviewData).subscribe(reponse => {});
   }
   private getRating(): void {
     this.reviewData.rate_general = this.items[0].rating;

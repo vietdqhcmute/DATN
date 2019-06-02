@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Recruiter = require("../models/Recruiter");
 const Article = require("../models/Article");
-const Review = require('../models/Review');
-const ReviewPost = require("../models/ReviewPost");
 
 const today = new Date;
 
@@ -45,7 +43,8 @@ router.put("/update/recruiter/:id", async (req, res) => {
       req.body, {
         upsert: true,
         new: true,
-        setDefaultsOnInsert: true
+        setDefaultsOnInsert: true,
+        strict: false
       }
     );
     res.status(200).redirect("/recruiter/" + req.params.id);

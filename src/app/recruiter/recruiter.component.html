@@ -26,15 +26,18 @@
       <router-outlet></router-outlet>
     </div>
     <div class="right-bar col-md-3">
+      <a routerLink="./profile">
+        <button class="btn btn-primary">Edit profile</button>
+      </a>
       <h3>Infomation:</h3>
       <p>Email: {{ recruiter.email }}</p>
       <p>Website: {{ recruiter.website }}</p>
       <p>Phone: {{ recruiter.phone }}</p>
-      <p>Address: {{recruiter.address}}</p>
-      <p>Employees: {{recruiter.employees}}</p>
-      <p>City: {{recruiter.city}}</p>
-      <p>Production: {{recruiter.product}}</p>
-      <p>Day at work: {{recruiter.day_at_work}}</p>
+      <p>Address: {{ recruiter.address }}</p>
+      <p>Employees: {{ recruiter.employees }}</p>
+      <p>City: {{ recruiter.city }}</p>
+      <p>Production: {{ recruiter.product }}</p>
+      <p>Day at work: {{ recruiter.day_at_work }}</p>
     </div>
   </div>
 </div>
