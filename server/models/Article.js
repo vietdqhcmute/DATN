@@ -8,6 +8,7 @@ let articleSchema = new mongoose.Schema({
   salary: String,
   tags: [String],
   active: Boolean,
+  applied: [String],
   created_at: Date,
   updated_at: Date
 });
