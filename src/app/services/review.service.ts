@@ -10,14 +10,11 @@ export class ReviewService {
 
   constructor(private http: HttpClient) {}
 
-  createReviewPost(email: String, reviewPost: any) {
-    return this.http.put<any>(
-      this.domainName + "push/review/" + email,
-      reviewPost
-    );
+  createReview(review: any) {
+    return this.http.post<any>(this.domainName + "review/", review);
   }
 
   getAllReviewByEmail(email: String) {
-    return this.http.get<any>(this.domainName + "reviews/"+email);
+    return this.http.get<any>(this.domainName + "reviews/" + email);
   }
 }

@@ -25,6 +25,10 @@ export class RecruiterService {
     return this.recruiter.asObservable();
   }
 
+  setRecruiterEmailObservable(email: string) {
+    this.recruiterEmail.next(email);
+  }
+
   getRecruiterEmailObservable() {
     return this.recruiterEmail.asObservable();
   }

@@ -1,5 +1,5 @@
 export class Review {
-  company_email: String;
+  email: String;
   rate_general: Number;
   rate_salary: Number;
   rate_training: Number;
@@ -14,7 +14,7 @@ export class Review {
   isIntroduce: Boolean;
   created_at: Date;
   constructor() {
-    this.company_email = "";
+    this.email = "";
     this.rate_general = 0;
     this.rate_salary = 0;
     this.rate_training = 0;
