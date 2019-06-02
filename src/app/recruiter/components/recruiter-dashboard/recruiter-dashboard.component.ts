@@ -16,6 +16,7 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     "position",
     "title",
     "date",
+    "applier",
     "preview",
     "update",
     "delete"
@@ -38,14 +39,12 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     this.deleteArticleBackEnd(_id);
     this.deleteArticleFrontEnd(_id);
   }
-  onUpdate(_id: string){
+  onUpdate(_id: string) {
     this.router.navigate(["recruiter", this.company_email, "create-post"], {
       queryParams: { edit: true, id: _id }
     });
   }
-  onPreview(_id: string){
-
-  }
+  onPreview(_id: string) {}
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {
       console.log("Delete success!");
@@ -67,5 +66,11 @@ export class RecruiterDashboardComponent extends RecruiterComponent
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onApplyList(_id: string) {
+    this.articleService
+      .getAllAppliersByArticleId(_id)
+      .subscribe(appliers => {});
   }
 }
