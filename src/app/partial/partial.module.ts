@@ -40,7 +40,7 @@ import { ModalApplierComponent } from './modal/modal-applier/modal-applier.compo
     TagFrameComponent,
     ModalTagComponent,
     ModalPreviewArticleComponent,
-    ModalApplierComponent
+    ModalApplierComponent,
     ModalPreviewArticleComponent,
     RecruiterReviewRatingComponent
   ],
@@ -68,7 +68,7 @@ import { ModalApplierComponent } from './modal/modal-applier/modal-applier.compo
     TagFrameComponent,
     ModalTagComponent,
     ModalPreviewArticleComponent,
-    ModalApplierComponent
+    ModalApplierComponent,
     ModalPreviewArticleComponent,
     RecruiterReviewRatingComponent
   ]
