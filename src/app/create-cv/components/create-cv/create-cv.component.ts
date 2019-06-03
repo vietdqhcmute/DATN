@@ -38,13 +38,13 @@ export class CreateCvComponent implements OnInit {
     this.sub = this.route.paramMap.subscribe(params => {
       this.paramsEmail = params.get("email");
       this.loadCandidateData(this.paramsEmail);
-      this.titleService.setTitle("Profile of " + this.paramsEmail);
     });
   }
   private loadCandidateData(email) {
     this.candidateService.getCandidate(email).subscribe(candidate=>{
       this.candidate = <Candidate>candidate;
       this.resume = this.candidate.resume;
+      this.titleService.setTitle("Profile of " + this.candidate.full_name);
     });
   }
 }
