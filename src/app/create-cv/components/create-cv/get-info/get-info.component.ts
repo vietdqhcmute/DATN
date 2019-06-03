@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { CreateCvComponent } from "../create-cv.component";
-import { Resume, Candidate, Experience } from "src/app/models/CandidateData";
+import { Resume, Candidate, Experience, Project } from "src/app/models/CandidateData";
 
 @Component({
   selector: "app-get-info",
@@ -15,5 +15,8 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
 
   onSaveExperience(modaExperience: Experience){
     console.log(modaExperience);
+  }
+  onSaveProject(modaProject: Project){
+    console.log(modaProject);
   }
 }
