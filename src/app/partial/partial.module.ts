@@ -20,6 +20,7 @@ import { TagFrameComponent } from './tag-frame/tag-frame.component';
 import { ModalTagComponent } from './modal/modal-tag/modal-tag.component';
 import { ModalPreviewArticleComponent } from './modal/modal-preview-article/modal-preview-article.component';
 import { RecruiterReviewRatingComponent } from './recruiter-review-rating/recruiter-review-rating.component';
+import { ModalApplierComponent } from './modal/modal-applier/modal-applier.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import { RecruiterReviewRatingComponent } from './recruiter-review-rating/recrui
     ModalResumeEducationComponent,
     TagFrameComponent,
     ModalTagComponent,
+    ModalPreviewArticleComponent,
+    ModalApplierComponent,
     ModalPreviewArticleComponent,
     RecruiterReviewRatingComponent
   ],
@@ -64,6 +67,8 @@ import { RecruiterReviewRatingComponent } from './recruiter-review-rating/recrui
     ModalResumeEducationComponent,
     TagFrameComponent,
     ModalTagComponent,
+    ModalPreviewArticleComponent,
+    ModalApplierComponent,
     ModalPreviewArticleComponent,
     RecruiterReviewRatingComponent
   ]

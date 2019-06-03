@@ -30,8 +30,12 @@ export class ArticleService extends RecruiterService {
     );
   }
 
-  applyArticle(requestBody: any, id: string){
+  applyArticle(requestBody: any, id: string) {
     return this.http.put(this.domainName + "article/apply/" + id, requestBody);
+  }
+
+  getAllAppliersByArticleId(id: string) {
+    return this.http.get<String[]>(this.domainName + "article/applies/" + id);
   }
 
   updateArticle(requestBody: any) {}

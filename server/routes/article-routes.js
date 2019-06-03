@@ -96,11 +96,17 @@ router.put("/article/apply/:id", async (req, res) => {
     return res.status(200).send("You've already applied for this job");
   } else {
     applies.push(req.body.email);
-    query.save((err, callback)=>{
-      if (err){
+    query.save((err, callback) => {
+      if (err) {
         return res.status(500).send(err);
       }
       return res.status(200).send(callback);
     });
   }
+});
+//Get all email applied
+router.get("/article/applies/:id", async (req, res) => {
+  const query = await Article.findById(req.params.id).select("applied");
+  const applies = query.applied;
+  return res.status(200).json(applies);
 });
