@@ -40,19 +40,31 @@
         <div class="example-container">
           <div class="name">
             <mat-form-field>
-              <input matInput placeholder="Company name" />
+              <input
+                matInput
+                placeholder="Company name"
+                [(ngModel)]="experience.company_name"
+              />
             </mat-form-field>
           </div>
 
           <div class="title">
             <mat-form-field>
-              <input matInput placeholder="Job titile" />
+              <input
+                matInput
+                placeholder="Job title"
+                [(ngModel)]="experience.title"
+              />
             </mat-form-field>
           </div>
 
           <div class="location">
             <mat-form-field>
-              <input matInput placeholder="Location" />
+              <input
+                matInput
+                placeholder="Location"
+                [(ngModel)]="experience.location"
+              />
             </mat-form-field>
           </div>
 
@@ -60,16 +72,32 @@
 
           <div class="mat-date">
             <mat-form-field>
-              <input matInput placeholder="Start month" />
+              <input
+                matInput
+                placeholder="Start month"
+                [(ngModel)]="experience.start_month"
+              />
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Start Year" />
+              <input
+                matInput
+                placeholder="Start Year"
+                [(ngModel)]="experience.start_year"
+              />
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="End Month" />
+              <input
+                matInput
+                placeholder="End Month"
+                [(ngModel)]="experience.end_month"
+              />
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="End Year" />
+              <input
+                matInput
+                placeholder="End Year"
+                [(ngModel)]="experience.end_year"
+              />
             </mat-form-field>
           </div>
 
@@ -79,6 +107,7 @@
                 rows="6"
                 matInput
                 placeholder="Description of your job"
+                [(ngModel)]="experience.description"
               ></textarea>
             </mat-form-field>
           </div>

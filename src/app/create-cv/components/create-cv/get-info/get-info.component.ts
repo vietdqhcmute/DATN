@@ -12,4 +12,8 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
   @Input() getInfoCandidate: Candidate;
 
   ngOnInit() {}
+
+  onSaveExperience(modaExperience: Experience){
+    console.log(modaExperience);
+  }
 }
