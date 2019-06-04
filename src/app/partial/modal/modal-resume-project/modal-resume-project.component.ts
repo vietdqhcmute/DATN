@@ -20,7 +20,9 @@ export class ModalResumeProjectComponent implements OnInit {
   private project: Project;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.project = new Project(this.emptyProject);
+  }
   onOpenModal() {
     this.project = new Project(this.emptyProject);
   }

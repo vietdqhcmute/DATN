@@ -8,7 +8,7 @@ import { Experience } from "src/app/models/CandidateData";
 })
 export class ModalResumeExperienceComponent implements OnInit {
   @Output() saveClick: EventEmitter<Experience> = new EventEmitter();
-  private experience: Experience = {
+  private emptyExperience: Experience = {
     company_name: "",
     title: "",
     location: "",
@@ -19,9 +19,16 @@ export class ModalResumeExperienceComponent implements OnInit {
     end_year: 0,
     current: false
   };
+  private experience: Experience;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.experience = new Experience(this.emptyExperience);
+  }
+
+  onOpenModal() {
+    this.experience = new Experience(this.emptyExperience);
+  }
 
   onSave() {
     this.saveClick.emit(this.experience);

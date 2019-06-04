@@ -20,6 +20,17 @@ export class Resume {
 }
 
 export class Experience {
+  constructor(expereince: Experience) {
+    this.company_name = expereince.company_name;
+    this.title = expereince.title;
+    this.location = expereince.location;
+    this.description = expereince.description;
+    this.start_month = expereince.start_month;
+    this.end_month = expereince.end_month;
+    this.start_year = expereince.start_year;
+    this.end_year = expereince.end_year;
+    this.current = expereince.current;
+  }
   company_name: string;
   title: string;
   location: string;
@@ -32,6 +43,15 @@ export class Experience {
 }
 
 export class Education {
+  constructor(education: Education) {
+    this.school_name = education.school_name;
+    this.major = education.major;
+    this.start_month = education.start_month;
+    this.end_month = education.end_month;
+    this.start_year = education.start_year;
+    this.end_year = education.end_year;
+    this.current = education.current;
+  }
   school_name: string;
   major: string;
   start_month: Number;
