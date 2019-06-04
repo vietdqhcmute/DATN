@@ -7,11 +7,15 @@
             <h2 class="panel-title review-title" style="display: flex;">
               <div class="title">
                 <div class="text">Đánh giá</div>
-                <div class="company-name">{{recruiter.company_name}}</div>
+                <div class="company-name">{{ recruiter.company_name }}</div>
               </div>
-              <div class="logo" style="display: flex;flex-grow: 1;justify-content: flex-end;">
+              <div
+                class="logo"
+                style="display: flex;flex-grow: 1;justify-content: flex-end;"
+              >
                 <img
-                  src="https://cdn.itviec.com/employers/kis-viet-nam/logo/w170/9neDiatXpkSc6AfdE7RBGHpy/kis-vi-t-nam-logo.jpg" />
+                  src="https://cdn.itviec.com/employers/kis-viet-nam/logo/w170/9neDiatXpkSc6AfdE7RBGHpy/kis-vi-t-nam-logo.jpg"
+                />
               </div>
             </h2>
           </div>
@@ -22,97 +26,160 @@
               Ý kiến của bạn sẽ giúp ích rất nhiều cho cộng đồng Developer đang
               tìm việc.
             </p>
-            <button class="btn btn-danger" (click)="onGetEmail()">Test email</button>
             <form class="form-input-review" action="">
               <div class="form-group">
                 <label>Đánh giá tổng quát:</label>
 
-                <div style="display: flex;justify-content: flex-start" *ngFor="let item of items">
-                  <app-rating-star *ngIf="item.id === 0" [rating]="item.rating" [title]="item.title" [itemId]="item.id"
-                    (ratingClick)="ratingComponentClick($event)"></app-rating-star>
+                <div
+                  style="display: flex;justify-content: flex-start"
+                  *ngFor="let item of items"
+                >
+                  <app-rating-star
+                    *ngIf="item.id === 0"
+                    [rating]="item.rating"
+                    [title]="item.title"
+                    [itemId]="item.id"
+                    (ratingClick)="ratingComponentClick($event)"
+                  ></app-rating-star>
                   <p *ngIf="item.id === 0">&nbsp;&nbsp;{{ item.title }}</p>
                 </div>
                 <div class="validate">
                   <span id="" class="error">
                     <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span>
+                    đánh giá</span
+                  >
                 </div>
               </div>
               <div class="form-group">
                 <label>Tiêu đề:</label>
                 <div>
-                  <input class="string required"
+                  <input
+                    class="string required"
                     placeholder='Tiêu đề: Tóm tắt đánh giá của bạn. Ví dụ: "Sếp tốt" hoặc "Nhân viên mới đều được cấp Macbook"'
-                    type="text" value="" name="review[title]" id="review_title" aria-required="true"
-                    [(ngModel)]="reviewData.title" style="width: 100%" />
+                    type="text"
+                    value=""
+                    name="review[title]"
+                    id="review_title"
+                    aria-required="true"
+                    [(ngModel)]="reviewData.title"
+                    style="width: 100%"
+                  />
                 </div>
                 <div class="validate">
                   <span id="" class="error">
                     <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span>
+                    đánh giá</span
+                  >
                 </div>
               </div>
               <div class="form-group">
                 <label>Bạn cảm thấy thế nào về chế độ OT:</label>
                 <div>
                   <div class="recommend-attitude cursor-hover">
-                    <span style="min-width: 200px" (click)="showCriticism()"
-                      [style.color]="isShowCriticism ? 'green' : 'black'">
-                      <i class="far fa-smile" style="font-size: 40px;"></i>&nbsp; Hài lòng
+                    <span
+                      style="min-width: 200px"
+                      (click)="showCriticism()"
+                      [style.color]="isShowCriticism ? 'green' : 'black'"
+                    >
+                      <i class="far fa-smile" style="font-size: 40px;"></i
+                      >&nbsp; Hài lòng
                     </span>
-                    <textarea [style.visibility]="
+                    <textarea
+                      [style.visibility]="
                         isShowCriticism ? 'visible' : 'hidden'
-                      " name="ot_like" [(ngModel)]="reviewData.ot_like" id="" cols="30" rows="2" placeholder="Lí do bạn hài lòng với OT"></textarea>
+                      "
+                      name="ot_like"
+                      [(ngModel)]="reviewData.ot_like"
+                      id=""
+                      cols="30"
+                      rows="2"
+                      placeholder="Lí do bạn hài lòng với OT"
+                    ></textarea>
                   </div>
                   <div class="recommend-attitude cursor-hover">
-                    <span style="min-width: 200px" (click)="showCriticism()"
-                      [style.color]="isShowCriticism ? 'black' : 'red'"><i class="far fa-frown"
-                        style="font-size: 40px;"></i>&nbsp; Không hài lòng</span>
-                    <textarea [style.visibility]="
+                    <span
+                      style="min-width: 200px"
+                      (click)="showCriticism()"
+                      [style.color]="isShowCriticism ? 'black' : 'red'"
+                      ><i class="far fa-frown" style="font-size: 40px;"></i
+                      >&nbsp; Không hài lòng</span
+                    >
+                    <textarea
+                      [style.visibility]="
                         isShowCriticism ? 'hidden' : 'visible'
-                      " name="ot_hate"[(ngModel)]="reviewData.ot_hate" id="" cols="30" rows="2" placeholder="Lí do bạn không hài lòng với OT"></textarea>
+                      "
+                      name="ot_hate"
+                      [(ngModel)]="reviewData.ot_hate"
+                      id=""
+                      cols="30"
+                      rows="2"
+                      placeholder="Lí do bạn không hài lòng với OT"
+                    ></textarea>
                   </div>
                 </div>
                 <div class="validate">
                   <span id="" class="error">
                     <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span>
+                    đánh giá</span
+                  >
                 </div>
               </div>
               <div class="form-group">
                 <label>Điều bạn thích:</label>
                 <div>
-                  <textarea name="like" id="" cols="30" rows="4" style="width: 100%" [(ngModel)]="reviewData.like"
-                    placeholder='Điều gì làm công ty này nổi bật? Ví dụ: "Bãi đậu xe rộng rãi. Văn phòng đẹp tất cả đều được trang bị hàng "Apple" (Macbook, iMac)"'></textarea>
+                  <textarea
+                    name="like"
+                    id=""
+                    cols="30"
+                    rows="4"
+                    style="width: 100%"
+                    [(ngModel)]="reviewData.like"
+                    placeholder='Điều gì làm công ty này nổi bật? Ví dụ: "Bãi đậu xe rộng rãi. Văn phòng đẹp tất cả đều được trang bị hàng "Apple" (Macbook, iMac)"'
+                  ></textarea>
                 </div>
                 <div class="validate">
                   <span id="" class="error">
                     <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span>
+                    đánh giá</span
+                  >
                 </div>
               </div>
               <div class="form-group">
                 <label>Điều bạn không thích:</label>
                 <div>
-                  <textarea name="hate" id="" cols="30" rows="4" style="width: 100%" [(ngModel)]="reviewData.hate"
-                    placeholder='Bạn nghĩ công ty cần cải thiện điều gì? Ví dụ: "Khi có dự án thì OT hơi nhiều, áp lực, nên cần cải thiện khâu estimation. Họp và báo cáo nhiều gây mất thời gian, nên giảm các việc này."'></textarea>
+                  <textarea
+                    name="hate"
+                    id=""
+                    cols="30"
+                    rows="4"
+                    style="width: 100%"
+                    [(ngModel)]="reviewData.hate"
+                    placeholder='Bạn nghĩ công ty cần cải thiện điều gì? Ví dụ: "Khi có dự án thì OT hơi nhiều, áp lực, nên cần cải thiện khâu estimation. Họp và báo cáo nhiều gây mất thời gian, nên giảm các việc này."'
+                  ></textarea>
                 </div>
                 <div class="validate">
                   <span id="" class="error">
                     <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span>
+                    đánh giá</span
+                  >
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Đánh giá tổng quát:</label>
                 <div class="review-item">
-                  <div class="name-item-review" *ngFor="let item of (items | slice: 1); let i = index">
+                  <div
+                    class="name-item-review"
+                    *ngFor="let item of items | slice: 1; let i = index"
+                  >
                     <span style="min-width: 200px">
                       {{ item.evaluation }}
                     </span>
-                    <app-rating-star [rating]="item.rating" [itemId]="item.id"
-                      (ratingClick)="ratingComponentClick($event)"></app-rating-star>
+                    <app-rating-star
+                      [rating]="item.rating"
+                      [itemId]="item.id"
+                      (ratingClick)="ratingComponentClick($event)"
+                    ></app-rating-star>
                     <span>&nbsp;{{ item.title }}</span>
                   </div>
                   <div class="validate">
@@ -124,17 +191,28 @@
                 </div>
               </div>
               <div class="form-group">
-                <label>Bạn có muốn giới thiệu công ty này đến bạn bè của
-                  mình?</label>
+                <label
+                  >Bạn có muốn giới thiệu công ty này đến bạn bè của
+                  mình?</label
+                >
 
                 <div style="display: flex;">
-                  <div class="recommend-yes cursor-hover" (click)="showShareCompany()"
-                    [style.color]="isShowShareCompany ? 'green' : 'black'">
-                    <i class="far fa-thumbs-up" style="font-size: 50px; margin-right: 20px;"></i>
+                  <div
+                    class="recommend-yes cursor-hover"
+                    (click)="showShareCompany()"
+                    [style.color]="isShowShareCompany ? 'green' : 'black'"
+                  >
+                    <i
+                      class="far fa-thumbs-up"
+                      style="font-size: 50px; margin-right: 20px;"
+                    ></i>
                     <p>Có</p>
                   </div>
-                  <div class="recommend-no cursor-hover" (click)="showShareCompany()"
-                    [style.color]="isShowShareCompany ? 'black' : 'green'">
+                  <div
+                    class="recommend-no cursor-hover"
+                    (click)="showShareCompany()"
+                    [style.color]="isShowShareCompany ? 'black' : 'green'"
+                  >
                     <i class="far fa-thumbs-down" style="font-size: 50px;"></i>
                     <p>Không</p>
                   </div>
@@ -147,7 +225,11 @@
                 </div>
               </div>
             </form>
-            <button style="padding: 10px 45px;" color="warn" (click)="onSubmit()">
+            <button
+              style="padding: 10px 45px;"
+              color="warn"
+              (click)="onSubmit()"
+            >
               Đánh giá
             </button>
           </div>

@@ -17,12 +17,10 @@ export class RecruiterReviewPostComponent implements OnInit {
     var val = parseFloat(rating);
     // Turn value into number/100
     var size = val/5*100;
-    console.log(size);
     return size + '%';
   }
   constructor() {
     this.size = this.getStars(this.rating);
-    console.log(this.size);
   }
 
   ngOnInit() {
