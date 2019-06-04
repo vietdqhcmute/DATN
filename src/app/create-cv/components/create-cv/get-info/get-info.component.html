@@ -84,7 +84,7 @@
   <h3>Experience</h3>
   <div class="item-ul-li">
     <ul>
-      <li *ngFor="let item of experience">
+      <li *ngFor="let item of getInfoResume.experience">
         <div>
           <a [routerLink]="xxx">{{ item.company_name }}</a>
           <p>{{ item.title }}</p>
@@ -108,7 +108,7 @@
 <section id="Project">
   <h3>Project</h3>
   <div class="item-ul-li">
-    <ul *ngFor="let item of project">
+    <ul *ngFor="let item of projects">
       <li>
         <a [routerLink]="xxx">{{ item.project_name }}</a>
         <button class="btn btn-danger float-right">
@@ -130,7 +130,7 @@
 <section id="Education">
   <h3>Education</h3>
   <div class="item-ul-li">
-    <ul *ngFor="let item of education">
+    <ul *ngFor="let item of getInfoResume.education">
       <li>
         <div class="school-date">
           <a [routerLink]="xxx">{{ item.school_name }}</a>

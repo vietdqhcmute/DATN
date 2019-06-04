@@ -1,4 +1,4 @@
-export class Candidate{
+export class Candidate {
   full_name: string;
   display_name: string;
   image_url: string;
@@ -7,7 +7,7 @@ export class Candidate{
   resume: Resume;
   _id: string;
 }
-export class Resume{
+export class Resume {
   title: string;
   summary: string;
   github: string;
@@ -19,7 +19,7 @@ export class Resume{
   skill: Array<String>;
 }
 
-export class Experience{
+export class Experience {
   company_name: string;
   title: string;
   location: string;
@@ -31,7 +31,7 @@ export class Experience{
   current: boolean;
 }
 
-export class Education{
+export class Education {
   school_name: string;
   major: string;
   start_month: Number;
@@ -41,7 +41,16 @@ export class Education{
   current: boolean;
 }
 
-export class Project{
+export class Project {
+  constructor(project: Project) {
+    this.project_name = project.project_name;
+    this.description = project.description;
+    this.start_month = project.start_month;
+    this.end_month = project.end_month;
+    this.start_year = project.start_year;
+    this.end_year = project.end_year;
+    this.current = project.current;
+  }
   project_name: string;
   description: string;
   start_month: Number;

@@ -8,7 +8,7 @@ import { Project } from "src/app/models/CandidateData";
 })
 export class ModalResumeProjectComponent implements OnInit {
   @Output() saveClick: EventEmitter<Project> = new EventEmitter();
-  private project: Project = {
+  private emptyProject: Project = {
     project_name: "",
     description: "",
     start_month: 0,
@@ -17,9 +17,13 @@ export class ModalResumeProjectComponent implements OnInit {
     end_year: 0,
     current: false
   };
+  private project: Project;
   constructor() {}
 
   ngOnInit() {}
+  onOpenModal() {
+    this.project = new Project(this.emptyProject);
+  }
   onSave() {
     this.saveClick.emit(this.project);
   }

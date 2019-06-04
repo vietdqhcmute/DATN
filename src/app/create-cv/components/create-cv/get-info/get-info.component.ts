@@ -16,16 +16,19 @@ import {
 export class GetInfoComponent extends CreateCvComponent implements OnInit {
   @Input() getInfoResume: Resume;
   @Input() getInfoCandidate: Candidate;
+  experiences: Experience[] = [];
+  projects: Project[] = [];
+  educations: Education[] = [];
 
   ngOnInit() {}
 
   onSaveExperience(modalExperience: Experience) {
-    console.log(modalExperience);
+    this.experiences.push(modalExperience);
   }
   onSaveProject(modalProject: Project) {
-    console.log(modalProject);
+    this.projects.push(modalProject);
   }
   onSaveEducation(modalEducation: Education) {
-    console.log(modalEducation);
+    this.educations.push(modalEducation);
   }
 }
