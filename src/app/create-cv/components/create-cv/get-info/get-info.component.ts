@@ -16,9 +16,6 @@ import {
 export class GetInfoComponent extends CreateCvComponent implements OnInit {
   @Input() getInfoResume: Resume;
   @Input() getInfoCandidate: Candidate;
-  // experiences: Experience[] = this.getInfoResume.experience;
-  // projects: Project[] = this.getInfoResume.project;
-  // educations: Education[] = this.getInfoResume.education;
 
   ngOnInit() {}
 
