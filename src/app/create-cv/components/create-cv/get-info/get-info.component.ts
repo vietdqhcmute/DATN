@@ -16,26 +16,8 @@ import {
 export class GetInfoComponent extends CreateCvComponent implements OnInit {
   @Input() getInfoResume: Resume;
   @Input() getInfoCandidate: Candidate;
-  private routeParams;
-  private queryParams;
 
   ngOnInit() {
-    this.getRouteParams();
-    this.getQueryParams();
-  }
-
-  getRouteParams() {
-    this.route.parent.params.subscribe(params => {
-      this.routeParams = params;
-    });
-  }
-  getQueryParams() {
-    this.route.parent.queryParams.subscribe(queryParams => {
-      if (!queryParams) {
-        return;
-      }
-      this.queryParams = queryParams;
-    });
   }
 
   onSaveExperience(modalExperience: Experience) {
