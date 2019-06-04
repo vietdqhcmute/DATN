@@ -17,6 +17,8 @@ import { TestingService } from "src/app/services/testing.service";
 export class CreateCvComponent implements OnInit {
   candidate: Candidate = new Candidate();
   resume: Resume = new Resume();
+  private routeParams;
+  private canEdit: boolean;
   protected paramsEmail: String;
   private sub: Subscription;
 
@@ -38,13 +40,29 @@ export class CreateCvComponent implements OnInit {
     this.sub = this.route.paramMap.subscribe(params => {
       this.paramsEmail = params.get("email");
       this.loadCandidateData(this.paramsEmail);
-      this.titleService.setTitle("Profile of " + this.paramsEmail);
     });
+    this.getRouteParams();
+    this.getQueryParams();
   }
   private loadCandidateData(email) {
-    this.candidateService.getCandidate(email).subscribe(candidate=>{
+    this.candidateService.getCandidate(email).subscribe(candidate => {
       this.candidate = <Candidate>candidate;
       this.resume = this.candidate.resume;
+      this.titleService.setTitle("Profile of " + this.candidate.full_name);
+    });
+  }
+  getRouteParams() {
+    this.route.parent.params.subscribe(params => {
+      this.routeParams = params;
+    });
+  }
+  getQueryParams() {
+    this.route.parent.queryParams.subscribe(queryParams => {
+      if (!queryParams) {
+        return;
+      }
+      this.canEdit = queryParams.edit;
+      console.log(this.canEdit);
     });
   }
 }

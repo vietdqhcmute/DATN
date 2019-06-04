@@ -3,6 +3,7 @@ import { ArticleService } from "src/app/services/article.service";
 import { Candidate } from "src/app/models/CandidateData";
 import { CandidateService } from "src/app/services/candidate.service";
 import { MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-modal-applier",
@@ -15,6 +16,7 @@ export class ModalApplierComponent implements OnInit {
 
   private candidates: Candidate[] = [];
   constructor(
+    private router: Router,
     private articleService: ArticleService,
     private candidateService: CandidateService
   ) {}
@@ -33,5 +35,10 @@ export class ModalApplierComponent implements OnInit {
           });
         });
       });
+  }
+  onViewApplierCV(email:string){
+    this.router.navigate(["profile", email, "create-cv"], {
+      queryParams: { edit: false }
+    });
   }
 }

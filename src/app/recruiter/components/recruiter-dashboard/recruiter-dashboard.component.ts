@@ -34,17 +34,6 @@ export class RecruiterDashboardComponent extends RecruiterComponent
         });
     });
   }
-  onDelete(_id: string) {
-    console.log(_id);
-    this.deleteArticleBackEnd(_id);
-    this.deleteArticleFrontEnd(_id);
-  }
-  onUpdate(_id: string) {
-    this.router.navigate(["recruiter", this.company_email, "create-post"], {
-      queryParams: { edit: true, id: _id }
-    });
-  }
-  onPreview(_id: string) {}
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {
       console.log("Delete success!");
@@ -66,5 +55,15 @@ export class RecruiterDashboardComponent extends RecruiterComponent
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  onDelete(_id: string) {
+    console.log(_id);
+    this.deleteArticleBackEnd(_id);
+    this.deleteArticleFrontEnd(_id);
+  }
+  onUpdate(_id: string) {
+    this.router.navigate(["recruiter", this.company_email, "create-post"], {
+      queryParams: { edit: true, id: _id }
+    });
   }
 }

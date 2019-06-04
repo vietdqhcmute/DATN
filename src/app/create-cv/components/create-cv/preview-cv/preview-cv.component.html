@@ -11,12 +11,12 @@
 <!-- summary -->
 <div
   id="summary-area"
-  *ngIf="testingResume.summary && testingResume.summary.length"
+  *ngIf="previewResume.summary && previewResume.summary.length"
   class="section"
 >
   <h5><strong>Summary</strong></h5>
   <div class="summary-item">
-    <p>{{ testingResume.summary }}</p>
+    <p>{{ previewResume.summary }}</p>
   </div>
 </div>
 
@@ -24,10 +24,10 @@
 <div
   id="experience-area"
   class="section"
-  *ngIf="experience && experience.length"
+  *ngIf="previewResume.experience && previewResume.experience.length"
 >
   <h5><strong>Experience</strong></h5>
-  <div *ngFor="let item of experience" class="experience-item">
+  <div *ngFor="let item of previewResume.experience" class="experience-item">
     <div id="experience-company-location">
       <p id="companyName">
         <strong>{{ item.company_name | uppercase }}</strong>
@@ -64,9 +64,9 @@
 </div>
 
 <!-- project -->
-<div id="project-area" class="section" *ngIf="project && project.length">
+<div id="project-area" class="section" *ngIf="previewResume.project && previewResume.project.length">
   <h5><strong>Project</strong></h5>
-  <div *ngFor="let item of project" class="project-item">
+  <div *ngFor="let item of previewResume.project" class="project-item">
     <div id="projectName-date">
       <p>
         <strong>{{ item.project_name }}</strong>
@@ -86,9 +86,9 @@
 </div>
 
 <!-- education -->
-<div id="education-area" class="section" *ngIf="education && education.length">
+<div id="education-area" class="section" *ngIf="previewResume.education && previewResume.education.length">
   <h5><strong>Education</strong></h5>
-  <div *ngFor="let item of education" class="education-item">
+  <div *ngFor="let item of previewResume.education" class="education-item">
     <div id="education-date">
       <p>
         <strong>{{ item.school_name }}</strong>
@@ -116,11 +116,11 @@
 <div
   id="skill-area"
   class="section"
-  *ngIf="testingResume.skill && testingResume.skill.length"
+  *ngIf="previewResume.skill && previewResume.skill.length"
 >
   <h5><strong>Skill</strong></h5>
 
-  <div *ngFor="let item of testingResume.skill" class="skill-item">
+  <div *ngFor="let item of previewResume.skill" class="skill-item">
     <p>{{ item }}</p>
   </div>
 </div>

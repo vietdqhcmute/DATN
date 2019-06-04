@@ -43,11 +43,19 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of candidates; let i = index">
-              <th scope="row">{{i}}</th>
-              <td class="image-cell" style="height: 46px"><img [src]="item.image_url" alt="avatar" style="height: 100%"></td>
-              <td>{{item.display_name}}</td>
-              <td>{{item.email}}</td>
-              <td></td>
+              <th scope="row">{{ i }}</th>
+              <td class="image-cell" style="height: 46px">
+                <img [src]="item.image_url" alt="avatar" style="height: 100%" />
+              </td>
+              <td>{{ item.display_name }}</td>
+              <td>{{ item.email }}</td>
+              <td>
+                <span class="span-btn" (click)="onViewApplierCV(item.email)">
+                  <i class="material-icons">
+                    open_in_new
+                  </i>
+                </span>
+              </td>
             </tr>
           </tbody>
         </table>

@@ -8,11 +8,11 @@ let candidateSchema = new mongoose.Schema({
   email: String,
   phone: String,
   resume: Resume,
-  created: {
+  created_at: {
     type: Date,
     default: Date.now
   },
-  updated: {
+  updated_at: {
     type:Date
   }
 });

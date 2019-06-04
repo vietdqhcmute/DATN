@@ -6,9 +6,11 @@ const Recruiter = require("./models/Recruiter");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const RECRUITER_AVA_URL ="https://nodejs-server-image.s3.amazonaws.com/1558956195517";
-const CANDIDATE_AVA_URL = "https://nodejs-server-image.s3.amazonaws.com/1558956291712";
-const today = new Date;
+const RECRUITER_AVA_URL =
+  "https://nodejs-server-image.s3.amazonaws.com/1558956195517";
+const CANDIDATE_AVA_URL =
+  "https://nodejs-server-image.s3.amazonaws.com/1558956291712";
+const today = new Date();
 
 //API sign up for administrator
 router.post("/sign-up-admin", (req, res) => {
@@ -20,7 +22,7 @@ router.post("/sign-up-admin", (req, res) => {
     active: true
   };
   const authentication = new Authentication(authenticationParams);
-  authentication.save(function (err) {
+  authentication.save(function(err) {
     if (err) {
       res.status(500).json({
         message: "Email is being used try another one"
@@ -44,7 +46,7 @@ router.post("/sign-up", (req, res) => {
     active: true
   };
   const authentication = new Authentication(authenticationParams);
-  authentication.save(function (err) {
+  authentication.save(function(err) {
     if (err) {
       res.status(500).json({
         message: "Email is being used try another one"
@@ -56,10 +58,12 @@ router.post("/sign-up", (req, res) => {
       display_name: req.body.name,
       phone: req.body.phone,
       email: req.body.email,
-      image_url: CANDIDATE_AVA_URL
+      image_url: CANDIDATE_AVA_URL,
+      created_at: today,
+      updated_at: today
     };
     candidate = new Candidate(candidateParams);
-    candidate.save(function (error) {
+    candidate.save(function(error) {
       if (error) {
         res.status(500).json({
           message: "Some error has occured!"
@@ -84,7 +88,7 @@ router.post("/recruiter/sign-up", (req, res) => {
     active: true
   };
   const authentication = new Authentication(authenticationParams);
-  authentication.save(function (err) {
+  authentication.save(function(err) {
     if (err) {
       res.status(500).json({
         message: "Email is being used try another one"
@@ -96,19 +100,19 @@ router.post("/recruiter/sign-up", (req, res) => {
       image_url: RECRUITER_AVA_URL,
       email: req.body.email,
       phone: req.body.phone,
-      address:"",
+      address: "",
       website: req.body.website,
       employees: "0",
       overview: "Adding some overview",
       city: req.body.city,
       production: "",
       day_at_work: "",
-      slogan:"Add your new slogan!",
+      slogan: "Add your new slogan!",
       created_at: today,
       updated_at: today
     };
     const recruiter = new Recruiter(recruiterParams);
-    recruiter.save(function (error) {
+    recruiter.save(function(error) {
       if (error) {
         res.status(500).json({
           message: "Some error has occured!"
@@ -129,8 +133,8 @@ router.post("/login", (req, res, next) => {
     role: Number
   };
   Authentication.findOne({
-      email: req.body.email
-    })
+    email: req.body.email
+  })
     .then(user => {
       if (!user) {
         return res.status(401).json({
@@ -152,11 +156,13 @@ router.post("/login", (req, res, next) => {
           message: "Check your password"
         });
       }
-      const token = jwt.sign({
+      const token = jwt.sign(
+        {
           email: fetchedUser.email,
           userId: fetchedUser._id
         },
-        "secret_that_should_be_longer", {
+        "secret_that_should_be_longer",
+        {
           expiresIn: "1h"
         }
       );
@@ -169,26 +175,34 @@ router.post("/login", (req, res, next) => {
 
 // Deactivate user
 router.put("/deactivate/:id", (req, res) => {
-  Authentication.findByIdAndUpdate(req.params.id, {
-    active: false
-  }, (err, data) => {
-    if (err) {
-      return res.status(500).send(err);
-    } else {
-      return res.status(200).json(data);
+  Authentication.findByIdAndUpdate(
+    req.params.id,
+    {
+      active: false
+    },
+    (err, data) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        return res.status(200).json(data);
+      }
     }
-  });
+  );
 });
 //Activate user
 router.put("/activate/:id", (req, res) => {
-  Authentication.findByIdAndUpdate(req.params.id, {
-    active: true
-  }, (err, data) => {
-    if (err) {
-      return res.status(500).send(err);
-    } else {
-      return res.status(200).json(data);
+  Authentication.findByIdAndUpdate(
+    req.params.id,
+    {
+      active: true
+    },
+    (err, data) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        return res.status(200).json(data);
+      }
     }
-  });
+  );
 });
 module.exports = router;
