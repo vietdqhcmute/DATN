@@ -5,6 +5,7 @@ import { Candidate } from "src/app/models/CandidateData";
 import { CandidateService } from "src/app/services/candidate.service";
 import { RecruiterService } from 'src/app/services/recruiter.service';
 import { Recruiter } from 'src/app/models/RecruiterData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-top-bar",
@@ -17,6 +18,7 @@ export class TopBarComponent implements OnInit {
   candidate: Candidate;
   recruiter: Recruiter;
   constructor(
+    private router: Router,
     private authService: AuthService,
     private candidateService: CandidateService,
     private recruiterService: RecruiterService
@@ -34,5 +36,10 @@ export class TopBarComponent implements OnInit {
   }
   onLogOut() {
     this.authService.logout();
+  }
+  onCreateCV(){
+    this.router.navigate(["profile", this.candidate.email, "create-cv"], {
+      queryParams: { edit: true }
+    });
   }
 }
