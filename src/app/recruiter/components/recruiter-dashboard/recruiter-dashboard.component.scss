@@ -6,4 +6,10 @@
     font-size: 14px;
     width: 100%;
   }
+  .span-btn{
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 }

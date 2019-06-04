@@ -4,21 +4,25 @@
     margin: 0px 10px;
   }
 
-
   .modal-body {
     height: 70vh;
     overflow-y: scroll;
     overflow-x: hidden;
   }
-  .tags{
+  .tags {
     display: flex;
   }
-
+  .span-btn {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
   .example-container {
     display: flex;
     flex-direction: column;
 
-    >* {
+    > * {
       width: 100%;
     }
 
@@ -31,6 +35,4 @@
       }
     }
   }
-
-
 }
