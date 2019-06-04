@@ -16,19 +16,29 @@ import {
 export class GetInfoComponent extends CreateCvComponent implements OnInit {
   @Input() getInfoResume: Resume;
   @Input() getInfoCandidate: Candidate;
-  experiences: Experience[] = [];
-  projects: Project[] = [];
-  educations: Education[] = [];
+  // experiences: Experience[] = this.getInfoResume.experience;
+  // projects: Project[] = this.getInfoResume.project;
+  // educations: Education[] = this.getInfoResume.education;
 
   ngOnInit() {}
 
   onSaveExperience(modalExperience: Experience) {
-    this.experiences.push(modalExperience);
+    this.getInfoResume.experience.push(modalExperience);
   }
   onSaveProject(modalProject: Project) {
-    this.projects.push(modalProject);
+    this.getInfoResume.project.push(modalProject);
   }
   onSaveEducation(modalEducation: Education) {
-    this.educations.push(modalEducation);
+    this.getInfoResume.education.push(modalEducation);
+  }
+
+  onDeleteExperience(index: number) {
+    this.getInfoResume.experience.splice(index,1);
+  }
+  onDeleteProject(index: number) {
+    this.getInfoResume.project.splice(index,1);
+  }
+  onDeleteEducation(index: number) {
+    this.getInfoResume.education.splice(index,1);
   }
 }
