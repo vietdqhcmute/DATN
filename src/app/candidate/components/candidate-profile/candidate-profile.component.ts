@@ -25,7 +25,6 @@ export class CandidateProfileComponent extends CandidateComponent
     this.sub = this.route.paramMap.subscribe(params => {
       this.paramsEmail = params.get("email");
       this.loadCandidateData(this.paramsEmail);
-      this.titleService.setTitle("Profile of " + this.paramsEmail);
     });
   }
   ngOnDestroy() {
@@ -37,6 +36,7 @@ export class CandidateProfileComponent extends CandidateComponent
       .getCandidate(email)
       .pipe(first())
       .subscribe(candidate => {
+        this.titleService.setTitle(candidate.display_name);
         this.candidate = <Candidate>candidate;
       });
     this.candidateService.getCandidate(email);
