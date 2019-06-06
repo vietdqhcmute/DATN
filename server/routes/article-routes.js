@@ -26,7 +26,18 @@ router.post("/", (req, res) => {
     res.status(200).send(data);
   });
 });
-
+//get 10 recent articles
+router.get("/articles/recent", (req, res) => {
+  Article.find({})
+    .sort({created_at: -1})
+    .limit(10)
+    .exec(function(err, articles) {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.status(200).send(articles);
+    });
+});
 //get All post by email company
 router.get("/articles/:email_company", (req, res) => {
   Article.find(

@@ -9,14 +9,16 @@ const app = express();
 // var connectionString = "mongodb://lytutronga6:lytutronga6@datn-cluster-shard-00-00-p9e6i.mongodb.net:27017,datn-cluster-shard-00-01-p9e6i.mongodb.net:27017,datn-cluster-shard-00-02-p9e6i.mongodb.net:27017/test?ssl=true&replicaSet=DATN-cluster-shard-0&authSource=admin&retryWrites=true"
 // connection to db
 var connectionString = "mongodb://localhost:27017/datn"; //local mongodb
-mongoose
-  .connect(connectionString, {
-    dbName: "CV-db"
-  })
-  .then(db => {
-    console.log("db connected")
-  })
-  .catch(err => console.log(err));
+mongoose.disconnect().then(
+  mongoose
+    .connect(connectionString, {
+      dbName: "CV-db"
+    })
+    .then(db => {
+      console.log("db connected");
+    })
+    .catch(err => console.log(err))
+);
 
 // settings
 app.set("port", process.env.PORT || 5000);
