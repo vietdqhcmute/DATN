@@ -6,7 +6,7 @@ const today = new Date();
 
 module.exports = router;
 //create post in recruit post by email
-router.post("/article/", (req, res) => {
+router.post("/", (req, res) => {
   let requestArticle = new Article({
     email_company: req.body.email_company,
     avatar_url: req.body.article.avatar_url,
@@ -46,7 +46,7 @@ router.get("/articles/:email_company", (req, res) => {
   );
 });
 //get specific article by id
-router.get("/article/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   Article.findById(req.params.id, (err, data) => {
     if (err) {
       return res.status(500).send(err);
@@ -60,7 +60,7 @@ router.get("/article/:id", async (req, res) => {
 });
 
 //update post by email company and post id
-router.put("/article/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   Article.findByIdAndUpdate(
     req.params.id,
     {
@@ -80,7 +80,7 @@ router.put("/article/:id", (req, res) => {
   );
 });
 //delete post by email company and post id
-router.delete("/article/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   Article.findByIdAndDelete(req.params.id, (err, data) => {
     if (err) {
       return res.status(500).send(err);
@@ -89,7 +89,7 @@ router.delete("/article/:id", async (req, res) => {
   });
 });
 //Apply candidate for article
-router.put("/article/apply/:id", async (req, res) => {
+router.put("/apply/:id", async (req, res) => {
   const query = await Article.findById(req.params.id).select("applied");
   let applies = query.applied;
   if (applies.indexOf(req.body.email) !== -1) {
@@ -105,7 +105,7 @@ router.put("/article/apply/:id", async (req, res) => {
   }
 });
 //Get all email applied
-router.get("/article/applies/:id", async (req, res) => {
+router.get("/applies/:id", async (req, res) => {
   const query = await Article.findById(req.params.id).select("applied");
   const applies = query.applied;
   return res.status(200).json(applies);

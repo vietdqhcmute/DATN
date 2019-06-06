@@ -69,7 +69,7 @@ app.use("/", candidateRoutes);
 app.use("/", recruiterRoutes);
 app.use("/", tagRoutes);
 app.use("/", reviewRoutes);
-app.use("/", articleRoutes);
+app.use("/article", articleRoutes);
 app.use("/search", searchingRoutes);
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);

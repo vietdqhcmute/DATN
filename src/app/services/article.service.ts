@@ -12,7 +12,7 @@ export class ArticleService extends RecruiterService {
     );
   }
   getAllArticles(email) {
-    return this.http.get<any>(this.domainName + "articles/" + email);
+    return this.http.get<any>(this.domainName + "article/articles/" + email);
   }
 
   getArticleById(id: String) {
