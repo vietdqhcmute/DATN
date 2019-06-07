@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterService } from "src/app/services/recruiter.service";
 import { Recruiter } from "src/app/models/RecruiterData";
-import { NgForm } from '@angular/forms';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-search-company",
@@ -12,7 +12,9 @@ export class SearchCompanyComponent implements OnInit {
   private searchText: string;
   private recruiters: Recruiter[] = [];
   constructor(private recruiterService: RecruiterService) {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllCompany();
+  }
 
   onSearch(form: NgForm) {
     this.searchCompany(this.searchText);
@@ -20,6 +22,11 @@ export class SearchCompanyComponent implements OnInit {
 
   searchCompany(searchText: string) {
     this.recruiterService.searchCompany(searchText).subscribe(companies => {
+      this.recruiters = companies;
+    });
+  }
+  getAllCompany() {
+    this.recruiterService.getAllRecruites().subscribe(companies => {
       this.recruiters = companies;
     });
   }
