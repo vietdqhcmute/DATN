@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CandidateService } from "src/app/services/candidate.service";
 import { AuthService } from "src/app/services/auth.service";
 import { Title } from "@angular/platform-browser";
@@ -14,13 +14,13 @@ import { TestingService } from "src/app/services/testing.service";
   templateUrl: "./create-cv.component.html",
   styleUrls: ["./create-cv.component.scss"]
 })
-export class CreateCvComponent implements OnInit {
+export class CreateCvComponent implements OnInit, OnDestroy {
   candidate: Candidate = new Candidate();
   resume: Resume = new Resume();
   private routeParams;
   private canEdit: boolean;
   protected paramsEmail: String;
-  private sub: Subscription;
+  private sub: Subscription[] = [];
 
   protected testingResume = this.testingService.resume;
   protected education = this.testingResume.education;
@@ -37,32 +37,46 @@ export class CreateCvComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.paramMap.subscribe(params => {
-      this.paramsEmail = params.get("email");
-      this.loadCandidateData(this.paramsEmail);
-    });
+    this.sub.push(
+      this.route.paramMap.subscribe(params => {
+        this.paramsEmail = params.get("email");
+        this.loadCandidateData(this.paramsEmail);
+      })
+    );
     this.getRouteParams();
     this.getQueryParams();
   }
-  private loadCandidateData(email) {
-    this.candidateService.getCandidate(email).subscribe(candidate => {
-      this.candidate = <Candidate>candidate;
-      this.resume = this.candidate.resume;
-      this.titleService.setTitle("Profile of " + this.candidate.full_name);
-    });
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
   }
+
+  loadCandidateData(email) {
+    this.sub.push(
+      this.candidateService.getCandidate(email).subscribe(candidate => {
+        this.candidate = <Candidate>candidate;
+        this.resume = this.candidate.resume;
+        this.titleService.setTitle("Profile of " + this.candidate.full_name);
+      })
+    );
+  }
+
   getRouteParams() {
-    this.route.parent.params.subscribe(params => {
-      this.routeParams = params;
-    });
+    this.sub.push(
+      this.route.parent.params.subscribe(params => {
+        this.routeParams = params;
+      })
+    );
   }
+
   getQueryParams() {
-    this.route.parent.queryParams.subscribe(queryParams => {
-      if (!queryParams) {
-        return;
-      }
-      this.canEdit = queryParams.edit;
-      console.log(this.canEdit);
-    });
+    this.sub.push(
+      this.route.parent.queryParams.subscribe(queryParams => {
+        if (!queryParams) {
+          return;
+        }
+        this.canEdit = queryParams.edit;
+        console.log(this.canEdit);
+      })
+    );
   }
 }
