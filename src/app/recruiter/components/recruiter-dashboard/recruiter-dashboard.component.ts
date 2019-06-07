@@ -63,7 +63,6 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     const index = this.articles.findIndex(
       index => index._id === clickObj.itemId
     );
-    console.log(clickObj.itemId);
     this.articles.splice(index, 1);
   }
 

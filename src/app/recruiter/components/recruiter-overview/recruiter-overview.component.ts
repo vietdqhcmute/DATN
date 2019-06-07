@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
 import { first } from "rxjs/operators";
-import { Recruiter } from "src/app/models/RecruiterData";
 
 @Component({
   selector: "app-recruiter-overview",
