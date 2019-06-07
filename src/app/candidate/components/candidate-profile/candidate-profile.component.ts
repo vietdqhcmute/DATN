@@ -15,30 +15,30 @@ export class CandidateProfileComponent extends CandidateComponent
   email: string;
   allowEdit = false;
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
-  sub: Subscription;
   imagePreview: string;
 
   ngOnInit() {
-    if(this.authService.isSavedAuthData()){
+    if (this.authService.isSavedAuthData()) {
       this.authService.isAuthenticated.next(true);
     }
-    this.sub = this.route.paramMap.subscribe(params => {
-      this.paramsEmail = params.get("email");
-      this.loadCandidateData(this.paramsEmail);
-    });
-  }
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub.push(
+      this.route.paramMap.subscribe(params => {
+        this.paramsEmail = params.get("email");
+        this.loadCandidateData(this.paramsEmail);
+      })
+    );
   }
 
   private loadCandidateData(email) {
-    this.sub = this.candidateService
-      .getCandidate(email)
-      .pipe(first())
-      .subscribe(candidate => {
-        this.titleService.setTitle(candidate.display_name);
-        this.candidate = <Candidate>candidate;
-      });
+    this.sub.push(
+      this.candidateService
+        .getCandidate(email)
+        .pipe(first())
+        .subscribe(candidate => {
+          this.titleService.setTitle(candidate.display_name);
+          this.candidate = <Candidate>candidate;
+        })
+    );
     this.candidateService.getCandidate(email);
   }
 

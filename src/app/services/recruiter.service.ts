@@ -45,7 +45,7 @@ export class RecruiterService {
   }
 
   getRecruiterAPI(email) {
-    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
+    return this.http.get<Recruiter>(this.domainName + "recruiter/email/" + email);
   }
 
   getAvatarUrl() {
