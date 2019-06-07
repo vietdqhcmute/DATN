@@ -24,14 +24,28 @@ export class RecruiterDashboardComponent extends RecruiterComponent
   private dataSource;
 
   ngOnInit() {
-    this.sub = this.route.parent.params.subscribe(params => {
-      this.articleService
-        .getAllArticles(params.email)
-        .subscribe(responseArticle => {
-          this.company_email = params.email;
-          this.articles = responseArticle;
-          this.dataSource = new MatTableDataSource(this.articles);
-        });
+    this.sub.push(
+      this.route.parent.params.subscribe(params => {
+        this.articleService
+          .getAllArticles(params.email)
+          .subscribe(responseArticle => {
+            this.company_email = params.email;
+            this.articles = responseArticle;
+            this.dataSource = new MatTableDataSource(this.articles);
+          });
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
+  }
+  onDelete(_id: string) {
+    this.deleteArticleBackEnd(_id);
+    this.deleteArticleFrontEnd(_id);
+  }
+  onUpdate(_id: string) {
+    this.router.navigate(["recruiter", this.company_email, "create-post"], {
+      queryParams: { edit: true, id: _id }
     });
   }
   deleteArticleBackEnd(_id: string) {
@@ -49,21 +63,10 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     const index = this.articles.findIndex(
       index => index._id === clickObj.itemId
     );
-    console.log(clickObj.itemId);
     this.articles.splice(index, 1);
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  onDelete(_id: string) {
-    console.log(_id);
-    this.deleteArticleBackEnd(_id);
-    this.deleteArticleFrontEnd(_id);
-  }
-  onUpdate(_id: string) {
-    this.router.navigate(["recruiter", this.company_email, "create-post"], {
-      queryParams: { edit: true, id: _id }
-    });
   }
 }

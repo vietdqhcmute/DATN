@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
 
 @Component({
@@ -7,15 +7,20 @@ import { RecruiterComponent } from "../../recruiter.component";
   styleUrls: ["./recruiter-review.component.scss"]
 })
 export class RecruiterReviewComponent extends RecruiterComponent
-  implements OnInit {
+  implements OnInit, OnDestroy {
   reviews = [];
   ngOnInit() {
-    this.route.parent.params.subscribe(params => {
-      this.reviewService
-        .getAllReviewByEmail(params.email)
-        .subscribe(reviews => {
-          this.reviews = reviews;
-        });
-    });
+    this.sub.push(
+      this.route.parent.params.subscribe(params => {
+        this.reviewService
+          .getAllReviewByEmail(params.email)
+          .subscribe(reviews => {
+            this.reviews = reviews;
+          });
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
   }
 }

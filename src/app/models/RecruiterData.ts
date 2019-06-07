@@ -17,6 +17,7 @@ export class Recruiter {
 }
 
 export class Articles {
+  _id: string;
   title: string;
   tags: [];
   salary: string;

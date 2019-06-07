@@ -16,7 +16,7 @@ export class ArticleService extends RecruiterService {
   }
 
   getArticleById(id: String) {
-    return this.http.get<any>(this.domainName + "article/" + id);
+    return this.http.get<Articles>(this.domainName + "article/" + id);
   }
 
   getAllAppliersByArticleId(id: string) {

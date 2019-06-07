@@ -1,18 +1,20 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleService } from "src/app/services/article.service";
 import { Articles } from "src/app/models/RecruiterData";
 import { Subscription } from "rxjs";
-import { NgForm } from '@angular/forms';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-search-article",
   templateUrl: "./search-article.component.html",
   styleUrls: ["./search-article.component.scss"]
 })
-export class SearchArticleComponent implements OnInit {
-  private articles: Articles[] = [];
-  private searchText: string;
+export class SearchArticleComponent implements OnInit, OnDestroy {
+  articles: Articles[] = [];
+  searchText: string;
+  sub: Subscription[] = [];
+
   constructor(
     protected route: ActivatedRoute,
     private router: Router,
@@ -24,18 +26,25 @@ export class SearchArticleComponent implements OnInit {
     this.getQueryParams();
     this.searchArticles(this.searchText);
   }
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
+  }
 
   getQueryParams() {
-    this.route.queryParams.subscribe(query => {
-      this.searchText = query.key;
-    });
+    this.sub.push(
+      this.route.queryParams.subscribe(query => {
+        this.searchText = query.key;
+      })
+    );
   }
 
   searchArticles(searchText: string) {
-    this.ariticlesService.searchArticle(searchText).subscribe(articles => {
-      this.articles = [];
-      this.articles = articles;
-    });
+    this.sub.push(
+      this.ariticlesService.searchArticle(searchText).subscribe(articles => {
+        this.articles = [];
+        this.articles = articles;
+      })
+    );
   }
 
   onSearch(form: NgForm) {
