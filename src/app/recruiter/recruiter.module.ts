@@ -13,6 +13,7 @@ import { RecruiterProfileComponent } from './components/recruiter-profile/recrui
 import { RecruiterOverviewComponent } from './components/recruiter-overview/recruiter-overview.component';
 import { MaterialModule } from '../material/material.module';
 import { DialogPreviewArticleComponent } from '../partial/material-dialog/dialog-preview-article/dialog-preview-article.component';
+import { DialogApplierListComponent } from '../partial/material-dialog/dialog-applier-list/dialog-applier-list.component';
 @NgModule({
   declarations: [
     RecruiterComponent,
@@ -33,7 +34,8 @@ import { DialogPreviewArticleComponent } from '../partial/material-dialog/dialog
     ReactiveFormsModule
   ],
   entryComponents: [
-    DialogPreviewArticleComponent
+    DialogPreviewArticleComponent,
+    DialogApplierListComponent
   ]
 })
 export class RecruiterModule {}

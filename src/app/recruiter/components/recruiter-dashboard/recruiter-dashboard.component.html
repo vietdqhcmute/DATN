@@ -30,10 +30,11 @@
     <ng-container matColumnDef="applier">
       <th mat-header-cell *matHeaderCellDef>Appliers</th>
       <td mat-cell *matCellDef="let element">
-        <app-modal-applier
+        <a routerLink="." (click)="onAppliersList(element._id, element.applied)" >{{element.applied.length}} appliers</a>
+        <!-- <app-modal-applier
           [appliers]="element.applied"
           [_id]="element._id"
-        ></app-modal-applier>
+        ></app-modal-applier> -->
         <!-- <a routerLink="." (click)="onApplyList(element._id)">{{element.applied.length}} applies</a> -->
       </td>
     </ng-container>

@@ -3,7 +3,8 @@ import { RecruiterComponent } from "../../recruiter.component";
 import { Subscription } from "rxjs";
 import { MatTableDataSource, MatDialogConfig } from "@angular/material";
 import { DialogPreviewArticleComponent } from "src/app/partial/material-dialog/dialog-preview-article/dialog-preview-article.component";
-import { Articles } from 'src/app/models/RecruiterData';
+import { Articles } from "src/app/models/RecruiterData";
+import { DialogApplierListComponent } from "src/app/partial/material-dialog/dialog-applier-list/dialog-applier-list.component";
 
 @Component({
   selector: "app-recruiter-dashboard",
@@ -61,7 +62,18 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     };
     this.dialog.open(DialogPreviewArticleComponent, dialogConfig);
   }
-  onAppliersList() {}
+  onAppliersList(_id: string, appliers: string[]) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      _id: _id,
+      appliers: appliers
+    };
+    this.dialog.open(DialogApplierListComponent, dialogConfig);
+  }
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {
       console.log("Delete success!");

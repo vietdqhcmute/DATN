@@ -8,19 +8,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
   styleUrls: ["./dialog-preview-article.component.scss"]
 })
 export class DialogPreviewArticleComponent implements OnInit {
-  form: FormGroup;
   article: string;
 
   constructor(
-    private fb: FormBuilder,
     private dialogRef: MatDialogRef<DialogPreviewArticleComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.article = data.article;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   close() {
     this.dialogRef.close();
