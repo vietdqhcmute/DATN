@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
 import { CandidateService } from "../services/candidate.service";
 import { Title } from "@angular/platform-browser";
@@ -12,7 +12,7 @@ import { Subscription } from "rxjs";
   templateUrl: "./candidate.component.html",
   styleUrls: ["./candidate.component.scss"]
 })
-export class CandidateComponent implements OnInit, OnDestroy {
+export class CandidateComponent implements OnInit, OnDestroy, AfterViewInit {
   isAuthenticated: boolean;
   candidate: Candidate = null;
   sub: Subscription[] = [];
@@ -30,6 +30,8 @@ export class CandidateComponent implements OnInit, OnDestroy {
         this.isAuthenticated = isAuthenticated;
       })
     );
+  }
+  ngAfterViewInit(): void {
     this.alertService.setHideTopBar(false);
   }
   ngOnDestroy(): void {

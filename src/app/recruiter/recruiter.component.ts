@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { RecruiterService } from "../services/recruiter.service";
 import { Recruiter } from "../models/RecruiterData";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -16,7 +16,7 @@ import { ReviewService } from "../services/review.service";
   templateUrl: "./recruiter.component.html",
   styleUrls: ["./recruiter.component.scss"]
 })
-export class RecruiterComponent implements OnInit {
+export class RecruiterComponent implements OnInit, AfterViewInit {
   protected recruiter: Recruiter;
   protected recruiterEmail: string;
   sub: Subscription[] = [];
@@ -41,9 +41,10 @@ export class RecruiterComponent implements OnInit {
         // this.setRecruiterEmail(params.get("email"))
       })
     );
+  }
+  ngAfterViewInit(): void {
     this.alertService.setHideTopBar(true);
   }
-
   onTestEmail() {
     this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
       console.log(email);
