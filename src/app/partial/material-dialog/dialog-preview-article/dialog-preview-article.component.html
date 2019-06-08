@@ -1,16 +1,22 @@
-<h2 mat-dialog-title>{{ description }}</h2>
+<h2 mat-dialog-title>Preview article</h2>
 
-<mat-dialog-content [formGroup]="form">
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="Course Description"
-      formControlName="description"
-    />
-  </mat-form-field>
+<mat-dialog-content>
+  <div class="dialog-body">
+    <div class="title">
+      <h3>{{ article.title }}</h3>
+    </div>
+    <div class="date">
+      <p>{{ article.created_at | date }}</p>
+    </div>
+    <div class="tags">
+      <div *ngFor="let item of article.tags">
+        <app-tag-frame [tag]="item"></app-tag-frame>
+      </div>
+    </div>
+    <div [innerHTML]="article.description"></div>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button class="mat-raised-button" (click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
 </mat-dialog-actions>

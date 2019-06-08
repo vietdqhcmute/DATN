@@ -41,7 +41,7 @@
     <ng-container matColumnDef="preview">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <span class="span-btn" (click)="onPreview()">
+        <span class="span-btn" (click)="onPreview(element)">
           <i class="material-icons">
             remove_red_eye
           </i>

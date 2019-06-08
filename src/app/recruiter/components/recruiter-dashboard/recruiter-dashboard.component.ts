@@ -3,6 +3,7 @@ import { RecruiterComponent } from "../../recruiter.component";
 import { Subscription } from "rxjs";
 import { MatTableDataSource, MatDialogConfig } from "@angular/material";
 import { DialogPreviewArticleComponent } from "src/app/partial/material-dialog/dialog-preview-article/dialog-preview-article.component";
+import { Articles } from 'src/app/models/RecruiterData';
 
 @Component({
   selector: "app-recruiter-dashboard",
@@ -49,15 +50,14 @@ export class RecruiterDashboardComponent extends RecruiterComponent
       queryParams: { edit: true, id: _id }
     });
   }
-  onPreview() {
+  onPreview(article: Articles) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      id: 1,
-      title: "Angular For Beginners"
+      article: article
     };
     this.dialog.open(DialogPreviewArticleComponent, dialogConfig);
   }
