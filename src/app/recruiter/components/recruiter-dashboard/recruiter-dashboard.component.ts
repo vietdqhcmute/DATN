@@ -54,7 +54,7 @@ export class RecruiterDashboardComponent extends RecruiterComponent
   onPreview(article: Articles) {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
@@ -65,7 +65,7 @@ export class RecruiterDashboardComponent extends RecruiterComponent
   onAppliersList(_id: string, appliers: string[]) {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
+    dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
