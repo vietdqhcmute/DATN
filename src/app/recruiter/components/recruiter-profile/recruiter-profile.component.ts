@@ -20,6 +20,9 @@ export class RecruiterProfileComponent extends RecruiterComponent
       })
     );
   }
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
+  }
 
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
