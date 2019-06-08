@@ -10,6 +10,7 @@ import { AuthService } from "../services/auth.service";
 import { AlertService } from "../services/alert.service";
 import { TagService } from "../services/tag.service";
 import { ReviewService } from "../services/review.service";
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: "app-recruiter",
@@ -29,7 +30,8 @@ export class RecruiterComponent implements OnInit, AfterViewInit {
     protected authService: AuthService,
     protected alertService: AlertService,
     protected tagService: TagService,
-    protected reviewService: ReviewService
+    protected reviewService: ReviewService,
+    protected dialog: MatDialog
   ) {}
 
   ngOnInit() {

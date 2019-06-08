@@ -12,6 +12,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { RecruiterProfileComponent } from './components/recruiter-profile/recruiter-profile.component';
 import { RecruiterOverviewComponent } from './components/recruiter-overview/recruiter-overview.component';
 import { MaterialModule } from '../material/material.module';
+import { DialogPreviewArticleComponent } from '../partial/material-dialog/dialog-preview-article/dialog-preview-article.component';
 @NgModule({
   declarations: [
     RecruiterComponent,
@@ -30,6 +31,9 @@ import { MaterialModule } from '../material/material.module';
     FormsModule,
     MaterialModule,
     ReactiveFormsModule
+  ],
+  entryComponents: [
+    DialogPreviewArticleComponent
   ]
 })
 export class RecruiterModule {}

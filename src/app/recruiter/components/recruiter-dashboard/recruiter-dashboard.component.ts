@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
 import { Subscription } from "rxjs";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialogConfig } from "@angular/material";
+import { DialogPreviewArticleComponent } from "src/app/partial/material-dialog/dialog-preview-article/dialog-preview-article.component";
 
 @Component({
   selector: "app-recruiter-dashboard",
@@ -48,6 +49,19 @@ export class RecruiterDashboardComponent extends RecruiterComponent
       queryParams: { edit: true, id: _id }
     });
   }
+  onPreview() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id: 1,
+      title: "Angular For Beginners"
+    };
+    this.dialog.open(DialogPreviewArticleComponent, dialogConfig);
+  }
+  onAppliersList() {}
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {
       console.log("Delete success!");

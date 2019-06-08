@@ -30,7 +30,10 @@
     <ng-container matColumnDef="applier">
       <th mat-header-cell *matHeaderCellDef>Appliers</th>
       <td mat-cell *matCellDef="let element">
-        <app-modal-applier [appliers]="element.applied" [_id]="element._id"></app-modal-applier>
+        <app-modal-applier
+          [appliers]="element.applied"
+          [_id]="element._id"
+        ></app-modal-applier>
         <!-- <a routerLink="." (click)="onApplyList(element._id)">{{element.applied.length}} applies</a> -->
       </td>
     </ng-container>
@@ -38,9 +41,11 @@
     <ng-container matColumnDef="preview">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <app-modal-preview-article
-          [article]="element"
-        ></app-modal-preview-article>
+        <span class="span-btn" (click)="onPreview()">
+          <i class="material-icons">
+            remove_red_eye
+          </i>
+        </span>
       </td>
     </ng-container>
     <!-- Update column -->
