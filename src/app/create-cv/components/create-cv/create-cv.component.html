@@ -1,14 +1,19 @@
 <div class="layout">
-  <div class="tool-bar">
-    <app-tool-bar [toolBarCandidate]="candidate" [toolBarResume]="resume"></app-tool-bar>
+  <div class="tool-bar" *ngIf="canEdit === 'true'">
+    <app-tool-bar
+      [toolBarCandidate]="candidate"
+      [toolBarResume]="resume"
+    ></app-tool-bar>
   </div>
+  <div class="empty-space-toolbar" *ngIf="canEdit === 'false'"></div>
   <div class="content">
-    <div class="app-get-info">
+    <div class="app-get-info" *ngIf="canEdit === 'true'">
       <app-get-info
         [getInfoResume]="resume"
         [getInfoCandidate]="candidate"
       ></app-get-info>
     </div>
+    <div class="empty-space-info" *ngIf="canEdit === 'false'"></div>
     <div class="content-cv">
       <div class="header-preview">
         <h4>Preview</h4>
