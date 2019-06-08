@@ -20,18 +20,28 @@
               {{ recruiterInfo.slogan }}
             </div>
             <p class="gear-icon short">
-              <i class="fas fa-cogs"></i>{{recruiterInfo.production}}
+              <i class="fas fa-cogs"></i>{{ recruiterInfo.production }}
             </p>
             <p class="group-icon short">
-              <i class="fas fa-users"></i>{{recruiterInfo.employees}}
+              <i class="fas fa-users"></i>{{ recruiterInfo.employees }}
             </p>
             <div class="country-icon short">
               <i class="far fa-flag"></i>&nbsp;&nbsp;
-              <span class="country-name">{{recruiterInfo.city}}</span>
+              <span class="country-name">{{ recruiterInfo.city }}</span>
             </div>
             <div class="working-date short">
               <i class="fa fa-calendar"></i>&nbsp;&nbsp;
-              <span>{{recruiterInfo.day_at_work}}</span>
+              <span>{{ recruiterInfo.day_at_work }}</span>
+            </div>
+            <div style="float: right">
+              <span style="display: flex">
+                <a [routerLink]="['/company', recruiterInfo.email]"
+                  >View our company page</a
+                >
+                <i class="material-icons">
+                  keyboard_arrow_right
+                </i></span
+              >
             </div>
           </div>
         </div>
@@ -43,7 +53,11 @@
               {{ articleInfo.title }}
             </h1>
             <div style="float: right;margin-right: 20px">
-              <button type="button" class="btn btn-danger font-weight-bold" (click)="onApply()">
+              <button
+                type="button"
+                class="btn btn-danger font-weight-bold"
+                (click)="onApply()"
+              >
                 Apply Now
               </button>
             </div>
@@ -51,7 +65,7 @@
               Salary:&nbsp;<span>{{ articleInfo.salary }}</span>
             </div>
             <div class="job-info-detail">
-              Address:&nbsp;<span>{{recruiterInfo.address}}</span>
+              Address:&nbsp;<span>{{ recruiterInfo.address }}</span>
             </div>
             <div class="job-info-detail">
               Date:&nbsp;<span>{{
