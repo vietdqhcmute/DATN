@@ -82,8 +82,8 @@
             <div class="panel-heading">
               <h4 class="panel-title">Ratings</h4>
             </div>
-            <div class="panel-body">
-              <app-recruiter-review-rating></app-recruiter-review-rating>
+            <div class="panel-body" *ngIf="avarageRating">
+              <app-recruiter-review-rating [rating]="avarageRating"></app-recruiter-review-rating>
             </div>
           </div>
           <div

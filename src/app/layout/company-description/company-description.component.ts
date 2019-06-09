@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
-import { Review } from 'src/app/models/ReviewData';
+import { Review } from "src/app/models/ReviewData";
+import { ReviewService } from "src/app/services/review.service";
 
 @Component({
   selector: "app-company-description",
@@ -14,6 +15,7 @@ export class CompanyDescriptionComponent extends RecruiterComponent
     "https://cdn.itviec.com/photos/35827/processed_headline_photo/fpt-software-headline_photo.png?ojMRBGzhWEL7ri4CE7w3VgwU";
   company_email: String;
   reviews: Review[] = [];
+  avarageRating: number;
   ngOnInit() {
     this.sub.push(
       this.route.paramMap.subscribe(params => {
@@ -36,7 +38,15 @@ export class CompanyDescriptionComponent extends RecruiterComponent
     this.sub.push(
       this.reviewService.getAllReviewByEmail(email).subscribe(reviews => {
         this.reviews = reviews;
+        this.avarageRating = this.getAvarageRating(reviews);
       })
     );
+  }
+  getAvarageRating(reviews: Review[]) {
+    let sum: number = 0;
+    reviews.forEach(review => {
+      sum += <number>review.rate_general;
+    });
+    return sum/reviews.length;
   }
 }

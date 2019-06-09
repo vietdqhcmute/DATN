@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Review } from 'src/app/models/ReviewData';
 
 @Component({
   selector: 'app-recruiter-review-rating',
@@ -6,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recruiter-review-rating.component.scss']
 })
 export class RecruiterReviewRatingComponent implements OnInit {
-  test_rating = 7.5;
+  @Input() rating;
   size: string;
   constructor() {
-    this.size = this.getStars(this.test_rating);
   }
 
   ngOnInit() {
+    this.size = this.getStars(this.rating);
   }
   getStars(rating) {
     return (rating / 5 * 100) + '%';

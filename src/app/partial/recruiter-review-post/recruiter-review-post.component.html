@@ -6,7 +6,7 @@
       <span style.width="{{size}}"></span>
     </span>
   </div>
-  <div class="created">Created at {{ review.created_at }}</div>
+  <div class="created">Created at {{ review.created_at | date}}</div>
   <div class="like">
     <label for=""><strong>What I liked</strong></label>
     <p>{{ review.like }}</p>
