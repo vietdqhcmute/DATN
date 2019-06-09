@@ -1,5 +1,8 @@
 :host {
     font-family: "Roboto Condensed", sans-serif;
+    .container{
+      max-width: 1024px !important;
+    }
     .cover-images-desktop {
       max-height: 500px;
       width: 100%;
