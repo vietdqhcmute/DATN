@@ -18,6 +18,7 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   recruiterInfo: Recruiter;
   articleInfo: Articles;
   sub: Subscription[] = [];
+  isLoading: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private recruiterService: RecruiterService,
@@ -59,12 +60,15 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
     const applyParams = {
       email: this.candidateEmai
     };
+    this.isLoading = true;
     this.sub.push(
       this.articleService.applyArticle(applyParams, this.articleId).subscribe(
         success => {
+          this.isLoading = false;
           console.log(success);
         },
         error => {
+          this.isLoading = false;
           console.error(error);
         }
       )
