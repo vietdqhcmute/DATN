@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Appliers</h2>
+
+<mat-dialog-content>
+  <div class="dialog-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Preview CV</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of candidates; let i = index">
+          <th scope="row">{{ i }}</th>
+          <td class="image-cell" style="height: 46px">
+            <img [src]="item.image_url" alt="avatar" style="height: 100%" />
+          </td>
+          <td>{{ item.display_name }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.email }}</td>
+          <td>
+            <span class="span-btn" (click)="onViewApplierCV(item.email); close()">
+              <i class="material-icons">
+                open_in_new
+              </i>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions>

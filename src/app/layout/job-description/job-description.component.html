@@ -1,4 +1,4 @@
-<div class="job-description">
+<div class="job-description" *ngIf="articleInfo && recruiterInfo">
   <div class="container" style="margin-top: 10px">
     <div class="row">
       <div class="side_bar col-md-3" style="text-align: center;height: 500px;">
@@ -20,18 +20,28 @@
               {{ recruiterInfo.slogan }}
             </div>
             <p class="gear-icon short">
-              <i class="fas fa-cogs"></i>&nbsp;&nbsp;Outsourcing
+              <i class="fas fa-cogs"></i>{{ recruiterInfo.production }}
             </p>
             <p class="group-icon short">
-              <i class="fas fa-users"></i>&nbsp;&nbsp;51-150
+              <i class="fas fa-users"></i>{{ recruiterInfo.employees }}
             </p>
             <div class="country-icon short">
               <i class="far fa-flag"></i>&nbsp;&nbsp;
-              <span class="country-name">Viet Nam</span>
+              <span class="country-name">{{ recruiterInfo.city }}</span>
             </div>
             <div class="working-date short">
               <i class="fa fa-calendar"></i>&nbsp;&nbsp;
-              <span>Monday - Friday</span>
+              <span>{{ recruiterInfo.day_at_work }}</span>
+            </div>
+            <div style="float: right">
+              <span style="display: flex">
+                <a [routerLink]="['/company', recruiterInfo.email]"
+                  >View our company page</a
+                >
+                <i class="material-icons">
+                  keyboard_arrow_right
+                </i></span
+              >
             </div>
           </div>
         </div>
@@ -43,7 +53,17 @@
               {{ articleInfo.title }}
             </h1>
             <div style="float: right;margin-right: 20px">
-              <button type="button" class="btn btn-danger font-weight-bold" (click)="onApply()">
+              <mat-spinner
+                *ngIf="isLoading"
+                style="margin:auto;"
+                [diameter]="40"
+              ></mat-spinner>
+              <button
+                type="button"
+                class="btn btn-danger font-weight-bold"
+                (click)="onApply()"
+                *ngIf="!isLoading"
+              >
                 Apply Now
               </button>
             </div>
@@ -51,7 +71,7 @@
               Salary:&nbsp;<span>{{ articleInfo.salary }}</span>
             </div>
             <div class="job-info-detail">
-              Address:&nbsp;<span>So 1 Vo Van Ngan</span>
+              Address:&nbsp;<span>{{ recruiterInfo.address }}</span>
             </div>
             <div class="job-info-detail">
               Date:&nbsp;<span>{{

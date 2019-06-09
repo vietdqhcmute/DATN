@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 import { ArticleService } from "src/app/services/article.service";
 import { Candidate } from "src/app/models/CandidateData";
 import { CandidateService } from "src/app/services/candidate.service";
-import { MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
+import { MatTableDataSource } from "@angular/material";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-modal-applier",
@@ -22,7 +22,9 @@ export class ModalApplierComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onApplyList();
+    if (this.appliers) {
+      this.onApplyList();
+    }
   }
 
   onApplyList() {
@@ -36,7 +38,7 @@ export class ModalApplierComponent implements OnInit {
         });
       });
   }
-  onViewApplierCV(email:string){
+  onViewApplierCV(email: string) {
     this.router.navigate(["profile", email, "create-cv"], {
       queryParams: { edit: false }
     });

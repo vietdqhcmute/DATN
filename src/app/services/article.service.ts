@@ -12,11 +12,19 @@ export class ArticleService extends RecruiterService {
     );
   }
   getAllArticles(email) {
-    return this.http.get<any>(this.domainName + "articles/" + email);
+    return this.http.get<any>(this.domainName + "article/articles/" + email);
   }
 
   getArticleById(id: String) {
-    return this.http.get<any>(this.domainName + "article/" + id);
+    return this.http.get<Articles>(this.domainName + "article/" + id);
+  }
+
+  getAllAppliersByArticleId(id: string) {
+    return this.http.get<String[]>(this.domainName + "article/applies/" + id);
+  }
+
+  getRecentArticles(){
+    return this.http.get<Articles[]>(this.domainName + "article/articles/recent");
   }
 
   saveArticle(requestBody: any, email: string) {
@@ -32,10 +40,6 @@ export class ArticleService extends RecruiterService {
 
   applyArticle(requestBody: any, id: string) {
     return this.http.put(this.domainName + "article/apply/" + id, requestBody);
-  }
-
-  getAllAppliersByArticleId(id: string) {
-    return this.http.get<String[]>(this.domainName + "article/applies/" + id);
   }
 
   updateArticle(requestBody: any) {}

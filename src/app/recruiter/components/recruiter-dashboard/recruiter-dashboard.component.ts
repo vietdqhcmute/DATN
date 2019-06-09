@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
 import { Subscription } from "rxjs";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialogConfig } from "@angular/material";
+import { DialogPreviewArticleComponent } from "src/app/partial/material-dialog/dialog-preview-article/dialog-preview-article.component";
+import { Articles } from "src/app/models/RecruiterData";
+import { DialogApplierListComponent } from "src/app/partial/material-dialog/dialog-applier-list/dialog-applier-list.component";
 
 @Component({
   selector: "app-recruiter-dashboard",
@@ -24,15 +27,52 @@ export class RecruiterDashboardComponent extends RecruiterComponent
   private dataSource;
 
   ngOnInit() {
-    this.sub = this.route.parent.params.subscribe(params => {
-      this.articleService
-        .getAllArticles(params.email)
-        .subscribe(responseArticle => {
-          this.company_email = params.email;
-          this.articles = responseArticle;
-          this.dataSource = new MatTableDataSource(this.articles);
-        });
+    this.sub.push(
+      this.route.parent.params.subscribe(params => {
+        this.articleService
+          .getAllArticles(params.email)
+          .subscribe(responseArticle => {
+            this.company_email = params.email;
+            this.articles = responseArticle;
+            this.dataSource = new MatTableDataSource(this.articles);
+          });
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
+  }
+  onDelete(_id: string) {
+    this.deleteArticleBackEnd(_id);
+    this.deleteArticleFrontEnd(_id);
+  }
+  onUpdate(_id: string) {
+    this.router.navigate(["recruiter", this.company_email, "create-post"], {
+      queryParams: { edit: true, id: _id }
     });
+  }
+  onPreview(article: Articles) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      article: article
+    };
+    this.dialog.open(DialogPreviewArticleComponent, dialogConfig);
+  }
+  onAppliersList(_id: string, appliers: string[]) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      _id: _id,
+      appliers: appliers
+    };
+    this.dialog.open(DialogApplierListComponent, dialogConfig);
   }
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {
@@ -49,21 +89,10 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     const index = this.articles.findIndex(
       index => index._id === clickObj.itemId
     );
-    console.log(clickObj.itemId);
     this.articles.splice(index, 1);
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  onDelete(_id: string) {
-    console.log(_id);
-    this.deleteArticleBackEnd(_id);
-    this.deleteArticleFrontEnd(_id);
-  }
-  onUpdate(_id: string) {
-    this.router.navigate(["recruiter", this.company_email, "create-post"], {
-      queryParams: { edit: true, id: _id }
-    });
   }
 }
