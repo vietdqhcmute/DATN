@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
 import { Subscription } from "rxjs";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialogConfig } from "@angular/material";
+import { DialogPreviewArticleComponent } from "src/app/partial/material-dialog/dialog-preview-article/dialog-preview-article.component";
+import { Articles } from "src/app/models/RecruiterData";
+import { DialogApplierListComponent } from "src/app/partial/material-dialog/dialog-applier-list/dialog-applier-list.component";
 
 @Component({
   selector: "app-recruiter-dashboard",
@@ -47,6 +50,29 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     this.router.navigate(["recruiter", this.company_email, "create-post"], {
       queryParams: { edit: true, id: _id }
     });
+  }
+  onPreview(article: Articles) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      article: article
+    };
+    this.dialog.open(DialogPreviewArticleComponent, dialogConfig);
+  }
+  onAppliersList(_id: string, appliers: string[]) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      _id: _id,
+      appliers: appliers
+    };
+    this.dialog.open(DialogApplierListComponent, dialogConfig);
   }
   deleteArticleBackEnd(_id: string) {
     this.articleService.deleteArticle(_id).subscribe(response => {

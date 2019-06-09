@@ -21,6 +21,8 @@ import { ModalTagComponent } from './modal/modal-tag/modal-tag.component';
 import { ModalPreviewArticleComponent } from './modal/modal-preview-article/modal-preview-article.component';
 import { RecruiterReviewRatingComponent } from './recruiter-review-rating/recruiter-review-rating.component';
 import { ModalApplierComponent } from './modal/modal-applier/modal-applier.component';
+import { DialogPreviewArticleComponent } from './material-dialog/dialog-preview-article/dialog-preview-article.component';
+import { DialogApplierListComponent } from './material-dialog/dialog-applier-list/dialog-applier-list.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ModalApplierComponent } from './modal/modal-applier/modal-applier.compo
     ModalPreviewArticleComponent,
     ModalApplierComponent,
     ModalPreviewArticleComponent,
-    RecruiterReviewRatingComponent
+    RecruiterReviewRatingComponent,
+    DialogPreviewArticleComponent,
+    DialogApplierListComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +74,9 @@ import { ModalApplierComponent } from './modal/modal-applier/modal-applier.compo
     ModalPreviewArticleComponent,
     ModalApplierComponent,
     ModalPreviewArticleComponent,
-    RecruiterReviewRatingComponent
+    RecruiterReviewRatingComponent,
+    DialogPreviewArticleComponent,
+    DialogApplierListComponent
   ]
 })
 export class PartialModule {}
