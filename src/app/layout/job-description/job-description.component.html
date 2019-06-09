@@ -53,10 +53,16 @@
               {{ articleInfo.title }}
             </h1>
             <div style="float: right;margin-right: 20px">
+              <mat-spinner
+                *ngIf="isLoading"
+                style="margin:auto;"
+                [diameter]="40"
+              ></mat-spinner>
               <button
                 type="button"
                 class="btn btn-danger font-weight-bold"
                 (click)="onApply()"
+                *ngIf="!isLoading"
               >
                 Apply Now
               </button>

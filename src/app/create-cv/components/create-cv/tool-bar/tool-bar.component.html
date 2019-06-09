@@ -1,6 +1,19 @@
 <nav>
   <div class="one-line">
     <button class="btn btn-danger  float-right">Download as PDF</button>
-    <button class="btn btn-outline-success float-right" (click)="onSave()">Save</button>
+    <div class="float-right">
+      <mat-spinner
+        *ngIf="isLoading"
+        style="margin:auto;"
+        [diameter]="40"
+      ></mat-spinner>
+      <button
+        class="btn btn-outline-success"
+        (click)="onSave()"
+        *ngIf="!isLoading"
+      >
+        Save
+      </button>
+    </div>
   </div>
 </nav>
