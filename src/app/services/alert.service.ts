@@ -25,14 +25,6 @@ export class AlertService {
     });
   }
 
-  getHideTopBar(){
-    return this.hideTopBar.asObservable();
-  }
-
-  setHideTopBar(hide: boolean){
-    this.hideTopBar.next(hide);
-  }
-
   success(message: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: "success", text: message });
@@ -45,5 +37,13 @@ export class AlertService {
 
   getMessage(): Observable<any> {
     return this.subject.asObservable();
+  }
+
+  getHideTopBar() {
+    return this.hideTopBar.asObservable();
+  }
+
+  setHideTopBar(hide: boolean) {
+    this.hideTopBar.next(hide);
   }
 }

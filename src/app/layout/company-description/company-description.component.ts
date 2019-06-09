@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
+import { Review } from "src/app/models/ReviewData";
+import { ReviewService } from "src/app/services/review.service";
 
 @Component({
   selector: "app-company-description",
@@ -8,11 +10,12 @@ import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
   styleUrls: ["./company-description.component.scss"]
 })
 export class CompanyDescriptionComponent extends RecruiterComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy, AfterViewInit {
   imageURL_company =
     "https://cdn.itviec.com/photos/35827/processed_headline_photo/fpt-software-headline_photo.png?ojMRBGzhWEL7ri4CE7w3VgwU";
   company_email: String;
-  reviews = [];
+  reviews: Review[] = [];
+  avarageRating: number;
   ngOnInit() {
     this.sub.push(
       this.route.paramMap.subscribe(params => {
@@ -22,6 +25,9 @@ export class CompanyDescriptionComponent extends RecruiterComponent
       })
     );
   }
+  ngAfterViewInit(): void {
+    this.alertService.setHideTopBar(false);
+  }
   ngOnDestroy(): void {
     this.sub.forEach(subscription => subscription.unsubscribe());
   }
@@ -30,9 +36,17 @@ export class CompanyDescriptionComponent extends RecruiterComponent
   }
   getReviews(email) {
     this.sub.push(
-      this.reviewService.getAllReviewByEmail(email).subscribe(data => {
-        this.reviews = data;
+      this.reviewService.getAllReviewByEmail(email).subscribe(reviews => {
+        this.reviews = reviews;
+        this.avarageRating = this.getAvarageRating(reviews);
       })
     );
+  }
+  getAvarageRating(reviews: Review[]) {
+    let sum: number = 0;
+    reviews.forEach(review => {
+      sum += <number>review.rate_general;
+    });
+    return sum/reviews.length;
   }
 }

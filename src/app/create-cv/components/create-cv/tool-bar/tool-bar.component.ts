@@ -10,13 +10,22 @@ import { CandidateService } from "src/app/services/candidate.service";
 export class ToolBarComponent implements OnInit {
   @Input() toolBarResume: Resume;
   @Input() toolBarCandidate: Candidate;
+  isLoading: boolean = false;
   constructor(private candidateService: CandidateService) {}
 
   ngOnInit() {}
 
   onSave() {
+    this.isLoading = true;
     this.candidateService
       .updateCandidateByID(this.toolBarCandidate._id, this.toolBarCandidate)
-      .subscribe(success => {});
+      .subscribe(
+        success => {
+          this.isLoading = false;
+        },
+        error => {
+          this.isLoading = false;
+        }
+      );
   }
 }
