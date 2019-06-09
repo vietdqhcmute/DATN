@@ -34,7 +34,8 @@
             </div>
             <div style="text-align: center;">
 
-              <a [routerLink]="['/company', recruiterInfo.email]">View our company page <i style="font-size: 15px;vertical-align: middle;" class="material-icons">
+              <a [routerLink]="['/company', recruiterInfo.email]">View our company page <i
+                  style="font-size: 15px;vertical-align: middle;" class="material-icons">
                   keyboard_arrow_right
                 </i></a>
 
@@ -62,6 +63,9 @@
               >
                 Apply Now
               </button>
+            </div>
+            <div class="job-info-detail" style="display: flex;flex-wrap: wrap;" >
+              <app-tag-frame *ngFor="let item of articleInfo.tags" [tag]="item"></app-tag-frame>
             </div>
             <div class="job-info-detail">
               Salary:&nbsp;<span>{{ articleInfo.salary }}</span>
