@@ -1,7 +1,6 @@
-<div class="post-review">
+<div class="post-review" *ngIf="review">
   <h3>{{ review.title }}</h3>
   <div>Rate: {{review.rate_general}}</div>
-  <div>Rate: {{rating}}</div>
   <div>
     <span class="stars">
       <span style.width="{{size}}"></span>
@@ -16,4 +15,5 @@
     <label for=""><strong>Suggestion for Improve</strong></label>
     <p>{{ review.hate }}</p>
   </div>
+  <hr>
 </div>

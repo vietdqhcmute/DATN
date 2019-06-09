@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
+import { Review } from 'src/app/models/ReviewData';
 
 @Component({
   selector: "app-company-description",
@@ -12,7 +13,7 @@ export class CompanyDescriptionComponent extends RecruiterComponent
   imageURL_company =
     "https://cdn.itviec.com/photos/35827/processed_headline_photo/fpt-software-headline_photo.png?ojMRBGzhWEL7ri4CE7w3VgwU";
   company_email: String;
-  reviews = [];
+  reviews: Review[] = [];
   ngOnInit() {
     this.sub.push(
       this.route.paramMap.subscribe(params => {
@@ -33,8 +34,8 @@ export class CompanyDescriptionComponent extends RecruiterComponent
   }
   getReviews(email) {
     this.sub.push(
-      this.reviewService.getAllReviewByEmail(email).subscribe(data => {
-        this.reviews = data;
+      this.reviewService.getAllReviewByEmail(email).subscribe(reviews => {
+        this.reviews = reviews;
       })
     );
   }

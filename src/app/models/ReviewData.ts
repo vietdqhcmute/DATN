@@ -1,16 +1,17 @@
 export class Review {
-  email: String;
-  title: String;
+  _id: string
+  email: string;
+  title: string;
   rate_general: Number;
   rate_salary: Number;
   rate_training: Number;
   rate_care: Number;
   rate_culture: Number;
   rate_infrastructure: Number;
-  ot_like: String;
-  ot_hate: String;
-  like: String;
-  hate: String;
+  ot_like: string;
+  ot_hate: string;
+  like: string;
+  hate: string;
   isIntroduce: Boolean;
   created_at: Date;
   constructor() {

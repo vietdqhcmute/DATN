@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import { Review } from '../models/ReviewData';
 
 @Injectable({
   providedIn: "root"
@@ -15,6 +16,6 @@ export class ReviewService {
   }
 
   getAllReviewByEmail(email: String) {
-    return this.http.get<any>(this.domainName + "reviews/" + email);
+    return this.http.get<Review[]>(this.domainName + "reviews/" + email);
   }
 }
