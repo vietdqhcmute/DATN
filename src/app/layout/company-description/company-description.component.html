@@ -62,7 +62,17 @@
       </div>
     </div>
     <div class="row company-container">
-      <div class="col-md-8" [innerHTML]="recruiter.overview"></div>
+      <div class="col-md-8">
+        <mat-tab-group>
+          <mat-tab label="Overview">
+            <div [innerHTML]="recruiter.overview"></div>
+          </mat-tab>
+          <mat-tab label="Review">
+            <h1>Review company</h1>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
       <div class="col-md-4">
         <div class="row">
           <div
@@ -72,8 +82,8 @@
             <div class="panel-heading">
               <h4 class="panel-title">Ratings</h4>
             </div>
-            <div class="panel-body">
-              <app-recruiter-review-rating></app-recruiter-review-rating>
+            <div class="panel-body" *ngIf="avarageRating">
+              <app-recruiter-review-rating [rating]="avarageRating"></app-recruiter-review-rating>
             </div>
           </div>
           <div
@@ -84,7 +94,9 @@
               <h4 class="panel-title">Feature Reviews</h4>
             </div>
             <div class="panel-body" *ngFor="let item of reviews">
-              <app-recruiter-review-post [review]=item></app-recruiter-review-post>
+              <app-recruiter-review-post
+                [review]="item"
+              ></app-recruiter-review-post>
             </div>
           </div>
         </div>
