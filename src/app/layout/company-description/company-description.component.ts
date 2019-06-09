@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
 
@@ -8,7 +8,7 @@ import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
   styleUrls: ["./company-description.component.scss"]
 })
 export class CompanyDescriptionComponent extends RecruiterComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy, AfterViewInit {
   imageURL_company =
     "https://cdn.itviec.com/photos/35827/processed_headline_photo/fpt-software-headline_photo.png?ojMRBGzhWEL7ri4CE7w3VgwU";
   company_email: String;
@@ -21,6 +21,9 @@ export class CompanyDescriptionComponent extends RecruiterComponent
         this.getReviews(params.get("email"));
       })
     );
+  }
+  ngAfterViewInit(): void {
+    this.alertService.setHideTopBar(false);
   }
   ngOnDestroy(): void {
     this.sub.forEach(subscription => subscription.unsubscribe());
