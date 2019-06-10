@@ -1,4 +1,4 @@
-<div *ngIf="candidate">
+<div class="container" *ngIf="candidate">
   <div class="flex-profile">
     <div id="info-area">
       <div class="header-profile"></div>
@@ -77,7 +77,8 @@
 
       <section id="info">
         <p style="margin-bottom: 3px">
-          You have joined us since: {{ candidate.created | date: "mediumDate" }}
+          You have joined us since:
+          {{ candidate.created | date: "mediumDate" }}
         </p>
       </section>
     </div>

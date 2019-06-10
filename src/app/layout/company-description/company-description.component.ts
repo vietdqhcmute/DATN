@@ -3,6 +3,7 @@ import { Subscription } from "rxjs";
 import { RecruiterComponent } from "src/app/recruiter/recruiter.component";
 import { Review } from "src/app/models/ReviewData";
 import { ReviewService } from "src/app/services/review.service";
+import { Articles } from "src/app/models/RecruiterData";
 
 @Component({
   selector: "app-company-description",
@@ -16,12 +17,14 @@ export class CompanyDescriptionComponent extends RecruiterComponent
   company_email: String;
   reviews: Review[] = [];
   avarageRating: number;
+  articles: Articles[] = [];
   ngOnInit() {
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.company_email = params.get("email");
         this.loadRecruiterData(params.get("email"));
         this.getReviews(params.get("email"));
+        this.getArticles(params.get("email"));
       })
     );
   }
@@ -47,6 +50,11 @@ export class CompanyDescriptionComponent extends RecruiterComponent
     reviews.forEach(review => {
       sum += <number>review.rate_general;
     });
-    return sum/reviews.length;
+    return sum / reviews.length;
+  }
+  getArticles(email) {
+    this.articleService.getAllArticles(email).subscribe(articles => {
+      this.articles = articles;
+    });
   }
 }

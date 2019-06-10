@@ -1,12 +1,18 @@
 :host {
   .tag {
     color: rgb(44, 44, 44);
+    border: rgba(255, 255, 255, 0) 1px solid;
     border-radius: 12px;
     width: fit-content;
     padding: 10px;
-    margin: 0 7px 7px 0;
+    margin: 7px;
     background-color: rgb(218, 216, 216);
     position: relative;
+    cursor: pointer;
+    &:hover {
+      border: red 1px solid;
+      color: red;
+    }
   }
   .delete-button {
     float: right;
