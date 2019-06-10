@@ -69,9 +69,27 @@
               <div [innerHTML]="recruiter.overview"></div>
             </mat-tab>
             <mat-tab label="Review">
-              <h1>Review company</h1>
+              <h2>Review company</h2>
+              <div class="panel-body" *ngFor="let item of reviews">
+                <app-recruiter-review-post
+                  [review]="item"
+                ></app-recruiter-review-post>
+              </div>
             </mat-tab>
           </mat-tab-group>
+        </div>
+        <div style="margin: 10px 0 0 0">
+          <div style="background: #fff; padding: 0 10px">
+            <h1>Jobs</h1>
+            <div class="other-jobs" *ngIf="articles">
+              <div *ngFor="let item of articles">
+                <app-job-frame-dashboard
+                  [jobDescription]="item"
+                  [email]="item.email_company"
+                ></app-job-frame-dashboard>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
