@@ -62,15 +62,17 @@
       </div>
     </div>
     <div class="row company-container">
-      <div class="col-md-8">
-        <mat-tab-group>
-          <mat-tab label="Overview">
-            <div [innerHTML]="recruiter.overview"></div>
-          </mat-tab>
-          <mat-tab label="Review">
-            <h1>Review company</h1>
-          </mat-tab>
-        </mat-tab-group>
+      <div class="col-md-8" style="padding-left:0px ">
+        <div style="background: #fff; padding: 0 10px">
+          <mat-tab-group>
+            <mat-tab label="Overview">
+              <div [innerHTML]="recruiter.overview"></div>
+            </mat-tab>
+            <mat-tab label="Review">
+              <h1>Review company</h1>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
       </div>
 
       <div class="col-md-4">
@@ -83,7 +85,9 @@
               <h4 class="panel-title">Ratings</h4>
             </div>
             <div class="panel-body" *ngIf="avarageRating">
-              <app-recruiter-review-rating [rating]="avarageRating"></app-recruiter-review-rating>
+              <app-recruiter-review-rating
+                [rating]="avarageRating"
+              ></app-recruiter-review-rating>
             </div>
           </div>
           <div
