@@ -4,7 +4,7 @@
       top:-4px;
     }
   }
-  
+
   .search-form-all-job {
     @media screen and (max-width: 600px) {
       top: 5%;
@@ -62,8 +62,12 @@
     font-size: 15px;
     margin-top: 10px;
   }
+  .all-job{
+    background: #ECEFF1;
+  }
   .companies-alljob.container{
     margin-top: 10px;
     max-width: 1024px !important;
+    background: #FFFFFF;
   }
 }
