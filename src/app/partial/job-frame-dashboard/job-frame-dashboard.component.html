@@ -12,13 +12,14 @@
   </div>
   <div class="job-description">
     <div class="list-hightlight"></div>
-    <div
-      class="description-hidden"
-      [innerHTML]="jobDescription.description"
-    ></div>
+    <div class="description-hidden" [innerHTML]="jobDescription.description"></div>
+  </div>
+  <div class="tag-view" style="display: flex;flex-wrap: wrap;">
+    <app-tag-frame *ngFor="let item of jobDescription.tags" [tag]="item"></app-tag-frame>
   </div>
 </div>
 <div class="city-and-info">
+
   <div class="city">{{ jobDescription.city }}</div>
   <div class="created">{{ jobDescription.created }}</div>
 </div>
