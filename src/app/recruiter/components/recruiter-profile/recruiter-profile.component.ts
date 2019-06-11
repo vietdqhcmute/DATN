@@ -11,6 +11,11 @@ export class RecruiterProfileComponent extends RecruiterComponent
   implements OnInit, OnDestroy {
   public Editor = ClassicEditor;
   imagePreview: string;
+  productionSelections = ["Production", "Outsourcing"];
+  dayAtWorkSelections = ["Mon - Fri", "Partime", "Everyday"];
+  employeeSelections = ["10+", "50+", "100+", "1000+"];
+  citySelections = ["Ho Chi Minh", "Ha Noi"];
+  isLoading: boolean = false;
 
   ngOnInit() {
     this.sub.push(
@@ -44,10 +49,18 @@ export class RecruiterProfileComponent extends RecruiterComponent
   }
 
   onSave() {
+    this.isLoading = true;
     this.sub.push(
       this.recruiterService
         .updateRecruiterByID(this.recruiter._id, this.recruiter)
-        .subscribe(response => {})
+        .subscribe(
+          response => {
+            this.isLoading = false;
+          },
+          error => {
+            this.isLoading = false;
+          }
+        )
     );
   }
 }

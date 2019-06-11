@@ -1,11 +1,11 @@
 :host() {
-  padding:10px;
-  .container-fluid{
+  padding: 10px;
+  .container-fluid {
     padding: 0;
     margin: 0;
     display: flex;
   }
-  .side-bar{
+  .side-bar {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -22,18 +22,18 @@
         height: 15vh;
       }
     }
-    .name{
+    .name {
       font-weight: bolder;
       text-align: center;
     }
     .navigation {
       ul {
         list-style: none;
-        li{
-          a{
+        li {
+          a {
             color: rgb(36, 36, 36);
             text-decoration: none;
-            &:hover{
+            &:hover {
               color: rgb(99, 95, 95);
             }
           }
@@ -41,7 +41,18 @@
       }
     }
   }
-  .content{
+  .content {
     float: left;
+  }
+  .recruiter-info {
+    display: flex;
+    flex-direction: column;
+    span {
+      display: flex;
+      margin-bottom: 5px;
+    }
+    i {
+      margin-right: 5px;
+    }
   }
 }
