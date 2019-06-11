@@ -68,12 +68,79 @@ module.exports = {
   },
 
   addDocument: (req, res, indexName, _id, docType, payload) => {
-    elasticClient.index({
-      index: indexName,
-      type: docType,
-      id: _id,
-      body: payload
-    })
+    elasticClient
+      .index({
+        index: indexName,
+        type: docType,
+        id: _id,
+        body: payload
+      })
+      .then(
+        resp => {
+          console.log(resp);
+          res.status(200);
+          return res.json(resp);
+        },
+        err => {
+          console.log(err);
+          res.status(500);
+          return res.json(err);
+        }
+      );
   },
 
+  search: (req, res, indexName, docType, payload) => {
+    elasticClient
+      .search({
+        index: indexName,
+        type: docType,
+        body: payload
+      })
+      .then(
+        resp => {
+          console.log(resp);
+          res.status(200);
+          return res.json(resp);
+        },
+        err => {
+          console.log(err);
+          res.status(500);
+          return res.json(err);
+        }
+      );
+  },
+
+  deleteDocument: (req, res, index, _id, docType) => {
+    elasticClient.delete(
+      {
+        index: index,
+        type: docType,
+        id: _id
+      },
+      (err, resp) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log("Index have been deleted! ", resp);
+          return res.json(resp);
+        }
+      }
+    );
+  },
+
+  deleteAll: (req, res) => {
+    elasticClient.indices.delete(
+      {
+        index: "_all"
+      },
+      (err, resp) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log("Index have been deleted! ", resp);
+          return res.json(resp);
+        }
+      }
+    );
+  }
 };
