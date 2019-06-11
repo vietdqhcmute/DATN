@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { RecruiterService } from "../services/recruiter.service";
 import { Recruiter } from "../models/RecruiterData";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -8,16 +8,19 @@ import { Subscription, Subject } from "rxjs";
 import { ArticleService } from "../services/article.service";
 import { AuthService } from "../services/auth.service";
 import { AlertService } from "../services/alert.service";
+import { TagService } from "../services/tag.service";
+import { ReviewService } from "../services/review.service";
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: "app-recruiter",
   templateUrl: "./recruiter.component.html",
   styleUrls: ["./recruiter.component.scss"]
 })
-export class RecruiterComponent implements OnInit {
+export class RecruiterComponent implements OnInit, AfterViewInit {
   protected recruiter: Recruiter;
   protected recruiterEmail: string;
-  sub: Subscription;
+  sub: Subscription[] = [];
   constructor(
     protected recruiterService: RecruiterService,
     protected articleService: ArticleService,
@@ -25,33 +28,57 @@ export class RecruiterComponent implements OnInit {
     protected router: Router,
     protected titleService: Title,
     protected authService: AuthService,
-    protected alertService: AlertService
+    protected alertService: AlertService,
+    protected tagService: TagService,
+    protected reviewService: ReviewService,
+    protected dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    this.sub = this.route.paramMap.subscribe(params => {
-      this.loadRecruiterData(params.get("email"));
-      this.titleService.setTitle("Profile of");
-    });
+    this.sub.push(
+      this.route.paramMap.subscribe(params => {
+        this.recruiterEmail = params.get("email");
+        // this.getRecruiterEmail();
+        this.loadRecruiterData(params.get("email"));
+        // this.setRecruiterEmail(params.get("email"))
+      })
+    );
+  }
+  ngAfterViewInit(): void {
     this.alertService.setHideTopBar(true);
+  }
+  onTestEmail() {
+    this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
+      console.log(email);
+    });
+  }
+  onLogOut() {
+    this.sub.forEach(subscription => subscription.unsubscribe());
+    this.authService.logout();
   }
 
   loadRecruiterData(email) {
-    this.recruiterService
-      .getRecruiter(email)
-      .pipe(first())
-      .subscribe(recruiter => {
-        this.recruiter = <Recruiter>recruiter;
-      });
+    this.sub.push(
+      this.recruiterService
+        .getRecruiter(email)
+        .pipe(first())
+        .subscribe(recruiter => {
+          console.log(recruiter);
+          this.titleService.setTitle(recruiter.company_name);
+          this.recruiter = <Recruiter>recruiter;
+        })
+    );
   }
 
   getRecruiterEmail() {
-    this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
-      this.recruiterEmail = email;
-    });
+    this.sub.push(
+      this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
+        this.recruiterEmail = email;
+      })
+    );
   }
 
-  private onLogOut() {
-    this.authService.logout();
+  setRecruiterEmail(email) {
+    this.recruiterService.setRecruiterEmailObservable(email);
   }
 }

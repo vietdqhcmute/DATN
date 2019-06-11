@@ -26,10 +26,60 @@
       <router-outlet></router-outlet>
     </div>
     <div class="right-bar col-md-3">
+      <a routerLink="./profile">
+        <button class="btn btn-primary">Edit profile</button>
+      </a>
       <h3>Infomation:</h3>
-      <p>Email: {{ recruiter.email }}</p>
-      <p>Website: {{ recruiter.website }}</p>
-      <p>Phone: {{ recruiter.phone }}</p>
+      <div class="recruiter-info">
+        <span>
+          <i class="material-icons">
+            email
+          </i>
+          {{ recruiter.email }}
+        </span>
+        <span>
+          <i class="material-icons">
+            web
+          </i>
+          {{ recruiter.website }}
+        </span>
+        <span>
+          <i class="material-icons">
+            phone
+          </i>
+          {{ recruiter.phone }}
+        </span>
+        <span>
+          <i class="material-icons">
+            business
+          </i>
+          {{ recruiter.address }}
+        </span>
+        <span>
+          <i class="material-icons">
+            people
+          </i>
+          {{ recruiter.employees }}
+        </span>
+        <span>
+          <i class="material-icons">
+            location_city
+          </i>
+          {{ recruiter.city }}
+        </span>
+        <span>
+          <i class="material-icons">
+            settings
+          </i>
+          {{ recruiter.production }}
+        </span>
+        <span>
+          <i class="material-icons">
+            calendar_today
+          </i>
+          {{ recruiter.day_at_work }}
+        </span>
+      </div>
     </div>
   </div>
 </div>

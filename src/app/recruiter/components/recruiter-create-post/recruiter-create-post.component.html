@@ -1,24 +1,91 @@
 <h3>Create new post</h3>
-<form>
+<div>
   <div class="form-group">
     <label>Tittle</label>
-    <input type="text" [(ngModel)]="recruitPostData.title" name="title" class="form-control" placeholder="Tittle" />
+    <input
+      type="text"
+      [(ngModel)]="articleParams.title"
+      name="title"
+      class="form-control"
+      placeholder="Tittle"
+    />
   </div>
   <div>
     <label>Tag</label>
-    <input type="text" [(ngModel)]="recruitPostData.tag" name="tag" class="form-control" placeholder="Tags" />
-  </div>
+    <div class="add-tag" style="display: flex">
+      <form
+        class="auto-filter"
+        (ngSubmit)="onAddTag(searchTagForm)"
+        #searchTagForm="ngForm"
+      >
+        <mat-form-field>
+          <div style="display: flex">
+            <input
+              type="text"
+              matInput
+              [formControl]="tagContent"
+              [matAutocomplete]="auto"
+              placeholder="Tag (ex: AngularJS)"
+            />
+            <mat-dialog-actions>
+              <button
+                mat-button
+                type="submit"
+                class="mat-raised-button mat-primary"
+                cdkFocusInitial
+              >
+                Add Tag
+              </button>
+            </mat-dialog-actions>
+          </div>
 
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of tagsString" [value]="option">
+              <span> {{ option }} </span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div class="tag-area">
+    <div *ngFor="let item of articleParams.tags">
+      <app-tag-frame [tag]="item"></app-tag-frame>
+    </div>
+  </div>
   <div>
     <label for="exampleInputEmail1">Salary</label>
-    <input type="text" [(ngModel)]="recruitPostData.salary" name="salary" class="form-control" placeholder="Salary" />
+    <input
+      type="text"
+      [(ngModel)]="articleParams.salary"
+      name="salary"
+      class="form-control"
+      placeholder="Salary"
+    />
   </div>
-  <br>
+  <br />
   <div class="form-group">
     <label for="jobDescription">Job description</label>
-    <ckeditor [(ngModel)]="recruitPostData.description" name="description" [editor]="Editor"></ckeditor>
+    <ckeditor
+      [(ngModel)]="articleParams.description"
+      name="description"
+      [editor]="Editor"
+    ></ckeditor>
   </div>
-  <button *ngIf="!queryParams.edit" type="submit" class="btn btn-primary" (click)="onCreatePost()">Create post</button>
-  <button *ngIf="queryParams.edit" type="submit" class="btn btn-info" (click)="onUpdatePost()">Update post</button>
-
-</form>
+  <button
+    *ngIf="!queryParams.edit"
+    type="submit"
+    class="btn btn-primary"
+    (click)="onCreatePost()"
+  >
+    Create post
+  </button>
+  <button
+    *ngIf="queryParams.edit"
+    type="submit"
+    class="btn btn-info"
+    (click)="onUpdatePost()"
+  >
+    Update post
+  </button>
+</div>

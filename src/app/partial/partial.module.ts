@@ -16,6 +16,13 @@ import { ModalEditProfileReruiterComponent } from "./modal/modal-edit-profile-re
 import { ModalResumeExperienceComponent } from "./modal/modal-resume-experience.component/modal-resume-experience.component";
 import { ModalResumeProjectComponent } from "./modal/modal-resume-project/modal-resume-project.component";
 import { ModalResumeEducationComponent } from "./modal/modal-resume-education/modal-resume-education.component";
+import { TagFrameComponent } from './tag-frame/tag-frame.component';
+import { ModalTagComponent } from './modal/modal-tag/modal-tag.component';
+import { ModalPreviewArticleComponent } from './modal/modal-preview-article/modal-preview-article.component';
+import { RecruiterReviewRatingComponent } from './recruiter-review-rating/recruiter-review-rating.component';
+import { ModalApplierComponent } from './modal/modal-applier/modal-applier.component';
+import { DialogPreviewArticleComponent } from './material-dialog/dialog-preview-article/dialog-preview-article.component';
+import { DialogApplierListComponent } from './material-dialog/dialog-applier-list/dialog-applier-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,15 @@ import { ModalResumeEducationComponent } from "./modal/modal-resume-education/mo
     ModalEditProfileReruiterComponent,
     ModalResumeExperienceComponent,
     ModalResumeProjectComponent,
-    ModalResumeEducationComponent
+    ModalResumeEducationComponent,
+    TagFrameComponent,
+    ModalTagComponent,
+    ModalPreviewArticleComponent,
+    ModalApplierComponent,
+    ModalPreviewArticleComponent,
+    RecruiterReviewRatingComponent,
+    DialogPreviewArticleComponent,
+    DialogApplierListComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +68,15 @@ import { ModalResumeEducationComponent } from "./modal/modal-resume-education/mo
     ModalEditProfileReruiterComponent,
     ModalResumeExperienceComponent,
     ModalResumeProjectComponent,
-    ModalResumeEducationComponent
+    ModalResumeEducationComponent,
+    TagFrameComponent,
+    ModalTagComponent,
+    ModalPreviewArticleComponent,
+    ModalApplierComponent,
+    ModalPreviewArticleComponent,
+    RecruiterReviewRatingComponent,
+    DialogPreviewArticleComponent,
+    DialogApplierListComponent
   ]
 })
 export class PartialModule {}

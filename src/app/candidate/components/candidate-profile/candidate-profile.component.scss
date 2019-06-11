@@ -1,4 +1,9 @@
 :host {
+  background: #ECEFF1;
+  .container {
+    max-width: 915px !important;
+    background: #FFFFFF;
+  }
   .top-bar {
     position: fixed;
     top: 0px;
@@ -18,8 +23,8 @@
     #info-area {
       display: flex;
       flex-direction: column;
-      width: 132.5vh;
-      margin-left: 70px;
+      width: 100%;
+      // margin-left: 70px;
 
       .cover {
         -moz-box-shadow: 0 0 5px #37474f;
@@ -27,7 +32,7 @@
         box-shadow: 0 0 5px #37474f;
         margin-left: 50;
         margin-top: 50;
-        width: 132.5vh;
+        width: 100%;
         padding-top: 2px;
         padding-left: 2px;
         padding-right: 2px;
@@ -46,7 +51,7 @@
         .cover-info {
           display: flex;
           flex-flow: row;
-          input{
+          input {
             width: 75%;
             margin-bottom: 5px;
           }

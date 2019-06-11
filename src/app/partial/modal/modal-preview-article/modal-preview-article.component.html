@@ -1,0 +1,54 @@
+<span
+  class="span-btn"
+  data-backdrop="true"
+  data-toggle="modal"
+  data-target="#previewArticleModal"
+>
+  <i class="material-icons">
+    remove_red_eye
+  </i>
+</span>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="previewArticleModal"
+  tabindex="-3"
+  role="dialog"
+  aria-labelledby="previewArticleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="previewArticleModalLabel">Preview</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="title">
+          <h3>{{ article.title }}</h3>
+        </div>
+        <div class="date">
+          <p>{{ article.created_at | date }}</p>
+        </div>
+        <div class="tags">
+          <div *ngFor="let item of article.tags">
+            <app-tag-frame [tag]="item"></app-tag-frame>
+          </div>
+        </div>
+        <div [innerHTML]="article.description"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

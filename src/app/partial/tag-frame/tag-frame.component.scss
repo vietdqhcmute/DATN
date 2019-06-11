@@ -1,0 +1,38 @@
+:host {
+  .tag {
+    color: rgb(44, 44, 44);
+    border: rgba(255, 255, 255, 0) 1px solid;
+    border-radius: 12px;
+    width: fit-content;
+    padding: 10px;
+    margin: 7px;
+    background-color: rgb(218, 216, 216);
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      border: red 1px solid;
+      color: red;
+    }
+  }
+  .delete-button {
+    float: right;
+    -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  .delete {
+    right: -5px;
+    top: -5px;
+    position: absolute;
+  }
+  i {
+    font-size: 15px;
+    border: 1px solid;
+    border-radius: 50%;
+    color: #cacaca;
+    background-color: #131313;
+  }
+}

@@ -2,12 +2,7 @@
   <div>
     <div class="search-form-all-job form-row container" id="">
       <div class="search-text form-row">
-        <div
-          class="form-group"
-          action=""
-          id="search-form"
-          style="flex-grow: 7"
-        >
+        <div class="form-group" action="" id="search-form" style="flex-grow: 7">
           <div class="search-icon">
             <i class="fas fa-search"></i>
           </div>
@@ -21,24 +16,14 @@
             />
           </div>
         </div>
-        <div
-          class="form-group"
-          action=""
-          id="search-form"
-          style="flex-grow: 2"
-        >
+        <div class="form-group" action="" id="search-form" style="flex-grow: 2">
           <select class="form-control" id="exampleFormControlSelect1">
             <option>Hồ Chí Minh</option>
             <option>Đà Nẵng</option>
             <option>Hà Nội</option>
           </select>
         </div>
-        <div
-          class="form-group"
-          action=""
-          id="search-form"
-          style="flex-grow: 1"
-        >
+        <div class="form-group" action="" id="search-form" style="flex-grow: 1">
           <button
             type="button"
             class="btn text-light"
@@ -167,17 +152,18 @@
     </div>
   </div>
 
-  <div class="companies-alljob container" style="margin-top: 10px">
+  <div class="companies-alljob container">
     <h1 style="text-align: center;font-size: 21px;text-transform: uppercase">
       Các công ty hàng đầu
     </h1>
     <div
       style="display: flex; flex-direction: row; justify-content: space-around;flex-wrap: wrap"
+      *ngFor="let item of recentArticles"
     >
-    <app-company-frame></app-company-frame>
-    <app-company-frame></app-company-frame>
-    <app-company-frame></app-company-frame>
-    <app-company-frame></app-company-frame>
-  </div>
+      <app-job-frame-dashboard
+        [jobDescription]="item"
+        [email]="item.email_company"
+      ></app-job-frame-dashboard>
+    </div>
   </div>
 </div>

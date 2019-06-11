@@ -1,35 +1,44 @@
-<div class="job-description">
-  <div class="container" style="margin-top: 10px">
+<div class="job-description" *ngIf="articleInfo && recruiterInfo">
+  <div class="container" style="margin-top: 10px;max-width: 1024px !important;">
     <div class="row">
       <div class="side_bar col-md-3" style="text-align: center;height: 500px;">
         <div class="logo">
-          <a routerLink=""><img alt="Logo" [src]="imageURL" /> </a>
+          <a [routerLink]="['/company', recruiterInfo.email]"><img alt="Logo" [src]="recruiterInfo.image_url" />
+          </a>
         </div>
         <div class="employer-info">
           <div class="name">
             <div class="company-name">
-              <a [routerLink]="['../../../', 'company', companyInfo.email]">
-                <p>{{ companyInfo.company_name }}</p>
+              <a [routerLink]="['/company', recruiterInfo.email]">
+                <p>{{ recruiterInfo.company_name }}</p>
               </a>
             </div>
           </div>
           <div class="basic-info">
             <div class="short-info">
-              Work on cutting edge technologies and rocket your career!
+              {{ recruiterInfo.slogan }}
             </div>
             <p class="gear-icon short">
-              <i class="fas fa-cogs"></i>&nbsp;&nbsp;Outsourcing
+              <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{ recruiterInfo.production }}
             </p>
             <p class="group-icon short">
-              <i class="fas fa-users"></i>&nbsp;&nbsp;51-150
+              <i class="fas fa-users"></i>&nbsp;&nbsp;{{ recruiterInfo.employees }}
             </p>
             <div class="country-icon short">
               <i class="far fa-flag"></i>&nbsp;&nbsp;
-              <span class="country-name">Viet Nam</span>
+              <span class="country-name">{{ recruiterInfo.city }}</span>
             </div>
             <div class="working-date short">
               <i class="fa fa-calendar"></i>&nbsp;&nbsp;
-              <span>Monday - Friday</span>
+              <span>{{ recruiterInfo.day_at_work }}</span>
+            </div>
+            <div style="text-align: center;">
+
+              <a [routerLink]="['/company', recruiterInfo.email]">View our company page <i
+                  style="font-size: 15px;vertical-align: middle;" class="material-icons">
+                  keyboard_arrow_right
+                </i></a>
+
             </div>
           </div>
         </div>
@@ -38,27 +47,40 @@
         <div class="header">
           <div class="job-info">
             <h1 class="job-title">
-              {{ jobInfo.title }}
+              {{ articleInfo.title }}
             </h1>
             <div style="float: right;margin-right: 20px">
-              <button type="button" class="btn btn-danger font-weight-bold">
+              <mat-spinner
+                *ngIf="isLoading"
+                style="margin:auto;"
+                [diameter]="40"
+              ></mat-spinner>
+              <button
+                type="button"
+                class="btn btn-danger font-weight-bold"
+                (click)="onApply()"
+                *ngIf="!isLoading"
+              >
                 Apply Now
               </button>
             </div>
-            <div class="job-info-detail">
-              Salary:&nbsp;<span>{{ jobInfo.salary }}</span>
+            <div class="job-info-detail" style="display: flex;flex-wrap: wrap;" >
+              <app-tag-frame *ngFor="let item of articleInfo.tags" [tag]="item"></app-tag-frame>
             </div>
             <div class="job-info-detail">
-              Address:&nbsp;<span>So 1 Vo Van Ngan</span>
+              Salary:&nbsp;<span>{{ articleInfo.salary }}</span>
+            </div>
+            <div class="job-info-detail">
+              Address:&nbsp;<span>{{ recruiterInfo.address }}</span>
             </div>
             <div class="job-info-detail">
               Date:&nbsp;<span>{{
-                jobInfo.created_at | date: "dd/MM/yyyy"
+                articleInfo.created_at | date: "dd/MM/yyyy"
               }}</span>
             </div>
           </div>
         </div>
-        <div class="job-more-info" [innerHTML]="jobInfo.description"></div>
+        <div class="job-more-info" [innerHTML]="articleInfo.description"></div>
       </div>
     </div>
   </div>

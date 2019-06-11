@@ -32,7 +32,6 @@
       <input
         matInput
         placeholder="Phone number"
-        [disabled]="true"
         [value]="getInfoCandidate.phone"
       />
     </mat-form-field>
@@ -85,24 +84,24 @@
   <h3>Experience</h3>
   <div class="item-ul-li">
     <ul>
-      <li *ngFor="let item of experience">
+      <li *ngFor="let item of getInfoResume.experience; let i = index">
         <div>
           <a [routerLink]="xxx">{{ item.company_name }}</a>
           <p>{{ item.title }}</p>
         </div>
-        <button class="btn btn-danger float-right">
+        <button
+          class="btn btn-danger float-right"
+          (click)="onDeleteExperience(i)"
+        >
           <i class="fa fa-trash"></i>
         </button>
       </li>
     </ul>
   </div>
   <div class="item">
-    <app-modal-resume-expeience></app-modal-resume-expeience>
-    <!-- <input
-      type="button"
-      class="btn btn-primary preview"
-      value="Add Another Experience"
-    /> -->
+    <app-modal-resume-expeience
+      (saveClick)="onSaveExperience($event)"
+    ></app-modal-resume-expeience>
   </div>
 </section>
 <br />
@@ -112,22 +111,19 @@
 <section id="Project">
   <h3>Project</h3>
   <div class="item-ul-li">
-    <ul *ngFor="let item of project">
+    <ul *ngFor="let item of getInfoResume.project; let i = index">
       <li>
         <a [routerLink]="xxx">{{ item.project_name }}</a>
-        <button class="btn btn-danger float-right">
+        <button class="btn btn-danger float-right" (click)="onDeleteProject(i)">
           <i class="fa fa-trash"></i>
         </button>
       </li>
     </ul>
   </div>
   <div class="item">
-    <app-modal-resume-project></app-modal-resume-project>
-    <!-- <input
-      type="button"
-      class="btn btn-primary preview"
-      value="Add Another Project"
-    /> -->
+    <app-modal-resume-project
+      (saveClick)="onSaveProject($event)"
+    ></app-modal-resume-project>
   </div>
 </section>
 <br />
@@ -137,14 +133,17 @@
 <section id="Education">
   <h3>Education</h3>
   <div class="item-ul-li">
-    <ul *ngFor="let item of education">
+    <ul *ngFor="let item of getInfoResume.education; let i = index">
       <li>
         <div class="school-date">
           <a [routerLink]="xxx">{{ item.school_name }}</a>
           <p>{{ item.major }}</p>
         </div>
 
-        <button class="btn btn-danger float-right">
+        <button
+          class="btn btn-danger float-right"
+          (click)="onDeleteEducation(i)"
+        >
           <i class="fa fa-trash"></i>
         </button>
       </li>
@@ -152,12 +151,9 @@
   </div>
 
   <div class="item">
-    <app-modal-resume-education></app-modal-resume-education>
-    <!-- <input
-      type="button"
-      class="btn btn-primary preview"
-      value="Add Another Educational"
-    /> -->
+    <app-modal-resume-education
+      (saveClick)="onSaveEducation($event)"
+    ></app-modal-resume-education>
   </div>
 </section>
 <br />

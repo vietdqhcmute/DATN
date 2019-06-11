@@ -13,7 +13,7 @@ export class RecruiterService {
   domainName = environment.APIEndPoint;
   private avatarURL = new Subject<string>();
   private recruiter = new Subject<Recruiter>();
-  private recruiterEmail = new Subject<string>();
+  public recruiterEmail = new Subject<string>();
 
   constructor(
     protected http: HttpClient,
@@ -21,28 +21,31 @@ export class RecruiterService {
     protected router: Router
   ) {}
 
-  getRecruiterObservable(){
+  getRecruiterObservable() {
     return this.recruiter.asObservable();
   }
 
-  getRecruiterEmailObservable(){
+  setRecruiterEmailObservable(email: string) {
+    this.recruiterEmail.next(email);
+  }
+
+  getRecruiterEmailObservable() {
     return this.recruiterEmail.asObservable();
   }
 
-  getAllRecruites(){
+  getAllRecruites() {
     return this.http.get<Recruiter[]>(this.domainName + "recruiters");
   }
 
   getRecruiter(email) {
     this.getRecruiterAPI(email).subscribe(recruiter => {
       this.recruiter.next(recruiter);
-      this.recruiterEmail.next(recruiter.email);
     });
     return this.recruiter.asObservable();
   }
 
   getRecruiterAPI(email) {
-    return this.http.get<any>(this.domainName + "recruiter/email/" + email);
+    return this.http.get<Recruiter>(this.domainName + "recruiter/email/" + email);
   }
 
   getAvatarUrl() {
@@ -66,5 +69,11 @@ export class RecruiterService {
       .subscribe(response => {
         this.avatarURL.next(response.imageUrl);
       });
+  }
+
+  searchCompany(searchText: string) {
+    return this.http.get<Recruiter[]>(
+      this.domainName + "search/companies?" + "key=" + searchText
+    );
   }
 }

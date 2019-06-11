@@ -2,7 +2,7 @@
   <div class="container">
     <div class="search-form-all-company form-row" id="">
       <h1 class="slogan">
-        8,657 Company Reviews for You
+        {{ recruiters.length }} Company Reviews for You
         <span class="in-title">
           What are people saying about your company? Find out now!
         </span>
@@ -10,6 +10,8 @@
       <div class="search-text form-row">
         <form
           class="form-group"
+          (ngSubmit)="onSearch(searchCompanyForm)"
+          #searchCompanyForm="ngForm"
           action=""
           id="search-form"
           style="flex-grow: 7"
@@ -23,18 +25,12 @@
               class="form-control"
               id="input-job"
               placeholder="Enter Company Name"
+              [(ngModel)]="searchText"
+              name="searchText"
             />
           </div>
-        </form>
-
-        <form
-          class="form-group"
-          action=""
-          id="search-form"
-          style="flex-grow: 1"
-        >
           <button
-            type="button"
+            type="submit"
             class="btn text-light"
             style="font-size: 1em; width: 100%; background-color: #3f51b5;"
           >
@@ -52,10 +48,9 @@
     <div
       style="display: flex; flex-direction: row; justify-content: space-around;flex-wrap: wrap"
     >
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
-      <app-company-frame></app-company-frame>
+      <div *ngFor="let item of recruiters">
+        <app-company-frame [company]="item"></app-company-frame>
+      </div>
     </div>
   </div>
 </div>

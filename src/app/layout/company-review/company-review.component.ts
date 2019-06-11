@@ -17,26 +17,6 @@ import { AlertService } from "src/app/services/alert.service";
 })
 export class CompanyReviewComponent extends RecruiterComponent
   implements OnInit {
-  constructor(
-    protected recruiterService: RecruiterService,
-    protected articleService: ArticleService,
-    protected route: ActivatedRoute,
-    protected router: Router,
-    protected titleService: Title,
-    private reviewService: ReviewService,
-    protected authService: AuthService,
-    protected alertService: AlertService
-  ) {
-    super(
-      recruiterService,
-      articleService,
-      route,
-      router,
-      titleService,
-      authService,
-      alertService
-    );
-  }
   reviewData: Review = new Review();
   title: String;
   isShowCriticism = true;
@@ -71,9 +51,8 @@ export class CompanyReviewComponent extends RecruiterComponent
 
   onSubmit(): void {
     this.getRating();
-    this.reviewService
-      .createReviewPost(this.recruiter.email, this.reviewData)
-      .subscribe(reponse => {});
+    this.reviewData.email = this.recruiterEmail;
+    this.reviewService.createReview(this.reviewData).subscribe(reponse => {});
   }
   private getRating(): void {
     this.reviewData.rate_general = this.items[0].rating;

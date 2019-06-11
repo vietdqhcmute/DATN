@@ -1,8 +1,5 @@
 <div class="logo">
-  <img
-    src="https://cdn.itviec.com/employers/athena-studio/logo/s65/mHk6HuAgK39P7yE9yvtVYkcr/athena-studio-logo.png"
-    alt="image"
-  />
+  <img [src]="articleImageURL" alt="Company Logo" />
 </div>
 <div class="content">
   <div class="title">
@@ -15,21 +12,14 @@
   </div>
   <div class="job-description">
     <div class="list-hightlight"></div>
-    <div
-      class="description-hidden"
-      [innerHTML]="jobDescription.description"
-    ></div>
+    <div class="description-hidden" [innerHTML]="jobDescription.description"></div>
+  </div>
+  <div class="tag-view" style="display: flex;flex-wrap: wrap;">
+    <app-tag-frame *ngFor="let item of jobDescription.tags" [tag]="item"></app-tag-frame>
   </div>
 </div>
 <div class="city-and-info">
+
   <div class="city">{{ jobDescription.city }}</div>
   <div class="created">{{ jobDescription.created }}</div>
-  <div class="button">
-    <button class="btn btn-danger" (click)="onDelete()">
-      <i class="material-icons">delete</i>
-    </button>
-    <button class="btn btn-info" (click)="onUpdate()">
-      <i class="material-icons">edit</i>
-    </button>
-  </div>
 </div>

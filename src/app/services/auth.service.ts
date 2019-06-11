@@ -59,8 +59,12 @@ export class AuthService {
   createCandidate(candidateParams) {
     this.http.post(this.domainName + "sign-up", candidateParams).subscribe(
       response => {
-        console.log(response);
-        this.alertService.success("Create successfully!", true);
+        setTimeout(() => {
+          this.alertService.success("Create successfully!", true);
+          setTimeout(() => {
+            this.router.navigate(["/login"]);
+          }, 1000);
+        }, 1000);
       },
       error => {
         console.log(error);
@@ -70,28 +74,19 @@ export class AuthService {
   }
 
   createRecruiter(recruiterParams) {
-    //Add in Recruiter table
     this.http
       .post(this.domainName + "recruiter/sign-up", recruiterParams)
       .subscribe(
         response => {
-          console.log(response);
-          this.alertService.success("Create successfully!", true);
+          setTimeout(() => {
+            this.alertService.success("Create successfully!", true);
+            setTimeout(() => {
+              this.router.navigate(["/login"]);
+            }, 1000);
+          }, 1000);
         },
         error => {
-          console.log(error);
           this.alertService.error(error, false);
-        }
-      );
-    //Add in RecruiterReview table
-    this.http
-      .post(this.domainName + "add/review/" + recruiterParams.email, {})
-      .subscribe(
-        response => {
-          console.log(response);
-        },
-        error => {
-          console.log(error);
         }
       );
   }

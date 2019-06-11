@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Candidate } from "src/app/models/CandidateData";
 import { CandidateService } from "src/app/services/candidate.service";
 import { Subscription } from "rxjs";
-import { AlertService } from 'src/app/services/alert.service';
+import { AlertService } from "src/app/services/alert.service";
 
 @Component({
   selector: "app-modal-edit-profile",
@@ -14,19 +14,26 @@ export class ModalEditProfileComponent implements OnInit {
   sub: Subscription;
   imagePreview: string;
 
-  constructor(private candidateService: CandidateService, private alertService: AlertService) {}
+  constructor(
+    private candidateService: CandidateService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit() {}
   onSave() {
+    console.log(this.candidate);
     this.candidateService
       .updateCandidateByID(this.candidate._id, this.candidate)
-      .subscribe(res => {
-        console.log("Success: ", res)
-        this.alertService.success("Update user sucesss", false);
-      }, error => {
-        console.log("Error: ", error)
-        this.alertService.error("Can not update user", false);
-      });
+      .subscribe(
+        res => {
+          console.log("Success: ", res);
+          this.alertService.success("Update user sucesss", false);
+        },
+        error => {
+          console.error("Error: ", error);
+          this.alertService.error("Can not update user", false);
+        }
+      );
   }
 
   onImagePicked(event: Event) {

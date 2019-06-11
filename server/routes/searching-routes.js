@@ -4,7 +4,7 @@ const Article = require("../models/Article");
 const Recruiter = require("../models/Recruiter");
 
 //Search Articles by company email
-router.post("/articles", (req,res)=>{
+router.get("/articles", (req,res)=>{
   Article.find({$text:{$search: req.query.key}}).exec((err, docs)=>{
     if (err){
       res.status(404).send(err);
@@ -14,7 +14,7 @@ router.post("/articles", (req,res)=>{
 })
 
 //Search Company by name
-router.post("/companies", (req,res)=>{
+router.get("/companies", (req,res)=>{
   Recruiter.find({$text:{$search: req.query.key}}).exec((err, docs)=>{
     if (err){
       res.status(404).send(err);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { LoginData } from "../models/LoginData";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "../services/auth.service";
@@ -10,7 +10,7 @@ import { AlertService } from "../services/alert.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   hide = true; //Use for hidden password
   isLoading_logIn = false;
   loginParams = new LoginData();
@@ -22,9 +22,10 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.titleService.setTitle("Login");
+  }
+  ngAfterViewInit(): void {
     this.alertService.setHideTopBar(true);
   }
-
   onSignIn(form: NgForm) {
     if (form.invalid) {
       return;

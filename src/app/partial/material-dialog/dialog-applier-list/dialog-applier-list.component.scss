@@ -1,0 +1,25 @@
+:host {
+  .dialog-body {
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    table {
+      width: 100%;
+    }
+  }
+  .span-btn {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
+  }
+}

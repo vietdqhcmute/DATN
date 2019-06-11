@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Recruiter } from "src/app/models/RecruiterData";
 import { RecruiterComponent } from "../../recruiter.component";
@@ -8,14 +8,25 @@ import { RecruiterComponent } from "../../recruiter.component";
   styleUrls: ["./recruiter-profile.component.scss"]
 })
 export class RecruiterProfileComponent extends RecruiterComponent
-  implements OnInit {
+  implements OnInit, OnDestroy {
   public Editor = ClassicEditor;
   imagePreview: string;
+  productionSelections = ["Production", "Outsourcing"];
+  dayAtWorkSelections = ["Mon - Fri", "Partime", "Everyday"];
+  employeeSelections = ["10+", "50+", "100+", "1000+"];
+  citySelections = ["Ho Chi Minh", "Ha Noi"];
+  isLoading: boolean = false;
 
   ngOnInit() {
-    this.recruiterService.getRecruiter(this.recruiterEmail).subscribe(recruiter => {
-      this.recruiter = recruiter;
-    });
+    this.sub.push(
+      this.route.parent.paramMap.subscribe(params => {
+        this.loadRecruiterData(params.get("email"));
+        this.getRecruiterEmail();
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
   }
 
   onImagePicked(event: Event) {
@@ -38,9 +49,18 @@ export class RecruiterProfileComponent extends RecruiterComponent
   }
 
   onSave() {
-    this.recruiterService
-      .updateRecruiterByID(this.recruiter._id, this.recruiter)
-      .subscribe(response => {
-      });
+    this.isLoading = true;
+    this.sub.push(
+      this.recruiterService
+        .updateRecruiterByID(this.recruiter._id, this.recruiter)
+        .subscribe(
+          response => {
+            this.isLoading = false;
+          },
+          error => {
+            this.isLoading = false;
+          }
+        )
+    );
   }
 }

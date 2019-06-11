@@ -34,12 +34,17 @@
         <div>
           <div class="img-round">
             <img
-              mat-card-image 
+              mat-card-image
               [src]="candidate.image_url"
               alt="avatar"
               (click)="filePicker.click()"
             />
-            <input style="display: none;" type="file" #filePicker (change)="onImagePicked($event)" />
+            <input
+              style="display: none;"
+              type="file"
+              #filePicker
+              (change)="onImagePicked($event)"
+            />
           </div>
         </div>
         <div class="example-container">
@@ -59,7 +64,6 @@
               />
             </mat-form-field>
           </div>
-
           <div class="contact half-dialog">
             <mat-form-field>
               <input
@@ -78,47 +82,57 @@
               />
             </mat-form-field>
           </div>
+          <div class="example-container">
+            <div class="name half-dialog">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Github URL"
+                  [(ngModel)]="candidate.resume.github"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Linkedin URL"
+                  [(ngModel)]="candidate.resume.linkedin"
+                />
+              </mat-form-field>
+            </div>
+            <div class="title">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Job titile"
+                  [(ngModel)]="candidate.resume.title"
+                />
+              </mat-form-field>
+            </div>
 
-          <div class="title">
-            <mat-form-field>
-              <input matInput placeholder="Job titile" />
-            </mat-form-field>
-          </div>
-
-          <div class="summary">
-            <mat-form-field>
-              <textarea
-                matInput
-                placeholder="Summary about your self"
-              ></textarea>
-            </mat-form-field>
-          </div>
-
-          <div class="education">
-            <mat-form-field>
-              <input matInput placeholder="Education" />
-            </mat-form-field>
-          </div>
-
-          <div class="online-contact">
-            <mat-form-field>
-              <input matInput placeholder="Own website" />
-            </mat-form-field>
+            <div class="summary">
+              <mat-form-field>
+                <textarea
+                  matInput
+                  placeholder="Summary about your self"
+                  [(ngModel)]="candidate.resume.summary"
+                ></textarea>
+              </mat-form-field>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-dismiss="modal"
-          (click)="onSave()"
-        >
-          Save changes
-        </button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+            (click)="onSave()"
+          >
+            Save changes
+          </button>
+        </div>
       </div>
     </div>
   </div>

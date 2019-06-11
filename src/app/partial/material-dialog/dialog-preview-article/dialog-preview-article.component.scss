@@ -1,0 +1,19 @@
+:host {
+  .tags {
+    display: flex;
+  }
+  .span-btn {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+    }
+  }
+}

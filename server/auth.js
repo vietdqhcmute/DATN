@@ -6,16 +6,22 @@ const Recruiter = require("./models/Recruiter");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const RECRUITER_AVA_URL =
+  "https://nodejs-server-image.s3.amazonaws.com/1558956195517";
+const CANDIDATE_AVA_URL =
+  "https://nodejs-server-image.s3.amazonaws.com/1558956291712";
+const today = new Date();
+
 //API sign up for administrator
 router.post("/sign-up-admin", (req, res) => {
   hash = bcrypt.hashSync("admin", 10);
-  let authenticationParams = {
+  const authenticationParams = {
     email: "admin@admin.com",
     password: hash,
     role: 0,
     active: true
   };
-  let authentication = new Authentication(authenticationParams);
+  const authentication = new Authentication(authenticationParams);
   authentication.save(function(err) {
     if (err) {
       res.status(500).json({
@@ -33,13 +39,13 @@ router.post("/sign-up-admin", (req, res) => {
 router.post("/sign-up", (req, res) => {
   hash = bcrypt.hashSync(req.body.password, 10);
   req.body.password = hash;
-  let authenticationParams = {
+  const authenticationParams = {
     email: req.body.email,
     password: hash,
     role: 1,
     active: true
   };
-  let authentication = new Authentication(authenticationParams);
+  const authentication = new Authentication(authenticationParams);
   authentication.save(function(err) {
     if (err) {
       res.status(500).json({
@@ -47,12 +53,14 @@ router.post("/sign-up", (req, res) => {
       });
       return;
     }
-    let candidateParams = {
+    const candidateParams = {
       full_name: req.body.name,
       display_name: req.body.name,
       phone: req.body.phone,
       email: req.body.email,
-      image_url: ""
+      image_url: CANDIDATE_AVA_URL,
+      created_at: today,
+      updated_at: today
     };
     candidate = new Candidate(candidateParams);
     candidate.save(function(error) {
@@ -73,13 +81,13 @@ router.post("/sign-up", (req, res) => {
 router.post("/recruiter/sign-up", (req, res) => {
   hash = bcrypt.hashSync(req.body.password, 10);
   req.body.password = hash;
-  let authenticationParams = {
+  const authenticationParams = {
     email: req.body.email,
     password: hash,
     role: 2,
     active: true
   };
-  let authentication = new Authentication(authenticationParams);
+  const authentication = new Authentication(authenticationParams);
   authentication.save(function(err) {
     if (err) {
       res.status(500).json({
@@ -87,19 +95,23 @@ router.post("/recruiter/sign-up", (req, res) => {
       });
       return;
     }
-    let recruiterParams = {
+    const recruiterParams = {
       company_name: req.body.company_name,
-      image_url: "",
+      image_url: RECRUITER_AVA_URL,
       email: req.body.email,
       phone: req.body.phone,
-      address: req.body.address,
+      address: "",
       website: req.body.website,
-      employees: 0,
+      employees: "0",
       overview: "Adding some overview",
-      recruit_news: [],
-      candidates_follow: []
+      city: req.body.city,
+      production: "",
+      day_at_work: "",
+      slogan: "Add your new slogan!",
+      created_at: today,
+      updated_at: today
     };
-    recruiter = new Recruiter(recruiterParams);
+    const recruiter = new Recruiter(recruiterParams);
     recruiter.save(function(error) {
       if (error) {
         res.status(500).json({
@@ -116,7 +128,10 @@ router.post("/recruiter/sign-up", (req, res) => {
 
 //New API login
 router.post("/login", (req, res, next) => {
-  let fetchedUser = { email: String, role: Number };
+  let fetchedUser = {
+    email: String,
+    role: Number
+  };
   Authentication.findOne({
     email: req.body.email
   })
@@ -124,6 +139,11 @@ router.post("/login", (req, res, next) => {
       if (!user) {
         return res.status(401).json({
           message: "Email fault!"
+        });
+      }
+      if (!user.active) {
+        return res.status(401).json({
+          message: "User is deactivated!"
         });
       }
       fetchedUser.email = user.email;
@@ -153,4 +173,36 @@ router.post("/login", (req, res, next) => {
     });
 });
 
+// Deactivate user
+router.put("/deactivate/:id", (req, res) => {
+  Authentication.findByIdAndUpdate(
+    req.params.id,
+    {
+      active: false
+    },
+    (err, data) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        return res.status(200).json(data);
+      }
+    }
+  );
+});
+//Activate user
+router.put("/activate/:id", (req, res) => {
+  Authentication.findByIdAndUpdate(
+    req.params.id,
+    {
+      active: true
+    },
+    (err, data) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        return res.status(200).json(data);
+      }
+    }
+  );
+});
 module.exports = router;

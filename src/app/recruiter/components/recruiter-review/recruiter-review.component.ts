@@ -1,12 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RecruiterComponent } from "../../recruiter.component";
-import { RecruiterService } from "src/app/services/recruiter.service";
-import { ArticleService } from "src/app/services/article.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Title } from "@angular/platform-browser";
-import { ReviewService } from "src/app/services/review.service";
-import { AuthService } from 'src/app/services/auth.service';
-import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: "app-recruiter-review",
@@ -14,25 +7,20 @@ import { AlertService } from 'src/app/services/alert.service';
   styleUrls: ["./recruiter-review.component.scss"]
 })
 export class RecruiterReviewComponent extends RecruiterComponent
-  implements OnInit {
+  implements OnInit, OnDestroy {
   reviews = [];
-  constructor(
-    protected recruiterService: RecruiterService,
-    protected articleService: ArticleService,
-    protected route: ActivatedRoute,
-    protected router: Router,
-    protected titleService: Title,
-    protected authService: AuthService,
-    protected alertService: AlertService,
-    private reviewService: ReviewService,
-  ) {
-    super(recruiterService, articleService, route, router, titleService, authService, alertService);
-  }
   ngOnInit() {
-    this.route.parent.params.subscribe(params => {
-      this.reviewService.getAllReviewByEmail(params.email).subscribe(data => {
-        this.reviews = data.review_posts;
-      });
-    });
+    this.sub.push(
+      this.route.parent.params.subscribe(params => {
+        this.reviewService
+          .getAllReviewByEmail(params.email)
+          .subscribe(reviews => {
+            this.reviews = reviews;
+          });
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.sub.forEach(subscription => subscription.unsubscribe());
   }
 }
