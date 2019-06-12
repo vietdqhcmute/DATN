@@ -8,9 +8,15 @@ let candidateSchema = new mongoose.Schema({
   full_name: String,
   display_name: String,
   image_url: String,
-  email: String,
+  email: {
+    type: String,
+    es_indexed: true
+  },
   phone: String,
-  tags: [String],
+  tags: {
+    type: String,
+    es_indexed: true
+  },
   resume: Resume,
   created_at: {
     type: Date,

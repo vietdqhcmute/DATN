@@ -5,19 +5,19 @@ const elasticClient = require("../elasticsearch/es-service").client;
 let recruiterSchema = new mongoose.Schema({
   company_name: {
     type: String,
-    index: {
-      unique: true
-    }
+    es_indexed: true
   },
   image_url: String,
   email: String,
   phone: String,
   address: String,
-  city: String,
+  city: {
+    type: String,
+    es_indexed: true
+  },
   website: String,
   employees: String,
   overview: String,
-  city: String,
   production: String,
   day_at_work: String,
   slogan: String,
