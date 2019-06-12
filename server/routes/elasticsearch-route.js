@@ -13,7 +13,9 @@ router.get("/recruiter/:email", (req, res) => {
         console.log(err);
         return res.send(err);
       }
-      const hitResults = results.hits.hits;
+      const hitResults = results.hits.hits.filter(element => {
+        return element != null;
+      });
       if (hitResults.length === 0) {
         return res.status(404).json({ message: "Nothing to be found!" });
       }
@@ -32,7 +34,9 @@ router.get("/candidate/:email", (req, res) => {
         console.log(err);
         return res.send(err);
       }
-      const hitResults = results.hits.hits;
+      const hitResults = results.hits.hits.filter(element => {
+        return element != null;
+      });
       if (hitResults.length === 0) {
         return res.status(404).json({ message: "Nothing to be found!" });
       }
@@ -51,7 +55,9 @@ router.get("/article/:tag", (req, res) => {
         console.log(err);
         return res.send(err);
       }
-      const hitResults = results.hits.hits;
+      const hitResults = results.hits.hits.filter(element => {
+        return element != null;
+      });
       if (hitResults.length === 0) {
         return res.status(404).json({ message: "Nothing to be found!" });
       }

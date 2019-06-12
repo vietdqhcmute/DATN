@@ -24,8 +24,8 @@ router.post("/", (req, res) => {
       return console.log(err);
     }
     requestArticle.on("es-indexed", function(err, res) {
-      if (err){
-        console.error("Elastic search is down")
+      if (err) {
+        console.error("Elastic search is down");
       }
     });
     res.status(200).send(data);
@@ -97,12 +97,22 @@ router.put("/:id", (req, res) => {
 });
 //delete post by email company and post id
 router.delete("/:id", async (req, res) => {
-  Article.findByIdAndDelete(req.params.id, (err, data) => {
+  const article = await Article.findById(req.params.id);
+  article.remove((err, resp) => {
     if (err) {
       return res.status(500).send(err);
     }
-    res.status(200).send(data);
+    article.on("es-removed", (err, res) => {
+      if (err) throw err;
+    });
+    res.status(200).send(resp);
   });
+  // Article.findByIdAndDelete(req.params.id, (err, data) => {
+  //   if (err) {
+  //     return res.status(500).send(err);
+  //   }
+  //   res.status(200).send(data);
+  // });
 });
 //Apply candidate for article
 router.put("/apply/:id", async (req, res) => {
