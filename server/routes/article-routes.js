@@ -75,7 +75,7 @@ router.get("/:id", async (req, res) => {
   });
 });
 
-//update post by email company and post id
+//update article by email company and article id
 router.put("/:id", (req, res) => {
   Article.findByIdAndUpdate(
     req.params.id,

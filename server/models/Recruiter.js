@@ -3,12 +3,13 @@ const mongoosastic = require("mongoosastic");
 const elasticClient = require("../elasticsearch/es-service").client;
 
 let recruiterSchema = new mongoose.Schema({
-  company_name: {
+  company_name: String,
+  image_url: String,
+  email: {
     type: String,
+    unique: true,
     es_indexed: true
   },
-  image_url: String,
-  email: String,
   phone: String,
   address: String,
   city: {
