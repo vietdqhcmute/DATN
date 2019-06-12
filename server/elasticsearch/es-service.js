@@ -6,6 +6,10 @@ const elasticClient = new elasticsearch.Client({
 
 module.exports = {
   //Followed https://medium.com/@siddharthac6/elasticsearch-node-js-b16ea8bec427
+  client: () => {
+    return elasticClient;
+  },
+
   ping: () => {
     elasticClient.ping({ requestTimeout: 30000 }, function(error) {
       if (error) {

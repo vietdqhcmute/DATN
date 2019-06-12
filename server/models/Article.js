@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-
+const mongoosastic = require("mongoosastic");
+const elasticClient = require("../elasticsearch/es-service").client;
 let articleSchema = new mongoose.Schema({
   email_company: String,
   avatar_url: String,
@@ -12,9 +13,6 @@ let articleSchema = new mongoose.Schema({
   created_at: Date,
   updated_at: Date
 });
-articleSchema.index(
-  { name: "text", tags: "text", email_company: "text" },
-  { unique: true }
-);
+articleSchema.plugin(mongoosastic, { esClient: elasticClient });
 const Article = mongoose.model("Article", articleSchema);
 module.exports = Article;

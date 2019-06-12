@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const mongoosastic = require("mongoosastic");
+const elasticClient = require("../elasticsearch/es-service").client;
 
 let recruiterSchema = new mongoose.Schema({
   company_name: {
@@ -22,9 +24,6 @@ let recruiterSchema = new mongoose.Schema({
   created_at: Date,
   updated_at: Date
 });
-recruiterSchema.index({
-  name: 'text',
-  company_name: 'text'
-});
+recruiterSchema.plugin(mongoosastic, { esClient: elasticClient });
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
 module.exports = Recruiter;
