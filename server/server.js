@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const elasticsearch = require("./elasticsearch/es-ping");
+const elasticsearch = require("./elasticsearch/es-service");
 const app = express();
 // var connectionString = 'mongodb://lytutronga6:lytutronga6@tlcn-1-shard-00-00-looeq.mongodb.net:27017,tlcn-1-shard-00-01-looeq.mongodb.net:27017,tlcn-1-shard-00-02-looeq.mongodb.net:27017/test?ssl=true&replicaSet=TLCN-1-shard-0&authSource=admin&retryWrites=true';
 // var connectionString = "mongodb://lytutronga6:lytutronga6@datn-cluster-shard-00-00-p9e6i.mongodb.net:27017,datn-cluster-shard-00-01-p9e6i.mongodb.net:27017,datn-cluster-shard-00-02-p9e6i.mongodb.net:27017/test?ssl=true&replicaSet=DATN-cluster-shard-0&authSource=admin&retryWrites=true"
@@ -62,6 +62,7 @@ const tagRoutes = require("./routes/tag-routes");
 const reviewRoutes = require("./routes/review-routes");
 const searchingRoutes = require("./routes/searching-routes");
 const articleRoutes = require("./routes/article-routes");
+const elasticsearchRoutes = require("./routes/elasticsearch-route");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
@@ -74,6 +75,7 @@ app.use("/", tagRoutes);
 app.use("/", reviewRoutes);
 app.use("/article", articleRoutes);
 app.use("/search", searchingRoutes);
+app.use("/elastic", elasticsearchRoutes);
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
 });

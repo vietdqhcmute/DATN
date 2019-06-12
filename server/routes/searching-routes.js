@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Article = require("../models/Article");
 const Recruiter = require("../models/Recruiter");
-
+const elasticsearch = require("../elasticsearch/es-service");
 //Search Articles by company email
 router.get("/articles", (req,res)=>{
   Article.find({$text:{$search: req.query.key}}).exec((err, docs)=>{
