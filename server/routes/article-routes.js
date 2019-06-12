@@ -107,12 +107,6 @@ router.delete("/:id", async (req, res) => {
     });
     res.status(200).send(resp);
   });
-  // Article.findByIdAndDelete(req.params.id, (err, data) => {
-  //   if (err) {
-  //     return res.status(500).send(err);
-  //   }
-  //   res.status(200).send(data);
-  // });
 });
 //Apply candidate for article
 router.put("/apply/:id", async (req, res) => {
