@@ -24,6 +24,6 @@ let articleSchema = new mongoose.Schema({
     type: Date
   }
 });
-articleSchema.plugin(mongoosastic, { esClient: elasticClient });
+articleSchema.plugin(mongoosastic, { elasticClient: elasticClient });
 const Article = mongoose.model("Article", articleSchema);
 module.exports = Article;

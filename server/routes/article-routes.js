@@ -23,13 +23,18 @@ router.post("/", (req, res) => {
     if (err) {
       return console.log(err);
     }
+    requestArticle.on("es-indexed", function(err, res) {
+      if (err){
+        console.error("Elastic search is down")
+      }
+    });
     res.status(200).send(data);
   });
 });
 //get 10 recent articles
 router.get("/articles/recent", (req, res) => {
   Article.find({})
-    .sort({created_at: -1})
+    .sort({ created_at: -1 })
     .limit(10)
     .exec(function(err, articles) {
       if (err) {

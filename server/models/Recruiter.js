@@ -24,6 +24,6 @@ let recruiterSchema = new mongoose.Schema({
   created_at: Date,
   updated_at: Date
 });
-recruiterSchema.plugin(mongoosastic, { esClient: elasticClient });
+recruiterSchema.plugin(mongoosastic, { elasticClient: elasticClient });
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
 module.exports = Recruiter;

@@ -58,6 +58,7 @@ router.post("/sign-up", (req, res) => {
       display_name: req.body.name,
       phone: req.body.phone,
       email: req.body.email,
+      tags: [],
       image_url: CANDIDATE_AVA_URL,
       created_at: today,
       updated_at: today
@@ -70,6 +71,11 @@ router.post("/sign-up", (req, res) => {
         });
         return;
       }
+      candidate.on("es-indexed", function(err, res) {
+        if (err) {
+          console.error("Elastic search is down");
+        }
+      });
       res.status(201).json({
         message: "Candidate has been created!"
       });
@@ -119,6 +125,11 @@ router.post("/recruiter/sign-up", (req, res) => {
         });
         return;
       }
+      recruiter.on("es-indexed", function(err, res) {
+        if (err) {
+          console.error("Elastic search is down");
+        }
+      });
       res.status(200).json({
         message: "Recruiter has been created!"
       });

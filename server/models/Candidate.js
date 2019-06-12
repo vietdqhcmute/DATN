@@ -26,6 +26,6 @@ let candidateSchema = new mongoose.Schema({
     type: Date
   }
 });
-candidateSchema.plugin(mongoosastic, { esClient: elasticClient });
+candidateSchema.plugin(mongoosastic, { elasticClient: elasticClient });
 const Candidate = mongoose.model("Candidate", candidateSchema);
 module.exports = Candidate;
