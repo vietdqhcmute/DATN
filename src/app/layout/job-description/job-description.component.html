@@ -83,7 +83,11 @@
               ></app-tag-frame>
             </div>
             <div class="job-info-detail">
-              Salary:&nbsp;<span>{{ articleInfo.salary }}</span>
+              <div class="salary" style="display: flex">
+                <i class="material-icons" style="font-size: 16px">
+                  attach_money </i
+                ><span>{{ articleInfo.salary }}</span>
+              </div>
             </div>
             <div class="job-info-detail">
               Address:&nbsp;<span>{{ recruiterInfo.address }}</span>
