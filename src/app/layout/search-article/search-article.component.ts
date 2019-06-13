@@ -42,7 +42,7 @@ export class SearchArticleComponent implements OnInit, OnDestroy {
     this.sub.push(
       this.ariticlesService.searchArticle(searchText).subscribe(articles => {
         this.articles = [];
-        this.articles = articles;
+        this.articles = <Articles[]>articles.results;
       })
     );
   }

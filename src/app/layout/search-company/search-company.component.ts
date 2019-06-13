@@ -28,7 +28,7 @@ export class SearchCompanyComponent implements OnInit, OnDestroy {
   searchCompany(searchText: string) {
     this.sub.push(
       this.recruiterService.searchCompany(searchText).subscribe(companies => {
-        this.recruiters = companies;
+        this.recruiters = <Recruiter[]>companies.results;
       })
     );
   }

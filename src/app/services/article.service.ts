@@ -7,8 +7,8 @@ import { Articles } from "../models/RecruiterData";
 })
 export class ArticleService extends RecruiterService {
   searchArticle(searchText: string) {
-    return this.http.get<Articles[]>(
-      this.domainName + "search/articles?" + "key=" + searchText
+    return this.http.get<any>(
+      this.domainName + "elastic/article/" + searchText
     );
   }
   getAllArticles(email) {
