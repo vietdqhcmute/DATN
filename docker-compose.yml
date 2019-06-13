@@ -1,7 +1,7 @@
 version: '2.2'
 services:
   es01:
-    image: elasticsearch_datn
+    image: elasticsearch_datn:latest
     container_name: es01
     environment:
       - node.name=es01
@@ -28,3 +28,4 @@ volumes:
 
 networks:
   esnet:
+#sudo sysctl -w vm.max_map_count=262144
