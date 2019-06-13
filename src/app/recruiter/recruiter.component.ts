@@ -47,11 +47,7 @@ export class RecruiterComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.alertService.setHideTopBar(true);
   }
-  onTestEmail() {
-    this.recruiterService.getRecruiterEmailObservable().subscribe(email => {
-      console.log(email);
-    });
-  }
+
   onLogOut() {
     this.sub.forEach(subscription => subscription.unsubscribe());
     this.authService.logout();

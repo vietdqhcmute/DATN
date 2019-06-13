@@ -1,9 +1,14 @@
-<div class="job-description" *ngIf="articleInfo && recruiterInfo">
+<div
+  class="job-description"
+  style="background: #eceff1"
+  *ngIf="articleInfo && recruiterInfo"
+>
   <div class="container" style="margin-top: 10px;max-width: 1024px !important;">
     <div class="row">
       <div class="side_bar col-md-3" style="text-align: center;height: 500px;">
         <div class="logo">
-          <a [routerLink]="['/company', recruiterInfo.email]"><img alt="Logo" [src]="recruiterInfo.image_url" />
+          <a [routerLink]="['/company', recruiterInfo.email]"
+            ><img alt="Logo" [src]="recruiterInfo.image_url" />
           </a>
         </div>
         <div class="employer-info">
@@ -19,10 +24,14 @@
               {{ recruiterInfo.slogan }}
             </div>
             <p class="gear-icon short">
-              <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{ recruiterInfo.production }}
+              <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{
+                recruiterInfo.production
+              }}
             </p>
             <p class="group-icon short">
-              <i class="fas fa-users"></i>&nbsp;&nbsp;{{ recruiterInfo.employees }}
+              <i class="fas fa-users"></i>&nbsp;&nbsp;{{
+                recruiterInfo.employees
+              }}
             </p>
             <div class="country-icon short">
               <i class="far fa-flag"></i>&nbsp;&nbsp;
@@ -33,12 +42,15 @@
               <span>{{ recruiterInfo.day_at_work }}</span>
             </div>
             <div style="text-align: center;">
-
-              <a [routerLink]="['/company', recruiterInfo.email]">View our company page <i
-                  style="font-size: 15px;vertical-align: middle;" class="material-icons">
+              <a [routerLink]="['/company', recruiterInfo.email]"
+                >View our company page
+                <i
+                  style="font-size: 15px;vertical-align: middle;"
+                  class="material-icons"
+                >
                   keyboard_arrow_right
-                </i></a>
-
+                </i></a
+              >
             </div>
           </div>
         </div>
@@ -64,8 +76,11 @@
                 Apply Now
               </button>
             </div>
-            <div class="job-info-detail" style="display: flex;flex-wrap: wrap;" >
-              <app-tag-frame *ngFor="let item of articleInfo.tags" [tag]="item"></app-tag-frame>
+            <div class="job-info-detail" style="display: flex;flex-wrap: wrap;">
+              <app-tag-frame
+                *ngFor="let item of articleInfo.tags"
+                [tag]="item"
+              ></app-tag-frame>
             </div>
             <div class="job-info-detail">
               Salary:&nbsp;<span>{{ articleInfo.salary }}</span>
