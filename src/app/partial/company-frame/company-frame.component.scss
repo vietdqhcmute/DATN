@@ -1,6 +1,15 @@
-:host{
-  img{
+:host {
+  .card {
+  }
+  img {
     width: 238px;
     height: 238px;
+  }
+  .job-length {
+    display: flex;
+    flex-direction: row-reverse;
+    span {
+      display: flex;
+    }
   }
 }

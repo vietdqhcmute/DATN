@@ -30,6 +30,9 @@
       font-size: 22px;
     }
     .salary {
+      display: flex;
+      color: #8bc34a;
+
       font-size: 12px;
     }
     .job-description {
@@ -40,7 +43,7 @@
         font-weight: 600;
       }
     }
-    .tag-view{
+    .tag-view {
       padding: 5px 0 0 0;
     }
   }
