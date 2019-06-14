@@ -60,6 +60,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   onUpdatePost() {}
 
   _filter(value: string) {
+    if (!value) {
+      return;
+    }
     const filterValue = value.toLowerCase();
     return this.tagList.filter(option =>
       option.toLowerCase().includes(filterValue)
