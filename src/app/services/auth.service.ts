@@ -97,10 +97,13 @@ export class AuthService {
       return;
     }
     if (authData.role === 1) {
+      this.alertService.setHideTopBar(false);
       this.loginAsCandidate(authData.email);
     } else if (authData.role === 2) {
+      this.alertService.setHideTopBar(true);
       this.loginAsRecruiter(authData.email);
     } else {
+      this.alertService.setHideTopBar(true);
       this.loginAsAdministrator();
     }
   }

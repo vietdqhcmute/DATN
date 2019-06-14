@@ -42,11 +42,16 @@ export class TopBarComponent implements OnInit {
   }
   onLogOut() {
     this.sub.forEach(subscription => subscription.unsubscribe());
+    this.clearData();
     this.authService.logout();
   }
   onCreateCV() {
     this.router.navigate(["profile", this.candidate.email, "create-cv"], {
       queryParams: { edit: true }
     });
+  }
+  clearData() {
+    delete this.candidate;
+    delete this.recruiter;
   }
 }

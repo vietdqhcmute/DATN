@@ -10,7 +10,7 @@ import { AuthService } from "../services/auth.service";
 import { AlertService } from "../services/alert.service";
 import { TagService } from "../services/tag.service";
 import { ReviewService } from "../services/review.service";
-import { MatDialog } from '@angular/material';
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-recruiter",
@@ -35,6 +35,7 @@ export class RecruiterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.alertService.setHideTopBar(true);
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.recruiterEmail = params.get("email");
