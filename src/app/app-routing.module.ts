@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: "profile",
     loadChildren: "./candidate/candidate.module#CandidateModule",
-    canActivate: [AuthGuard, RoleGuard],
+    canActivate: [AuthGuard],
     data: { role: 1 }
   },
   {
