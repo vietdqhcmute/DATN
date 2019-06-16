@@ -1,5 +1,8 @@
+<div *ngIf="reviews.length === 0">
+  <p>You haven't being reviewed!</p>
+</div>
 <div class="review-post" *ngIf="reviews">
   <div *ngFor="let item of reviews">
-    <app-recruiter-review-post [review]=item></app-recruiter-review-post>
+    <app-recruiter-review-post [review]="item"></app-recruiter-review-post>
   </div>
 </div>
