@@ -10,10 +10,12 @@ import { RouterModule } from "@angular/router";
 import { AngularFontAwesomeModule } from "angular-font-awesome";
 import { JwtInterceptor } from "./helpers/jwt.interceptor";
 import { ErrorInterceptor } from "./helpers/error.interceptor";
-import { PartialModule } from './partial/partial.module';
+import { PartialModule } from "./partial/partial.module";
+import { NotAuthorizeComponent } from "./not-authorize/not-authorize.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotAuthorizeComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -27,26 +27,27 @@ export class TopBarComponent implements OnInit {
     this.sub.push(
       this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
         this.isAuthenticated = isAuthenticated;
-      })
-    );
-    this.sub.push(
-      this.candidateService.getCandidateObservable().subscribe(candidate => {
-        this.candidate = candidate;
-      })
-    );
-    this.sub.push(
-      this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
-        this.recruiter = recruiter;
+        this.candidateService.getCandidateObservable().subscribe(candidate => {
+          this.candidate = candidate;
+        });
+        this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
+          this.recruiter = recruiter;
+        });
       })
     );
   }
   onLogOut() {
     this.sub.forEach(subscription => subscription.unsubscribe());
+    this.clearData();
     this.authService.logout();
   }
   onCreateCV() {
     this.router.navigate(["profile", this.candidate.email, "create-cv"], {
       queryParams: { edit: true }
     });
+  }
+  clearData() {
+    delete this.candidate;
+    delete this.recruiter;
   }
 }
