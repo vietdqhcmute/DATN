@@ -20,7 +20,6 @@ export class AdminRecruiterManagerComponent extends AdministratorComponent imple
   private recruiterTableSource;
   ngOnInit() {
     this.adminService.getAllRecruitersStatus().subscribe(recruiters=>{
-      console.log(recruiters);
        this.recruiterTableSource = new MatTableDataSource(recruiters)
     })
   }
