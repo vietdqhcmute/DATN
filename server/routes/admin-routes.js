@@ -8,7 +8,7 @@ const Recruiter = require("../models/Recruiter");
 //Get candidate and status
 router.get("/candidates/status", async (req, res) => {
   try {
-    const candidates = await Candidate.find().populate("_authentication");
+    const candidates = await Candidate.find().populate("_authentication", "active");
     res.send(candidates);
   } catch (err) {
     console.log(err);
@@ -18,7 +18,7 @@ router.get("/candidates/status", async (req, res) => {
 //Get candidate and status
 router.get("/recruiters/status", async (req, res) => {
   try {
-    const recruiters = await Recruiter.find().populate("_authentication");
+    const recruiters = await Recruiter.find().populate("_authentication", "active");
     res.send(recruiters);
   } catch (err) {
     console.log(err);

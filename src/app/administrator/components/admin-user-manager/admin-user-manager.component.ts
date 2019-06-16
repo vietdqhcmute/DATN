@@ -20,7 +20,7 @@ export class AdminUserManagerComponent extends AdministratorComponent
   ];
   private candidateTableSource;
   ngOnInit() {
-    this.candidateService.getAllCandidates().subscribe(candidates => {
+    this.adminService.getAllCandidatesStatus().subscribe(candidates => {
       this.candidateTableSource = new MatTableDataSource(candidates);
     });
   }
