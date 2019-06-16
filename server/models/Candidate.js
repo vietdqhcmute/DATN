@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 let Resume = require("./Resume");
 
 let candidateSchema = new mongoose.Schema({
+  _authentication: { type: mongoose.Schema.Types.ObjectId, ref: "Authentication" },
   full_name: String,
   display_name: String,
   image_url: String,
@@ -13,7 +14,7 @@ let candidateSchema = new mongoose.Schema({
     default: Date.now
   },
   updated_at: {
-    type:Date
+    type: Date
   }
 });
 

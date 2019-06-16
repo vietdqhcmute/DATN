@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 let recruiterSchema = new mongoose.Schema({
+  _authentication: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Authentication"
+  },
   company_name: {
     type: String,
     index: {
@@ -23,8 +27,8 @@ let recruiterSchema = new mongoose.Schema({
   updated_at: Date
 });
 recruiterSchema.index({
-  name: 'text',
-  company_name: 'text'
+  name: "text",
+  company_name: "text"
 });
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
 module.exports = Recruiter;
