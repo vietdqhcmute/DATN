@@ -27,16 +27,12 @@ export class TopBarComponent implements OnInit {
     this.sub.push(
       this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
         this.isAuthenticated = isAuthenticated;
-      })
-    );
-    this.sub.push(
-      this.candidateService.getCandidateObservable().subscribe(candidate => {
-        this.candidate = candidate;
-      })
-    );
-    this.sub.push(
-      this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
-        this.recruiter = recruiter;
+        this.candidateService.getCandidateObservable().subscribe(candidate => {
+          this.candidate = candidate;
+        });
+        this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
+          this.recruiter = recruiter;
+        });
       })
     );
   }
