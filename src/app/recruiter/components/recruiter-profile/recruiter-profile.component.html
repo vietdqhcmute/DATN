@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="recruiter">
   <div>
     <div class="img-round">
       <img
@@ -15,7 +15,7 @@
       />
     </div>
   </div>
-  <div class="example-container">
+  <div class="example-container" *ngIf="recruiter">
     <div class="name half-dialog">
       <mat-form-field>
         <input
@@ -37,7 +37,10 @@
 
       <mat-form-field>
         <mat-label>City</mat-label>
-        <mat-select>
+        <mat-select
+          placeholder="City"
+          (selectionChange)="onChangeCity($event.value)"
+        >
           <mat-option *ngFor="let item of citySelections" [value]="item">
             {{ item }}
           </mat-option>
@@ -50,8 +53,11 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Employess</mat-label>
-        <mat-select>
+        <mat-label>Employees</mat-label>
+        <mat-select
+          placeholder="Employees number"
+          (selectionChange)="onChangeEmployeesNumber($event.value)"
+        >
           <mat-option *ngFor="let item of employeeSelections" [value]="item">
             {{ item }}
           </mat-option>

@@ -17,9 +17,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   private routeParams;
   private queryParams;
   private tags: Tag[] = [];
-  private tagsString: string[] = [];
+  private tagList: string[] = [];
   private tagContent = new FormControl();
-  private filteredOptions: Observable<string[]>;
+  private filteredOptions;
   private articleParams = {
     title: "",
     tags: [],
@@ -32,11 +32,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.getRouteParams();
     this.getQueryParams();
     this.getAllTags();
-    // this.filteredOptions = this.tagContent.valueChanges.subscribe(value=>this._filter(value));
-    this.filteredOptions = this.tagContent.valueChanges.pipe(
-      startWith(""),
-      map(value => this._filter(value))
-    );
+    this.tagContent.valueChanges.pipe(startWith("")).subscribe(value => {
+      this.filteredOptions = this._filter(value);
+    });
     if (this.queryParams.edit) {
       this.loadRecruitPostData(this.queryParams.id);
     }
@@ -61,10 +59,12 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   }
   onUpdatePost() {}
 
-  _filter(value: string): string[] {
-    console.log(value);
+  _filter(value: string) {
+    if (!value) {
+      return;
+    }
     const filterValue = value.toLowerCase();
-    return this.tagsString.filter(option =>
+    return this.tagList.filter(option =>
       option.toLowerCase().includes(filterValue)
     );
   }
@@ -99,7 +99,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.sub.push(
       this.tagService.getAllTagsAPI().subscribe(tags => {
         this.tags = tags;
-        tags.forEach(element => this.tagsString.push(element.content));
+        tags.forEach(element => this.tagList.push(element.content));
       })
     );
   }
