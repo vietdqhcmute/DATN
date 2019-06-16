@@ -5,6 +5,7 @@ const Authentication = require("./models/Authentication");
 const Recruiter = require("./models/Recruiter");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 const RECRUITER_AVA_URL =
   "https://nodejs-server-image.s3.amazonaws.com/1558956195517";
@@ -40,6 +41,7 @@ router.post("/sign-up", (req, res) => {
   hash = bcrypt.hashSync(req.body.password, 10);
   req.body.password = hash;
   const authenticationParams = {
+    _id: new mongoose.Types.ObjectId(),
     email: req.body.email,
     password: hash,
     role: 1,
@@ -54,6 +56,7 @@ router.post("/sign-up", (req, res) => {
       return;
     }
     const candidateParams = {
+      _authentication: authenticationParams._id,
       full_name: req.body.name,
       display_name: req.body.name,
       phone: req.body.phone,
@@ -88,6 +91,7 @@ router.post("/recruiter/sign-up", (req, res) => {
   hash = bcrypt.hashSync(req.body.password, 10);
   req.body.password = hash;
   const authenticationParams = {
+    _id: new mongoose.Types.ObjectId(),
     email: req.body.email,
     password: hash,
     role: 2,
@@ -102,6 +106,7 @@ router.post("/recruiter/sign-up", (req, res) => {
       return;
     }
     const recruiterParams = {
+      _authentication: authenticationParams._id,
       company_name: req.body.company_name,
       image_url: RECRUITER_AVA_URL,
       email: req.body.email,

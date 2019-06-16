@@ -3,6 +3,10 @@ const mongoosastic = require("mongoosastic");
 const elasticClient = require("../elasticsearch/es-service").client;
 
 let recruiterSchema = new mongoose.Schema({
+  _authentication: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Authentication"
+  },
   company_name: String,
   image_url: String,
   email: {
@@ -26,5 +30,8 @@ let recruiterSchema = new mongoose.Schema({
   updated_at: Date
 });
 recruiterSchema.plugin(mongoosastic, { elasticClient: elasticClient });
+recruiterSchema.index({
+  company_name: "text"
+});
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
 module.exports = Recruiter;
