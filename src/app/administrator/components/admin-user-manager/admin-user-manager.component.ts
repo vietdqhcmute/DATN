@@ -27,7 +27,14 @@ export class AdminUserManagerComponent extends AdministratorComponent
   applyFilter(filterValue: string) {
     this.candidateTableSource.filter = filterValue.trim().toLowerCase();
   }
-  onDeactivate(id: string){
-    console.log(id);
+  onDeactivate(id: string) {
+    this.adminService.deactivateUser(id).subscribe(success => {
+      console.log(success);
+    });
+  }
+  onActivate(id: string) {
+    this.adminService.activateUser(id).subscribe(success => {
+      console.log(success);
+    });
   }
 }
