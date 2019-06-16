@@ -7,6 +7,7 @@ import { AlertService } from "../services/alert.service";
 import { CandidateService } from "../services/candidate.service";
 import { RecruiterService } from "../services/recruiter.service";
 import { AuthService } from '../services/auth.service';
+import { AdminService } from '../services/admin.service';
 @Component({
   selector: "app-administrator",
   templateUrl: "./administrator.component.html",
@@ -24,7 +25,8 @@ export class AdministratorComponent implements OnInit, OnDestroy {
     protected alertService: AlertService,
     protected candidateService: CandidateService,
     protected recruiterService: RecruiterService,
-    protected authService: AuthService
+    protected authService: AuthService,
+    protected adminService: AdminService
   ) {}
 
   ngOnInit() {

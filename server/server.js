@@ -64,7 +64,7 @@ const articleRoutes = require("./routes/article-routes");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
-app.use("/", adminRoutes);
+app.use("/admin/", adminRoutes);
 app.use("/", statisticRoutes);
 app.use("/", awsRoutes);
 app.use("/", candidateRoutes);
