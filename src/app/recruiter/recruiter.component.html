@@ -4,24 +4,46 @@
     <div class="col-md-2">
       <nav class="side-bar">
         <div class="image">
-          <img
-            [src]="recruiter.image_url"
-            alt=""
-            style="border: 1px rgba(0, 0, 0, 0.465) solid"
-          />
+          <img [src]="recruiter.image_url" alt="" />
         </div>
         <div class="name">
           <a routerLink="./profile">{{ recruiter.company_name }}</a>
         </div>
         <div class="navigation">
           <ul>
-            <li><a routerLink="./dashboard">Dashboard</a></li>
-            <li><a routerLink="./create-post">Create post</a></li>
-            <li><a routerLink="./review">Review</a></li>
-            <li><a routerLink="./subcriber">Subcribed</a></li>
-            <li><a routerLink=".">Search</a></li>
-            <li><a routerLink="./overview">Overview</a></li>
-            <li><a routerLink="/login" (click)="onLogOut()">Log out</a></li>
+            <li>
+              <a routerLink="./dashboard"
+                ><i class="material-icons"> dashboard </i>Dashboard</a
+              >
+            </li>
+            <li>
+              <a routerLink="./create-post"
+                ><i class="material-icons"> create </i>Create post</a
+              >
+            </li>
+            <li>
+              <a routerLink="./review"
+                ><i class="material-icons"> rate_review </i>Review</a
+              >
+            </li>
+            <li>
+              <a routerLink="./subcriber"
+                ><i class="material-icons"> subscriptions </i>Subcribed</a
+              >
+            </li>
+            <li>
+              <a routerLink="."><i class="material-icons"> search </i>Search</a>
+            </li>
+            <li>
+              <a routerLink="./overview"
+                ><i class="material-icons"> account_circle </i>Overview</a
+              >
+            </li>
+            <li>
+              <a routerLink="/login" (click)="onLogOut()"
+                ><i class="material-icons"> power_settings_new </i>Log out</a
+              >
+            </li>
           </ul>
         </div>
       </nav>
@@ -30,11 +52,9 @@
       <router-outlet></router-outlet>
     </div>
     <div class="right-bar col-md-3">
-      <a routerLink="./profile">
-        <button class="btn btn-primary" style="display: flex">
-          <i class="material-icons">
-            edit </i
-          >Edit profile
+      <a routerLink="./profile" style="text-decoration: none">
+        <button class="btn btn-outline-secondary" style="display: flex">
+          <i class="material-icons"> edit </i>Edit profile
         </button>
       </a>
       <h3>Infomation:</h3>
