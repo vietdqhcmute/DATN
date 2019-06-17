@@ -3,6 +3,8 @@ export class Candidate {
   display_name: string;
   image_url: string;
   email: string;
+  github: string;
+  linkedin: string;
   phone: string;
   resume: Resume;
   _id: string;
@@ -10,8 +12,6 @@ export class Candidate {
 export class Resume {
   title: string;
   summary: string;
-  github: string;
-  linkedin: string;
   website: string;
   experience: Array<Experience>;
   education: Array<Education>;

@@ -1,8 +1,6 @@
 Resume ={
   title: String,
   summary: String,
-  githubURL: String,
-  linkedinURL: String,
   website: String,
   experience: [],
   education: [],
