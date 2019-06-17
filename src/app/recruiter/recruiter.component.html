@@ -4,7 +4,11 @@
     <div class="col-md-2">
       <nav class="side-bar">
         <div class="image">
-          <img [src]="recruiter.image_url" alt="" style="border: 1px rgba(0, 0, 0, 0.465) solid" />
+          <img
+            [src]="recruiter.image_url"
+            alt=""
+            style="border: 1px rgba(0, 0, 0, 0.465) solid"
+          />
         </div>
         <div class="name">
           <a routerLink="./profile">{{ recruiter.company_name }}</a>
@@ -27,7 +31,11 @@
     </div>
     <div class="right-bar col-md-3">
       <a routerLink="./profile">
-        <button class="btn btn-primary">Edit profile</button>
+        <button class="btn btn-primary" style="display: flex">
+          <i class="material-icons">
+            edit </i
+          >Edit profile
+        </button>
       </a>
       <h3>Infomation:</h3>
       <div class="recruiter-info">

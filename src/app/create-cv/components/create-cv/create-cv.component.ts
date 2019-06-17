@@ -7,7 +7,6 @@ import { Candidate, Resume } from "src/app/models/CandidateData";
 import { Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 import { ResumeService } from "src/app/services/resume.service";
-import { TestingService } from "src/app/services/testing.service";
 import { AlertService } from "src/app/services/alert.service";
 
 @Component({
