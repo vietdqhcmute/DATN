@@ -30,7 +30,9 @@
     <ng-container matColumnDef="applier">
       <th mat-header-cell *matHeaderCellDef>Appliers</th>
       <td mat-cell *matCellDef="let element">
-        <a routerLink="." (click)="onAppliersList(element._id, element.applied)" >{{element.applied.length}} appliers</a>
+        <a routerLink="." (click)="onAppliersList(element._id, element.applied)" data-toggle="tooltip" title="List of appliers"
+          >{{ element.applied.length }} appliers</a
+        >
         <!-- <app-modal-applier
           [appliers]="element.applied"
           [_id]="element._id"
@@ -42,7 +44,7 @@
     <ng-container matColumnDef="preview">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <span class="span-btn" (click)="onPreview(element)">
+        <span class="span-btn" (click)="onPreview(element)" data-toggle="tooltip" title="Preview article">
           <i class="material-icons">
             remove_red_eye
           </i>
@@ -53,8 +55,8 @@
     <ng-container matColumnDef="update">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <span class="span-btn" (click)="onUpdate(element._id)">
-          <i class="material-icons">
+        <span class="span-btn" (click)="onUpdate(element._id)" data-toggle="tooltip" title="Update article">
+          <i class="material-icons" style="color: #0277BD">
             border_color
           </i>
         </span>
@@ -64,8 +66,8 @@
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <span class="span-btn" (click)="onDelete(element._id)">
-          <i class="material-icons">
+        <span class="span-btn" (click)="onDelete(element._id)" data-toggle="tooltip" title="Delete article">
+          <i class="material-icons" style="color: #D50000">
             delete
           </i>
         </span>
@@ -75,8 +77,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-
-  <!-- <div class="list-article" *ngFor="let item of articles">
-    <app-job-frame-dashboard [jobDescription]="item" [email]="company_email"(deleteClick)="deleteComponentClick($event)"></app-job-frame-dashboard>
-  </div> -->
 </div>

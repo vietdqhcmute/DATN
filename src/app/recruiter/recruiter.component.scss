@@ -30,7 +30,12 @@
       ul {
         list-style: none;
         li {
+          margin: 5px 0px;
+          i {
+            margin: 5px;
+          }
           a {
+            display: flex;
             color: rgb(36, 36, 36);
             text-decoration: none;
             &:hover {

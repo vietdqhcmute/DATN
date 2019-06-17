@@ -36,28 +36,32 @@ router.get("/candidate/email/:email", async (req, res) => {
 });
 
 // Get all candidate
-router.get("/candidates", async(req, res) => {
-  try{
+router.get("/candidates", async (req, res) => {
+  try {
     const candidates = await Candidate.find();
     res.send(candidates);
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
 });
 
 //API update user by ID
 router.put("/update/candidate/:id", (req, res) => {
-  Candidate.findByIdAndUpdate({
+  Candidate.findByIdAndUpdate(
+    {
       _id: req.params.id
     },
-    req.body, {
+    req.body,
+    {
       upsert: true,
       new: true,
       setDefaultsOnInsert: true
-    }, (err, data) => {
+    },
+    (err, data) => {
       if (err) {
         return res.status(500).send(err);
       }
+      console.log(data);
       return res.status(200).send("Update profile success!");
     }
   );
