@@ -84,9 +84,12 @@
             </div>
             <div class="job-info-detail">
               <div class="salary" style="display: flex">
-                <i class="material-icons" style="font-size: 16px">
-                  attach_money </i
-                ><span>{{ articleInfo.salary }}</span>
+                <div *ngIf="!isAuthenticated">Login to see details</div>
+                <div *ngIf="isAuthenticated">
+                  <i class="material-icons" style="font-size: 16px">
+                    attach_money </i
+                  ><span>{{ articleInfo.salary }}</span>
+                </div>
               </div>
             </div>
             <div class="job-info-detail">
