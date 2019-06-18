@@ -31,6 +31,17 @@ export class CompanyReviewComponent extends RecruiterComponent
     { id: 4, rating: 0, title: "", evaluation: "Văn hóa công ty" },
     { id: 5, rating: 0, title: "", evaluation: "Văn phòng làm việc" }
   ];
+
+  ngOnInit() {
+    this.alertService.setHideTopBar(false);
+    this.sub.push(
+      this.route.paramMap.subscribe(params => {
+        this.recruiterEmail = params.get("email");
+        this.loadRecruiterData(params.get("email"));
+      })
+    );
+  }
+
   showCriticism() {
     this.isShowCriticism = this.isShowCriticism ? false : true;
   }
