@@ -103,6 +103,22 @@
           </div>
         </div>
         <div class="job-more-info" [innerHTML]="articleInfo.description"></div>
+        <div class="button-end-page" style="margin: 20px 10px">
+          <mat-spinner
+            *ngIf="isLoading"
+            style="margin:auto;"
+            [diameter]="40"
+          ></mat-spinner>
+          <button
+            style="width: 100%"
+            type="button"
+            class="btn btn-danger font-weight-bold"
+            (click)="onApply()"
+            *ngIf="!isLoading && isAuthenticated"
+          >
+            Apply Now
+          </button>
+        </div>
       </div>
     </div>
   </div>
