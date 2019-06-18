@@ -48,7 +48,20 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       email_company: this.routeParams.email,
       article: this.articleParams
     };
-    this.articleService.saveArticle(requestBody, this.routeParams.email);
+    this.articleService
+      .saveArticle(requestBody, this.routeParams.email)
+      .subscribe(
+        response => {
+          this.router.navigate([
+            "recruiter",
+            this.routeParams.email,
+            "dashboard"
+          ]);
+        },
+        error => {
+          this.alertService.error(error);
+        }
+      );
   }
   onAddTag(form: NgForm) {
     if (this.tagContent.value === null) {

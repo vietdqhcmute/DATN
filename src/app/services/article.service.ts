@@ -28,14 +28,7 @@ export class ArticleService extends RecruiterService {
   }
 
   saveArticle(requestBody: any, email: string) {
-    this.http.post(this.domainName + "article/", requestBody).subscribe(
-      response => {
-        this.router.navigate(["recruiter", email, "dashboard"]);
-      },
-      error => {
-        this.alertService.error(error);
-      }
-    );
+    return this.http.post(this.domainName + "article/", requestBody);
   }
 
   applyArticle(requestBody: any, id: string) {
