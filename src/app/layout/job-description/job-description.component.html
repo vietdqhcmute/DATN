@@ -71,7 +71,7 @@
                 type="button"
                 class="btn btn-danger font-weight-bold"
                 (click)="onApply()"
-                *ngIf="!isLoading"
+                *ngIf="!isLoading && isAuthenticated"
               >
                 Apply Now
               </button>
