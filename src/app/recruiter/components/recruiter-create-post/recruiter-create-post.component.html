@@ -33,8 +33,12 @@
                 type="submit"
                 class="mat-raised-button mat-primary"
                 cdkFocusInitial
+                style="display: flex"
               >
-                Add Tag
+                <i class="material-icons">
+                  local_offer
+                </i>
+                Tag
               </button>
             </mat-dialog-actions>
           </div>
@@ -75,17 +79,25 @@
   <button
     *ngIf="!queryParams.edit"
     type="submit"
-    class="btn btn-primary"
+    class="btn btn-outline-info"
     (click)="onCreatePost()"
+    style="display: flex"
   >
+    <i class="material-icons">
+      description
+    </i>
     Create post
   </button>
   <button
     *ngIf="queryParams.edit"
     type="submit"
-    class="btn btn-info"
+    class="btn btn-outline-success"
     (click)="onUpdatePost()"
+    style="display: flex"
   >
+    <i class="material-icons">
+      description
+    </i>
     Update post
   </button>
 </div>

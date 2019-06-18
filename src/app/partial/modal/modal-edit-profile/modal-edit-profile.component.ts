@@ -21,7 +21,6 @@ export class ModalEditProfileComponent implements OnInit {
 
   ngOnInit() {}
   onSave() {
-    console.log(this.candidate);
     this.candidateService
       .updateCandidateByID(this.candidate._id, this.candidate)
       .subscribe(
@@ -30,7 +29,7 @@ export class ModalEditProfileComponent implements OnInit {
           this.alertService.success("Update user sucesss", false);
         },
         error => {
-          console.error("Error: ", error);
+          console.error(error);
           this.alertService.error("Can not update user", false);
         }
       );

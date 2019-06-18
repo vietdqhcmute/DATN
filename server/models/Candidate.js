@@ -5,10 +5,15 @@ const elasticClient = require("../elasticsearch/es-service").client;
 const Resume = require("./Resume");
 
 let candidateSchema = new mongoose.Schema({
-  _authentication: { type: mongoose.Schema.Types.ObjectId, ref: "Authentication" },
+  _authentication: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Authentication"
+  },
   full_name: String,
   display_name: String,
   image_url: String,
+  github: String,
+  linkedin: String,
   email: {
     type: String,
     es_indexed: true

@@ -1,10 +1,14 @@
 <button
   type="button"
-  class="btn btn-primary"
+  class="btn btn-outline-info"
   data-backdrop="true"
   data-toggle="modal"
   data-target="#exampleModal"
+  style="display: flex"
 >
+  <i class="material-icons">
+    edit
+  </i>
   Edit profile
 </button>
 
@@ -88,14 +92,14 @@
                 <input
                   matInput
                   placeholder="Github URL"
-                  [(ngModel)]="candidate.resume.github"
+                  [(ngModel)]="candidate.github"
                 />
               </mat-form-field>
               <mat-form-field>
                 <input
                   matInput
                   placeholder="Linkedin URL"
-                  [(ngModel)]="candidate.resume.linkedin"
+                  [(ngModel)]="candidate.linkedin"
                 />
               </mat-form-field>
             </div>
