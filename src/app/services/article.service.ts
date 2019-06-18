@@ -35,7 +35,9 @@ export class ArticleService extends RecruiterService {
     return this.http.put(this.domainName + "article/apply/" + id, requestBody);
   }
 
-  updateArticle(requestBody: any) {}
+  updateArticle(requestBody: any,id: string) {
+    return this.http.put(this.domainName + "article/" + id, requestBody)
+  }
 
   deleteArticle(id: String) {
     return this.http.delete(this.domainName + "article/" + id);

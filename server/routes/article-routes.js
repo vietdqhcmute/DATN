@@ -75,10 +75,10 @@ router.put("/:id", (req, res) => {
   Article.findByIdAndUpdate(
     req.params.id,
     {
-      title: req.body.article.title,
-      description: req.body.article.description,
-      tag: req.body.article.tag,
-      salary: req.body.article.salary,
+      title: req.body.title,
+      description: req.body.description,
+      tag: req.body.tag,
+      salary: req.body.salary,
       updated_at: today
     },
     (err, data) => {

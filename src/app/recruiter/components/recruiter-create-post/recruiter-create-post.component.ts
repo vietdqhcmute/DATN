@@ -52,11 +52,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       .saveArticle(requestBody, this.routeParams.email)
       .subscribe(
         response => {
-          this.router.navigate([
-            "recruiter",
-            this.routeParams.email,
-            "dashboard"
-          ]);
+          this.navigateDashboar();
         },
         error => {
           this.alertService.error(error);
@@ -70,7 +66,20 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.articleParams.tags.push(this.tagContent.value.trim());
     this.tagContent.reset();
   }
-  onUpdatePost() {}
+  onUpdatePost() {
+    // console.log(this.articleParams);
+    // this.articleService.updateArticle(this.articleParams, this.queryParams.id);
+    this.articleService
+      .updateArticle(this.articleParams, this.queryParams.id)
+      .subscribe(
+        success => {
+          this.navigateDashboar();
+        },
+        error => {
+          console.error(error);
+        }
+      );
+  }
 
   _filter(value: string) {
     if (!value) {
@@ -115,5 +124,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
         tags.forEach(element => this.tagList.push(element.content));
       })
     );
+  }
+
+  navigateDashboar() {
+    this.router.navigate(["recruiter", this.routeParams.email, "dashboard"]);
   }
 }
