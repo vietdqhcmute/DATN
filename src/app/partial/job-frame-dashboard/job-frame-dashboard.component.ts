@@ -3,6 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { ArticleService } from "src/app/services/article.service";
 import { Router } from "@angular/router";
 import { RecruiterService } from "src/app/services/recruiter.service";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-job-frame-dashboard",
@@ -14,13 +15,18 @@ export class JobFrameDashboardComponent implements OnInit {
   @Input() email: string;
   @Output() deleteClick: EventEmitter<any> = new EventEmitter<any>();
   articleImageURL: string;
+  isAuthenticated: boolean = false;
   constructor(
     private articleService: ArticleService,
     private router: Router,
-    private recruiterService: RecruiterService
+    private recruiterService: RecruiterService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    if (this.authService.isSavedAuthData()) {
+      this.isAuthenticated = true;
+    }
     this.getArticleImageURL();
   }
 

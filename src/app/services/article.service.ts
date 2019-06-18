@@ -28,21 +28,16 @@ export class ArticleService extends RecruiterService {
   }
 
   saveArticle(requestBody: any, email: string) {
-    this.http.post(this.domainName + "article/", requestBody).subscribe(
-      response => {
-        this.router.navigate(["recruiter", email, "dashboard"]);
-      },
-      error => {
-        this.alertService.error(error);
-      }
-    );
+    return this.http.post(this.domainName + "article/", requestBody);
   }
 
   applyArticle(requestBody: any, id: string) {
     return this.http.put(this.domainName + "article/apply/" + id, requestBody);
   }
 
-  updateArticle(requestBody: any) {}
+  updateArticle(requestBody: any,id: string) {
+    return this.http.put(this.domainName + "article/" + id, requestBody)
+  }
 
   deleteArticle(id: String) {
     return this.http.delete(this.domainName + "article/" + id);

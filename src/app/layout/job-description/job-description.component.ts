@@ -19,6 +19,7 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   articleInfo: Articles;
   sub: Subscription[] = [];
   isLoading: boolean = false;
+  isAuthenticated = false;
   constructor(
     private route: ActivatedRoute,
     private recruiterService: RecruiterService,
@@ -27,6 +28,9 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    if (this.authService.isSavedAuthData()) {
+      this.isAuthenticated = true;
+    }
     this.getBrowserAuthData();
     this.sub.push(
       this.route.paramMap.subscribe(params => {

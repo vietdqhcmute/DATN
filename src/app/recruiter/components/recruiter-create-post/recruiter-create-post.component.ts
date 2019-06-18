@@ -48,7 +48,16 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       email_company: this.routeParams.email,
       article: this.articleParams
     };
-    this.articleService.saveArticle(requestBody, this.routeParams.email);
+    this.articleService
+      .saveArticle(requestBody, this.routeParams.email)
+      .subscribe(
+        response => {
+          this.navigateDashboar();
+        },
+        error => {
+          this.alertService.error(error);
+        }
+      );
   }
   onAddTag(form: NgForm) {
     if (this.tagContent.value === null) {
@@ -57,7 +66,20 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.articleParams.tags.push(this.tagContent.value.trim());
     this.tagContent.reset();
   }
-  onUpdatePost() {}
+  onUpdatePost() {
+    // console.log(this.articleParams);
+    // this.articleService.updateArticle(this.articleParams, this.queryParams.id);
+    this.articleService
+      .updateArticle(this.articleParams, this.queryParams.id)
+      .subscribe(
+        success => {
+          this.navigateDashboar();
+        },
+        error => {
+          console.error(error);
+        }
+      );
+  }
 
   _filter(value: string) {
     if (!value) {
@@ -102,5 +124,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
         tags.forEach(element => this.tagList.push(element.content));
       })
     );
+  }
+
+  navigateDashboar() {
+    this.router.navigate(["recruiter", this.routeParams.email, "dashboard"]);
   }
 }

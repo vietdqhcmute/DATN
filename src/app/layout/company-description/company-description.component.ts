@@ -18,7 +18,12 @@ export class CompanyDescriptionComponent extends RecruiterComponent
   reviews: Review[] = [];
   avarageRating: number;
   articles: Articles[] = [];
+  isAuthenticated = false;
+
   ngOnInit() {
+    if (this.authService.isSavedAuthData()) {
+      this.isAuthenticated = true;
+    }
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.company_email = params.get("email");

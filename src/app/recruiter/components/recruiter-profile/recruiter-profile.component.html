@@ -67,7 +67,7 @@
     <div class="contact half-dialog">
       <mat-form-field>
         <mat-label>Production of company</mat-label>
-        <mat-select>
+        <mat-select (selectionChange)="onChangeProdction($event.value)">
           <mat-option *ngFor="let item of productionSelections" [value]="item">
             {{ item }}
           </mat-option>
@@ -76,7 +76,7 @@
 
       <mat-form-field>
         <mat-label>Day at work</mat-label>
-        <mat-select>
+        <mat-select (selectionChange)="onChangeDayAtWork($event.value)">
           <mat-option *ngFor="let item of dayAtWorkSelections" [value]="item">
             {{ item }}
           </mat-option>
