@@ -40,10 +40,15 @@ export class SearchArticleComponent implements OnInit, OnDestroy {
 
   searchArticles(searchText: string) {
     this.sub.push(
-      this.ariticlesService.searchArticle(searchText).subscribe(articles => {
-        this.articles = [];
-        this.articles = <Articles[]>articles.results;
-      })
+      this.ariticlesService.searchArticle(searchText).subscribe(
+        articles => {
+          this.articles = [];
+          this.articles = <Articles[]>articles.results;
+        },
+        error => {
+          this.articles = [];
+        }
+      )
     );
   }
 
