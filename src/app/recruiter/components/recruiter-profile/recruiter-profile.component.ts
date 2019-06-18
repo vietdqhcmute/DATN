@@ -55,6 +55,11 @@ export class RecruiterProfileComponent extends RecruiterComponent
         .subscribe(
           response => {
             this.isLoading = false;
+            this.router.navigate([
+              "recruiter",
+              this.recruiter.email,
+              "dashboard"
+            ]);
           },
           error => {
             this.isLoading = false;
@@ -70,5 +75,8 @@ export class RecruiterProfileComponent extends RecruiterComponent
   }
   onChangeDayAtWork(value) {
     this.recruiter.day_at_work = value;
+  }
+  onChangeProdction(value) {
+    this.recruiter.production = value;
   }
 }

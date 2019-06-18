@@ -71,7 +71,7 @@
                 type="button"
                 class="btn btn-danger font-weight-bold"
                 (click)="onApply()"
-                *ngIf="!isLoading"
+                *ngIf="!isLoading && isAuthenticated"
               >
                 Apply Now
               </button>
@@ -84,9 +84,12 @@
             </div>
             <div class="job-info-detail">
               <div class="salary" style="display: flex">
-                <i class="material-icons" style="font-size: 16px">
-                  attach_money </i
-                ><span>{{ articleInfo.salary }}</span>
+                <div *ngIf="!isAuthenticated">Login to see details</div>
+                <div *ngIf="isAuthenticated">
+                  <i class="material-icons" style="font-size: 16px">
+                    attach_money </i
+                  ><span>{{ articleInfo.salary }}</span>
+                </div>
               </div>
             </div>
             <div class="job-info-detail">
@@ -100,6 +103,22 @@
           </div>
         </div>
         <div class="job-more-info" [innerHTML]="articleInfo.description"></div>
+        <div class="button-end-page" style="margin: 20px 10px">
+          <mat-spinner
+            *ngIf="isLoading"
+            style="margin:auto;"
+            [diameter]="40"
+          ></mat-spinner>
+          <button
+            style="width: 100%"
+            type="button"
+            class="btn btn-danger font-weight-bold"
+            (click)="onApply()"
+            *ngIf="!isLoading && isAuthenticated"
+          >
+            Apply Now
+          </button>
+        </div>
       </div>
     </div>
   </div>

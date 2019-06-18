@@ -23,6 +23,7 @@
               type="button"
               class="btn-format btn btn-danger"
               (click)="onReview()"
+              *ngIf="isAuthenticated"
             >
               Add a review
             </button>
@@ -73,6 +74,7 @@
                   type="button"
                   class="btn-format btn btn-danger"
                   (click)="onReview()"
+                  *ngIf="isAuthenticated"
                 >
                   Add a review
                 </button>
@@ -127,6 +129,7 @@
                 type="button"
                 class="btn-format btn btn-danger"
                 (click)="onReview()"
+                *ngIf="isAuthenticated"
               >
                 Add a review
               </button>
