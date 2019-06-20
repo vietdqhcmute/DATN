@@ -13,6 +13,7 @@ let candidateSchema = new mongoose.Schema({
   github: String,
   linkedin: String,
   phone: String,
+  tags: [],
   resume: Resume,
   created_at: {
     type: Date,
