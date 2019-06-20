@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
 import { CandidateService } from "../services/candidate.service";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Candidate } from "../models/CandidateData";
 import { AlertService } from "../services/alert.service";
 import { Subscription } from "rxjs";
@@ -23,7 +23,8 @@ export class CandidateComponent implements OnInit, OnDestroy, AfterViewInit {
     protected titleService: Title,
     protected route: ActivatedRoute,
     protected alertService: AlertService,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    protected router: Router
   ) {}
 
   ngOnInit() {
