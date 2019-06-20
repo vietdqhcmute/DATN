@@ -7,7 +7,7 @@
   </mat-dialog-actions>
 </div>
 
-<mat-dialog-content (submit)="onSubmitEditProfileDialog()">
+<mat-dialog-content>
   <div class="avatar">
     <img
       mat-card-image
@@ -82,8 +82,13 @@
   </div>
 
   <div class="tag">
-    <mat-form-field>
-      <div style="display: flex">
+    <form
+      class="auto-filter"
+      (ngSubmit)="onAddTag(searchTagForm)"
+      #searchTagForm="ngForm"
+      style="display: flex"
+    >
+      <mat-form-field>
         <input
           type="text"
           matInput
@@ -91,39 +96,40 @@
           [matAutocomplete]="auto"
           placeholder="Tag (ex: AngularJS)"
         />
-        <mat-dialog-actions>
-          <button
-            mat-button
-            type="submit"
-            class="mat-raised-button mat-primary"
-            cdkFocusInitial
-            style="display: flex"
-          >
-            <i class="material-icons">
-              local_offer
-            </i>
-            Tag
-          </button>
-        </mat-dialog-actions>
-      </div>
 
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions" [value]="option">
-          <span> {{ option | titlecase }} </span>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions" [value]="option">
+            <span> {{ option | titlecase }} </span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-dialog-actions>
+        <button
+          mat-button
+          type="submit"
+          class="mat-raised-button mat-primary"
+          cdkFocusInitial
+          style="display: flex"
+        >
+          <i class="material-icons">
+            local_offer
+          </i>
+          Tag
+        </button>
+      </mat-dialog-actions>
+    </form>
   </div>
 
-  <div class="tag-area">
-    <div *ngFor="let item of candidate.tags">
+  <div class="tag-area" style="display: flex">
+    <div *ngFor="let item of tagParams">
       <app-tag-frame [tag]="item"></app-tag-frame>
     </div>
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button mat-primary" (click)="onSave()">
+  <button class="mat-raised-button mat-primary" (click)="onUpdateProfile()">
     Update profile
   </button>
   <button class="mat-raised-button" (click)="close()">Close</button>

@@ -37,6 +37,7 @@ export class CandidateService {
   }
 
   updateCandidateByID(userID, candidate: Candidate) {
+    console.log(candidate);
     const headers = new HttpHeaders({ "Content-type": "application/json" });
     return this.http.put(
       this.domainName + 'update/candidate/' + userID,

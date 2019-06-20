@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 import { Candidate } from "src/app/models/CandidateData";
-import { FormControl } from "@angular/forms";
+import { FormControl, NgForm } from "@angular/forms";
 import { TagService } from "src/app/services/tag.service";
-import { startWith } from 'rxjs/operators';
+import { startWith } from "rxjs/operators";
+import { CandidateService } from "src/app/services/candidate.service";
+import { Tag } from "src/app/models/Tag";
 
 @Component({
   selector: "app-dialog-edit-profile",
@@ -12,6 +14,8 @@ import { startWith } from 'rxjs/operators';
 })
 export class DialogEditProfileComponent implements OnInit {
   candidate: Candidate;
+  tagParams: string[] = [];
+  imagePreview: string;
   tagContent = new FormControl();
   tagList: string[] = [];
   filteredOptions;
@@ -19,9 +23,13 @@ export class DialogEditProfileComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DialogEditProfileComponent>,
     private tagService: TagService,
+    private candidateService: CandidateService,
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.candidate = data;
+    if (data.tags) {
+      this.tagParams = data.tags;
+    }
   }
 
   ngOnInit() {
@@ -34,7 +42,38 @@ export class DialogEditProfileComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-  onSave() {}
+  onAddTag(form: NgForm) {
+    if (this.tagContent.value === null) {
+      return;
+    }
+    this.tagParams.push(this.tagContent.value);
+    this.tagContent.reset();
+  }
+  onUpdateProfile() {
+    this.candidate.tags = this.tagParams;
+    this.candidateService
+      .updateCandidateByID(this.candidate._id, this.candidate)
+      .subscribe(
+        res => {
+          this.dialogRef.close();
+          console.log("Success: ", res);
+        },
+        error => {
+          this.dialogRef.close();
+          console.error(error);
+        }
+      );
+  }
+
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result.toString();
+    };
+    reader.readAsDataURL(file);
+    this.saveAvatar(file);
+  }
   _filter(value: string) {
     if (!value) {
       return;
@@ -43,6 +82,15 @@ export class DialogEditProfileComponent implements OnInit {
     return this.tagList.filter(option =>
       option.toLowerCase().includes(filterValue)
     );
+  }
+  saveAvatar(image: File) {
+    this.candidateService.updateAvatar(image);
+    this.candidateService.getAvatarUrl().subscribe(avatarUrl => {
+      this.candidate.image_url = avatarUrl;
+      this.candidateService
+        .updateCandidateByID(this.candidate._id, this.candidate)
+        .subscribe(response => {});
+    });
   }
   getAllTags() {
     this.tagService.getAllTagsAPI().subscribe(tags => {
