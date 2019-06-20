@@ -8,10 +8,7 @@ import { Tag } from 'src/app/models/Tag';
 })
 export class TagFrameComponent implements OnInit {
   @Input() tag: string;
-  // tag: Tag={
-  //   _id:"",
-  //   content: "AngularJS"
-  // }
+
   constructor() { }
 
   ngOnInit() {

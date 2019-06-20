@@ -1,32 +1,36 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 import { Candidate } from "src/app/models/CandidateData";
-import { CandidateService } from "src/app/services/candidate.service";
-import { Subscription } from "rxjs";
-import { AlertService } from "src/app/services/alert.service";
+import { FormControl, NgForm } from "@angular/forms";
 import { TagService } from "src/app/services/tag.service";
-import { Tag } from "src/app/models/Tag";
-import { FormControl } from "@angular/forms";
 import { startWith } from "rxjs/operators";
+import { CandidateService } from "src/app/services/candidate.service";
+import { Tag } from "src/app/models/Tag";
 
 @Component({
-  selector: "app-modal-edit-profile",
-  templateUrl: "./modal-edit-profile.component.html",
-  styleUrls: ["./modal-edit-profile.component.scss"]
+  selector: "app-dialog-edit-profile",
+  templateUrl: "./dialog-edit-profile.component.html",
+  styleUrls: ["./dialog-edit-profile.component.scss"]
 })
-export class ModalEditProfileComponent implements OnInit {
-  @Input() candidate: Candidate;
+export class DialogEditProfileComponent implements OnInit {
+  candidate: Candidate;
+  tagParams: string[] = [];
   imagePreview: string;
-  private tagList: string[] = [];
-  private tagContent = new FormControl();
-  private filteredOptions;
-
-  sub: Subscription[];
+  tagContent = new FormControl();
+  tagList: string[] = [];
+  filteredOptions;
 
   constructor(
+    private dialogRef: MatDialogRef<DialogEditProfileComponent>,
+    private tagService: TagService,
     private candidateService: CandidateService,
-    private alertService: AlertService,
-    private tagService: TagService
-  ) {}
+    @Inject(MAT_DIALOG_DATA) data
+  ) {
+    this.candidate = data;
+    if (data.tags) {
+      this.tagParams = data.tags;
+    }
+  }
 
   ngOnInit() {
     this.getAllTags();
@@ -34,17 +38,29 @@ export class ModalEditProfileComponent implements OnInit {
       this.filteredOptions = this._filter(value);
     });
   }
-  onSave() {
+
+  close() {
+    this.dialogRef.close();
+  }
+  onAddTag(form: NgForm) {
+    if (this.tagContent.value === null) {
+      return;
+    }
+    this.tagParams.push(this.tagContent.value);
+    this.tagContent.reset();
+  }
+  onUpdateProfile() {
+    this.candidate.tags = this.tagParams;
     this.candidateService
       .updateCandidateByID(this.candidate._id, this.candidate)
       .subscribe(
         res => {
+          this.dialogRef.close();
           console.log("Success: ", res);
-          this.alertService.success("Update user sucesss", false);
         },
         error => {
+          this.dialogRef.close();
           console.error(error);
-          this.alertService.error("Can not update user", false);
         }
       );
   }

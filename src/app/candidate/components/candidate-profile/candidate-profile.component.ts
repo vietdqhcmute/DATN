@@ -3,6 +3,8 @@ import { Candidate } from "src/app/models/CandidateData";
 import { first } from "rxjs/operators";
 import { Subscription } from "rxjs";
 import { CandidateComponent } from "../../candidate.component";
+import { DialogEditProfileComponent } from "src/app/partial/material-dialog/dialog-edit-profile/dialog-edit-profile.component";
+import { MatDialogConfig } from "@angular/material";
 @Component({
   selector: "app-candidate-profile",
   templateUrl: "./candidate-profile.component.html",
@@ -50,6 +52,17 @@ export class CandidateProfileComponent extends CandidateComponent
     };
     reader.readAsDataURL(file);
     this.saveAvatar(file);
+  }
+  onEditProfile() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+
+    dialogConfig.width = "112vh";
+    dialogConfig.height = "88vh";
+    dialogConfig.data = this.candidate;
+
+    this.dialog.open(DialogEditProfileComponent, dialogConfig);
   }
   saveAvatar(image: File) {
     this.candidateService.updateAvatar(image);

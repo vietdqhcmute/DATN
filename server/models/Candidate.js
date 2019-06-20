@@ -20,7 +20,7 @@ let candidateSchema = new mongoose.Schema({
   },
   phone: String,
   tags: {
-    type: String,
+    type: [String],
     es_indexed: true
   },
   resume: Resume,

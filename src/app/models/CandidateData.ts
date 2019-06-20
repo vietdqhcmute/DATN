@@ -6,6 +6,7 @@ export class Candidate {
   github: string;
   linkedin: string;
   phone: string;
+  tags: Array<string>;
   resume: Resume;
   _id: string;
 }
