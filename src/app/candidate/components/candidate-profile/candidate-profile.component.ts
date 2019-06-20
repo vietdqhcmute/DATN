@@ -56,7 +56,7 @@ export class CandidateProfileComponent extends CandidateComponent
   onEditProfile() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
+    dialogConfig.autoFocus = false;
 
     dialogConfig.width = "112vh";
     dialogConfig.height = "88vh";
