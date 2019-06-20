@@ -58,6 +58,17 @@
                 candidate.linkedin
               }}</a>
             </div>
+            <br />
+            <!-- Tag -->
+            <div
+              class="one-line-info"
+              *ngIf="candidate.tags.length > 0"
+              style="display: flex; flex-wrap: wrap;"
+            >
+              <div *ngFor="let item of candidate.tags">
+                <app-tag-frame [tag]="item"></app-tag-frame>
+              </div>
+            </div>
           </div>
         </div>
         <div class="edit-button">
