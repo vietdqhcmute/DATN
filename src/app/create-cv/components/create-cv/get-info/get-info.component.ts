@@ -25,6 +25,7 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
 
   onAddExperience() {
     const dialogConfig = this.configDefaultMatDialog();
+    dialogConfig.data = {};
     const dialogRef = this.dialog.open(
       DialogResumeExperienceComponent,
       dialogConfig
@@ -32,6 +33,7 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
   }
   onAddEducation() {
     const dialogConfig = this.configDefaultMatDialog();
+    dialogConfig.data = {};
     const dialogRef = this.dialog.open(
       DialogResumeEducationComponent,
       dialogConfig
@@ -39,20 +41,34 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
   }
   onAddProject() {
     const dialogConfig = this.configDefaultMatDialog();
+    dialogConfig.data = {};
     const dialogRef = this.dialog.open(
       DialogResumeProjectComponent,
       dialogConfig
     );
   }
 
-  onSaveExperience(modalExperience: Experience) {
-    this.getInfoResume.experience.push(modalExperience);
+  // onSaveExperience(modalExperience: Experience) {
+  //   this.getInfoResume.experience.push(modalExperience);
+  // }
+  // onSaveProject(modalProject: Project) {
+  //   this.getInfoResume.project.push(modalProject);
+  // }
+  // onSaveEducation(modalEducation: Education) {
+  //   this.getInfoResume.education.push(modalEducation);
+  // }
+
+  onModifyExperience(index: number) {
+    const dialogConfig = this.configDefaultMatDialog();
+    console.log(index);
   }
-  onSaveProject(modalProject: Project) {
-    this.getInfoResume.project.push(modalProject);
+  onModifyProject(index: number) {
+    const dialogConfig = this.configDefaultMatDialog();
+    console.log(index);
   }
-  onSaveEducation(modalEducation: Education) {
-    this.getInfoResume.education.push(modalEducation);
+  onModifyEducation(index: number) {
+    const dialogConfig = this.configDefaultMatDialog();
+    console.log(index);
   }
 
   onDeleteExperience(index: number) {
