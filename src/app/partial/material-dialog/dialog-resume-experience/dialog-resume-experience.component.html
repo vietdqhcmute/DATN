@@ -1,0 +1,39 @@
+
+<mat-dialog-content class="mat-experience alternate-theme">
+    <h1 mat-dialog-title>Add another experience</h1>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="experience.company_name" placeholder="Company name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="experience.title" placeholder="Title/Position">
+  </mat-form-field>
+
+  <mat-checkbox [(checked)]='experience.current' [(ngModel)]="experience.current">Current</mat-checkbox>
+
+  <div class="mat-experience-date">
+    <mat-form-field>
+      <input matInput [(ngModel)]="experience.start_month" placeholder="Start month">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="experience.start_year" placeholder="Start Year">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="experience.end_month" [disabled]="current" placeholder="End Month">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="experience.end_year" [disabled]="current" placeholder="End Year">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="experience.description" placeholder="Description"></textarea>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close class="mat-raised-button" (click)="onClose()">Close</button>
+  <button mat-button class="mat-raised-button mat-primary" (click)="onSave()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,36 @@
+
+<mat-dialog-content class="mat-experience alternate-theme">
+    <h1 mat-dialog-title>Add another Education</h1>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="education.school_name" placeholder="School name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="education.major" placeholder="Major">
+  </mat-form-field>
+
+
+  <mat-checkbox [(checked)]='education.current' [(ngModel)]="education.current">Current</mat-checkbox>
+
+  <div class="mat-experience-date">
+    <mat-form-field>
+      <input matInput [(ngModel)]="education.start_month" placeholder="Start month">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="education.start_year" placeholder="Start Year">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="education.end_month" [disabled]="education.current" placeholder="End Month">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="education.end_year" [disabled]="education.current" placeholder="End Year">
+    </mat-form-field>
+  </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+  <!-- <button mat-button mat-dialog-close class="mat-raised-button" (click)="onClose()">Close</button> -->
+  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="education" cdkFocusInitial>Save</button>
+  </mat-dialog-actions>

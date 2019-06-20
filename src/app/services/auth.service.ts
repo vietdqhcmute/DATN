@@ -143,7 +143,7 @@ export class AuthService {
     localStorage.removeItem("currentUser");
   }
   private loginAsCandidate(email) {
-    this.router.navigate(["profile", email]);
+    this.router.navigate(["profile/", email,]);
   }
   private loginAsRecruiter(email) {
     this.router.navigate(["recruiter", email]);
