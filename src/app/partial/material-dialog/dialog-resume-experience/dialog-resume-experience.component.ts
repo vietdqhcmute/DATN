@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, OnDestroy } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Experience } from "src/app/models/CandidateData";
 
@@ -7,11 +7,24 @@ import { Experience } from "src/app/models/CandidateData";
   templateUrl: "./dialog-resume-experience.component.html",
   styleUrls: ["./dialog-resume-experience.component.scss"]
 })
-export class DialogResumeExperienceComponent implements OnInit {
+export class DialogResumeExperienceComponent implements OnInit, OnDestroy {
+  experience: Experience;
+  current: true;
   constructor(
     private dialogRef: MatDialogRef<DialogResumeExperienceComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Experience
-  ) {}
+    @Inject(MAT_DIALOG_DATA) data: Experience
+  ) {
+    this.experience = data;
+  }
 
   ngOnInit() {}
+  ngOnDestroy(){
+
+  }
+  close() {
+    this.dialogRef.close();
+  }
+  onSave(){
+    this.dialogRef.close(this.experience);
+  }
 }

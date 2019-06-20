@@ -86,7 +86,7 @@
     <ul>
       <li *ngFor="let item of getInfoResume.experience; let i = index">
         <div>
-          <a (click)="onModifyExperience(i)">{{ item.company_name }}</a>
+          <a (click)="onModifyExperience(item)">{{ item.company_name }}</a>
           <p>{{ item.title }}</p>
         </div>
         <button

@@ -3,34 +3,34 @@
     <h1 mat-dialog-title>Add another experience</h1>
 
   <mat-form-field>
-    <input matInput [(ngModel)]="data.company_name" placeholder="Company name">
+    <input matInput [(ngModel)]="experience.company_name" placeholder="Company name">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [(ngModel)]="data.title" placeholder="Title/Position">
+    <input matInput [(ngModel)]="experience.title" placeholder="Title/Position">
   </mat-form-field>
 
 
-  <mat-checkbox [(checked)]='data.current' [(ngModel)]="data.current">Current</mat-checkbox>
+  <mat-checkbox [(checked)]='experience.current' [(ngModel)]="experience.current">Current</mat-checkbox>
 
   <div class="mat-experience-date">
     <mat-form-field>
-      <input matInput [(ngModel)]="data.startMonth" placeholder="Start month">
+      <input matInput [(ngModel)]="experience.start_month" placeholder="Start month">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="data.startYear" placeholder="Start Year">
+      <input matInput [(ngModel)]="experience.start_year" placeholder="Start Year">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="data.endMonth" [disabled]="data.current" placeholder="End Month">
+      <input matInput [(ngModel)]="experience.end_month" [disabled]="current" placeholder="End Month">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="data.endYear" [disabled]="data.current" placeholder="End Year">
+      <input matInput [(ngModel)]="experience.end_year" [disabled]="current" placeholder="End Year">
     </mat-form-field>
   </div>
 
 
   <mat-form-field>
-    <textarea matInput [(ngModel)]="data.description" placeholder="Description"></textarea>
+    <textarea matInput [(ngModel)]="experience.description" placeholder="Description"></textarea>
   </mat-form-field>
 
 </mat-dialog-content>
