@@ -99,9 +99,16 @@
     </ul>
   </div>
   <div class="item">
-    <app-modal-resume-expeience
+    <button
+      class="btn btn-outline-primary"
+      (click)="onAddExperience()"
+      style="display: flex"
+    >
+      <i class="material-icons"> add </i>Experience
+    </button>
+    <!-- <app-modal-resume-expeience
       (saveClick)="onSaveExperience($event)"
-    ></app-modal-resume-expeience>
+    ></app-modal-resume-expeience> -->
   </div>
 </section>
 <br />
@@ -121,9 +128,17 @@
     </ul>
   </div>
   <div class="item">
-    <app-modal-resume-project
+    <button
+      class="btn btn-outline-primary"
+      (click)="onAddProject()"
+      style="display: flex"
+    >
+      <i class="material-icons"> add </i>Project
+    </button>
+
+    <!-- <app-modal-resume-project
       (saveClick)="onSaveProject($event)"
-    ></app-modal-resume-project>
+    ></app-modal-resume-project> -->
   </div>
 </section>
 <br />
@@ -151,9 +166,16 @@
   </div>
 
   <div class="item">
-    <app-modal-resume-education
+    <button
+      class="btn btn-outline-primary"
+      (click)="onAddEducation()"
+      style="display: flex"
+    >
+      <i class="material-icons"> add </i>Education
+    </button>
+    <!-- <app-modal-resume-education
       (saveClick)="onSaveEducation($event)"
-    ></app-modal-resume-education>
+    ></app-modal-resume-education> -->
   </div>
 </section>
 <br />
