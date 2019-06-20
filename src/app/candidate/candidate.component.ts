@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Candidate } from "../models/CandidateData";
 import { AlertService } from "../services/alert.service";
 import { Subscription } from "rxjs";
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: "app-candidate",
@@ -21,7 +22,8 @@ export class CandidateComponent implements OnInit, OnDestroy, AfterViewInit {
     protected candidateService: CandidateService,
     protected titleService: Title,
     protected route: ActivatedRoute,
-    private alertService: AlertService
+    protected alertService: AlertService,
+    protected dialog: MatDialog
   ) {}
 
   ngOnInit() {

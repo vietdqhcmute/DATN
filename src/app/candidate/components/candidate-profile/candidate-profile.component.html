@@ -65,6 +65,18 @@
             [candidate]="candidate"
           ></app-modal-edit-profile>
         </div>
+        <div class="edit-button">
+          <button
+            class="btn btn-outline-info"
+            (click)="onEditProfile()"
+            style="display: flex"
+          >
+            <i class="material-icons">
+              edit
+            </i>
+            Mat dialog
+          </button>
+        </div>
         <button
           *ngIf="true == false"
           id="btn-update-info"

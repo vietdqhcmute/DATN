@@ -1,0 +1,130 @@
+<div class="header">
+  <h2 mat-dialog-title>Edit profile</h2>
+  <mat-dialog-actions>
+    <button class="invicible-button" (click)="close()">
+      <i class="material-icons">close</i>
+    </button>
+  </mat-dialog-actions>
+</div>
+
+<mat-dialog-content (submit)="onSubmitEditProfileDialog()">
+  <div class="avatar">
+    <img
+      mat-card-image
+      [src]="candidate.image_url"
+      alt="avatar"
+      (click)="filePicker.click()"
+    />
+    <input
+      style="display: none;"
+      type="file"
+      #filePicker
+      (change)="onImagePicked($event)"
+    />
+  </div>
+  <div class="name half-dialog">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Full name"
+        [(ngModel)]="candidate.full_name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Display name"
+        [(ngModel)]="candidate.display_name"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="contact half-dialog">
+    <mat-form-field>
+      <input matInput placeholder="Phone" [(ngModel)]="candidate.phone" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" [(ngModel)]="candidate.email" />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Github URL" [(ngModel)]="candidate.github" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Linkedin URL"
+      [(ngModel)]="candidate.linkedin"
+    />
+  </mat-form-field>
+
+  <div class="title">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Job titile"
+        [(ngModel)]="candidate.resume.title"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="summary">
+    <mat-form-field>
+      <textarea
+        matInput
+        placeholder="Summary about your self"
+        [(ngModel)]="candidate.resume.summary"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="tag">
+    <mat-form-field>
+      <div style="display: flex">
+        <input
+          type="text"
+          matInput
+          [formControl]="tagContent"
+          [matAutocomplete]="auto"
+          placeholder="Tag (ex: AngularJS)"
+        />
+        <mat-dialog-actions>
+          <button
+            mat-button
+            type="submit"
+            class="mat-raised-button mat-primary"
+            cdkFocusInitial
+            style="display: flex"
+          >
+            <i class="material-icons">
+              local_offer
+            </i>
+            Tag
+          </button>
+        </mat-dialog-actions>
+      </div>
+
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions" [value]="option">
+          <span> {{ option | titlecase }} </span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div class="tag-area">
+    <div *ngFor="let item of candidate.tags">
+      <app-tag-frame [tag]="item"></app-tag-frame>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button mat-primary" (click)="onSave()">
+    Update profile
+  </button>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions>

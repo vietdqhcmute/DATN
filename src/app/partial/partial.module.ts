@@ -24,6 +24,7 @@ import { ModalApplierComponent } from './modal/modal-applier/modal-applier.compo
 import { DialogPreviewArticleComponent } from './material-dialog/dialog-preview-article/dialog-preview-article.component';
 import { DialogApplierListComponent } from './material-dialog/dialog-applier-list/dialog-applier-list.component';
 import { DialogConfirmationComponent } from './material-dialog/dialog-confirmation/dialog-confirmation.component';
+import { DialogEditProfileComponent } from './material-dialog/dialog-edit-profile/dialog-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DialogConfirmationComponent } from './material-dialog/dialog-confirmati
     RecruiterReviewRatingComponent,
     DialogPreviewArticleComponent,
     DialogApplierListComponent,
-    DialogConfirmationComponent
+    DialogConfirmationComponent,
+    DialogEditProfileComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +81,8 @@ import { DialogConfirmationComponent } from './material-dialog/dialog-confirmati
     RecruiterReviewRatingComponent,
     DialogPreviewArticleComponent,
     DialogApplierListComponent,
-    DialogConfirmationComponent
+    DialogConfirmationComponent,
+    DialogEditProfileComponent
   ]
 })
 export class PartialModule {}

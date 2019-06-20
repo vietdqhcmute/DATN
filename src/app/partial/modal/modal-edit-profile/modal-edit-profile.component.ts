@@ -3,6 +3,10 @@ import { Candidate } from "src/app/models/CandidateData";
 import { CandidateService } from "src/app/services/candidate.service";
 import { Subscription } from "rxjs";
 import { AlertService } from "src/app/services/alert.service";
+import { TagService } from "src/app/services/tag.service";
+import { Tag } from "src/app/models/Tag";
+import { FormControl } from "@angular/forms";
+import { startWith } from "rxjs/operators";
 
 @Component({
   selector: "app-modal-edit-profile",
@@ -11,15 +15,25 @@ import { AlertService } from "src/app/services/alert.service";
 })
 export class ModalEditProfileComponent implements OnInit {
   @Input() candidate: Candidate;
-  sub: Subscription;
   imagePreview: string;
+  private tagList: string[] = [];
+  private tagContent = new FormControl();
+  private filteredOptions;
+
+  sub: Subscription[];
 
   constructor(
     private candidateService: CandidateService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private tagService: TagService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllTags();
+    this.tagContent.valueChanges.pipe(startWith("")).subscribe(value => {
+      this.filteredOptions = this._filter(value);
+    });
+  }
   onSave() {
     this.candidateService
       .updateCandidateByID(this.candidate._id, this.candidate)
@@ -44,6 +58,15 @@ export class ModalEditProfileComponent implements OnInit {
     reader.readAsDataURL(file);
     this.saveAvatar(file);
   }
+  _filter(value: string) {
+    if (!value) {
+      return;
+    }
+    const filterValue = value.toLowerCase();
+    return this.tagList.filter(option =>
+      option.toLowerCase().includes(filterValue)
+    );
+  }
   saveAvatar(image: File) {
     this.candidateService.updateAvatar(image);
     this.candidateService.getAvatarUrl().subscribe(avatarUrl => {
@@ -51,6 +74,11 @@ export class ModalEditProfileComponent implements OnInit {
       this.candidateService
         .updateCandidateByID(this.candidate._id, this.candidate)
         .subscribe(response => {});
+    });
+  }
+  getAllTags() {
+    this.tagService.getAllTagsAPI().subscribe(tags => {
+      tags.forEach(element => this.tagList.push(element.content));
     });
   }
 }

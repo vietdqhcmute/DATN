@@ -1,0 +1,39 @@
+:host {
+  mat-form-field {
+    width: 97%;
+    margin: 0px 10px;
+  }
+
+  .invicible-button {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .avatar {
+    text-align: center;
+
+    img {
+      height: 20vh;
+      width: 20vh;
+      &:hover {
+        -webkit-filter: brightness(50%);
+      }
+    }
+  }
+
+  .half-dialog {
+    justify-content: space-between;
+
+    mat-form-field {
+      width: 47%;
+      margin: 0px 10px;
+    }
+  }
+}

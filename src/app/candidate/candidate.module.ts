@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { EditProfileDialogComponent } from '../partial/material-dialog/edit-profile-dialog/edit-profile-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { DialogEditProfileComponent } from '../partial/material-dialog/dialog-edit-profile/dialog-edit-profile.component';
 
 @NgModule({
   declarations: [CandidateComponent, CandidateProfileComponent],
@@ -20,7 +21,8 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule
   ],
   entryComponents:[
-    EditProfileDialogComponent
+    EditProfileDialogComponent,
+    DialogEditProfileComponent
   ]
 })
 export class CandidateModule { }

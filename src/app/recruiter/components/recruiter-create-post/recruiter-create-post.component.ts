@@ -52,7 +52,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       .saveArticle(requestBody, this.routeParams.email)
       .subscribe(
         response => {
-          this.navigateDashboar();
+          this.navigateDashboard();
         },
         error => {
           this.alertService.error(error);
@@ -73,7 +73,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       .updateArticle(this.articleParams, this.queryParams.id)
       .subscribe(
         success => {
-          this.navigateDashboar();
+          this.navigateDashboard();
         },
         error => {
           console.error(error);
@@ -126,7 +126,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     );
   }
 
-  navigateDashboar() {
+  navigateDashboard() {
     this.router.navigate(["recruiter", this.routeParams.email, "dashboard"]);
   }
 }
