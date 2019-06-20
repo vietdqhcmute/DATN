@@ -8,6 +8,7 @@ import { Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 import { ResumeService } from "src/app/services/resume.service";
 import { AlertService } from "src/app/services/alert.service";
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: "app-create-cv",
@@ -28,7 +29,8 @@ export class CreateCvComponent implements OnInit, OnDestroy {
     protected titleService: Title,
     protected alertService: AlertService,
     protected route: ActivatedRoute,
-    protected resumeService: ResumeService
+    protected resumeService: ResumeService,
+    protected dialog: MatDialog
   ) {}
 
   ngOnInit() {

@@ -11,6 +11,9 @@ import { PreviewCvComponent } from './components/create-cv/preview-cv/preview-cv
 import { TemplateSelectionComponent } from './components/create-cv/template-selection/template-selection.component';
 import { ToolBarComponent } from './components/create-cv/tool-bar/tool-bar.component';
 import { ConvertToMonthPipe } from '../shared/convert-to-month.pipe';
+import { DialogResumeEducationComponent } from '../partial/material-dialog/dialog-resume-education/dialog-resume-education.component';
+import { DialogResumeExperienceComponent } from '../partial/material-dialog/dialog-resume-experience/dialog-resume-experience.component';
+import { DialogResumeProjectComponent } from '../partial/material-dialog/dialog-resume-project/dialog-resume-project.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,11 @@ import { ConvertToMonthPipe } from '../shared/convert-to-month.pipe';
     RouterModule,
     FormsModule,
     MaterialModule
+  ],
+  entryComponents:[
+    DialogResumeEducationComponent,
+    DialogResumeExperienceComponent,
+    DialogResumeProjectComponent
   ]
 })
 export class CreateCvModule {}

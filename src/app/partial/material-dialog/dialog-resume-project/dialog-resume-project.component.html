@@ -1,0 +1,31 @@
+<mat-dialog-content class="mat-experience alternate-theme">
+    <h1 mat-dialog-title>Add another Project</h1>
+
+    <mat-form-field>
+    <input matInput [(ngModel)]="project.project_name" placeholder="Project name">
+    </mat-form-field>
+
+    <div class="mat-experience-date">
+      <mat-form-field>
+        <input matInput [(ngModel)]="project.start_month" placeholder="Start month">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="project.start_year" placeholder="Start Year">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="project.end_month" placeholder="End Month">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="project.end_year" placeholder="End Year">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="project.description" placeholder="Description"></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <!-- <button mat-button mat-dialog-close class="mat-raised-button" (click)="onClose()">Close</button> -->
+    <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="project" cdkFocusInitial>Save</button>
+  </mat-dialog-actions>
