@@ -10,7 +10,6 @@
     <input matInput [(ngModel)]="experience.title" placeholder="Title/Position">
   </mat-form-field>
 
-
   <mat-checkbox [(checked)]='experience.current' [(ngModel)]="experience.current">Current</mat-checkbox>
 
   <div class="mat-experience-date">
@@ -28,7 +27,6 @@
     </mat-form-field>
   </div>
 
-
   <mat-form-field>
     <textarea matInput [(ngModel)]="experience.description" placeholder="Description"></textarea>
   </mat-form-field>
@@ -36,6 +34,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <!-- <button mat-button mat-dialog-close class="mat-raised-button" (click)="onClose()">Close</button> -->
-  <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  <button mat-button mat-dialog-close class="mat-raised-button" (click)="onClose()">Close</button>
+  <button mat-button class="mat-raised-button mat-primary" (click)="onSave()" cdkFocusInitial>Save</button>
 </mat-dialog-actions>

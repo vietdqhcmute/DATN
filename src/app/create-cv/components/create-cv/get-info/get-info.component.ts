@@ -25,21 +25,14 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
 
   onAddExperience() {
     const dialogConfig = this.configDefaultMatDialog();
-    dialogConfig.data = new Experience({
-      company_name: "",
-      title: "",
-      location: "",
-      description: "",
-      start_month: 1,
-      start_year: 2000,
-      end_month: 1,
-      end_year: 2000,
-      current: false
-    });
+    dialogConfig.data = {};
     const dialogRef = this.dialog.open(
       DialogResumeExperienceComponent,
       dialogConfig
     );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
   onAddEducation() {
     const dialogConfig = this.configDefaultMatDialog();
@@ -48,9 +41,9 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
       DialogResumeEducationComponent,
       dialogConfig
     );
-    dialogRef.afterClosed().subscribe(result=>{
-      console.log(result)
-    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
   onAddProject() {
     const dialogConfig = this.configDefaultMatDialog();
@@ -59,6 +52,9 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
       DialogResumeProjectComponent,
       dialogConfig
     );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
   // onSaveExperience(modalExperience: Experience) {

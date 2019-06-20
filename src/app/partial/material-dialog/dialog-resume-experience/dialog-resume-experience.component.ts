@@ -7,7 +7,7 @@ import { Experience } from "src/app/models/CandidateData";
   templateUrl: "./dialog-resume-experience.component.html",
   styleUrls: ["./dialog-resume-experience.component.scss"]
 })
-export class DialogResumeExperienceComponent implements OnInit, OnDestroy {
+export class DialogResumeExperienceComponent implements OnInit {
   experience: Experience;
   current: true;
   constructor(
@@ -18,13 +18,11 @@ export class DialogResumeExperienceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {}
-  ngOnDestroy(){
 
-  }
-  close() {
+  onClose() {
     this.dialogRef.close();
   }
-  onSave(){
+  onSave() {
     this.dialogRef.close(this.experience);
   }
 }
