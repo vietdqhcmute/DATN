@@ -16,7 +16,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   public Editor = ClassicEditor;
   private routeParams;
   private queryParams;
-  // private tags: Tag[] = [];
+  private tags: Tag[] = [];
   private tagList: string[] = [];
   private tagContent = new FormControl();
   private filteredOptions;
