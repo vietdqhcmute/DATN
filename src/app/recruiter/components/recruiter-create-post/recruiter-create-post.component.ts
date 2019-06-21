@@ -16,7 +16,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   public Editor = ClassicEditor;
   private routeParams;
   private queryParams;
-  private tags: Tag[] = [];
+  // private tags: Tag[] = [];
   private tagList: string[] = [];
   private tagContent = new FormControl();
   private filteredOptions;
@@ -36,7 +36,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       this.filteredOptions = this._filter(value);
     });
     if (this.queryParams.edit) {
-      this.loadRecruitPostData(this.queryParams.id);
+      this.getArticle(this.queryParams.id);
     }
   }
   ngOnDestroy(): void {
@@ -44,27 +44,20 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   }
 
   onCreatePost() {
-    let requestBody = {
-      email_company: this.routeParams.email,
-      article: this.articleParams
-    };
-    this.articleService
-      .saveArticle(requestBody, this.routeParams.email)
-      .subscribe(
-        response => {
-          this.navigateDashboard();
-        },
-        error => {
-          this.alertService.error(error);
-        }
-      );
-  }
-  onAddTag(form: NgForm) {
-    if (this.tagContent.value === null) {
-      return;
-    }
-    this.articleParams.tags.push(this.tagContent.value.trim());
-    this.tagContent.reset();
+    // let requestBody = {
+    //   email_company: this.routeParams.email,
+    //   article: this.articleParams
+    // };
+    // this.articleService
+    //   .saveArticle(requestBody, this.routeParams.email)
+    //   .subscribe(
+    //     response => {
+    //       this.navigateDashboard();
+    //     },
+    //     error => {
+    //       this.alertService.error(error);
+    //     }
+    //   );
   }
   onUpdatePost() {
     // console.log(this.articleParams);
@@ -80,6 +73,44 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
         }
       );
   }
+  onAddTag(form: NgForm) {
+    if (this.tagContent.value === null) {
+      return;
+    }
+    this.articleParams.tags.push(this.tagContent.value.trim());
+    this.tagContent.reset();
+  }
+  onAutoTag() {
+    if (!this.tagFilter()) {
+      return;
+    }
+    this.tagFilter().forEach(tag => {
+      this.articleParams.tags.push(tag);
+    });
+  }
+  tagFilter(): Array<string> {
+    if (!this.splitTitle()) {
+      return;
+    }
+    let tags = this.splitTitle();
+    for (let i = 0; i < tags.length; i++) {
+      if (!this.tagList.includes(tags[i])) {
+        tags.splice(i, 1);
+        i--;
+      }
+    }
+    return tags;
+  }
+  splitTitle(): Array<string> {
+    if (this.articleParams.title === "") {
+      return;
+    }
+    const tagsInTitle = this.articleParams.title
+      .toLowerCase()
+      .replace(/[()]/g, "")
+      .split(" ");
+    return tagsInTitle;
+  }
 
   _filter(value: string) {
     if (!value) {
@@ -91,7 +122,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     );
   }
 
-  loadRecruitPostData(id) {
+  getArticle(id) {
     this.sub.push(
       this.articleService.getArticleById(id).subscribe(data => {
         this.articleParams.title = data.title;
