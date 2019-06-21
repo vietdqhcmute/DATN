@@ -44,20 +44,20 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   }
 
   onCreatePost() {
-    // let requestBody = {
-    //   email_company: this.routeParams.email,
-    //   article: this.articleParams
-    // };
-    // this.articleService
-    //   .saveArticle(requestBody, this.routeParams.email)
-    //   .subscribe(
-    //     response => {
-    //       this.navigateDashboard();
-    //     },
-    //     error => {
-    //       this.alertService.error(error);
-    //     }
-    //   );
+    const requestBody = {
+      email_company: this.routeParams.email,
+      article: this.articleParams
+    };
+    this.articleService
+      .saveArticle(requestBody, this.routeParams.email)
+      .subscribe(
+        response => {
+          this.navigateDashboard();
+        },
+        error => {
+          this.alertService.error(error);
+        }
+      );
   }
   onUpdatePost() {
     // console.log(this.articleParams);
