@@ -113,7 +113,8 @@ router.put("/apply/:id", async (req, res) => {
   const query = await Article.findById(req.params.id).select("applied");
   let applies = query.applied;
   if (applies.indexOf(req.body.email) !== -1) {
-    return res.status(200).send("You've already applied for this job");
+    console.log("You've already applied for this job");
+    return res.status(302).send("You've already applied for this job");
   } else {
     applies.push(req.body.email);
     query.save((err, callback) => {

@@ -7,6 +7,7 @@ import { CompanyDescriptionComponent } from "./company-description/company-descr
 import { CompanyReviewComponent } from "./company-review/company-review.component";
 import { SearchCompanyComponent } from './search-company/search-company.component';
 import { SearchArticleComponent } from './search-article/search-article.component';
+import { ApplySuccessComponent } from './apply-success/apply-success.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
         component: CompanyReviewComponent
       },
       { path: "companies", component: SearchCompanyComponent },
-      { path: "search",component: SearchArticleComponent}
+      { path: "search",component: SearchArticleComponent},
+      { path: "apply-success", component: ApplySuccessComponent}
     ]
   }
 ];

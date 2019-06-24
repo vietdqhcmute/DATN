@@ -57,38 +57,14 @@ export class AuthService {
   }
 
   createCandidate(candidateParams) {
-    this.http.post(this.domainName + "sign-up", candidateParams).subscribe(
-      response => {
-        setTimeout(() => {
-          this.alertService.success("Create successfully!", true);
-          setTimeout(() => {
-            this.router.navigate(["/login"]);
-          }, 1000);
-        }, 1000);
-      },
-      error => {
-        console.log(error);
-        this.alertService.error(error, false);
-      }
-    );
+    return this.http.post(this.domainName + "sign-up", candidateParams);
   }
 
   createRecruiter(recruiterParams) {
-    this.http
-      .post(this.domainName + "recruiter/sign-up", recruiterParams)
-      .subscribe(
-        response => {
-          setTimeout(() => {
-            this.alertService.success("Create successfully!", true);
-            setTimeout(() => {
-              this.router.navigate(["/login"]);
-            }, 1000);
-          }, 1000);
-        },
-        error => {
-          this.alertService.error(error, false);
-        }
-      );
+    return this.http.post(
+      this.domainName + "recruiter/sign-up",
+      recruiterParams
+    );
   }
 
   autoLogin() {
@@ -143,7 +119,7 @@ export class AuthService {
     localStorage.removeItem("currentUser");
   }
   private loginAsCandidate(email) {
-    this.router.navigate(["profile/", email,]);
+    this.router.navigate(["profile/", email]);
   }
   private loginAsRecruiter(email) {
     this.router.navigate(["recruiter", email]);
