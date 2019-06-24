@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 //get 10 recent articles
 router.get("/articles/recent", (req, res) => {
   Article.find({})
-    .sort({created_at: -1})
+    .sort({ created_at: -1 })
     .limit(10)
     .exec(function(err, articles) {
       if (err) {
@@ -104,7 +104,8 @@ router.put("/apply/:id", async (req, res) => {
   const query = await Article.findById(req.params.id).select("applied");
   let applies = query.applied;
   if (applies.indexOf(req.body.email) !== -1) {
-    return res.status(200).send("You've already applied for this job");
+    console.log("You've already applied for this job");
+    return res.status(302).send("You've already applied for this job");
   } else {
     applies.push(req.body.email);
     query.save((err, callback) => {

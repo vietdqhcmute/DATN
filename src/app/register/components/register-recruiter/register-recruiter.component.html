@@ -53,6 +53,17 @@
       </mat-form-field>
 
       <mat-form-field>
+        <mat-label>City</mat-label>
+        <mat-select
+          placeholder="City"
+          (selectionChange)="onChangeCity($event.value)"
+        >
+          <mat-option *ngFor="let item of citySelections" [value]="item">
+            {{ item }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <mat-form-field>
         <input
           id="city"
           matInput
@@ -75,7 +86,7 @@
             Invalid
           </div>
         </mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field>
         <input
