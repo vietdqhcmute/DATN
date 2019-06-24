@@ -54,7 +54,6 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       email_company: this.routeParams.email,
       article: this.articleParams
     };
-    console.log(requestBody);
     this.articleService
       .saveArticle(requestBody, this.routeParams.email)
       .subscribe(
@@ -67,8 +66,6 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       );
   }
   onUpdatePost() {
-    // console.log(this.articleParams);
-    // this.articleService.updateArticle(this.articleParams, this.queryParams.id);
     this.articleService
       .updateArticle(this.articleParams, this.queryParams.id)
       .subscribe(
@@ -87,9 +84,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.articleParams.tags.push(this.tagContent.value.trim());
     this.tagContent.reset();
   }
-  autoTag() {
-
-  }
+  autoTag() {}
   tagFilter(): Array<string> {
     if (!this.splitTitle()) {
       return;
