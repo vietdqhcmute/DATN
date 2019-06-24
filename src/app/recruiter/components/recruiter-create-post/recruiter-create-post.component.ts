@@ -44,10 +44,17 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   }
 
   onCreatePost() {
+    if (!this.tagFilter()) {
+      return;
+    }
+    this.tagFilter().forEach(tag => {
+      this.articleParams.tags.push(tag);
+    });
     const requestBody = {
       email_company: this.routeParams.email,
       article: this.articleParams
     };
+    console.log(requestBody);
     this.articleService
       .saveArticle(requestBody, this.routeParams.email)
       .subscribe(
@@ -80,13 +87,8 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.articleParams.tags.push(this.tagContent.value.trim());
     this.tagContent.reset();
   }
-  onAutoTag() {
-    if (!this.tagFilter()) {
-      return;
-    }
-    this.tagFilter().forEach(tag => {
-      this.articleParams.tags.push(tag);
-    });
+  autoTag() {
+
   }
   tagFilter(): Array<string> {
     if (!this.splitTitle()) {
