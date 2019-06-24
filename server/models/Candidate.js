@@ -14,6 +14,7 @@ let candidateSchema = new mongoose.Schema({
   linkedin: String,
   phone: String,
   tags: [],
+  applied:{},
   resume: Resume,
   created_at: {
     type: Date,
