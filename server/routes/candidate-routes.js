@@ -90,7 +90,7 @@ router.put("/candidate/apply", async (req, res) => {
 router.get("/candidate/applies/:id", async (req, res) => {
   const query = await Candidate.findById(req.params.id).populate("_applied");
   const applies = query._applied;
-  return res.status(200).json(applies);
+  return res.status(200).json(applies.reverse());
 });
 
 module.exports = router;
