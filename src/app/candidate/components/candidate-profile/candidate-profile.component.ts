@@ -5,6 +5,7 @@ import { Subscription } from "rxjs";
 import { CandidateComponent } from "../../candidate.component";
 import { DialogEditProfileComponent } from "src/app/partial/material-dialog/dialog-edit-profile/dialog-edit-profile.component";
 import { MatDialogConfig } from "@angular/material";
+import { Articles } from "src/app/models/RecruiterData";
 @Component({
   selector: "app-candidate-profile",
   templateUrl: "./candidate-profile.component.html",
@@ -18,6 +19,7 @@ export class CandidateProfileComponent extends CandidateComponent
   allowEdit = false;
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
   imagePreview: string;
+  articles: Articles[] = [];
 
   ngOnInit() {
     if (this.authService.isSavedAuthData()) {
@@ -39,6 +41,7 @@ export class CandidateProfileComponent extends CandidateComponent
         .subscribe(candidate => {
           this.titleService.setTitle(candidate.display_name);
           this.candidate = <Candidate>candidate;
+          this.getArticlesHaveApplied();
         })
     );
     this.candidateService.getCandidate(email);
@@ -72,5 +75,12 @@ export class CandidateProfileComponent extends CandidateComponent
         .updateCandidateByID(this.candidate._id, this.candidate)
         .subscribe(response => {});
     });
+  }
+  getArticlesHaveApplied() {
+    this.articleService
+      .getArticlesHaveBeenApplied(this.candidate._id)
+      .subscribe(articles => {
+        this.articles = articles;
+      });
   }
 }

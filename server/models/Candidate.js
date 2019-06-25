@@ -19,6 +19,12 @@ let candidateSchema = new mongoose.Schema({
     es_indexed: true
   },
   phone: String,
+  _applied: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Article"
+    }
+  ],
   tags: {
     type: [String],
     es_indexed: true

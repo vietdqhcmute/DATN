@@ -12,7 +12,9 @@ export class ArticleService extends RecruiterService {
     );
   }
   getAllArticles(email) {
-    return this.http.get<Articles[]>(this.domainName + "article/articles/" + email);
+    return this.http.get<Articles[]>(
+      this.domainName + "article/articles/" + email
+    );
   }
 
   getArticleById(id: String) {
@@ -23,10 +25,17 @@ export class ArticleService extends RecruiterService {
     return this.http.get<String[]>(this.domainName + "article/applies/" + id);
   }
 
-  getRecentArticles(){
-    return this.http.get<Articles[]>(this.domainName + "article/articles/recent");
+  getRecentArticles() {
+    return this.http.get<Articles[]>(
+      this.domainName + "article/articles/recent"
+    );
   }
 
+  getArticlesHaveBeenApplied(candidate_id: string) {
+    return this.http.get<Articles[]>(
+      this.domainName + "candidate/applies/" + candidate_id
+    );
+  }
   saveArticle(requestBody: any, email: string) {
     return this.http.post(this.domainName + "article/", requestBody);
   }
@@ -35,8 +44,12 @@ export class ArticleService extends RecruiterService {
     return this.http.put(this.domainName + "article/apply/" + id, requestBody);
   }
 
-  updateArticle(requestBody: any,id: string) {
-    return this.http.put(this.domainName + "article/" + id, requestBody)
+  applyInCandidateTimeline(requestBody: any) {
+    return this.http.put(this.domainName + "candidate/apply", requestBody);
+  }
+
+  updateArticle(requestBody: any, id: string) {
+    return this.http.put(this.domainName + "article/" + id, requestBody);
   }
 
   deleteArticle(id: String) {
