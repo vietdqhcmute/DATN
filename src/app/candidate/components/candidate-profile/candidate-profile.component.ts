@@ -39,6 +39,7 @@ export class CandidateProfileComponent extends CandidateComponent
         .subscribe(candidate => {
           this.titleService.setTitle(candidate.display_name);
           this.candidate = <Candidate>candidate;
+          this.getArticlesHaveApplied();
         })
     );
     this.candidateService.getCandidate(email);
@@ -72,5 +73,12 @@ export class CandidateProfileComponent extends CandidateComponent
         .updateCandidateByID(this.candidate._id, this.candidate)
         .subscribe(response => {});
     });
+  }
+  getArticlesHaveApplied() {
+    this.articleService
+      .getArticlesHaveBeenApplied(this.candidate._id)
+      .subscribe(articles => {
+        console.log(articles);
+      });
   }
 }

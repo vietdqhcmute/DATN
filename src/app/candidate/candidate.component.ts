@@ -7,6 +7,7 @@ import { Candidate } from "../models/CandidateData";
 import { AlertService } from "../services/alert.service";
 import { Subscription } from "rxjs";
 import { MatDialog } from '@angular/material';
+import { ArticleService } from '../services/article.service';
 
 @Component({
   selector: "app-candidate",
@@ -21,6 +22,7 @@ export class CandidateComponent implements OnInit, OnDestroy, AfterViewInit {
     protected authService: AuthService,
     protected candidateService: CandidateService,
     protected titleService: Title,
+    protected articleService: ArticleService,
     protected route: ActivatedRoute,
     protected alertService: AlertService,
     protected dialog: MatDialog,
