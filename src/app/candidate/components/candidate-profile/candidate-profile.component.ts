@@ -20,6 +20,7 @@ export class CandidateProfileComponent extends CandidateComponent
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
   imagePreview: string;
   articles: Articles[] = [];
+
   ngOnInit() {
     if (this.authService.isSavedAuthData()) {
       this.authService.isAuthenticated.next(true);

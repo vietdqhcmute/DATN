@@ -94,7 +94,7 @@
       </div>
 
       <section id="info">
-        <p style="margin-bottom: 3px">
+        <p style="margin-bottom: 3px; font-size: small; color: rgba(126, 126, 126, 0.842)">
           You have joined us since:
           {{ candidate.created_at | date: "mediumDate" }}
         </p>
@@ -102,6 +102,9 @@
     </div>
   </div>
   <div class="timeline">
+    <div>
+      <h2>This is the articles you have applied:</h2>
+    </div>
     <div *ngFor="let item of articles">
       <app-job-frame-dashboard
         [jobDescription]="item"

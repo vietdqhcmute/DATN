@@ -1,5 +1,5 @@
 <div class="logo">
-  <img [src]="articleImageURL" alt="Company Logo" />
+  <img [src]="this.recruiter.image_url" alt="Company Logo" />
 </div>
 <div class="content">
   <div class="title">
@@ -30,7 +30,11 @@
     ></app-tag-frame>
   </div>
 </div>
-<div class="city-and-info">
-  <div class="city">{{ jobDescription.city }}</div>
-  <div class="created">{{ jobDescription.created }}</div>
+<div class="city-and-info" style="color: rgba(126, 126, 126, 0.842)">
+  <div class="created" style="font-size: small">
+    {{ jobDescription.created_at | date }}
+  </div>
+  <div class="city">
+    {{this.recruiter.city}}
+  </div>
 </div>
