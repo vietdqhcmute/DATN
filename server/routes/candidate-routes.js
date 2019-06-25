@@ -67,4 +67,30 @@ router.put("/update/candidate/:id", (req, res) => {
   );
 });
 
+//Apply article in candidate info
+router.put("/candidate/apply", async (req, res) => {
+  const query = await Candidate.findById(req.body.candidate_id);
+  let applies = query._applied;
+  console.log(applies);
+  if (applies.indexOf(req.body.article_id) !== -1) {
+    console.log("You've already applied for this job");
+    return res.status(302).send("You've already applied for this job");
+  } else {
+    applies.push(req.body.article_id);
+    query.save((err, callback) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.status(200).send(callback);
+    });
+  }
+});
+
+// Get all articles user has applied
+router.get("/candidate/applies/:id", async (req, res) => {
+  const query = await Candidate.findById(req.params.id).populate("_applied");
+  const applies = query._applied;
+  return res.status(200).json(applies);
+});
+
 module.exports = router;
