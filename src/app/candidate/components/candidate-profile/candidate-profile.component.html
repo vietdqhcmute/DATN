@@ -96,9 +96,17 @@
       <section id="info">
         <p style="margin-bottom: 3px">
           You have joined us since:
-          {{ candidate.created | date: "mediumDate" }}
+          {{ candidate.created_at | date: "mediumDate" }}
         </p>
       </section>
+    </div>
+  </div>
+  <div class="timeline">
+    <div *ngFor="let item of articles">
+      <app-job-frame-dashboard
+        [jobDescription]="item"
+        [email]="item.email_company"
+      ></app-job-frame-dashboard>
     </div>
   </div>
 </div>

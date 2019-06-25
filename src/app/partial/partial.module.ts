@@ -22,9 +22,9 @@ import { DialogPreviewArticleComponent } from "./material-dialog/dialog-preview-
 import { DialogApplierListComponent } from "./material-dialog/dialog-applier-list/dialog-applier-list.component";
 import { DialogConfirmationComponent } from "./material-dialog/dialog-confirmation/dialog-confirmation.component";
 import { DialogEditProfileComponent } from "./material-dialog/dialog-edit-profile/dialog-edit-profile.component";
-import { DialogResumeExperienceComponent } from './material-dialog/dialog-resume-experience/dialog-resume-experience.component';
-import { DialogResumeEducationComponent } from './material-dialog/dialog-resume-education/dialog-resume-education.component';
-import { DialogResumeProjectComponent } from './material-dialog/dialog-resume-project/dialog-resume-project.component';
+import { DialogResumeExperienceComponent } from "./material-dialog/dialog-resume-experience/dialog-resume-experience.component";
+import { DialogResumeEducationComponent } from "./material-dialog/dialog-resume-education/dialog-resume-education.component";
+import { DialogResumeProjectComponent } from "./material-dialog/dialog-resume-project/dialog-resume-project.component";
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { DialogResumeProjectComponent } from './material-dialog/dialog-resume-pr
     DialogEditProfileComponent,
     DialogResumeExperienceComponent,
     DialogResumeEducationComponent,
-    DialogResumeProjectComponent
+    DialogResumeProjectComponent,
   ],
   imports: [
     CommonModule,
@@ -80,7 +80,7 @@ import { DialogResumeProjectComponent } from './material-dialog/dialog-resume-pr
     DialogApplierListComponent,
     DialogConfirmationComponent,
     DialogEditProfileComponent,
-    DialogResumeExperienceComponent
+    DialogResumeExperienceComponent,
   ]
 })
 export class PartialModule {}
