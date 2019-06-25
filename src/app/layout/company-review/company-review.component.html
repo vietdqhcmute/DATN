@@ -11,10 +11,11 @@
               </div>
               <div
                 class="logo"
-                style="display: flex;flex-grow: 1;justify-content: flex-end;"
+                style="display: flex;flex-grow: 1;justify-content: flex-end; "
               >
                 <img
-                  src="https://cdn.itviec.com/employers/kis-viet-nam/logo/w170/9neDiatXpkSc6AfdE7RBGHpy/kis-vi-t-nam-logo.jpg"
+                  [src]="recruiter.image_url"
+                  style="width: 100px; height: 100px;"
                 />
               </div>
             </h2>
@@ -226,11 +227,12 @@
               </div>
             </form>
             <button
+              class="btn btn-outline-success"
               style="padding: 10px 45px;"
               color="warn"
               (click)="onSubmit()"
             >
-              Đánh giá
+              Review
             </button>
           </div>
         </div>

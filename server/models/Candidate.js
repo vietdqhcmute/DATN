@@ -14,6 +14,12 @@ let candidateSchema = new mongoose.Schema({
   linkedin: String,
   phone: String,
   tags: [],
+  _applied: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Article"
+    }
+  ],
   resume: Resume,
   created_at: {
     type: Date,
