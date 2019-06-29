@@ -60,6 +60,7 @@ const tagRoutes = require("./routes/tag-routes");
 const reviewRoutes = require("./routes/review-routes");
 const searchingRoutes = require("./routes/searching-routes");
 const articleRoutes = require("./routes/article-routes");
+const reportRoutes = require("./routes/report-routes");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
@@ -72,6 +73,8 @@ app.use("/", tagRoutes);
 app.use("/", reviewRoutes);
 app.use("/article", articleRoutes);
 app.use("/search", searchingRoutes);
+app.use("/report", reportRoutes);
+
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
 });
