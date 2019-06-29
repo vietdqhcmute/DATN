@@ -31,6 +31,7 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
       dialogConfig
     );
     dialogRef.afterClosed().subscribe(result => {
+      this.getInfoResume.experience.push(result);
       console.log(result);
     });
   }
@@ -42,6 +43,7 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
       dialogConfig
     );
     dialogRef.afterClosed().subscribe(result => {
+      this.getInfoResume.education.push(result);
       console.log(result);
     });
   }
@@ -53,19 +55,10 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
       dialogConfig
     );
     dialogRef.afterClosed().subscribe(result => {
+      this.getInfoResume.project.push(result);
       console.log(result);
     });
   }
-
-  // onSaveExperience(modalExperience: Experience) {
-  //   this.getInfoResume.experience.push(modalExperience);
-  // }
-  // onSaveProject(modalProject: Project) {
-  //   this.getInfoResume.project.push(modalProject);
-  // }
-  // onSaveEducation(modalEducation: Education) {
-  //   this.getInfoResume.education.push(modalEducation);
-  // }
 
   onModifyExperience(item: Experience) {
     const dialogConfig = this.configDefaultMatDialog();
@@ -75,13 +68,21 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
       dialogConfig
     );
   }
-  onModifyProject(index: number) {
+  onModifyProject(item: Project) {
     const dialogConfig = this.configDefaultMatDialog();
-    console.log(index);
+    dialogConfig.data = item;
+    const dialogRef = this.dialog.open(
+      DialogResumeProjectComponent,
+      dialogConfig
+    );
   }
-  onModifyEducation(index: number) {
+  onModifyEducation(item: Education) {
     const dialogConfig = this.configDefaultMatDialog();
-    console.log(index);
+    dialogConfig.data = item;
+    const dialogRef = this.dialog.open(
+      DialogResumeEducationComponent,
+      dialogConfig
+    );
   }
 
   onDeleteExperience(index: number) {
@@ -94,7 +95,7 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
     this.getInfoResume.education.splice(index, 1);
   }
 
-  configDefaultMatDialog(): MatDialogConfig {
+  private configDefaultMatDialog(): MatDialogConfig {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
