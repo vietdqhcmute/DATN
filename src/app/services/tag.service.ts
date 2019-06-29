@@ -14,8 +14,10 @@ export class TagService {
   getAllTagsAPI() {
     return this.http.get<Tag[]>(this.domainName + "tags");
   }
-  createTag(content: string) {
+  getTagByContent(content: string) {
+    return this.http.get<Tag>(this.domainName + "tag/" + content);
   }
+  createTag(content: string) {}
 
   addTag() {}
 
