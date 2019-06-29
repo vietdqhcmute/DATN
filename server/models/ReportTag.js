@@ -11,14 +11,14 @@ const reportTagSchema = new mongoose.Schema({
       ref: "Article"
     }
   ],
-  _candidate: [
+  _candidates: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Candidate"
     }
   ],
   articles_count: Number,
-  candidate_count: Number
+  candidates_count: Number
 });
 
 const ReportTag = mongoose.model("ReportTag", reportTagSchema);

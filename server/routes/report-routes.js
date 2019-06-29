@@ -22,4 +22,11 @@ router.post("/tag", (req, res) => {
     }
   });
 });
+//Get tag report populate by id
+router.get("/tags", async (req, res) => {
+  const reportTag = await ReportTag.find().populate("_tag");
+  console.log(reportTag);
+  return res.status(200).send(reportTag);
+});
+
 module.exports = router;
