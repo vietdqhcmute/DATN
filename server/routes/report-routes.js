@@ -45,6 +45,8 @@ router.put("/tag/candidate", async (req, res) => {
     let reportTag = new ReportTag(emptyReportTagParams);
     reportTag._tag = req.body._tag;
     reportTag._candidates.push(req.body.candidate_id);
+    reportTag.candidates_count = reportTag._candidates.length;
+
     await reportTag.save();
     return res.status(200).send("Create new tags document and push candidate!");
   }
@@ -53,6 +55,7 @@ router.put("/tag/candidate", async (req, res) => {
     reportTag._candidates.push(req.body.candidate_id);
     reportTag._candidates.sort();
     reportTag.candidates_count = reportTag._candidates.length;
+
     await reportTag.save();
     console.log(reportTag);
     return res.status(200).send("Success!");
@@ -68,6 +71,8 @@ router.put("/tag/article", async (req, res) => {
     let reportTag = new ReportTag(emptyReportTagParams);
     reportTag._tag = req.body._tag;
     reportTag._articles.push(req.body.article_id);
+    reportTag.articles_count = reportTag._articles.length;
+
     await reportTag.save();
     return res.status(200).send("Create new tags document and push article!");
   }
@@ -76,6 +81,7 @@ router.put("/tag/article", async (req, res) => {
     reportTag._articles.push(req.body.article_id);
     reportTag._articles.sort();
     reportTag.articles_count = reportTag._articles.length;
+
     await reportTag.save();
     console.log(reportTag);
     return res.status(200).send("Success!");
