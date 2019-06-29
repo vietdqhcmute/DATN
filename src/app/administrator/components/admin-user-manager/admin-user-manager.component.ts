@@ -13,6 +13,7 @@ export class AdminUserManagerComponent extends AdministratorComponent
   displayedColumns: string[] = [
     "position",
     "username",
+    "avatar",
     "email",
     "phone",
     "join",

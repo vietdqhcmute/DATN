@@ -13,6 +13,7 @@ export class AdminRecruiterManagerComponent extends AdministratorComponent
   displayedColumns: string[] = [
     "position",
     "company",
+    "logo",
     "email",
     "website",
     "join",
