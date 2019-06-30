@@ -22,11 +22,11 @@ export class RecruiterComponent implements OnInit {
   protected recruiterEmail: string;
   sub: Subscription[] = [];
   constructor(
-    protected recruiterService: RecruiterService,
-    protected articleService: ArticleService,
     protected route: ActivatedRoute,
     protected router: Router,
     protected titleService: Title,
+    protected recruiterService: RecruiterService,
+    protected articleService: ArticleService,
     protected authService: AuthService,
     protected alertService: AlertService,
     protected tagService: TagService,
@@ -39,9 +39,7 @@ export class RecruiterComponent implements OnInit {
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.recruiterEmail = params.get("email");
-        // this.getRecruiterEmail();
         this.loadRecruiterData(params.get("email"));
-        // this.setRecruiterEmail(params.get("email"))
       })
     );
   }
