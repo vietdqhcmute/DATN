@@ -40,7 +40,7 @@ export class ArticleService extends RecruiterService {
     return this.http.get<any>(this.domainName + "article/tags/" + article_id);
   }
   saveArticle(requestBody: any, email: string) {
-    return this.http.post(this.domainName + "article/", requestBody);
+    return this.http.post<Articles>(this.domainName + "article/", requestBody);
   }
 
   applyArticle(requestBody: any, id: string) {

@@ -58,6 +58,22 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       .saveArticle(requestBody, this.routeParams.email)
       .subscribe(
         response => {
+          requestBody.article.tags.forEach(tag => {
+            this.tagService.getTagByContent(tag).subscribe(originalTag => {
+              let params = {
+                _tag: originalTag._id,
+                article_id: response._id
+              };
+              this.articleService.createReportTag(params).subscribe(
+                res => {
+                  console.log(res);
+                },
+                err => {
+                  console.log(err);
+                }
+              );
+            });
+          });
           this.navigateDashboard();
         },
         error => {
@@ -70,6 +86,22 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
       .updateArticle(this.articleParams, this.queryParams.id)
       .subscribe(
         success => {
+          this.articleParams.tags.forEach(tag => {
+            this.tagService.getTagByContent(tag).subscribe(originalTag => {
+              let params = {
+                _tag: originalTag._id,
+                article_id: this.queryParams.id
+              };
+              this.articleService.createReportTag(params).subscribe(
+                res => {
+                  console.log(res);
+                },
+                err => {
+                  console.log(err);
+                }
+              );
+            });
+          });
           this.navigateDashboard();
         },
         error => {
@@ -84,7 +116,6 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.articleParams.tags.push(this.tagContent.value.trim());
     this.tagContent.reset();
   }
-  autoTag() {}
   tagFilter(): Array<string> {
     if (!this.splitTitle()) {
       return;
@@ -125,6 +156,7 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
         this.articleParams.title = data.title;
         this.articleParams.salary = data.salary;
         this.articleParams.description = data.description;
+        this.articleParams.tags = data.tags;
       })
     );
   }
