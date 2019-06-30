@@ -13,11 +13,11 @@ export class CandidateService {
   private candidate = new Subject<Candidate>();
   constructor(private http: HttpClient) {}
 
-  getCandidateObservable(){
+  getCandidateObservable() {
     return this.candidate.asObservable();
   }
 
-  getAllCandidates(){
+  getAllCandidates() {
     return this.http.get<Candidate[]>(this.domainName + "candidates");
   }
 
@@ -29,18 +29,23 @@ export class CandidateService {
   }
 
   getCandidateAPI(email) {
-    return this.http.get(this.domainName + 'candidate/email/' + email);
+    return this.http.get(this.domainName + "candidate/email/" + email);
   }
 
   getAvatarUrl() {
     return this.avatarURL.asObservable();
+  }
+  getTags(candidate_id: string) {
+    return this.http.get<any>(
+      this.domainName + "candidate/tags/" + candidate_id
+    );
   }
 
   updateCandidateByID(userID, candidate: Candidate) {
     console.log(candidate);
     const headers = new HttpHeaders({ "Content-type": "application/json" });
     return this.http.put(
-      this.domainName + 'update/candidate/' + userID,
+      this.domainName + "update/candidate/" + userID,
       candidate,
       { headers: headers }
     );
@@ -54,5 +59,9 @@ export class CandidateService {
       .subscribe(response => {
         this.avatarURL.next(response.imageUrl);
       });
+  }
+  //Create report tag for candidate
+  createReportTag(params: any) {
+    return this.http.put(this.domainName + "report/tag/candidate", params);
   }
 }
