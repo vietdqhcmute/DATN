@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const ReportTag = require("../models/ReportTag");
+const Tag = require("../models/Tag");
 
 let emptyReportTagParams = {
   _articles: [],
@@ -90,5 +91,10 @@ router.put("/tag/article", async (req, res) => {
     return res.status(401).send("Has tagged before");
   }
 });
+
+//Create all document report tag for all tag
+// router.post("/document/tagging", async (req, res) => {
+
+// });
 
 module.exports = router;

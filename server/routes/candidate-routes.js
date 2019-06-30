@@ -44,6 +44,21 @@ router.get("/candidates", async (req, res) => {
     console.log(err);
   }
 });
+// Get all articles user has applied
+router.get("/candidate/applies/:id", async (req, res) => {
+  const query = await Candidate.findById(req.params.id).populate("_applied");
+  const applies = query._applied;
+  return res.status(200).json(applies.reverse());
+});
+
+//Get all tag of candidate
+router.get("/candidate/tags/:candidate_id", async (req, res) => {
+  const candidate = await Candidate.findById(req.params.candidate_id);
+  res.status(200).json({
+    id: candidate._id,
+    tags: candidate.tags
+  });
+});
 
 //API update user by ID
 router.put("/update/candidate/:id", (req, res) => {
@@ -85,12 +100,4 @@ router.put("/candidate/apply", async (req, res) => {
     });
   }
 });
-
-// Get all articles user has applied
-router.get("/candidate/applies/:id", async (req, res) => {
-  const query = await Candidate.findById(req.params.id).populate("_applied");
-  const applies = query._applied;
-  return res.status(200).json(applies.reverse());
-});
-
 module.exports = router;
