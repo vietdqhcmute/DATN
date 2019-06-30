@@ -20,10 +20,10 @@
       <input matInput [(ngModel)]="experience.start_year" placeholder="Start Year">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="experience.end_month" [disabled]="current" placeholder="End Month">
+      <input matInput [(ngModel)]="experience.end_month" [disabled]="experience.current" placeholder="End Month">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="experience.end_year" [disabled]="current" placeholder="End Year">
+      <input matInput [(ngModel)]="experience.end_year" [disabled]="experience.current" placeholder="End Year">
     </mat-form-field>
   </div>
 

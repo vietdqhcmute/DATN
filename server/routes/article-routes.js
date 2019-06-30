@@ -74,6 +74,20 @@ router.get("/:id", async (req, res) => {
     }
   });
 });
+//Get all email applied
+router.get("/applies/:id", async (req, res) => {
+  const query = await Article.findById(req.params.id).select("applied");
+  const applies = query.applied;
+  return res.status(200).json(applies);
+});
+//Get all tags of article
+router.get("/tags/:article_id", async (req, res) => {
+  const article = await Article.findById(req.params.article_id);
+  res.status(200).json({
+    id: article._id,
+    tags: article.tags
+  });
+});
 
 //update article by email company and article id
 router.put("/:id", (req, res) => {
@@ -124,10 +138,4 @@ router.put("/apply/:id", async (req, res) => {
       return res.status(200).send(callback);
     });
   }
-});
-//Get all email applied
-router.get("/applies/:id", async (req, res) => {
-  const query = await Article.findById(req.params.id).select("applied");
-  const applies = query.applied;
-  return res.status(200).json(applies);
 });

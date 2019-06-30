@@ -36,8 +36,11 @@ export class ArticleService extends RecruiterService {
       this.domainName + "candidate/applies/" + candidate_id
     );
   }
+  getTags(article_id: string) {
+    return this.http.get<any>(this.domainName + "article/tags/" + article_id);
+  }
   saveArticle(requestBody: any, email: string) {
-    return this.http.post(this.domainName + "article/", requestBody);
+    return this.http.post<Articles>(this.domainName + "article/", requestBody);
   }
 
   applyArticle(requestBody: any, id: string) {
@@ -54,5 +57,8 @@ export class ArticleService extends RecruiterService {
 
   deleteArticle(id: String) {
     return this.http.delete(this.domainName + "article/" + id);
+  }
+  createReportTag(params: any) {
+    return this.http.put(this.domainName + "report/tag/article", params);
   }
 }

@@ -1,6 +1,5 @@
 <nav>
   <div class="one-line">
-    <button class="btn btn-danger  float-right">Download as PDF</button>
     <div class="float-right">
       <mat-spinner
         *ngIf="isLoading"
@@ -12,7 +11,7 @@
         (click)="onSave()"
         *ngIf="!isLoading"
       >
-        Save
+        Save resume
       </button>
     </div>
   </div>

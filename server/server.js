@@ -63,6 +63,7 @@ const reviewRoutes = require("./routes/review-routes");
 const searchingRoutes = require("./routes/searching-routes");
 const articleRoutes = require("./routes/article-routes");
 const elasticsearchRoutes = require("./routes/elasticsearch-route");
+const reportRoutes = require("./routes/report-routes");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
@@ -76,6 +77,8 @@ app.use("/", reviewRoutes);
 app.use("/article", articleRoutes);
 app.use("/search", searchingRoutes);
 app.use("/elastic", elasticsearchRoutes);
+app.use("/report", reportRoutes);
+
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
 });
