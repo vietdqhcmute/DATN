@@ -1,7 +1,7 @@
-<div class="logo">
+<div class="logo" *ngIf="this.recruiter">
   <img [src]="this.recruiter.image_url" alt="Company Logo" />
 </div>
-<div class="content">
+<div class="content" *ngIf="this.recruiter">
   <div class="title">
     <a [routerLink]="['/job-description', email, jobDescription._id]">{{
       jobDescription.title
@@ -30,11 +30,15 @@
     ></app-tag-frame>
   </div>
 </div>
-<div class="city-and-info" style="color: rgba(126, 126, 126, 0.842)">
+<div
+  class="city-and-info"
+  *ngIf="this.recruiter"
+  style="color: rgba(126, 126, 126, 0.842)"
+>
   <div class="created" style="font-size: small">
     {{ jobDescription.created_at | date }}
   </div>
   <div class="city">
-    {{this.recruiter.city}}
+    {{ this.recruiter.city }}
   </div>
 </div>

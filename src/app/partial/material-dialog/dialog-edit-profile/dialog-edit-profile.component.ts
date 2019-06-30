@@ -50,19 +50,9 @@ export class DialogEditProfileComponent implements OnInit {
     this.tagContent.reset();
   }
   onUpdateProfile() {
-    this.candidate.tags = this.tagParams;
-    this.candidateService
-      .updateCandidateByID(this.candidate._id, this.candidate)
-      .subscribe(
-        res => {
-          this.dialogRef.close();
-          console.log("Success: ", res);
-        },
-        error => {
-          this.dialogRef.close();
-          console.error(error);
-        }
-      );
+        this.candidate.tags = this.tagParams;
+    this.dialogRef.close(this.candidate);
+
   }
 
   onImagePicked(event: Event) {
