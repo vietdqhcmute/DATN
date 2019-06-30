@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Chart } from "chart.js";
+import { TagService } from "src/app/services/tag.service";
 
 @Component({
   selector: "app-admin-chart",
@@ -10,31 +11,40 @@ export class AdminChartComponent implements OnInit {
   @ViewChild("canvas") canvas: ElementRef;
   title = "Dash board";
   chart: any = [];
-
-  constructor() {}
+  data: any[] = [];
+  constructor(private tagService: TagService) {}
 
   ngOnInit() {
-    this.chartInit();
+    this.dataInit();
   }
 
-  chartInit() {
+  dataInit() {
+    this.tagService.getTop10TagArticle().subscribe(data => {
+      const tagDataList = this.mapTagData(data);
+      const tagContentList = this.mapTagContent(data);
+      this.chartInit(tagContentList, tagDataList);
+    });
+  }
+
+  mapTagData(data) {
+    const list = data.map(e => {
+      return e.articles_count;
+    });
+    return list;
+  }
+  mapTagContent(data: any[]) {
+    const list = data.map(e => {
+      return e._tag.content;
+    });
+    return list;
+  }
+  chartInit(labelList, dataList) {
     const data = {
-      labels: [
-        "2015-01",
-        "2015-02",
-        "2015-03",
-        "2015-04",
-        "2015-05",
-        "2015-06",
-        "2015-07",
-        "2015-08",
-        "2015-09",
-        "2015-10"
-      ],
+      labels: labelList,
       datasets: [
         {
-          label: "",
-          data: [12, 19, 3, 5, 2, 3, 20, 3, 5, 6],
+          label: "Person",
+          data: dataList,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
