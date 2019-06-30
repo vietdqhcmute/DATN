@@ -6,6 +6,7 @@ import { CandidateComponent } from "../../candidate.component";
 import { DialogEditProfileComponent } from "src/app/partial/material-dialog/dialog-edit-profile/dialog-edit-profile.component";
 import { MatDialogConfig } from "@angular/material";
 import { Articles } from "src/app/models/RecruiterData";
+import { Tag } from "src/app/models/Tag";
 @Component({
   selector: "app-candidate-profile",
   templateUrl: "./candidate-profile.component.html",
@@ -65,7 +66,41 @@ export class CandidateProfileComponent extends CandidateComponent
     dialogConfig.height = "88vh";
     dialogConfig.data = this.candidate;
 
-    this.dialog.open(DialogEditProfileComponent, dialogConfig);
+    const dialogRef = this.dialog.open(
+      DialogEditProfileComponent,
+      dialogConfig
+    );
+    this.sub.push(
+      dialogRef.afterClosed().subscribe(result => {
+        if (!result) {
+          return;
+        }
+        this.candidateService.updateCandidateByID(result._id, result).subscribe(
+          res => {
+            console.log(result.tags);
+            console.log("Success: ", res);
+          },
+          error => {
+            result.tags.forEach(tag => {
+              this.tagService.getTagByContent(tag).subscribe(originalTag => {
+                let params = {
+                  _tag: originalTag._id,
+                  candidate_id: result._id
+                };
+                this.candidateService.createReportTag(params).subscribe(
+                  res => {
+                    console.log(res);
+                  },
+                  err => {
+                    console.log(err);
+                  }
+                );
+              });
+            });
+          }
+        );
+      })
+    );
   }
   saveAvatar(image: File) {
     this.candidateService.updateAvatar(image);

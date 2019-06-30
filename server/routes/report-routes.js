@@ -50,19 +50,20 @@ router.put("/tag/candidate", async (req, res) => {
 
     await reportTag.save();
     return res.status(200).send("Create new tags document and push candidate!");
-  }
-  if (reportTag._candidates.indexOf(req.body.candidate_id) === -1) {
-    //If candidate not in this tag before
-    reportTag._candidates.push(req.body.candidate_id);
-    reportTag._candidates.sort();
-    reportTag.candidates_count = reportTag._candidates.length;
-
-    await reportTag.save();
-    console.log(reportTag);
-    return res.status(200).send("Success!");
   } else {
-    console.log(reportTag._candidates);
-    return res.status(401).send("Has tagged before");
+    if (reportTag._candidates.indexOf(req.body.candidate_id) === -1) {
+      //If candidate not in this tag before
+      reportTag._candidates.push(req.body.candidate_id);
+      reportTag._candidates.sort();
+      reportTag.candidates_count = reportTag._candidates.length;
+
+      await reportTag.save();
+      console.log(reportTag);
+      return res.status(200).send("Success!");
+    } else {
+      console.log(reportTag._candidates);
+      return res.status(302);
+    }
   }
 });
 //Push article in article field
@@ -78,7 +79,7 @@ router.put("/tag/article", async (req, res) => {
     return res.status(200).send("Create new tags document and push article!");
   }
   if (reportTag._articles.indexOf(req.body.article_id) === -1) {
-    //If candidate not in this tag before
+    //If article not in this tag before
     reportTag._articles.push(req.body.article_id);
     reportTag._articles.sort();
     reportTag.articles_count = reportTag._articles.length;
@@ -88,13 +89,8 @@ router.put("/tag/article", async (req, res) => {
     return res.status(200).send("Success!");
   } else {
     console.log(reportTag._articles);
-    return res.status(401).send("Has tagged before");
+    return res.status(302);
   }
 });
-
-//Create all document report tag for all tag
-// router.post("/document/tagging", async (req, res) => {
-
-// });
 
 module.exports = router;
