@@ -38,7 +38,24 @@ router.get("/tags", async (req, res) => {
   console.log(reportTag);
   return res.status(200).send(reportTag);
 });
-
+//Get Top 10 article tag count
+router.get("/tag/article/top", async (req, res) => {
+  const reportTag = await ReportTag.find({})
+    .sort({ articles_count: -1 })
+    .limit(10)
+    .populate("_tag")
+    .select("articles_count");
+  return res.status(200).send(reportTag);
+});
+//Get top 10 candidate tag count
+router.get("/tag/candidate/top", async (req, res) => {
+  const reportTag = await ReportTag.find({})
+    .sort({ candidates_count: -1 })
+    .limit(10)
+    .populate("_tag")
+    .select("candidates_count");
+  return res.status(200).send(reportTag);
+});
 // Push user in candidate field
 router.put("/tag/candidate", async (req, res) => {
   let reportTag = await ReportTag.findOne({ _tag: req.body._tag });

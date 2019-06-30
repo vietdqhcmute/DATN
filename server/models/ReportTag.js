@@ -17,8 +17,14 @@ const reportTagSchema = new mongoose.Schema({
       ref: "Candidate"
     }
   ],
-  articles_count: Number,
-  candidates_count: Number
+  articles_count: {
+    type: Number,
+    index: true
+  },
+  candidates_count: {
+    type: Number,
+    index: true
+  }
 });
 
 const ReportTag = mongoose.model("ReportTag", reportTagSchema);
