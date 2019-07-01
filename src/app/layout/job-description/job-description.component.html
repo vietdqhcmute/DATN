@@ -86,17 +86,19 @@
               <div class="salary" style="display: flex">
                 <div *ngIf="!isAuthenticated">Login to see details</div>
                 <div *ngIf="isAuthenticated">
-                  <i class="material-icons" style="font-size: 16px">
-                    attach_money </i
-                  ><span>{{ articleInfo.salary }}</span>
+                  <i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;<span>{{
+                    articleInfo.salary
+                  }}</span>
                 </div>
               </div>
             </div>
             <div class="job-info-detail">
-              Address:&nbsp;<span>{{ recruiterInfo.address }}</span>
+              <i class="fas fa-map-marker"></i>&nbsp;&nbsp;<span>{{
+                recruiterInfo.address
+              }}</span>
             </div>
             <div class="job-info-detail">
-              Date:&nbsp;<span>{{
+              <i class="fa fa-calendar"></i>&nbsp;&nbsp;<span>{{
                 articleInfo.created_at | date: "dd/MM/yyyy"
               }}</span>
             </div>

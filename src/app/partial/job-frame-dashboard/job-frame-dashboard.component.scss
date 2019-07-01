@@ -27,6 +27,12 @@
     .title {
       font-weight: bolder;
       font-size: 22px;
+      a {
+        text-decoration: none;
+        &:hover {
+          color: red;
+        }
+      }
     }
     .salary {
       display: flex;

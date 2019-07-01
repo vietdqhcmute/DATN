@@ -10,9 +10,7 @@
   <div class="salary">
     <div *ngIf="!isAuthenticated">Login to see details</div>
     <div *ngIf="isAuthenticated">
-      <i class="material-icons" style="font-size: 16px">
-        attach_money
-      </i>
+      <i class="fas fa-dollar-sign"></i>
       {{ jobDescription.salary }}
     </div>
   </div>
