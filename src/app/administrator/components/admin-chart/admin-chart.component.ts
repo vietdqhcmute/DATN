@@ -43,7 +43,7 @@ export class AdminChartComponent implements OnInit {
       labels: labelList,
       datasets: [
         {
-          label: "Person",
+          label: "Job",
           data: dataList,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",

@@ -41,15 +41,20 @@
                 recruiter.city
               }}
             </div>
-            <div class="country-icon short">
+            <div class="country-icon short" style="display: flex">
               <i class="far fa-flag"></i>&nbsp;&nbsp;Viet Nam
+              <p class="gear-icon short">
+                <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{
+                  recruiter.production
+                }}
+              </p>
+              <p class="group-icon short">
+                <i class="fas fa-users"></i>&nbsp;&nbsp;{{
+                  recruiter.employees
+                }}
+              </p>
             </div>
-            <p class="gear-icon short">
-              <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{ recruiter.production }}
-            </p>
-            <p class="group-icon short">
-              <i class="fas fa-users"></i>&nbsp;&nbsp;{{ recruiter.employees }}
-            </p>
+
             <div class="working-date short">
               <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{
                 recruiter.day_at_work
@@ -66,7 +71,7 @@
             <mat-tab label="Overview">
               <div [innerHTML]="recruiter.overview"></div>
             </mat-tab>
-            <mat-tab label="Review">
+            <mat-tab label="Review ({{reviews.length}})">
               <h2>Review company</h2>
               <div *ngIf="reviews.length === 0">
                 <p>We haven't have any reviews, please give us some reviews!</p>
