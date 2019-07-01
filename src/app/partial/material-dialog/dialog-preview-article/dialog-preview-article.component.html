@@ -5,14 +5,20 @@
     <div class="title">
       <h3>{{ article.title }}</h3>
     </div>
-    <div class="date">
-      <p>{{ article.created_at | date }}</p>
+    <div style="color: rgba(65, 126, 5, 0.733)">
+      <i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;<span>{{
+        article.salary
+      }}</span>
+    </div>
+    <div class="date" >
+      <p style="font-size: smaller; color: rgba(71, 70, 70, 0.705);">{{ article.created_at | date }}</p>
     </div>
     <div class="tags">
       <div *ngFor="let item of article.tags">
         <app-tag-frame [tag]="item"></app-tag-frame>
       </div>
     </div>
+    <hr>
     <div [innerHTML]="article.description"></div>
   </div>
 </mat-dialog-content>
