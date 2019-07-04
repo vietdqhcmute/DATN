@@ -185,20 +185,27 @@
 <section id="Skill">
   <h3>Skill</h3>
   <div class="item-ul-li">
-    <ul *ngFor="let item of getInfoResume.skil">
+    <ul *ngFor="let item of getInfoResume.skill; let i = index">
       <li class="list-item">
         <mat-form-field>
-          <input matInput />
-        </mat-form-field>
+          <input matInput value="{{input}}" [(ngModel)]="item" placeholder="Skill {{i+1}}">        </mat-form-field>
         <div class="list-item-button">
-          <button class="btn btn-primary"><i class="fa fa-check"></i></button>
-          <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          <button class="btn btn-primary" (click)="confirmSkill(i, item)">
+            <i class="fa fa-check"></i>
+          </button>
+          <button class="btn btn-danger" (click)="deleteSkill(i)">
+            <i class="fa fa-trash"></i>
+          </button>
         </div>
       </li>
     </ul>
   </div>
   <div class="item">
-    <button class="btn btn-primary preview" style="display:flex">
+    <button
+      class="btn btn-primary preview"
+      style="display:flex"
+      (click)="onAddSkill()"
+    >
       <i class="material-icons">
         add
       </i>
