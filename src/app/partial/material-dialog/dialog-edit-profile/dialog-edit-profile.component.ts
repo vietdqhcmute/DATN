@@ -19,7 +19,7 @@ export class DialogEditProfileComponent implements OnInit {
   tagContent = new FormControl();
   tagList: string[] = [];
   filteredOptions;
-
+  isChangingImage: boolean = false;
   constructor(
     private dialogRef: MatDialogRef<DialogEditProfileComponent>,
     private tagService: TagService,
@@ -50,9 +50,8 @@ export class DialogEditProfileComponent implements OnInit {
     this.tagContent.reset();
   }
   onUpdateProfile() {
-        this.candidate.tags = this.tagParams;
+    this.candidate.tags = this.tagParams;
     this.dialogRef.close(this.candidate);
-
   }
 
   onImagePicked(event: Event) {
@@ -74,12 +73,20 @@ export class DialogEditProfileComponent implements OnInit {
     );
   }
   saveAvatar(image: File) {
+    this.isChangingImage = true;
     this.candidateService.updateAvatar(image);
     this.candidateService.getAvatarUrl().subscribe(avatarUrl => {
       this.candidate.image_url = avatarUrl;
       this.candidateService
         .updateCandidateByID(this.candidate._id, this.candidate)
-        .subscribe(response => {});
+        .subscribe(
+          response => {
+            this.isChangingImage = false;
+          },
+          error => {
+            this.isChangingImage = false;
+          }
+        );
     });
   }
   getAllTags() {

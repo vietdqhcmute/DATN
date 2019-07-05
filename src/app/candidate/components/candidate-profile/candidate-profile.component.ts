@@ -108,7 +108,7 @@ export class CandidateProfileComponent extends CandidateComponent
       this.candidate.image_url = avatarUrl;
       this.candidateService
         .updateCandidateByID(this.candidate._id, this.candidate)
-        .subscribe(response => {});
+        .subscribe(response => {}, error => {});
     });
   }
   getArticlesHaveApplied() {
