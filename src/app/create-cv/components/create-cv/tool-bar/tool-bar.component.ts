@@ -22,9 +22,11 @@ export class ToolBarComponent implements OnInit {
       .subscribe(
         success => {
           this.isLoading = false;
+          alert("Your resume has saved!");
         },
         error => {
           this.isLoading = false;
+          alert("Your resume has saved!");
         }
       );
   }

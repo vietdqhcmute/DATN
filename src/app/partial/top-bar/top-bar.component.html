@@ -1,6 +1,10 @@
 <mat-toolbar class="mat-elevation-z6 mat-top-bar" color="primary">
   <span
-    ><a mat-button [routerLink]="['all-job']" aria-label="Angular Material" class="docs-button"
+    ><a
+      mat-button
+      [routerLink]="['all-job']"
+      aria-label="Angular Material"
+      class="docs-button"
       ><span class="mat-button-wrapper"
         ><img
           alt="angular"
@@ -15,7 +19,16 @@
   <div class="content">
     <ul>
       <li *ngIf="isAuthenticated && candidate">
-        <a mat-button [routerLink]="['/profile', candidate.email]">{{candidate.display_name}}</a>
+        <a mat-button [routerLink]="['/profile', candidate.email]">
+          <span
+            ><img
+              [src]="candidate.image_url"
+              alt="avatar"
+              class="docs-angular-logo"
+              style="border-radius: 50%"
+          /></span>
+          {{ candidate.display_name }}</a
+        >
       </li>
       <li><a mat-button [routerLink]="['all-job']">All Jobs</a></li>
       <li><a mat-button [routerLink]="['companies']">Companies</a></li>

@@ -10,11 +10,17 @@
 <mat-dialog-content>
   <div class="avatar">
     <img
+    *ngIf="!isChangingImage"
       mat-card-image
       [src]="candidate.image_url"
       alt="avatar"
       (click)="filePicker.click()"
     />
+    <mat-spinner
+      *ngIf="isChangingImage"
+      style="margin:auto;"
+      [diameter]="40"
+    ></mat-spinner>
     <input
       style="display: none;"
       type="file"
