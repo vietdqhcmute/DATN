@@ -1,0 +1,15 @@
+:host() {
+  display: block;
+  overflow: scroll;
+  background: #5d7480;
+  img {
+    width: 100%;
+    // margin-bottom: 10px;
+    padding: 2px;
+    -webkit-filter: brightness(70%);
+
+    &:hover {
+      -webkit-filter: brightness(100%);
+    }
+  }
+}

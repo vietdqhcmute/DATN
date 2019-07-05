@@ -42,6 +42,21 @@ export class CompanyReviewComponent extends RecruiterComponent
     );
   }
 
+  onSubmit(): void {
+    this.getRating();
+    this.reviewData.email = this.recruiterEmail;
+    this.reviewService.createReview(this.reviewData).subscribe(
+      reponse => {
+        alert("Thanks for your review!");
+        this.router.navigate(["/company", this.recruiterEmail]);
+      },
+      error => {
+        alert("Thanks for your review!");
+        this.router.navigate(["/company", this.recruiterEmail]);
+      }
+    );
+  }
+
   showCriticism() {
     this.isShowCriticism = this.isShowCriticism ? false : true;
   }
@@ -60,11 +75,6 @@ export class CompanyReviewComponent extends RecruiterComponent
     }
   }
 
-  onSubmit(): void {
-    this.getRating();
-    this.reviewData.email = this.recruiterEmail;
-    this.reviewService.createReview(this.reviewData).subscribe(reponse => {});
-  }
   private getRating(): void {
     this.reviewData.rate_general = this.items[0].rating;
     this.reviewData.rate_salary = this.items[1].rating;

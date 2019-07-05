@@ -78,6 +78,10 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     this.dialog.open(DialogPreviewArticleComponent, dialogConfig);
   }
   onAppliersList(_id: string, appliers: string[]) {
+    if (appliers.length === 0) {
+      alert("Nobody apply for this job yet!");
+      return;
+    }
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;

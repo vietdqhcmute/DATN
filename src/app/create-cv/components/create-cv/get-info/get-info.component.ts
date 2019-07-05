@@ -95,6 +95,19 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
     this.getInfoResume.education.splice(index, 1);
   }
 
+  onAddSkill() {
+    let skill = new String("New skill");
+    this.getInfoResume.skill.push(skill);
+    console.log(this.getInfoResume.skill);
+  }
+  deleteSkill(index) {
+    this.getInfoResume.skill.splice(index, 1);
+  }
+  //
+  confirmSkill(index, item) {
+    this.getInfoResume.skill[index] = item;
+  }
+
   private configDefaultMatDialog(): MatDialogConfig {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;

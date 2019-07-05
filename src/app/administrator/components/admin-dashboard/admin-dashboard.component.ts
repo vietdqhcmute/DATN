@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TagService } from 'src/app/services/tag.service';
+import { Chart } from "chart.js";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -40,7 +41,7 @@ export class AdminDashboardComponent implements OnInit {
       labels: labelList,
       datasets: [
         {
-          label: "Job",
+          label: "Person",
           data: dataList,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",

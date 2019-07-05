@@ -106,9 +106,6 @@
     >
       <i class="material-icons"> add </i>Experience
     </button>
-    <!-- <app-modal-resume-expeience
-      (saveClick)="onSaveExperience($event)"
-    ></app-modal-resume-expeience> -->
   </div>
 </section>
 <br />
@@ -135,10 +132,6 @@
     >
       <i class="material-icons"> add </i>Project
     </button>
-
-    <!-- <app-modal-resume-project
-      (saveClick)="onSaveProject($event)"
-    ></app-modal-resume-project> -->
   </div>
 </section>
 <br />
@@ -173,9 +166,6 @@
     >
       <i class="material-icons"> add </i>Education
     </button>
-    <!-- <app-modal-resume-education
-      (saveClick)="onSaveEducation($event)"
-    ></app-modal-resume-education> -->
   </div>
 </section>
 <br />
@@ -185,20 +175,33 @@
 <section id="Skill">
   <h3>Skill</h3>
   <div class="item-ul-li">
-    <ul *ngFor="let item of getInfoResume.skil">
+    <ul *ngFor="let item of getInfoResume.skill; let i = index">
       <li class="list-item">
         <mat-form-field>
-          <input matInput />
+          <input
+            matInput
+            value="{{ input }}"
+            [(ngModel)]="item"
+            placeholder="Skill {{ i + 1 }}"
+          />
         </mat-form-field>
         <div class="list-item-button">
-          <button class="btn btn-primary"><i class="fa fa-check"></i></button>
-          <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          <button class="btn btn-primary" (click)="confirmSkill(i, item)">
+            <i class="fa fa-check"></i>
+          </button>
+          <button class="btn btn-danger" (click)="deleteSkill(i)">
+            <i class="fa fa-trash"></i>
+          </button>
         </div>
       </li>
     </ul>
   </div>
   <div class="item">
-    <button class="btn btn-primary preview" style="display:flex">
+    <button
+      class="btn btn-primary preview"
+      style="display:flex"
+      (click)="onAddSkill()"
+    >
       <i class="material-icons">
         add
       </i>
