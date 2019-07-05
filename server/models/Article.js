@@ -12,9 +12,7 @@ let articleSchema = new mongoose.Schema({
   created_at: Date,
   updated_at: Date
 });
-articleSchema.index(
-  { name: "text", tags: "text", email_company: "text" },
-  { unique: true }
-);
+articleSchema.index({'$**': 'text'});
+
 const Article = mongoose.model("Article", articleSchema);
 module.exports = Article;
