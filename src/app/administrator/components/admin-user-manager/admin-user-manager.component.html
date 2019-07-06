@@ -43,7 +43,7 @@
   <!-- Join column -->
   <ng-container matColumnDef="join">
     <th mat-header-cell *matHeaderCellDef>Joined</th>
-    <td mat-cell *matCellDef="let element">{{ element.created | date }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.created_at | date }}</td>
   </ng-container>
 
   <!-- Deactivate column -->
