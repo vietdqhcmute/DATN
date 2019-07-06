@@ -4,6 +4,7 @@ import { Articles } from "src/app/models/RecruiterData";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import { ArticleService } from "src/app/services/article.service";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: "app-all-job",
@@ -25,7 +26,7 @@ export class AllJobComponent implements OnInit {
     this.getRecentArticles();
   }
 
-  onSearch() {
+  onSearch(form: NgForm) {
     this.router.navigate(["/search"], {
       queryParams: { key: this.searchText }
     });
