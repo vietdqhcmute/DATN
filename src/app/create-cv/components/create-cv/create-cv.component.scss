@@ -45,7 +45,9 @@
           height: 30px;
         }
         .preview-cv {
-          padding: 60px 70px;
+          justify-content: center;
+          display: flex;
+          padding: 60px 0;
           background: #5d7480;
           .cv {
             padding: 0cm 1cm;

@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 import { ResumeService } from "src/app/services/resume.service";
 import { AlertService } from "src/app/services/alert.service";
-import { MatDialog } from '@angular/material';
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-create-cv",
@@ -34,14 +34,14 @@ export class CreateCvComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.getRouteParams();
+    this.getQueryParams();
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.paramsEmail = params.get("email");
         this.loadCandidateData(this.paramsEmail);
       })
     );
-    this.getRouteParams();
-    this.getQueryParams();
   }
   ngOnDestroy(): void {
     this.sub.forEach(subscription => subscription.unsubscribe());
