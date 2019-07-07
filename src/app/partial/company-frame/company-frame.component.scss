@@ -1,9 +1,22 @@
 :host {
   .card {
+    width: 15rem;
+    height: 20rem;
   }
-  img {
-    width: 238px;
-    height: 238px;
+  .card-body {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+  }
+  .card-title {
+    position: absolute;
+    top: 177px;
+  }
+  .card-slogan {
+    position: relative;
+    top: 62px;
+    font-style: italic;
+    height: fit-content;
   }
   .job-length {
     display: flex;
@@ -11,5 +24,14 @@
     span {
       display: flex;
     }
+  }
+  .company-logo {
+    width: 90px;
+    height: 90px;
+    border: 1px rgba(93, 86, 86, 0.788) solid;
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    background: white;
   }
 }
