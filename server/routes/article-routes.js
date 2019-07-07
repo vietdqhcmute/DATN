@@ -26,19 +26,7 @@ router.post("/", (req, res) => {
     res.status(200).send(data);
   });
 });
-//get 10 recent articles
-router.get("/articles/recent", (req, res) => {
-  Article.find({})
-    .sort({ created_at: -1 })
-    .limit(10)
-    .exec(function(err, articles) {
-      if (err) {
-        return res.status(500).json(err);
-      }
-      res.status(200).send(articles);
-    });
-});
-//Get 10 paging article
+//Get paging article
 router.get("/articles/recent/:page/:per", (req, res) => {
   const page = parseInt(req.params.page);
   const per = parseInt(req.params.per);
