@@ -25,9 +25,9 @@ export class ArticleService extends RecruiterService {
     return this.http.get<String[]>(this.domainName + "article/applies/" + id);
   }
 
-  getRecentArticles() {
+  getRecentArticles(page: number, per: number) {
     return this.http.get<Articles[]>(
-      this.domainName + "article/articles/recent"
+      this.domainName + "article/articles/recent/" + page + "/" + per
     );
   }
 

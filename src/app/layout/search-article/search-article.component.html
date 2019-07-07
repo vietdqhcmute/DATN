@@ -49,6 +49,7 @@
       <div *ngIf="articles.length === 0" style="text-align:center">
         <h2>Nothing match, just try again!</h2>
       </div>
+
       <div *ngFor="let item of articles">
         <app-job-frame-dashboard
           [jobDescription]="item"

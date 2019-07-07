@@ -1,7 +1,7 @@
 :host {
   #carouselExampleControls {
     #carousel-all-job {
-      top:-4px;
+      top: -4px;
     }
   }
 
@@ -62,13 +62,18 @@
     font-size: 15px;
     margin-top: 10px;
   }
-  .all-job{
-    background: #ECEFF1;
+  .all-job {
+    background: #eceff1;
   }
-  .companies-alljob.container{
+  .companies-alljob.container {
     margin-top: 10px;
     max-width: 1024px !important;
-    background: #FFFFFF;
+    background: #ffffff;
     border: rgb(199, 199, 199) 1px solid;
+  }
+  .show-more {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-around;
   }
 }

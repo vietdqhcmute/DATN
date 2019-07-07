@@ -55,7 +55,6 @@ export class RecruiterComponent implements OnInit {
         .getRecruiter(email)
         .pipe(first())
         .subscribe(recruiter => {
-          console.log(recruiter);
           this.titleService.setTitle(recruiter.company_name);
           this.recruiter = <Recruiter>recruiter;
         })
