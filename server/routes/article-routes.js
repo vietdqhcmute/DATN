@@ -38,6 +38,21 @@ router.get("/articles/recent", (req, res) => {
       res.status(200).send(articles);
     });
 });
+//Get 10 paging article
+router.get("/articles/recent/:page/:per", (req, res) => {
+  const page = parseInt(req.params.page);
+  const per = parseInt(req.params.per);
+  Article.find({})
+    .sort({ created_at: -1 })
+    .skip(page * per)
+    .limit(per)
+    .exec(function(err, articles) {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.status(200).send(articles);
+    });
+});
 //get All post by email company
 router.get("/articles/:email_company", (req, res) => {
   Article.find(

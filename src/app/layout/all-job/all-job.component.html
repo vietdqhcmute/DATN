@@ -1,7 +1,11 @@
 <div class="all-job">
   <div>
     <div class="search-form-all-job form-row container" id="">
-      <form class="search-text form-row" (ngSubmit)="onSearch(searchForm)" #searchForm="ngForm">
+      <form
+        class="search-text form-row"
+        (ngSubmit)="onSearch(searchForm)"
+        #searchForm="ngForm"
+      >
         <div class="form-group" action="" id="search-form" style="flex-grow: 7">
           <div class="search-icon">
             <i class="fas fa-search"></i>
@@ -163,6 +167,16 @@
         [jobDescription]="item"
         [email]="item.email_company"
       ></app-job-frame-dashboard>
+    </div>
+    <div class="show-more">
+      <mat-spinner
+        *ngIf="isLoading"
+        style="margin:auto;"
+        [diameter]="40"
+      ></mat-spinner>
+      <button class="btn btn-outline-info" (click)="onShowMoreJob()">
+        Show more jobs
+      </button>
     </div>
   </div>
 </div>
