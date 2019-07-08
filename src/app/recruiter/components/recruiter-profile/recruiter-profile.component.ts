@@ -63,6 +63,11 @@ export class RecruiterProfileComponent extends RecruiterComponent
           },
           error => {
             this.isLoading = false;
+            this.router.navigate([
+              "recruiter",
+              this.recruiter.email,
+              "dashboard"
+            ]);
           }
         )
     );

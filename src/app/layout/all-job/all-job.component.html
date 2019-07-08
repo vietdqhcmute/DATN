@@ -1,7 +1,11 @@
 <div class="all-job">
   <div>
     <div class="search-form-all-job form-row container" id="">
-      <div class="search-text form-row">
+      <form
+        class="search-text form-row"
+        (ngSubmit)="onSearch(searchForm)"
+        #searchForm="ngForm"
+      >
         <div class="form-group" action="" id="search-form" style="flex-grow: 7">
           <div class="search-icon">
             <i class="fas fa-search"></i>
@@ -13,6 +17,7 @@
               id="input-job"
               placeholder="Keyword skill (Java, iOS...), Job Title, Company..."
               [(ngModel)]="searchText"
+              name="searchText"
             />
           </div>
         </div>
@@ -24,15 +29,14 @@
         </div>
         <div class="form-group" action="" id="search-form" style="flex-grow: 1">
           <button
-            type="button"
+            type="submit"
             class="btn text-light"
             style="font-size: 0.8em; width: 100%; background-color: #f7941d;"
-            (click)="onSearch()"
           >
             Search
           </button>
         </div>
-      </div>
+      </form>
       <div class="check-it-position">
         <div class="form-check form-check-inline">
           <input
@@ -111,21 +115,21 @@
         <div class="carousel-item active">
           <img
             class="d-block w-100"
-            src="https://images.vietnamworks.com/logo/Banner-Vinhomes-CBN_Vietnamworks-01.03.19_102449.jpg"
+            src="../../../assets/images/carousel_1.jpg"
             alt="First slide"
           />
         </div>
         <div class="carousel-item">
           <img
             class="d-block w-100"
-            src="https://images.vietnamworks.com/logo/2560x1200-A2_105086.jpg"
+            src="../../../assets/images/carousel_2.jpg"
             alt="Second slide"
           />
         </div>
         <div class="carousel-item">
           <img
             class="d-block w-100"
-            src="https://images.vietnamworks.com/logo/Final%20Banner%202560%201200-min_105164.jpg"
+            src="../../../assets/images/carousel_3.jpg"
             alt="Third slide"
           />
         </div>
@@ -152,7 +156,7 @@
   </div>
 
   <div class="companies-alljob container">
-    <h1 style="text-align: center;font-size: 21px;text-transform: uppercase">
+    <h1 style="text-align: center;font-size: 30px;text-transform: uppercase">
       NEWEST JOBS
     </h1>
     <div
@@ -163,6 +167,16 @@
         [jobDescription]="item"
         [email]="item.email_company"
       ></app-job-frame-dashboard>
+    </div>
+    <div class="show-more">
+      <mat-spinner
+        *ngIf="isLoading"
+        style="margin:auto;"
+        [diameter]="40"
+      ></mat-spinner>
+      <button class="btn btn-outline-info" (click)="onShowMoreJob()">
+        Show more jobs
+      </button>
     </div>
   </div>
 </div>
