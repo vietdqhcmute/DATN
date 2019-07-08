@@ -16,10 +16,7 @@
           <div class="avatar">
             <div class="image-container">
               <!-- This one is to pick image, and I will do that later -->
-              <img
-                [src]="candidate.image_url"
-                alt="avatar"
-              />
+              <img [src]="candidate.image_url" alt="avatar" />
             </div>
             <!-- Diplay_name -->
             <div class="display-name">
@@ -110,6 +107,11 @@
     <div>
       <h2>This is the articles you have applied:</h2>
     </div>
+    <mat-spinner
+      *ngIf="isLoading"
+      style="margin:auto;"
+      [diameter]="40"
+    ></mat-spinner>
     <div *ngFor="let item of articles">
       <app-job-frame-dashboard
         [jobDescription]="item"

@@ -19,7 +19,7 @@ export class AllJobComponent implements OnInit {
   page: number = 0;
   per: number = 10;
   isLoading: boolean = false;
-
+  isLoadingRecentArticles: boolean = false;
   constructor(
     private titleService: Title,
     private router: Router,
@@ -37,13 +37,16 @@ export class AllJobComponent implements OnInit {
   }
 
   getRecentArticles(page: number, per: number) {
+    this.isLoadingRecentArticles = true;
     this.articleService.getRecentArticles(page, per).subscribe(articles => {
       this.isLoading = false;
       articles.forEach(
         article => {
           this.recentArticles.push(article);
+          this.isLoadingRecentArticles = false;
         },
         error => {
+          this.isLoadingRecentArticles = false;
           this.isLoading = false;
         }
       );

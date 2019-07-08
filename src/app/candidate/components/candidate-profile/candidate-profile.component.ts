@@ -21,6 +21,7 @@ export class CandidateProfileComponent extends CandidateComponent
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
   imagePreview: string;
   articles: Articles[] = [];
+  isLoading: boolean = false;
 
   ngOnInit() {
     if (this.authService.isSavedAuthData()) {
@@ -112,10 +113,12 @@ export class CandidateProfileComponent extends CandidateComponent
     });
   }
   getArticlesHaveApplied() {
+    this.isLoading = true;
     this.articleService
       .getArticlesHaveBeenApplied(this.candidate._id)
       .subscribe(articles => {
         this.articles = articles;
+        this.isLoading = false;
       });
   }
 }
