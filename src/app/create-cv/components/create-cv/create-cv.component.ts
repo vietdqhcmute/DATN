@@ -71,11 +71,11 @@ export class CreateCvComponent implements OnInit, OnDestroy {
         if (!queryParams) {
           return;
         }
-        this.canEdit = queryParams.edit;
-        if (this.canEdit === "true") {
+        this.canEdit = Boolean(JSON.parse(queryParams.edit));
+        if (this.canEdit) {
           this.alertService.setHideTopBar(false);
         }
-        if (this.canEdit === "false") {
+        if (!this.canEdit) {
           this.alertService.setHideTopBar(true);
         }
       })
