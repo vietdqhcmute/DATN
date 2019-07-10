@@ -36,8 +36,16 @@
         </div>
       </div>
     </div>
-
-    <div class="companies-alljob container" style="margin-top: 10px; background: #ffffff">
+    <mat-spinner
+      *ngIf="isLoading"
+      style="margin:auto;"
+      [diameter]="40"
+    ></mat-spinner>
+    <div
+      class="companies-alljob container"
+      style="margin-top: 10px; background: #ffffff"
+      *ngIf="!isLoading"
+    >
       <div *ngIf="articles.length > 0">
         <h1
           style="text-align: center;font-size: 21px;text-transform: uppercase"

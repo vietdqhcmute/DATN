@@ -14,6 +14,7 @@ export class SearchArticleComponent implements OnInit, OnDestroy {
   articles: Articles[] = [];
   searchText: string;
   sub: Subscription[] = [];
+  isLoading: boolean = false;
 
   constructor(
     protected route: ActivatedRoute,
@@ -44,15 +45,18 @@ export class SearchArticleComponent implements OnInit, OnDestroy {
         articles => {
           this.articles = [];
           this.articles = <Articles[]>articles.results;
+          this.isLoading = false;
         },
         error => {
           this.articles = [];
+          this.isLoading = false;
         }
       )
     );
   }
 
   onSearch(form: NgForm) {
+    this.isLoading = true;
     this.searchArticles(this.searchText);
     this.router.navigate(["search"], { queryParams: { key: this.searchText } });
   }
