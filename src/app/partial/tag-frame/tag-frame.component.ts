@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Tag } from 'src/app/models/Tag';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tag-frame',
@@ -9,9 +10,13 @@ import { Tag } from 'src/app/models/Tag';
 export class TagFrameComponent implements OnInit {
   @Input() tag: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
-
+  onClick(){
+    this.router.navigate(["/search"], {
+      queryParams: { key: this.tag }
+    });
+  }
 }

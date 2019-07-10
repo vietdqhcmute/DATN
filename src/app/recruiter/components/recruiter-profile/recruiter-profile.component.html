@@ -39,6 +39,7 @@
         <mat-label>City</mat-label>
         <mat-select
           placeholder="City"
+          [(ngModel)]="recruiter.city"
           (selectionChange)="onChangeCity($event.value)"
         >
           <mat-option *ngFor="let item of citySelections" [value]="item">
@@ -56,6 +57,7 @@
         <mat-label>Employees</mat-label>
         <mat-select
           placeholder="Employees number"
+          [(ngModel)]="recruiter.employees"
           (selectionChange)="onChangeEmployeesNumber($event.value)"
         >
           <mat-option *ngFor="let item of employeeSelections" [value]="item">
@@ -67,7 +69,10 @@
     <div class="contact half-dialog">
       <mat-form-field>
         <mat-label>Production of company</mat-label>
-        <mat-select (selectionChange)="onChangeProdction($event.value)">
+        <mat-select
+          [(ngModel)]="recruiter.production"
+          (selectionChange)="onChangeProdction($event.value)"
+        >
           <mat-option *ngFor="let item of productionSelections" [value]="item">
             {{ item }}
           </mat-option>
@@ -76,7 +81,10 @@
 
       <mat-form-field>
         <mat-label>Day at work</mat-label>
-        <mat-select (selectionChange)="onChangeDayAtWork($event.value)">
+        <mat-select
+          [(ngModel)]="recruiter.day_at_work"
+          (selectionChange)="onChangeDayAtWork($event.value)"
+        >
           <mat-option *ngFor="let item of dayAtWorkSelections" [value]="item">
             {{ item }}
           </mat-option>

@@ -1,120 +1,127 @@
-<div class="container" *ngIf="candidate">
-  <div class="flex-profile">
-    <div id="info-area">
-      <div class="header-profile"></div>
-      <!-- Background cover -->
-      <div class="cover">
-        <div class="cover-image">
-          <img
-            class="cover-image"
-            src="../../../../assets/images/The-Industrialist.png"
-            alt="cover"
-          />
-        </div>
-        <!-- Avatar -->
-        <div class="cover-info">
-          <div class="avatar">
-            <div class="image-container">
-              <!-- This one is to pick image, and I will do that later -->
-              <img
-                [src]="candidate.image_url"
-                alt="avatar"
-              />
-            </div>
-            <!-- Diplay_name -->
-            <div class="display-name">
-              <div class="edit-activate">
-                <h6>
-                  <strong>{{ candidate.display_name }}</strong>
-                </h6>
+<div class="page">
+  <div class="container" *ngIf="candidate">
+    <div class="flex-profile">
+      <div id="info-area">
+        <div class="header-profile"></div>
+        <!-- Background cover -->
+        <div class="cover">
+          <div class="cover-image">
+            <img
+              class="cover-image"
+              src="../../../../assets/images/The-Industrialist.png"
+              alt="cover"
+            />
+          </div>
+          <!-- Avatar -->
+          <div class="cover-info">
+            <div class="avatar">
+              <div class="image-container">
+                <!-- This one is to pick image, and I will do that later -->
+                <img [src]="candidate.image_url" alt="avatar" />
+              </div>
+              <!-- Diplay_name -->
+              <div class="display-name">
+                <div class="edit-activate">
+                  <h6>
+                    <strong>{{ candidate.display_name }}</strong>
+                  </h6>
+                </div>
+              </div>
+              <!-- Resume.title -->
+              <div class="display-title">
+                <div class="edit-activate" *ngIf="candidate.resume.title">
+                  <p>{{ candidate.resume.title }}</p>
+                </div>
               </div>
             </div>
-            <!-- Resume.title -->
-            <div class="display-title">
-              <div class="edit-activate" *ngIf="candidate.resume.title">
-                <p>{{ candidate.resume.title }}</p>
+            <!-- Email -->
+            <div class="cover-user-info">
+              <div class="one-line-info" *ngIf="candidate.email">
+                <i class="material-icons md-24">email</i>
+                <p>{{ candidate.email }}</p>
+              </div>
+              <!-- Phone -->
+              <div class="one-line-info" *ngIf="candidate.phone">
+                <i class="material-icons md-24">local_phone</i>
+                <p>{{ candidate.phone }}</p>
+              </div>
+              <!-- Resume.github -->
+              <div class="one-line-info" *ngIf="candidate.github">
+                <i class="fab fa-github" style="margin: 0 10px"></i>
+                <a href="" target="_blank" style="font-size: 11px">{{
+                  candidate.github
+                }}</a>
+              </div>
+              <!-- Resume.Linkedin -->
+              <div class="one-line-info" *ngIf="candidate.linkedin">
+                <i class="fab fa-linkedin-in" style="margin: 0 10px"></i>
+                <a href="" target="_blank" style="font-size: 11px">{{
+                  candidate.linkedin
+                }}</a>
+              </div>
+              <br />
+              <!-- Tag -->
+              <div
+                class="one-line-info"
+                *ngIf="candidate.tags.length > 0"
+                style="display: flex; flex-wrap: wrap;"
+              >
+                <div *ngFor="let item of candidate.tags">
+                  <app-tag-frame [tag]="item"></app-tag-frame>
+                </div>
               </div>
             </div>
           </div>
-          <!-- Email -->
-          <div class="cover-user-info">
-            <div class="one-line-info" *ngIf="candidate.email">
-              <i class="material-icons md-24">email</i>
-              <p>{{ candidate.email }}</p>
-            </div>
-            <!-- Phone -->
-            <div class="one-line-info" *ngIf="candidate.phone">
-              <i class="material-icons md-24">local_phone</i>
-              <p>{{ candidate.phone }}</p>
-            </div>
-            <!-- Resume.github -->
-            <div class="one-line-info" *ngIf="candidate.github">
-              <i class="fab fa-github" style="margin: 0 10px"></i>
-              <a href="" target="_blank" style="font-size: 11px">{{
-                candidate.github
-              }}</a>
-            </div>
-            <!-- Resume.Linkedin -->
-            <div class="one-line-info" *ngIf="candidate.linkedin">
-              <i class="fab fa-linkedin-in" style="margin: 0 10px"></i>
-              <a href="" target="_blank" style="font-size: 11px">{{
-                candidate.linkedin
-              }}</a>
-            </div>
-            <br />
-            <!-- Tag -->
-            <div
-              class="one-line-info"
-              *ngIf="candidate.tags.length > 0"
-              style="display: flex; flex-wrap: wrap;"
+          <div class="edit-button">
+            <button
+              class="btn btn-outline-info"
+              (click)="onEditProfile()"
+              style="display: flex"
             >
-              <div *ngFor="let item of candidate.tags">
-                <app-tag-frame [tag]="item"></app-tag-frame>
-              </div>
-            </div>
+              <i class="material-icons">
+                edit
+              </i>
+              Edit profile
+            </button>
           </div>
-        </div>
-        <div class="edit-button">
           <button
-            class="btn btn-outline-info"
-            (click)="onEditProfile()"
-            style="display: flex"
+            *ngIf="true == false"
+            id="btn-update-info"
+            class="btn btn-info"
+            [routerLink]="['/main', user$._id, 'edit']"
           >
-            <i class="material-icons">
-              edit
-            </i>
-            Edit profile
+            Update your Résume
           </button>
         </div>
-        <button
-          *ngIf="true == false"
-          id="btn-update-info"
-          class="btn btn-info"
-          [routerLink]="['/main', user$._id, 'edit']"
-        >
-          Update your Résume
-        </button>
-      </div>
 
-      <section id="info">
-        <p
-          style="margin-bottom: 3px; font-size: small; color: rgba(126, 126, 126, 0.842)"
-        >
-          You have joined us since:
-          {{ candidate.created_at | date: "mediumDate" }}
-        </p>
-      </section>
+        <section id="info">
+          <p
+            style="margin-bottom: 3px; font-size: small; color: rgba(126, 126, 126, 0.842)"
+          >
+            You have joined us since:
+            {{ candidate.created_at | date: "mediumDate" }}
+          </p>
+        </section>
+      </div>
     </div>
-  </div>
-  <div class="timeline">
-    <div>
-      <h2>This is the articles you have applied:</h2>
-    </div>
-    <div *ngFor="let item of articles">
-      <app-job-frame-dashboard
-        [jobDescription]="item"
-        [email]="item.email_company"
-      ></app-job-frame-dashboard>
+    <div class="timeline">
+      <div
+        *ngIf="articles"
+        style="display: flex; justify-content: space-around;"
+      >
+        <h2>You have applied ({{ articles.length }}) articles:</h2>
+      </div>
+      <mat-spinner
+        *ngIf="isLoading"
+        style="margin:auto;"
+        [diameter]="40"
+      ></mat-spinner>
+      <div *ngFor="let item of articles">
+        <app-job-frame-dashboard
+          [jobDescription]="item"
+          [email]="item.email_company"
+        ></app-job-frame-dashboard>
+      </div>
     </div>
   </div>
 </div>
