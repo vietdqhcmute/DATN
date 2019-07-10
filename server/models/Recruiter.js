@@ -34,20 +34,20 @@ recruiterSchema.index({
   company_name: "text"
 });
 const Recruiter = mongoose.model("Recruiter", recruiterSchema);
-Recruiter.createMapping((err, mapping) => {
-  console.log("mapping created");
-});
+// Recruiter.createMapping((err, mapping) => {
+//   console.log("mapping created");
+// });
 
-const stream = Recruiter.synchronize();
-let count = 0;
+// const stream = Recruiter.synchronize();
+// let count = 0;
 
-stream.on("data", function(err, doc) {
-  count++;
-});
-stream.on("close", function() {
-  console.log("indexed " + count + " documents!");
-});
-stream.on("error", function(err) {
-  console.log(err);
-});
+// stream.on("data", function(err, doc) {
+//   count++;
+// });
+// stream.on("close", function() {
+//   console.log("indexed " + count + " documents!");
+// });
+// stream.on("error", function(err) {
+//   console.log(err);
+// });
 module.exports = Recruiter;
