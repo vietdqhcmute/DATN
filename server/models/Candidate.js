@@ -40,4 +40,20 @@ let candidateSchema = new mongoose.Schema({
 });
 candidateSchema.plugin(mongoosastic, { elasticClient: elasticClient });
 const Candidate = mongoose.model("Candidate", candidateSchema);
+Candidate.createMapping((err, mapping) => {
+  console.log("mapping created");
+});
+
+const stream = Candidate.synchronize();
+let count = 0;
+
+stream.on("data", function(err, doc) {
+  count++;
+});
+stream.on("close", function() {
+  console.log("indexed " + count + " documents!");
+});
+stream.on("error", function(err) {
+  console.log(err);
+});
 module.exports = Candidate;

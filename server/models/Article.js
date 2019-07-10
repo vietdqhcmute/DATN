@@ -26,4 +26,20 @@ let articleSchema = new mongoose.Schema({
 });
 articleSchema.plugin(mongoosastic, { elasticClient: elasticClient });
 const Article = mongoose.model("Article", articleSchema);
+Article.createMapping((err, mapping) => {
+  console.log("mapping created");
+});
+
+const stream = Article.synchronize();
+let count = 0;
+
+stream.on("data", function(err, doc) {
+  count++;
+});
+stream.on("close", function() {
+  console.log("indexed " + count + " documents!");
+});
+stream.on("error", function(err) {
+  console.log(err);
+});
 module.exports = Article;
