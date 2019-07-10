@@ -8,6 +8,7 @@ import { CompanyReviewComponent } from "./company-review/company-review.componen
 import { SearchCompanyComponent } from './search-company/search-company.component';
 import { SearchArticleComponent } from './search-article/search-article.component';
 import { ApplySuccessComponent } from './apply-success/apply-success.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
       },
       {
         path: "review/:email",
-        component: CompanyReviewComponent
+        component: CompanyReviewComponent,
+        canActivate: [AuthGuard]
       },
       { path: "companies", component: SearchCompanyComponent },
       { path: "search",component: SearchArticleComponent},

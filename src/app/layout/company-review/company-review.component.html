@@ -44,12 +44,6 @@
                   ></app-rating-star>
                   <p *ngIf="item.id === 0">&nbsp;&nbsp;{{ item.title }}</p>
                 </div>
-                <div class="validate">
-                  <span id="" class="error">
-                    <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span
-                  >
-                </div>
               </div>
               <div class="form-group">
                 <label>Tiêu đề:</label>
@@ -65,12 +59,6 @@
                     [(ngModel)]="reviewData.title"
                     style="width: 100%"
                   />
-                </div>
-                <div class="validate">
-                  <span id="" class="error">
-                    <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span
-                  >
                 </div>
               </div>
               <div class="form-group">
@@ -118,12 +106,6 @@
                     ></textarea>
                   </div>
                 </div>
-                <div class="validate">
-                  <span id="" class="error">
-                    <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span
-                  >
-                </div>
               </div>
               <div class="form-group">
                 <label>Điều bạn thích:</label>
@@ -138,12 +120,6 @@
                     placeholder='Điều gì làm công ty này nổi bật? Ví dụ: "Bãi đậu xe rộng rãi. Văn phòng đẹp tất cả đều được trang bị hàng "Apple" (Macbook, iMac)"'
                   ></textarea>
                 </div>
-                <div class="validate">
-                  <span id="" class="error">
-                    <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span
-                  >
-                </div>
               </div>
               <div class="form-group">
                 <label>Điều bạn không thích:</label>
@@ -157,12 +133,6 @@
                     [(ngModel)]="reviewData.hate"
                     placeholder='Bạn nghĩ công ty cần cải thiện điều gì? Ví dụ: "Khi có dự án thì OT hơi nhiều, áp lực, nên cần cải thiện khâu estimation. Họp và báo cáo nhiều gây mất thời gian, nên giảm các việc này."'
                   ></textarea>
-                </div>
-                <div class="validate">
-                  <span id="" class="error">
-                    <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                    đánh giá</span
-                  >
                 </div>
               </div>
 
@@ -217,12 +187,6 @@
                     <i class="far fa-thumbs-down" style="font-size: 50px;"></i>
                     <p>Không</p>
                   </div>
-                </div>
-                <div class="validate">
-                  <!-- <span id="" class="error">
-                      <i class="material-icons"> error_outline </i>&nbsp;Vui lòng
-                      đánh giá</span
-                    > -->
                 </div>
               </div>
             </form>
