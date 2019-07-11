@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewChecked } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Observable, Subscription } from "rxjs";
@@ -13,7 +13,7 @@ import { AdminService } from '../services/admin.service';
   templateUrl: "./administrator.component.html",
   styleUrls: ["./administrator.component.scss"]
 })
-export class AdministratorComponent implements OnInit, OnDestroy {
+export class AdministratorComponent implements OnInit, OnDestroy, AfterViewChecked {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
@@ -31,6 +31,8 @@ export class AdministratorComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.titleService.setTitle("Administrator");
+  }
+  ngAfterViewChecked(): void {
     this.alertService.setHideTopBar(true);
   }
   ngOnDestroy(): void {

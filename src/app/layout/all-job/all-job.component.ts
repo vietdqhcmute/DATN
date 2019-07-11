@@ -1,17 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewChecked } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { Articles } from "src/app/models/RecruiterData";
 import { Subscription } from "rxjs";
 import { Router } from "@angular/router";
 import { ArticleService } from "src/app/services/article.service";
 import { NgForm } from "@angular/forms";
+import { AlertService } from "src/app/services/alert.service";
 
 @Component({
   selector: "app-all-job",
   templateUrl: "./all-job.component.html",
   styleUrls: ["./all-job.component.scss"]
 })
-export class AllJobComponent implements OnInit {
+export class AllJobComponent implements OnInit, AfterViewChecked {
   searchText: string;
   searchArticles: Articles[] = [];
   recentArticles: Articles[] = [];
@@ -23,11 +24,15 @@ export class AllJobComponent implements OnInit {
   constructor(
     private titleService: Title,
     private router: Router,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private alertService: AlertService
   ) {}
   ngOnInit() {
     this.titleService.setTitle("Searching for job");
     this.getRecentArticles(this.page, this.per);
+  }
+  ngAfterViewChecked(): void {
+    this.alertService.setHideTopBar(false);
   }
 
   onSearch(form: NgForm) {
