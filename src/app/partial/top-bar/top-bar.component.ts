@@ -14,30 +14,25 @@ import { Router } from "@angular/router";
 })
 export class TopBarComponent implements OnInit {
   private isAuthenticated: boolean = false;
-  sub: Subscription[] = [];
   candidate: Candidate;
-  recruiter: Recruiter;
   constructor(
     private router: Router,
     private authService: AuthService,
-    private candidateService: CandidateService,
-    private recruiterService: RecruiterService
+    private candidateService: CandidateService
   ) {}
   ngOnInit() {
-    this.sub.push(
-      this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
-        this.isAuthenticated = isAuthenticated;
-        this.candidateService.getCandidateObservable().subscribe(candidate => {
+    this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+      this.candidateService.getCandidateObservable().subscribe(candidate => {
+        let auth = this.getAuthBrowser();
+        if (auth.role === 1) {
           this.candidate = candidate;
-        });
-        this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
-          this.recruiter = recruiter;
-        });
-      })
-    );
+        }
+        return;
+      });
+    });
   }
   onLogOut() {
-    this.sub.forEach(subscription => subscription.unsubscribe());
     this.clearData();
     this.authService.logout();
   }
@@ -48,6 +43,8 @@ export class TopBarComponent implements OnInit {
   }
   clearData() {
     delete this.candidate;
-    delete this.recruiter;
+  }
+  getAuthBrowser() {
+    return this.authService.getAuthData();
   }
 }
