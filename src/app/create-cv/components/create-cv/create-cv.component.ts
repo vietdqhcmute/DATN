@@ -18,7 +18,7 @@ import { MatDialog } from "@angular/material";
 export class CreateCvComponent implements OnInit, OnDestroy, AfterViewInit {
   candidate: Candidate = new Candidate();
   resume: Resume = new Resume();
-  canEdit: any;
+  canEdit: boolean;
   paramsEmail: String;
   sub: Subscription[] = [];
 
@@ -33,6 +33,7 @@ export class CreateCvComponent implements OnInit, OnDestroy, AfterViewInit {
   ) {}
 
   ngOnInit() {
+    this.alertService.setHideTopBar(false);
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.paramsEmail = params.get("email");
@@ -64,12 +65,6 @@ export class CreateCvComponent implements OnInit, OnDestroy, AfterViewInit {
           return;
         }
         this.canEdit = Boolean(JSON.parse(queryParams.edit));
-        if (this.canEdit) {
-          this.alertService.setHideTopBar(false);
-        }
-        if (!this.canEdit) {
-          this.alertService.setHideTopBar(true);
-        }
       })
     );
   }

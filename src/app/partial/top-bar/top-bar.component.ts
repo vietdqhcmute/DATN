@@ -14,21 +14,32 @@ import { Router } from "@angular/router";
 })
 export class TopBarComponent implements OnInit {
   private isAuthenticated: boolean = false;
-  candidate: Candidate;
+  private candidate: Candidate;
+  private recruiterEmail: string;
+
   constructor(
     private router: Router,
     private authService: AuthService,
-    private candidateService: CandidateService
+    private candidateService: CandidateService,
+    private recruiterService: RecruiterService
   ) {}
+
   ngOnInit() {
     this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
       this.candidateService.getCandidateObservable().subscribe(candidate => {
-        let auth = this.getAuthBrowser();
+        this.clearData();
+        const auth = this.getAuthBrowser();
         if (auth.role === 1) {
           this.candidate = candidate;
         }
-        return;
+      });
+      this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
+        this.clearData();
+        const auth = this.getAuthBrowser();
+        if (auth.role === 2) {
+          this.recruiterEmail = auth.email;
+        }
       });
     });
   }
@@ -41,10 +52,13 @@ export class TopBarComponent implements OnInit {
       queryParams: { edit: true }
     });
   }
-  clearData() {
-    delete this.candidate;
+  onBackToDashboard() {
+    this.router.navigate(["recruiter", this.recruiterEmail]);
   }
   getAuthBrowser() {
     return this.authService.getAuthData();
+  }
+  clearData() {
+    this.candidate = null;
   }
 }
