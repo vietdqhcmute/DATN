@@ -55,6 +55,11 @@
           >Log out &nbsp; <i class="fas fa-sign-out-alt"></i
         ></a>
       </li>
+      <li *ngIf="recruiterEmail">
+        <a mat-button (click)="onBackToDashboard()"
+          >Back to Dashboard &nbsp;<i class="fas fa-chevron-right"></i
+        ></a>
+      </li>
     </ul>
   </div>
 </mat-toolbar>

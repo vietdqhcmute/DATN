@@ -14,30 +14,36 @@ import { Router } from "@angular/router";
 })
 export class TopBarComponent implements OnInit {
   private isAuthenticated: boolean = false;
-  sub: Subscription[] = [];
-  candidate: Candidate;
-  recruiter: Recruiter;
+  private candidate: Candidate;
+  private recruiterEmail: string;
+
   constructor(
     private router: Router,
     private authService: AuthService,
     private candidateService: CandidateService,
     private recruiterService: RecruiterService
   ) {}
+
   ngOnInit() {
-    this.sub.push(
-      this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
-        this.isAuthenticated = isAuthenticated;
-        this.candidateService.getCandidateObservable().subscribe(candidate => {
+    this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+      this.candidateService.getCandidateObservable().subscribe(candidate => {
+        this.clearData();
+        const auth = this.getAuthBrowser();
+        if (auth.role === 1) {
           this.candidate = candidate;
-        });
-        this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
-          this.recruiter = recruiter;
-        });
-      })
-    );
+        }
+      });
+      this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
+        this.clearData();
+        const auth = this.getAuthBrowser();
+        if (auth.role === 2) {
+          this.recruiterEmail = auth.email;
+        }
+      });
+    });
   }
   onLogOut() {
-    this.sub.forEach(subscription => subscription.unsubscribe());
     this.clearData();
     this.authService.logout();
   }
@@ -46,8 +52,13 @@ export class TopBarComponent implements OnInit {
       queryParams: { edit: true }
     });
   }
+  onBackToDashboard() {
+    this.router.navigate(["recruiter", this.recruiterEmail]);
+  }
+  getAuthBrowser() {
+    return this.authService.getAuthData();
+  }
   clearData() {
-    delete this.candidate;
-    delete this.recruiter;
+    this.candidate = null;
   }
 }

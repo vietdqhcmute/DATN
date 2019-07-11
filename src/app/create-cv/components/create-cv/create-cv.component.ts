@@ -15,11 +15,10 @@ import { MatDialog } from "@angular/material";
   templateUrl: "./create-cv.component.html",
   styleUrls: ["./create-cv.component.scss"]
 })
-export class CreateCvComponent implements OnInit, OnDestroy {
+export class CreateCvComponent implements OnInit, OnDestroy, AfterViewInit {
   candidate: Candidate = new Candidate();
   resume: Resume = new Resume();
-  routeParams: any;
-  canEdit: any;
+  canEdit: boolean;
   paramsEmail: String;
   sub: Subscription[] = [];
 
@@ -34,14 +33,16 @@ export class CreateCvComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.getRouteParams();
-    this.getQueryParams();
+    this.alertService.setHideTopBar(false);
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.paramsEmail = params.get("email");
         this.loadCandidateData(this.paramsEmail);
       })
     );
+  }
+  ngAfterViewInit(): void {
+    this.getQueryParams();
   }
   ngOnDestroy(): void {
     this.sub.forEach(subscription => subscription.unsubscribe());
@@ -57,27 +58,13 @@ export class CreateCvComponent implements OnInit, OnDestroy {
     );
   }
 
-  getRouteParams() {
-    this.sub.push(
-      this.route.parent.params.subscribe(params => {
-        this.routeParams = params;
-      })
-    );
-  }
-
   getQueryParams() {
     this.sub.push(
       this.route.parent.queryParams.subscribe(queryParams => {
         if (!queryParams) {
           return;
         }
-        this.canEdit = queryParams.edit;
-        if (this.canEdit === "true") {
-          this.alertService.setHideTopBar(false);
-        }
-        if (this.canEdit === "false") {
-          this.alertService.setHideTopBar(true);
-        }
+        this.canEdit = Boolean(JSON.parse(queryParams.edit));
       })
     );
   }
