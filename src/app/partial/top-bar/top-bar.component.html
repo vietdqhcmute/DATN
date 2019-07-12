@@ -51,7 +51,7 @@
         ></a>
       </li>
       <li *ngIf="isAuthenticated && candidate">
-        <a mat-button [routerLink]="['/login']" (click)="onLogOut()"
+        <a mat-button href="/login" (click)="onLogOut()"
           >Log out &nbsp; <i class="fas fa-sign-out-alt"></i
         ></a>
       </li>
