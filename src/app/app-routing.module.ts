@@ -4,10 +4,15 @@ import { AuthGuard } from "./guard/auth.guard";
 import { NotAuthorizeComponent } from "./not-authorize/not-authorize.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { RoleGuard } from "./guard/role.guard";
+import { LoginGuard } from "./guard/login.guard";
 
 const routes: Routes = [
   { path: "", loadChildren: "./layout/layout.module#LayoutModule" },
-  { path: "login", loadChildren: "./login/login.module#LoginModule" },
+  {
+    path: "login",
+    loadChildren: "./login/login.module#LoginModule",
+    canActivate: [LoginGuard]
+  },
   {
     path: "register",
     loadChildren: "./register/register.module#RegisterModule"
