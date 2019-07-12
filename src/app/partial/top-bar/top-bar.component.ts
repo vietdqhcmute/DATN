@@ -28,14 +28,12 @@ export class TopBarComponent implements OnInit {
     this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
       this.candidateService.getCandidateObservable().subscribe(candidate => {
-        this.clearData();
         const auth = this.getAuthBrowser();
         if (auth.role === 1) {
           this.candidate = candidate;
         }
       });
       this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
-        this.clearData();
         const auth = this.getAuthBrowser();
         if (auth.role === 2) {
           this.recruiterEmail = auth.email;
