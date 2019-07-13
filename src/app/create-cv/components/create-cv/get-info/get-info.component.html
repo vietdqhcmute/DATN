@@ -53,7 +53,7 @@
       <input
         matInput
         placeholder="Github URL"
-        [(ngModel)]="getInfoResume.github"
+        [(ngModel)]="getInfoCandidate.github"
       />
     </mat-form-field>
   </div>
@@ -63,7 +63,7 @@
       <input
         matInput
         placeholder="LinkedIn URL"
-        [(ngModel)]="getInfoResume.linkedin"
+        [(ngModel)]="getInfoCandidate.linkedin"
       />
     </mat-form-field>
   </div>
@@ -86,7 +86,7 @@
     <ul>
       <li *ngFor="let item of getInfoResume.experience; let i = index">
         <div>
-          <a [routerLink]="xxx">{{ item.company_name }}</a>
+          <a (click)="onModifyExperience(item)">{{ item.company_name }}</a>
           <p>{{ item.title }}</p>
         </div>
         <button
@@ -99,9 +99,13 @@
     </ul>
   </div>
   <div class="item">
-    <app-modal-resume-expeience
-      (saveClick)="onSaveExperience($event)"
-    ></app-modal-resume-expeience>
+    <button
+      class="btn btn-outline-primary"
+      (click)="onAddExperience()"
+      style="display: flex"
+    >
+      <i class="material-icons"> add </i>Experience
+    </button>
   </div>
 </section>
 <br />
@@ -113,7 +117,7 @@
   <div class="item-ul-li">
     <ul *ngFor="let item of getInfoResume.project; let i = index">
       <li>
-        <a [routerLink]="xxx">{{ item.project_name }}</a>
+        <a (click)="onModifyProject(item)">{{ item.project_name }}</a>
         <button class="btn btn-danger float-right" (click)="onDeleteProject(i)">
           <i class="fa fa-trash"></i>
         </button>
@@ -121,9 +125,13 @@
     </ul>
   </div>
   <div class="item">
-    <app-modal-resume-project
-      (saveClick)="onSaveProject($event)"
-    ></app-modal-resume-project>
+    <button
+      class="btn btn-outline-primary"
+      (click)="onAddProject()"
+      style="display: flex"
+    >
+      <i class="material-icons"> add </i>Project
+    </button>
   </div>
 </section>
 <br />
@@ -136,7 +144,7 @@
     <ul *ngFor="let item of getInfoResume.education; let i = index">
       <li>
         <div class="school-date">
-          <a [routerLink]="xxx">{{ item.school_name }}</a>
+          <a (click)="onModifyEducation(item)">{{ item.school_name }}</a>
           <p>{{ item.major }}</p>
         </div>
 
@@ -151,9 +159,13 @@
   </div>
 
   <div class="item">
-    <app-modal-resume-education
-      (saveClick)="onSaveEducation($event)"
-    ></app-modal-resume-education>
+    <button
+      class="btn btn-outline-primary"
+      (click)="onAddEducation()"
+      style="display: flex"
+    >
+      <i class="material-icons"> add </i>Education
+    </button>
   </div>
 </section>
 <br />
@@ -163,20 +175,33 @@
 <section id="Skill">
   <h3>Skill</h3>
   <div class="item-ul-li">
-    <ul *ngFor="let item of getInfoResume.skil">
+    <ul *ngFor="let item of getInfoResume.skill; let i = index">
       <li class="list-item">
         <mat-form-field>
-          <input matInput />
+          <input
+            matInput
+            value="{{ input }}"
+            [(ngModel)]="item"
+            placeholder="Skill {{ i + 1 }}"
+          />
         </mat-form-field>
         <div class="list-item-button">
-          <button class="btn btn-primary"><i class="fa fa-check"></i></button>
-          <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          <button class="btn btn-primary" (click)="confirmSkill(i, item)">
+            <i class="fa fa-check"></i>
+          </button>
+          <button class="btn btn-danger" (click)="deleteSkill(i)">
+            <i class="fa fa-trash"></i>
+          </button>
         </div>
       </li>
     </ul>
   </div>
   <div class="item">
-    <button class="btn btn-primary preview" style="display:flex">
+    <button
+      class="btn btn-primary preview"
+      style="display:flex"
+      (click)="onAddSkill()"
+    >
       <i class="material-icons">
         add
       </i>

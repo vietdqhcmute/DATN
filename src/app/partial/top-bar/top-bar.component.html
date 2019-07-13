@@ -1,12 +1,16 @@
 <mat-toolbar class="mat-elevation-z6 mat-top-bar" color="primary">
   <span
-    ><a mat-button [routerLink]="['all-job']" aria-label="Angular Material" class="docs-button"
+    ><a
+      mat-button
+      [routerLink]="['all-job']"
+      aria-label="Angular Material"
+      class="docs-button"
       ><span class="mat-button-wrapper"
         ><img
           alt="angular"
           class="docs-angular-logo"
           src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg"
-        /><span>Mean Stack</span></span
+        /><span>IT jobs</span></span
       >
     </a>
   </span>
@@ -15,18 +19,46 @@
   <div class="content">
     <ul>
       <li *ngIf="isAuthenticated && candidate">
-        <a mat-button [routerLink]="['/profile', candidate.email]">My profile</a>
+        <a mat-button [routerLink]="['/profile', candidate.email]">
+          <span
+            ><img
+              [src]="candidate.image_url"
+              alt="avatar"
+              class="docs-angular-logo"
+              style="border-radius: 50%"
+          /></span>
+          {{ candidate.display_name }}</a
+        >
       </li>
-      <li><a mat-button [routerLink]="['all-job']">All Jobs</a></li>
-      <li><a mat-button [routerLink]="['companies']">Companies</a></li>
+      <li>
+        <a mat-button [routerLink]="['all-job']"
+          >All Jobs &nbsp;<i class="fas fa-list"></i
+        ></a>
+      </li>
+      <li>
+        <a mat-button [routerLink]="['companies']"
+          >Companies &nbsp; <i class="fas fa-building"></i
+        ></a>
+      </li>
       <li *ngIf="isAuthenticated && candidate">
-        <a mat-button (click)="onCreateCV()">Create CV</a>
+        <a mat-button (click)="onCreateCV()"
+          >Update CV &nbsp; <i class="fas fa-file-alt"></i
+        ></a>
       </li>
       <li *ngIf="!isAuthenticated">
-        <a mat-button [routerLink]="['/login']">Login</a>
+        <a mat-button [routerLink]="['/login']"
+          >Login &nbsp;<i class="fas fa-sign-in-alt"></i
+        ></a>
       </li>
       <li *ngIf="isAuthenticated && candidate">
-        <a mat-button [routerLink]="['/login']" (click)="onLogOut()">Log out</a>
+        <a mat-button href="/login" (click)="onLogOut()"
+          >Log out &nbsp; <i class="fas fa-sign-out-alt"></i
+        ></a>
+      </li>
+      <li *ngIf="recruiterEmail">
+        <a mat-button (click)="onBackToDashboard()"
+          >Back to Dashboard &nbsp;<i class="fas fa-chevron-right"></i
+        ></a>
       </li>
     </ul>
   </div>

@@ -31,6 +31,32 @@ export class CompanyReviewComponent extends RecruiterComponent
     { id: 4, rating: 0, title: "", evaluation: "Văn hóa công ty" },
     { id: 5, rating: 0, title: "", evaluation: "Văn phòng làm việc" }
   ];
+
+  ngOnInit() {
+    this.alertService.setHideTopBar(false);
+    this.sub.push(
+      this.route.paramMap.subscribe(params => {
+        this.recruiterEmail = params.get("email");
+        this.loadRecruiterData(params.get("email"));
+      })
+    );
+  }
+
+  onSubmit(): void {
+    this.getRating();
+    this.reviewData.email = this.recruiterEmail;
+    this.reviewService.createReview(this.reviewData).subscribe(
+      reponse => {
+        alert("Thanks for your review!");
+        this.router.navigate(["/company", this.recruiterEmail]);
+      },
+      error => {
+        alert("Thanks for your review!");
+        this.router.navigate(["/company", this.recruiterEmail]);
+      }
+    );
+  }
+
   showCriticism() {
     this.isShowCriticism = this.isShowCriticism ? false : true;
   }
@@ -49,11 +75,6 @@ export class CompanyReviewComponent extends RecruiterComponent
     }
   }
 
-  onSubmit(): void {
-    this.getRating();
-    this.reviewData.email = this.recruiterEmail;
-    this.reviewService.createReview(this.reviewData).subscribe(reponse => {});
-  }
   private getRating(): void {
     this.reviewData.rate_general = this.items[0].rating;
     this.reviewData.rate_salary = this.items[1].rating;

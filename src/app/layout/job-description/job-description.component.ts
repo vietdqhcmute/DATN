@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { RecruiterService } from "src/app/services/recruiter.service";
 import { Subscription } from "rxjs";
 import { ArticleService } from "src/app/services/article.service";
 import { AuthService } from "src/app/services/auth.service";
 import { Recruiter, Articles } from "src/app/models/RecruiterData";
+import { CandidateService } from "src/app/services/candidate.service";
+import { Candidate } from "src/app/models/CandidateData";
 
 @Component({
   selector: "app-job-description",
@@ -13,20 +15,25 @@ import { Recruiter, Articles } from "src/app/models/RecruiterData";
 })
 export class JobDescriptionComponent implements OnInit, OnDestroy {
   private articleId: string;
-  candidateEmai: string;
-  recruiterEmail: string;
+  candidate: Candidate;
   recruiterInfo: Recruiter;
   articleInfo: Articles;
   sub: Subscription[] = [];
   isLoading: boolean = false;
+  isAuthenticated = false;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private recruiterService: RecruiterService,
+    private candidateService: CandidateService,
     private articleService: ArticleService,
     private authService: AuthService
   ) {}
 
   ngOnInit() {
+    if (this.authService.isSavedAuthData()) {
+      this.isAuthenticated = true;
+    }
     this.getBrowserAuthData();
     this.sub.push(
       this.route.paramMap.subscribe(params => {
@@ -58,20 +65,29 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
   }
   onApply() {
     const applyParams = {
-      email: this.candidateEmai
+      email: this.candidate.email
+    };
+    const applyForCandidateParams = {
+      candidate_id: this.candidate._id,
+      article_id: this.articleId
     };
     this.isLoading = true;
     this.sub.push(
       this.articleService.applyArticle(applyParams, this.articleId).subscribe(
         success => {
           this.isLoading = false;
-          console.log(success);
+          this.router.navigate(["apply-success"]);
         },
         error => {
           this.isLoading = false;
-          console.error(error);
+          alert("You've already applied for this job");
         }
       )
+    );
+    this.sub.push(
+      this.articleService
+        .applyInCandidateTimeline(applyForCandidateParams)
+        .subscribe(success => {}, error => {})
     );
   }
 
@@ -81,9 +97,20 @@ export class JobDescriptionComponent implements OnInit, OnDestroy {
       return;
     }
     if (authData.role === 1) {
-      this.candidateEmai = authData.email;
+      this.candidateService.getCandidate(authData.email).subscribe(
+        candidate => {
+          this.candidate = candidate;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     } else if (authData.role === 2) {
-      this.recruiterEmail = authData.email;
+      this.recruiterService
+        .getRecruiterAPI(authData.email)
+        .subscribe(recruiter => {
+          this.recruiterInfo = recruiter;
+        });
     } else {
       // this.loginAsAdministrator();
     }

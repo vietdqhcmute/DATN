@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalYesNoComponent } from './modal-yes-no.component';
+import { ApplySuccessComponent } from './apply-success.component';
 
-describe('ModalYesNoComponent', () => {
-  let component: ModalYesNoComponent;
-  let fixture: ComponentFixture<ModalYesNoComponent>;
+describe('ApplySuccessComponent', () => {
+  let component: ApplySuccessComponent;
+  let fixture: ComponentFixture<ApplySuccessComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalYesNoComponent ]
+      declarations: [ ApplySuccessComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalYesNoComponent);
+    fixture = TestBed.createComponent(ApplySuccessComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

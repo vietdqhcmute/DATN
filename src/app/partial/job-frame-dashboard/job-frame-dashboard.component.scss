@@ -11,7 +11,6 @@
     background-color: #fff;
   }
   .logo {
-    flex: 0.8;
     margin: 0px 20px;
     width: 94px;
     height: 94px;
@@ -28,8 +27,17 @@
     .title {
       font-weight: bolder;
       font-size: 22px;
+      a {
+        text-decoration: none;
+        &:hover {
+          color: red;
+        }
+      }
     }
     .salary {
+      display: flex;
+      color: #8bc34a;
+
       font-size: 12px;
     }
     .job-description {
@@ -40,7 +48,7 @@
         font-weight: 600;
       }
     }
-    .tag-view{
+    .tag-view {
       padding: 5px 0 0 0;
     }
   }

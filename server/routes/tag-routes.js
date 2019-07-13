@@ -15,7 +15,7 @@ router.post("/tag", (req, res) => {
         }
         return res.status(200).send(data);
       });
-    }else{
+    } else {
       return res.status(401).send("Tag duplicate");
     }
   });
@@ -23,6 +23,9 @@ router.post("/tag", (req, res) => {
 //Getting by tag by name
 router.get("/tag/:content", async (req, res) => {
   try {
+    if (req.params.conten === "") {
+      return;
+    }
     const tag = await Tag.findOne({ content: req.params.content });
     res.status(200).json(tag);
   } catch (err) {
@@ -32,7 +35,7 @@ router.get("/tag/:content", async (req, res) => {
 //Getting all tags
 router.get("/tags", async (req, res) => {
   try {
-    const tag = await Tag.find();
+    const tag = await Tag.find().sort("content");
     res.status(200).json(tag);
   } catch (err) {
     res.status(404).send(err);
@@ -45,7 +48,7 @@ router.delete("/tag", (req, res) => {
     if (err) {
       return res.status(500).send(err);
     } else {
-      if(!callback){
+      if (!callback) {
         return res.status(404).send("Doesn't exist!");
       }
       return res.status(200).json("Delete successfully!");

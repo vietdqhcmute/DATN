@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditProfileDialogComponent } from './edit-profile-dialog.component';
+import { DialogEditProfileComponent } from './dialog-edit-profile.component';
 
-describe('EditProfileDialogComponent', () => {
-  let component: EditProfileDialogComponent;
-  let fixture: ComponentFixture<EditProfileDialogComponent>;
+describe('DialogEditProfileComponent', () => {
+  let component: DialogEditProfileComponent;
+  let fixture: ComponentFixture<DialogEditProfileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditProfileDialogComponent ]
+      declarations: [ DialogEditProfileComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditProfileDialogComponent);
+    fixture = TestBed.createComponent(DialogEditProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

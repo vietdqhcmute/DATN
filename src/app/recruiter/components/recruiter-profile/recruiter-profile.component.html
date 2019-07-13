@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="recruiter">
   <div>
     <div class="img-round">
       <img
@@ -15,7 +15,7 @@
       />
     </div>
   </div>
-  <div class="example-container">
+  <div class="example-container" *ngIf="recruiter">
     <div class="name half-dialog">
       <mat-form-field>
         <input
@@ -37,7 +37,11 @@
 
       <mat-form-field>
         <mat-label>City</mat-label>
-        <mat-select>
+        <mat-select
+          placeholder="City"
+          [(ngModel)]="recruiter.city"
+          (selectionChange)="onChangeCity($event.value)"
+        >
           <mat-option *ngFor="let item of citySelections" [value]="item">
             {{ item }}
           </mat-option>
@@ -50,8 +54,12 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Employess</mat-label>
-        <mat-select>
+        <mat-label>Employees</mat-label>
+        <mat-select
+          placeholder="Employees number"
+          [(ngModel)]="recruiter.employees"
+          (selectionChange)="onChangeEmployeesNumber($event.value)"
+        >
           <mat-option *ngFor="let item of employeeSelections" [value]="item">
             {{ item }}
           </mat-option>
@@ -61,7 +69,10 @@
     <div class="contact half-dialog">
       <mat-form-field>
         <mat-label>Production of company</mat-label>
-        <mat-select>
+        <mat-select
+          [(ngModel)]="recruiter.production"
+          (selectionChange)="onChangeProdction($event.value)"
+        >
           <mat-option *ngFor="let item of productionSelections" [value]="item">
             {{ item }}
           </mat-option>
@@ -70,7 +81,10 @@
 
       <mat-form-field>
         <mat-label>Day at work</mat-label>
-        <mat-select>
+        <mat-select
+          [(ngModel)]="recruiter.day_at_work"
+          (selectionChange)="onChangeDayAtWork($event.value)"
+        >
           <mat-option *ngFor="let item of dayAtWorkSelections" [value]="item">
             {{ item }}
           </mat-option>
@@ -96,10 +110,14 @@
     <button
       *ngIf="!isLoading"
       type="button"
-      class="btn btn-primary"
+      class="btn btn-outline-info"
       data-dismiss="modal"
       (click)="onSave()"
+      style="display: flex"
     >
+      <i class="material-icons">
+        save
+      </i>
       Save changes
     </button>
   </div>

@@ -34,21 +34,10 @@
             </button>
           </form>
         </div>
-
-        <!-- <div class="form-group" action="" id="search-form" style="flex-grow: 1">
-          <button
-            type="submit"
-            class="btn text-light"
-            style="font-size: 1em; width: 100%; background-color: #3f51b5;"
-          >
-            SEARCH
-          </button>
-        </div>
-      </div> -->
       </div>
     </div>
 
-    <div class="companies-alljob container" style="margin-top: 10px">
+    <div class="companies-alljob container" style="margin-top: 10px; background: #ffffff">
       <div *ngIf="articles.length > 0">
         <h1
           style="text-align: center;font-size: 21px;text-transform: uppercase"
@@ -60,6 +49,7 @@
       <div *ngIf="articles.length === 0" style="text-align:center">
         <h2>Nothing match, just try again!</h2>
       </div>
+
       <div *ngFor="let item of articles">
         <app-job-frame-dashboard
           [jobDescription]="item"

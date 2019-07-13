@@ -12,13 +12,17 @@ import { Articles } from "src/app/models/RecruiterData";
 })
 export class CompanyDescriptionComponent extends RecruiterComponent
   implements OnInit, OnDestroy, AfterViewInit {
-  imageURL_company =
-    "https://cdn.itviec.com/photos/35827/processed_headline_photo/fpt-software-headline_photo.png?ojMRBGzhWEL7ri4CE7w3VgwU";
+  imageURL_company ="../../assets/images/it_job.jpg";
   company_email: String;
   reviews: Review[] = [];
   avarageRating: number;
   articles: Articles[] = [];
+  isAuthenticated = false;
+
   ngOnInit() {
+    if (this.authService.isSavedAuthData()) {
+      this.isAuthenticated = true;
+    }
     this.sub.push(
       this.route.paramMap.subscribe(params => {
         this.company_email = params.get("email");

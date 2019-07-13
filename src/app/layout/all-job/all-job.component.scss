@@ -1,13 +1,13 @@
 :host {
   #carouselExampleControls {
     #carousel-all-job {
-      top:-4px;
+      top: -4px;
     }
   }
 
   .search-form-all-job {
     @media screen and (max-width: 600px) {
-      top: 5%;
+      top: 50px;
     }
     position: absolute;
     border-radius: 2px;
@@ -18,7 +18,7 @@
     color: #fff;
     padding: 20px;
     position: absolute;
-    top: 25%;
+    top: 75px;
     margin-top: 3%;
     transform: translateY(-50%) translateX(-50%);
     left: 50%;
@@ -62,13 +62,18 @@
     font-size: 15px;
     margin-top: 10px;
   }
-  .all-job{
-    background: #ECEFF1;
+  .all-job {
+    background: #eceff1;
   }
-  .companies-alljob.container{
+  .companies-alljob.container {
     margin-top: 10px;
     max-width: 1024px !important;
-    background: #FFFFFF;
+    background: #ffffff;
     border: rgb(199, 199, 199) 1px solid;
+  }
+  .show-more {
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-around;
   }
 }

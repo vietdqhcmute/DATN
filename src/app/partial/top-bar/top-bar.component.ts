@@ -14,39 +14,49 @@ import { Router } from "@angular/router";
 })
 export class TopBarComponent implements OnInit {
   private isAuthenticated: boolean = false;
-  sub: Subscription[] = [];
-  candidate: Candidate;
-  recruiter: Recruiter;
+  private candidate: Candidate;
+  private recruiterEmail: string;
+
   constructor(
     private router: Router,
     private authService: AuthService,
     private candidateService: CandidateService,
     private recruiterService: RecruiterService
   ) {}
+
   ngOnInit() {
-    this.sub.push(
-      this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
-        this.isAuthenticated = isAuthenticated;
-      })
-    );
-    this.sub.push(
+    this.authService.getUserAuthenticated().subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
       this.candidateService.getCandidateObservable().subscribe(candidate => {
-        this.candidate = candidate;
-      })
-    );
-    this.sub.push(
+        const auth = this.getAuthBrowser();
+        if (auth.role === 1) {
+          this.candidate = candidate;
+        }
+      });
       this.recruiterService.getRecruiterObservable().subscribe(recruiter => {
-        this.recruiter = recruiter;
-      })
-    );
+        const auth = this.getAuthBrowser();
+        if (auth.role === 2) {
+          this.recruiterEmail = auth.email;
+        }
+      });
+    });
   }
   onLogOut() {
-    this.sub.forEach(subscription => subscription.unsubscribe());
+    this.clearData();
     this.authService.logout();
   }
   onCreateCV() {
     this.router.navigate(["profile", this.candidate.email, "create-cv"], {
       queryParams: { edit: true }
     });
+  }
+  onBackToDashboard() {
+    this.router.navigate(["recruiter", this.recruiterEmail]);
+  }
+  getAuthBrowser() {
+    return this.authService.getAuthData();
+  }
+  clearData() {
+    this.candidate = null;
   }
 }

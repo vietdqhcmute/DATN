@@ -17,9 +17,9 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   private routeParams;
   private queryParams;
   private tags: Tag[] = [];
-  private tagsString: string[] = [];
+  private tagList: string[] = [];
   private tagContent = new FormControl();
-  private filteredOptions: Observable<string[]>;
+  private filteredOptions;
   private articleParams = {
     title: "",
     tags: [],
@@ -32,13 +32,11 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.getRouteParams();
     this.getQueryParams();
     this.getAllTags();
-    // this.filteredOptions = this.tagContent.valueChanges.subscribe(value=>this._filter(value));
-    this.filteredOptions = this.tagContent.valueChanges.pipe(
-      startWith(""),
-      map(value => this._filter(value))
-    );
+    this.tagContent.valueChanges.pipe(startWith("")).subscribe(value => {
+      this.filteredOptions = this._filter(value);
+    });
     if (this.queryParams.edit) {
-      this.loadRecruitPostData(this.queryParams.id);
+      this.getArticle(this.queryParams.id);
     }
   }
   ngOnDestroy(): void {
@@ -46,11 +44,70 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
   }
 
   onCreatePost() {
-    let requestBody = {
+    if (!this.tagFilter()) {
+      return;
+    }
+    this.tagFilter().forEach(tag => {
+      this.articleParams.tags.push(tag);
+    });
+    const requestBody = {
       email_company: this.routeParams.email,
       article: this.articleParams
     };
-    this.articleService.saveArticle(requestBody, this.routeParams.email);
+    this.articleService
+      .saveArticle(requestBody, this.routeParams.email)
+      .subscribe(
+        response => {
+          requestBody.article.tags.forEach(tag => {
+            this.tagService.getTagByContent(tag).subscribe(originalTag => {
+              let params = {
+                _tag: originalTag._id,
+                article_id: response._id
+              };
+              this.articleService.createReportTag(params).subscribe(
+                res => {
+                  console.log(res);
+                },
+                err => {
+                  console.log(err);
+                }
+              );
+            });
+          });
+          this.navigateDashboard();
+        },
+        error => {
+          this.alertService.error(error);
+        }
+      );
+  }
+  onUpdatePost() {
+    this.articleService
+      .updateArticle(this.articleParams, this.queryParams.id)
+      .subscribe(
+        success => {
+          this.articleParams.tags.forEach(tag => {
+            this.tagService.getTagByContent(tag).subscribe(originalTag => {
+              let params = {
+                _tag: originalTag._id,
+                article_id: this.queryParams.id
+              };
+              this.articleService.createReportTag(params).subscribe(
+                res => {
+                  console.log(res);
+                },
+                err => {
+                  console.log(err);
+                }
+              );
+            });
+          });
+          this.navigateDashboard();
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
   onAddTag(form: NgForm) {
     if (this.tagContent.value === null) {
@@ -59,22 +116,47 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.articleParams.tags.push(this.tagContent.value.trim());
     this.tagContent.reset();
   }
-  onUpdatePost() {}
+  tagFilter(): Array<string> {
+    if (!this.splitTitle()) {
+      return;
+    }
+    let tags = this.splitTitle();
+    for (let i = 0; i < tags.length; i++) {
+      if (!this.tagList.includes(tags[i])) {
+        tags.splice(i, 1);
+        i--;
+      }
+    }
+    return tags;
+  }
+  splitTitle(): Array<string> {
+    if (this.articleParams.title === "") {
+      return;
+    }
+    const tagsInTitle = this.articleParams.title
+      .toLowerCase()
+      .replace(/[()]/g, "")
+      .split(" ");
+    return tagsInTitle;
+  }
 
-  _filter(value: string): string[] {
-    console.log(value);
+  _filter(value: string) {
+    if (!value) {
+      return;
+    }
     const filterValue = value.toLowerCase();
-    return this.tagsString.filter(option =>
+    return this.tagList.filter(option =>
       option.toLowerCase().includes(filterValue)
     );
   }
 
-  loadRecruitPostData(id) {
+  getArticle(id) {
     this.sub.push(
       this.articleService.getArticleById(id).subscribe(data => {
         this.articleParams.title = data.title;
         this.articleParams.salary = data.salary;
         this.articleParams.description = data.description;
+        this.articleParams.tags = data.tags;
       })
     );
   }
@@ -99,8 +181,12 @@ export class RecruiterCreatePostComponent extends RecruiterComponent
     this.sub.push(
       this.tagService.getAllTagsAPI().subscribe(tags => {
         this.tags = tags;
-        tags.forEach(element => this.tagsString.push(element.content));
+        tags.forEach(element => this.tagList.push(element.content));
       })
     );
+  }
+
+  navigateDashboard() {
+    this.router.navigate(["recruiter", this.routeParams.email, "dashboard"]);
   }
 }

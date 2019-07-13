@@ -1,19 +1,21 @@
 <div class="layout">
-  <div class="tool-bar" *ngIf="canEdit === 'true'">
+  <div class="tool-bar" *ngIf="canEdit">
     <app-tool-bar
       [toolBarCandidate]="candidate"
       [toolBarResume]="resume"
     ></app-tool-bar>
   </div>
-  <div class="empty-space-toolbar" *ngIf="canEdit === 'false'"></div>
+  <div class="empty-space-toolbar" *ngIf="!canEdit">
+    <h1>Resume of {{ candidate.full_name }}</h1>
+  </div>
   <div class="content">
-    <div class="app-get-info" *ngIf="canEdit === 'true'">
+    <div class="app-get-info" *ngIf="canEdit">
       <app-get-info
         [getInfoResume]="resume"
         [getInfoCandidate]="candidate"
       ></app-get-info>
     </div>
-    <div class="empty-space-info" *ngIf="canEdit === 'false'"></div>
+    <!-- <div class="empty-space-info" *ngIf="canEdit === 'false'"></div> -->
     <div class="content-cv">
       <div class="header-preview">
         <h4>Preview</h4>
@@ -27,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="template-selecttion">
+    <div class="template-selecttion" *ngIf="canEdit">
       <app-template-selection></app-template-selection>
     </div>
   </div>

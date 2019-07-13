@@ -16,7 +16,6 @@ export class RecruiterProfileComponent extends RecruiterComponent
   employeeSelections = ["10+", "50+", "100+", "1000+"];
   citySelections = ["Ho Chi Minh", "Ha Noi"];
   isLoading: boolean = false;
-
   ngOnInit() {
     this.sub.push(
       this.route.parent.paramMap.subscribe(params => {
@@ -56,11 +55,33 @@ export class RecruiterProfileComponent extends RecruiterComponent
         .subscribe(
           response => {
             this.isLoading = false;
+            this.router.navigate([
+              "recruiter",
+              this.recruiter.email,
+              "dashboard"
+            ]);
           },
           error => {
             this.isLoading = false;
+            this.router.navigate([
+              "recruiter",
+              this.recruiter.email,
+              "dashboard"
+            ]);
           }
         )
     );
+  }
+  onChangeEmployeesNumber(value) {
+    this.recruiter.employees = value;
+  }
+  onChangeCity(value) {
+    this.recruiter.city = value;
+  }
+  onChangeDayAtWork(value) {
+    this.recruiter.day_at_work = value;
+  }
+  onChangeProdction(value) {
+    this.recruiter.production = value;
   }
 }

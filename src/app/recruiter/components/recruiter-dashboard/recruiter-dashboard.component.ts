@@ -5,6 +5,7 @@ import { MatTableDataSource, MatDialogConfig } from "@angular/material";
 import { DialogPreviewArticleComponent } from "src/app/partial/material-dialog/dialog-preview-article/dialog-preview-article.component";
 import { Articles } from "src/app/models/RecruiterData";
 import { DialogApplierListComponent } from "src/app/partial/material-dialog/dialog-applier-list/dialog-applier-list.component";
+import { DialogConfirmationComponent } from "src/app/partial/material-dialog/dialog-confirmation/dialog-confirmation.component";
 
 @Component({
   selector: "app-recruiter-dashboard",
@@ -43,8 +44,22 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     this.sub.forEach(subscription => subscription.unsubscribe());
   }
   onDelete(_id: string) {
-    this.deleteArticleBackEnd(_id);
-    this.deleteArticleFrontEnd(_id);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      message: "Do you want to delete?"
+    };
+    const dialogRef = this.dialog.open(
+      DialogConfirmationComponent,
+      dialogConfig
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteArticleBackEnd(_id);
+        this.deleteArticleFrontEnd(_id);
+      }
+    });
   }
   onUpdate(_id: string) {
     this.router.navigate(["recruiter", this.company_email, "create-post"], {
@@ -63,6 +78,10 @@ export class RecruiterDashboardComponent extends RecruiterComponent
     this.dialog.open(DialogPreviewArticleComponent, dialogConfig);
   }
   onAppliersList(_id: string, appliers: string[]) {
+    if (appliers.length === 0) {
+      alert("Nobody apply for this job yet!");
+      return;
+    }
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;

@@ -5,10 +5,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 
-// var connectionString = 'mongodb://lytutronga6:lytutronga6@tlcn-1-shard-00-00-looeq.mongodb.net:27017,tlcn-1-shard-00-01-looeq.mongodb.net:27017,tlcn-1-shard-00-02-looeq.mongodb.net:27017/test?ssl=true&replicaSet=TLCN-1-shard-0&authSource=admin&retryWrites=true';
-// var connectionString = "mongodb://lytutronga6:lytutronga6@datn-cluster-shard-00-00-p9e6i.mongodb.net:27017,datn-cluster-shard-00-01-p9e6i.mongodb.net:27017,datn-cluster-shard-00-02-p9e6i.mongodb.net:27017/test?ssl=true&replicaSet=DATN-cluster-shard-0&authSource=admin&retryWrites=true"
+const connectionString = "mongodb://lytutronga6:lytutronga6@datn-cluster-shard-00-00-p9e6i.mongodb.net:27017,datn-cluster-shard-00-01-p9e6i.mongodb.net:27017,datn-cluster-shard-00-02-p9e6i.mongodb.net:27017/test?ssl=true&replicaSet=DATN-cluster-shard-0&authSource=admin&retryWrites=true"
 // connection to db
-var connectionString = "mongodb://localhost:27017/datn"; //local mongodb
+// const connectionString = "mongodb://localhost:27017/datn"; //local mongodb
 mongoose.disconnect().then(
   mongoose
     .connect(connectionString, {
@@ -61,10 +60,11 @@ const tagRoutes = require("./routes/tag-routes");
 const reviewRoutes = require("./routes/review-routes");
 const searchingRoutes = require("./routes/searching-routes");
 const articleRoutes = require("./routes/article-routes");
+const reportRoutes = require("./routes/report-routes");
 // routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
-app.use("/", adminRoutes);
+app.use("/admin/", adminRoutes);
 app.use("/", statisticRoutes);
 app.use("/", awsRoutes);
 app.use("/", candidateRoutes);
@@ -73,6 +73,8 @@ app.use("/", tagRoutes);
 app.use("/", reviewRoutes);
 app.use("/article", articleRoutes);
 app.use("/search", searchingRoutes);
+app.use("/report", reportRoutes);
+
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
 });

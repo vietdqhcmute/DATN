@@ -17,6 +17,7 @@
         class="auto-filter"
         (ngSubmit)="onAddTag(searchTagForm)"
         #searchTagForm="ngForm"
+        style="display: flex"
       >
         <mat-form-field>
           <div style="display: flex">
@@ -27,24 +28,34 @@
               [matAutocomplete]="auto"
               placeholder="Tag (ex: AngularJS)"
             />
-            <mat-dialog-actions>
-              <button
-                mat-button
-                type="submit"
-                class="mat-raised-button mat-primary"
-                cdkFocusInitial
-              >
-                Add Tag
-              </button>
-            </mat-dialog-actions>
           </div>
 
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of tagsString" [value]="option">
-              <span> {{ option }} </span>
+            <mat-option *ngFor="let option of filteredOptions" [value]="option">
+              <span> {{ option | titlecase }} </span>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+        <mat-dialog-actions>
+          <button
+            mat-button
+            type="submit"
+            class="mat-raised-button mat-primary"
+            cdkFocusInitial
+            style="display: flex"
+          >
+            <i class="material-icons">
+              local_offer
+            </i>
+            Tag
+          </button>
+          <!-- This button is for testing -->
+          <!-- <button class="btn btn-danger" (click)="autoTag()">
+            <i class="material-icons">
+              local_offer </i
+            >Auto tag
+          </button> -->
+        </mat-dialog-actions>
       </form>
     </div>
   </div>
@@ -75,17 +86,25 @@
   <button
     *ngIf="!queryParams.edit"
     type="submit"
-    class="btn btn-primary"
+    class="btn btn-outline-info"
     (click)="onCreatePost()"
+    style="display: flex"
   >
+    <i class="material-icons">
+      description
+    </i>
     Create post
   </button>
   <button
     *ngIf="queryParams.edit"
     type="submit"
-    class="btn btn-info"
+    class="btn btn-outline-success"
     (click)="onUpdatePost()"
+    style="display: flex"
   >
+    <i class="material-icons">
+      description
+    </i>
     Update post
   </button>
 </div>

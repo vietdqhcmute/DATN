@@ -2,10 +2,13 @@ import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
 import { CandidateService } from "../services/candidate.service";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Candidate } from "../models/CandidateData";
 import { AlertService } from "../services/alert.service";
 import { Subscription } from "rxjs";
+import { MatDialog } from "@angular/material";
+import { ArticleService } from "../services/article.service";
+import { TagService } from "../services/tag.service";
 
 @Component({
   selector: "app-candidate",
@@ -17,11 +20,15 @@ export class CandidateComponent implements OnInit, OnDestroy, AfterViewInit {
   candidate: Candidate = null;
   sub: Subscription[] = [];
   constructor(
+    protected dialog: MatDialog,
+    protected router: Router,
+    protected route: ActivatedRoute,
     protected authService: AuthService,
     protected candidateService: CandidateService,
     protected titleService: Title,
-    protected route: ActivatedRoute,
-    private alertService: AlertService
+    protected articleService: ArticleService,
+    protected alertService: AlertService,
+    protected tagService: TagService
   ) {}
 
   ngOnInit() {

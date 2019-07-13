@@ -1,8 +1,10 @@
 :host {
-  background: #ECEFF1;
+  .page {
+    background: #eceff1;
+  }
   .container {
     max-width: 915px !important;
-    background: #FFFFFF;
+    background: #ffffff;
   }
   .top-bar {
     position: fixed;

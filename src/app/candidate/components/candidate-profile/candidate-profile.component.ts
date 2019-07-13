@@ -3,6 +3,10 @@ import { Candidate } from "src/app/models/CandidateData";
 import { first } from "rxjs/operators";
 import { Subscription } from "rxjs";
 import { CandidateComponent } from "../../candidate.component";
+import { DialogEditProfileComponent } from "src/app/partial/material-dialog/dialog-edit-profile/dialog-edit-profile.component";
+import { MatDialogConfig } from "@angular/material";
+import { Articles } from "src/app/models/RecruiterData";
+import { Tag } from "src/app/models/Tag";
 @Component({
   selector: "app-candidate-profile",
   templateUrl: "./candidate-profile.component.html",
@@ -16,6 +20,8 @@ export class CandidateProfileComponent extends CandidateComponent
   allowEdit = false;
   defaultImageURL = "../../../../assets/images/tho-bay-mau-28.png";
   imagePreview: string;
+  articles: Articles[] = [];
+  isLoading: boolean = false;
 
   ngOnInit() {
     if (this.authService.isSavedAuthData()) {
@@ -37,6 +43,7 @@ export class CandidateProfileComponent extends CandidateComponent
         .subscribe(candidate => {
           this.titleService.setTitle(candidate.display_name);
           this.candidate = <Candidate>candidate;
+          this.getArticlesHaveApplied();
         })
     );
     this.candidateService.getCandidate(email);
@@ -51,13 +58,67 @@ export class CandidateProfileComponent extends CandidateComponent
     reader.readAsDataURL(file);
     this.saveAvatar(file);
   }
+  onEditProfile() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+
+    dialogConfig.width = "112vh";
+    dialogConfig.height = "88vh";
+    dialogConfig.data = this.candidate;
+
+    const dialogRef = this.dialog.open(
+      DialogEditProfileComponent,
+      dialogConfig
+    );
+    this.sub.push(
+      dialogRef.afterClosed().subscribe(result => {
+        if (!result) {
+          return;
+        }
+        this.candidateService.updateCandidateByID(result._id, result).subscribe(
+          res => {
+            console.log(result.tags);
+            console.log("Success: ", res);
+          },
+          error => {
+            result.tags.forEach(tag => {
+              this.tagService.getTagByContent(tag).subscribe(originalTag => {
+                let params = {
+                  _tag: originalTag._id,
+                  candidate_id: result._id
+                };
+                this.candidateService.createReportTag(params).subscribe(
+                  res => {
+                    console.log(res);
+                  },
+                  err => {
+                    console.log(err);
+                  }
+                );
+              });
+            });
+          }
+        );
+      })
+    );
+  }
   saveAvatar(image: File) {
     this.candidateService.updateAvatar(image);
     this.candidateService.getAvatarUrl().subscribe(avatarUrl => {
       this.candidate.image_url = avatarUrl;
       this.candidateService
         .updateCandidateByID(this.candidate._id, this.candidate)
-        .subscribe(response => {});
+        .subscribe(response => {}, error => {});
     });
+  }
+  getArticlesHaveApplied() {
+    this.isLoading = true;
+    this.articleService
+      .getArticlesHaveBeenApplied(this.candidate._id)
+      .subscribe(articles => {
+        this.articles = articles;
+        this.isLoading = false;
+      });
   }
 }

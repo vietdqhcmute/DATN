@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalApplierComponent } from './modal-applier.component';
+import { NotAuthorizeComponent } from './not-authorize.component';
 
-describe('ModalApplierComponent', () => {
-  let component: ModalApplierComponent;
-  let fixture: ComponentFixture<ModalApplierComponent>;
+describe('NotAuthorizeComponent', () => {
+  let component: NotAuthorizeComponent;
+  let fixture: ComponentFixture<NotAuthorizeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalApplierComponent ]
+      declarations: [ NotAuthorizeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalApplierComponent);
+    fixture = TestBed.createComponent(NotAuthorizeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

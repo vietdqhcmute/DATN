@@ -14,6 +14,7 @@ import { RecruiterOverviewComponent } from './components/recruiter-overview/recr
 import { MaterialModule } from '../material/material.module';
 import { DialogPreviewArticleComponent } from '../partial/material-dialog/dialog-preview-article/dialog-preview-article.component';
 import { DialogApplierListComponent } from '../partial/material-dialog/dialog-applier-list/dialog-applier-list.component';
+import { DialogConfirmationComponent } from '../partial/material-dialog/dialog-confirmation/dialog-confirmation.component';
 @NgModule({
   declarations: [
     RecruiterComponent,
@@ -35,7 +36,8 @@ import { DialogApplierListComponent } from '../partial/material-dialog/dialog-ap
   ],
   entryComponents: [
     DialogPreviewArticleComponent,
-    DialogApplierListComponent
+    DialogApplierListComponent,
+    DialogConfirmationComponent
   ]
 })
 export class RecruiterModule {}

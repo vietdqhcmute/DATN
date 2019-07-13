@@ -13,6 +13,7 @@ export class AdminUserManagerComponent extends AdministratorComponent
   displayedColumns: string[] = [
     "position",
     "username",
+    "avatar",
     "email",
     "phone",
     "join",
@@ -20,14 +21,21 @@ export class AdminUserManagerComponent extends AdministratorComponent
   ];
   private candidateTableSource;
   ngOnInit() {
-    this.candidateService.getAllCandidates().subscribe(candidates => {
+    this.adminService.getAllCandidatesStatus().subscribe(candidates => {
       this.candidateTableSource = new MatTableDataSource(candidates);
     });
   }
   applyFilter(filterValue: string) {
     this.candidateTableSource.filter = filterValue.trim().toLowerCase();
   }
-  onDeactivate(id: string){
-    console.log(id);
+  onDeactivate(id: string) {
+    this.adminService.deactivateUser(id).subscribe(success => {
+      console.log(success);
+    });
+  }
+  onActivate(id: string) {
+    this.adminService.activateUser(id).subscribe(success => {
+      console.log(success);
+    });
   }
 }

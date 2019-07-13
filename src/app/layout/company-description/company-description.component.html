@@ -23,11 +23,9 @@
               type="button"
               class="btn-format btn btn-danger"
               (click)="onReview()"
+              *ngIf="isAuthenticated"
             >
               Add a review
-            </button>
-            <button type="button" class="btn-format btn btn-outline-secondary ">
-              Follow
             </button>
           </div>
           <div class="name">
@@ -43,20 +41,32 @@
                 recruiter.city
               }}
             </div>
-            <div class="country-icon short">
+            <div class="country-icon short" style="display: flex">
               <i class="far fa-flag"></i>&nbsp;&nbsp;Viet Nam
+              <p class="gear-icon short">
+                <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{
+                  recruiter.production
+                }}
+              </p>
+              <p class="group-icon short">
+                <i class="fas fa-users"></i>&nbsp;&nbsp;{{
+                  recruiter.employees
+                }}
+              </p>
             </div>
-            <p class="gear-icon short">
-              <i class="fas fa-cogs"></i>&nbsp;&nbsp;{{ recruiter.production }}
-            </p>
-            <p class="group-icon short">
-              <i class="fas fa-users"></i>&nbsp;&nbsp;{{ recruiter.employees }}
-            </p>
+
             <div class="working-date short">
               <i class="fa fa-calendar"></i>&nbsp;&nbsp;{{
                 recruiter.day_at_work
               }}
             </div>
+
+            <div class="working-date short">
+              <i class="far fa-envelope"></i>&nbsp;&nbsp;{{
+                recruiter.email
+              }}
+            </div>
+
           </div>
         </div>
       </div>
@@ -68,8 +78,19 @@
             <mat-tab label="Overview">
               <div [innerHTML]="recruiter.overview"></div>
             </mat-tab>
-            <mat-tab label="Review">
+            <mat-tab label="Review ({{reviews.length}})">
               <h2>Review company</h2>
+              <div *ngIf="reviews.length === 0">
+                <p>We haven't have any reviews, please give us some reviews!</p>
+                <button
+                  type="button"
+                  class="btn-format btn btn-danger"
+                  (click)="onReview()"
+                  *ngIf="isAuthenticated"
+                >
+                  Add a review
+                </button>
+              </div>
               <div class="panel-body" *ngFor="let item of reviews">
                 <app-recruiter-review-post
                   [review]="item"
@@ -114,6 +135,16 @@
           >
             <div class="panel-heading">
               <h4 class="panel-title">Feature Reviews</h4>
+            </div>
+            <div *ngIf="reviews.length === 0">
+              <button
+                type="button"
+                class="btn-format btn btn-danger"
+                (click)="onReview()"
+                *ngIf="isAuthenticated"
+              >
+                Add a review
+              </button>
             </div>
             <div class="panel-body" *ngFor="let item of reviews">
               <app-recruiter-review-post
