@@ -48,6 +48,10 @@ app.use(function(req, res, next) {
 
   next();
 });
+app.get('/*', function(req,res) {
+
+  res.sendFile(path.join(__dirname+'/dist/datn/index.html'));
+  });
 
 // importing routes
 const indexRoutes = require("./routes/api-routes");
