@@ -158,6 +158,7 @@
     <mat-slide-toggle
       [(ngModel)]="isRecommended"
       (change)="onChangeSlideToggle()"
+      *ngIf="recommendedArticles.length > 0"
       >Recommended jobs</mat-slide-toggle
     >
   </div>
