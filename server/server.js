@@ -50,11 +50,6 @@ app.use(function(req, res, next) {
 
   next();
 });
-app.get('/*', function(req,res) {
-
-  res.sendFile(path.join(__dirname+'/dist/datn/index.html'));
-  });
-
 // importing routes
 const indexRoutes = require("./routes/api-routes");
 const authRoutes = require("./auth");
@@ -83,10 +78,6 @@ app.use("/article", articleRoutes);
 app.use("/search", searchingRoutes);
 app.use("/elastic", elasticsearchRoutes);
 app.use("/report", reportRoutes);
-
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/datn/index.html'));
-});
 
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
