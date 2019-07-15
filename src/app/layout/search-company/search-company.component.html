@@ -46,7 +46,7 @@
       Companies Hiring Now
     </h1>
     <div style="display: flex; flex-direction: row; flex-wrap: wrap">
-      <div *ngFor="let item of recruiters" style="margin: 30px 20px;">
+      <div *ngFor="let item of recruiters">
         <app-company-frame [company]="item"></app-company-frame>
       </div>
     </div>
