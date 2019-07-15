@@ -40,6 +40,11 @@ export class CandidateService {
       this.domainName + "candidate/tags/" + candidate_id
     );
   }
+  getTagsByEmail(email) {
+    return this.http.get<any>(
+      this.domainName + "candidate/tags/email/" + email
+    );
+  }
 
   updateCandidateByID(userID, candidate: Candidate) {
     const headers = new HttpHeaders({ "Content-type": "application/json" });

@@ -154,7 +154,13 @@
       </a>
     </div>
   </div>
-
+  <div class="container" style="max-width: 1024px !important;">
+    <mat-slide-toggle
+      [(ngModel)]="isRecommended"
+      (change)="onChangeSlideToggle()"
+      >Recommended jobs</mat-slide-toggle
+    >
+  </div>
   <div class="companies-alljob container">
     <h1 style="text-align: center;font-size: 30px;text-transform: uppercase">
       NEWEST JOBS
@@ -164,15 +170,25 @@
       style="margin:auto;"
       [diameter]="40"
     ></mat-spinner>
-    <div
-      style="display: flex; flex-direction: row; justify-content: space-around;flex-wrap: wrap"
-      *ngFor="let item of recentArticles"
-    >
-      <app-job-frame-dashboard
-        [jobDescription]="item"
-        [email]="item.email_company"
-      ></app-job-frame-dashboard>
+
+    <div class="recommended-articles jobs-list" *ngIf="isRecommended">
+      <div *ngFor="let item of recommendedArticles">
+        <app-job-frame-dashboard
+          [jobDescription]="item"
+          [email]="item.email_company"
+        ></app-job-frame-dashboard>
+      </div>
     </div>
+
+    <div class="recent-articles jobs-list" *ngIf="!isRecommended">
+      <div *ngFor="let item of recentArticles">
+        <app-job-frame-dashboard
+          [jobDescription]="item"
+          [email]="item.email_company"
+        ></app-job-frame-dashboard>
+      </div>
+    </div>
+
     <div class="show-more">
       <mat-spinner
         *ngIf="isLoading"
@@ -182,7 +198,7 @@
       <button
         class="btn btn-outline-info"
         (click)="onShowMoreJob()"
-        *ngIf="!isLoading"
+        *ngIf="!isLoading && !isRecommended"
       >
         Show more jobs
       </button>

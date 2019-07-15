@@ -23,7 +23,7 @@ router.post("/tag", (req, res) => {
 //Getting by tag by name
 router.get("/tag/:content", async (req, res) => {
   try {
-    if (req.params.conten === "") {
+    if (req.params.content === "") {
       return;
     }
     const tag = await Tag.findOne({ content: req.params.content });

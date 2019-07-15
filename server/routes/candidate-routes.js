@@ -51,9 +51,17 @@ router.get("/candidate/applies/:id", async (req, res) => {
   return res.status(200).json(applies.reverse());
 });
 
-//Get all tag of candidate
+//Get all tag of candidate id
 router.get("/candidate/tags/:candidate_id", async (req, res) => {
   const candidate = await Candidate.findById(req.params.candidate_id);
+  res.status(200).json({
+    id: candidate._id,
+    tags: candidate.tags
+  });
+});
+//Get all tag of candidate email
+router.get("/candidate/tags/email/:email", async (req, res) => {
+  const candidate = await Candidate.findOne({email:req.params.email});
   res.status(200).json({
     id: candidate._id,
     tags: candidate.tags
