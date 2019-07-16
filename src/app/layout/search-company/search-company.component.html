@@ -45,8 +45,19 @@
     <h1 style="text-align: center;font-size: 21px;text-transform: uppercase">
       Companies Hiring Now
     </h1>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap">
-      <div *ngFor="let item of recruiters">
+    <mat-spinner
+      *ngIf="isLoading"
+      style="margin:auto;"
+      [diameter]="40"
+    ></mat-spinner>
+    <div
+      *ngIf="recruiters.length === 0 && recruiters && !isLoading"
+      style="display: flex; justify-content:space-around"
+    >
+      <h1>Found nothing!</h1>
+    </div>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap" *ngIf="!isLoading">
+      <div *ngFor="let item of recruiters" style="margin: 30px 20px;">
         <app-company-frame [company]="item"></app-company-frame>
       </div>
     </div>
