@@ -13,7 +13,7 @@ export class SearchCompanyComponent implements OnInit, OnDestroy {
   searchText: string;
   recruiters: Recruiter[] = [];
   sub: Subscription[] = [];
-
+  isLoading: boolean = false;
   constructor(private recruiterService: RecruiterService) {}
   ngOnInit() {
     this.getAllCompany();
@@ -22,20 +22,35 @@ export class SearchCompanyComponent implements OnInit, OnDestroy {
     this.sub.forEach(subscription => subscription.unsubscribe());
   }
   onSearch(form: NgForm) {
+    this.isLoading = true;
     this.searchCompany(this.searchText);
   }
 
   searchCompany(searchText: string) {
-    this.sub.push(
-      this.recruiterService.searchCompany(searchText).subscribe(companies => {
-        this.recruiters = <Recruiter[]>companies.results;
-      })
-    );
+    if (searchText === "") {
+      this.getAllCompany();
+    } else {
+      this.sub.push(
+        this.recruiterService.searchCompany(searchText).subscribe(
+          companies => {
+            this.recruiters = [];
+            this.recruiters = <Recruiter[]>companies.results;
+            this.isLoading = false;
+          },
+          error => {
+            this.recruiters = [];
+            this.isLoading = false;
+          }
+        )
+      );
+    }
   }
   getAllCompany() {
+    this.isLoading = true;
     this.sub.push(
       this.recruiterService.getAllRecruites().subscribe(companies => {
         this.recruiters = companies;
+        this.isLoading = false;
       })
     );
   }
