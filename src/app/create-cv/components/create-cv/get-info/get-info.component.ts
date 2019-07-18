@@ -21,7 +21,11 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
   @Input() getInfoResume: Resume;
   @Input() getInfoCandidate: Candidate;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.resumeService.getCategory().subscribe(category => {
+      this.findElement(category);
+    });
+  }
 
   onAddExperience() {
     const dialogConfig = this.configDefaultMatDialog();
@@ -114,5 +118,8 @@ export class GetInfoComponent extends CreateCvComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     return dialogConfig;
+  }
+  findElement(elementID: string) {
+    this.window.document.getElementById(elementID).scrollIntoView();
   }
 }
