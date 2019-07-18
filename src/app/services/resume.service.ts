@@ -1,9 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ResumeService {
-
-  constructor() { }
+  category = new Subject<string>();
+  constructor() {}
+  getCategory() {
+    return this.category.asObservable();
+  }
+  setCategory(category: string) {
+    this.category.next(category);
+  }
 }

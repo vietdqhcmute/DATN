@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from "@angular/core";
+import { Component, OnInit, OnDestroy, AfterViewInit, Inject } from "@angular/core";
 import { CandidateService } from "src/app/services/candidate.service";
 import { AuthService } from "src/app/services/auth.service";
 import { Title } from "@angular/platform-browser";
@@ -23,6 +23,7 @@ export class CreateCvComponent implements OnInit, OnDestroy, AfterViewInit {
   sub: Subscription[] = [];
 
   constructor(
+    @Inject(Window) protected window: Window,
     protected candidateService: CandidateService,
     protected authService: AuthService,
     protected titleService: Title,
