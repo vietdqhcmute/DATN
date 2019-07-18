@@ -1,5 +1,5 @@
 <!-- contact -->
-<div id="contact-area" class="text-center section">
+<div id="contact-area" class="text-center section" (click)="onClick('contact')">
   <h2>
     <strong>{{ previewCandidate.full_name }}</strong>
   </h2>
@@ -13,6 +13,7 @@
   id="summary-area"
   *ngIf="previewResume.summary && previewResume.summary.length"
   class="section"
+  (click)="onClick('summary')"
 >
   <h5><strong>Summary</strong></h5>
   <div class="summary-item">
@@ -25,6 +26,7 @@
   id="experience-area"
   class="section"
   *ngIf="previewResume.experience && previewResume.experience.length"
+  (click)="onClick('experience')"
 >
   <h5><strong>Experience</strong></h5>
   <div *ngFor="let item of previewResume.experience" class="experience-item">
@@ -64,7 +66,12 @@
 </div>
 
 <!-- project -->
-<div id="project-area" class="section" *ngIf="previewResume.project && previewResume.project.length">
+<div
+  id="project-area"
+  class="section"
+  *ngIf="previewResume.project && previewResume.project.length"
+  (click)="onClick('project')"
+>
   <h5><strong>Project</strong></h5>
   <div *ngFor="let item of previewResume.project" class="project-item">
     <div id="projectName-date">
@@ -86,7 +93,12 @@
 </div>
 
 <!-- education -->
-<div id="education-area" class="section" *ngIf="previewResume.education && previewResume.education.length">
+<div
+  id="education-area"
+  class="section"
+  *ngIf="previewResume.education && previewResume.education.length"
+  (click)="onClick('education')"
+>
   <h5><strong>Education</strong></h5>
   <div *ngFor="let item of previewResume.education" class="education-item">
     <div id="education-date">
@@ -117,6 +129,7 @@
   id="skill-area"
   class="section"
   *ngIf="previewResume.skill && previewResume.skill.length"
+  (click)="onClick('skill')"
 >
   <h5><strong>Skill</strong></h5>
 
