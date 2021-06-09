@@ -29,7 +29,7 @@ export class AllJobComponent implements OnInit, AfterViewChecked {
   ) {}
   ngOnInit() {
     this.titleService.setTitle("Searching for job");
-    this.getRecentArticles(this.page, this.per);
+    // this.getRecentArticles(this.page, this.per);
   }
   ngAfterViewChecked(): void {
     this.alertService.setHideTopBar(false);

@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: "login",
     loadChildren: "./login/login.module#LoginModule",
-    canActivate: [LoginGuard]
+    // canActivate: [LoginGuard]
   },
   {
     path: "register",
@@ -20,19 +20,19 @@ const routes: Routes = [
   {
     path: "profile",
     loadChildren: "./candidate/candidate.module#CandidateModule",
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     data: { role: 1 }
   },
   {
     path: "recruiter",
     loadChildren: "./recruiter/recruiter.module#RecruiterModule",
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     data: { role: 2 }
   },
   {
     path: "administrator",
     loadChildren: "./administrator/administrator.module#AdministratorModule",
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     data: { role: 3 }
   },
   {

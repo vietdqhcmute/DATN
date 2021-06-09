@@ -21,34 +21,44 @@ export class AuthService {
   ) {}
   //==================================================New code=================================
   login(loginParams) {
-    this.http
-      .post<{ token: string; fetcheddata: AuthenticatModel }>(
-        this.domainName + "login",
-        loginParams
-      )
-      .subscribe(
-        userResponse => {
-          const token = userResponse.token;
-          const role = userResponse.fetcheddata.role;
-          const email = userResponse.fetcheddata.email;
-          if (token) {
-            this.token = token;
-            this.isAuthenticated.next(true);
-            this.saveAuthDataToBrowser(userResponse);
-            if (role === 1) {
-              this.loginAsCandidate(email);
-            } else if (role === 2) {
-              this.loginAsRecruiter(email);
-            } else {
-              this.loginAsAdministrator();
-            }
-          }
-        },
-        error => {
-          console.log(error);
-          this.alertService.error(error, false);
-        }
-      );
+    const email = loginParams.email;
+    if (email === "admin"){
+      this.loginAsAdministrator();
+    }
+    if (email === "recruiter"){
+      this.loginAsRecruiter(email);
+    }
+    if( email === "candidate"){
+      this.loginAsCandidate(email);
+    }
+    // this.http
+    //   .post<{ token: string; fetcheddata: AuthenticatModel }>(
+    //     this.domainName + "login",
+    //     loginParams
+    //   )
+    //   .subscribe(
+    //     userResponse => {
+    //       const token = userResponse.token;
+    //       const role = userResponse.fetcheddata.role;
+    //       const email = userResponse.fetcheddata.email;
+    //       if (token) {
+    //         this.token = token;
+    //         this.isAuthenticated.next(true);
+    //         this.saveAuthDataToBrowser(userResponse);
+    //         if (role === 1) {
+    //           this.loginAsCandidate(email);
+    //         } else if (role === 2) {
+    //           this.loginAsRecruiter(email);
+    //         } else {
+    //           this.loginAsAdministrator();
+    //         }
+    //       }
+      //   },
+      //   error => {
+      //     console.log(error);
+      //     this.alertService.error(error, false);
+      //   }
+      // );
   }
 
   logout() {
